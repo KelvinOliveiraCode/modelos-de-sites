@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Educação Infantil, do berçário ao Jardim | Sua Marca</title>
+<meta name="description" content="Escola de Educação Infantil com berçário, Maternal e Jardim, em período parcial ou integral. Conheça um dia na escola e agende sua visita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFDF5;
+    --ink:#26221A;
+    --muted:#5A5245;
+    --p1:#FFF59D;
+    --p2:#90CAF9;
+    --p3:#F8BBD0;
+    --p4:#A5D6A7;
+    --off:#EDE7D8;
+    --linha:rgba(38,34,26,.14);
+    --ease:cubic-bezier(.22,1,.36,1);
+    --ease-estado:cubic-bezier(.4,0,.2,1);
+    --raio:22px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Nunito",system-ui,sans-serif;
+    font-size:1.0625rem;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4,.font-titulo{
+    font-family:"Fredoka","Nunito",sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    letter-spacing:-.01em;
+    margin:0 0 .5em;
+  }
+
+  p{margin:0 0 1em}
+  ul,ol{margin:0;padding:0;list-style:none}
+  a{color:inherit}
+  svg{display:block}
+  strong{font-weight:800}
+
+  :focus-visible{
+    outline:3px solid var(--ink);
+    outline-offset:3px;
+    border-radius:8px;
+  }
+
+  .container{
+    width:100%;
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:8px;
+    z-index:100;
+    background:var(--ink);
+    color:var(--bg);
+    padding:12px 18px;
+    border-radius:999px;
+    font-weight:700;
+    text-decoration:none;
+  }
+  .skip-link:focus{left:12px}
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:fixed;
+    inset:0 0 auto 0;
+    z-index:60;
+    padding:14px 0;
+    transition:background-color 250ms var(--ease-estado),box-shadow 250ms var(--ease-estado),padding 250ms var(--ease-estado);
+  }
+  .site-header.rolou{
+    background:rgba(255,253,245,.96);
+    box-shadow:0 8px 28px rgba(38,34,26,.10);
+    padding:8px 0;
+  }
+  .header-interno{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-family:"Fredoka",sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+  }
+  .brand-mark{width:34px;height:34px;flex:none}
+  .nav{display:flex;align-items:center}
+  .nav-list{
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+  .nav-list a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    padding:8px 12px;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:.98rem;
+    transition:background-color 200ms var(--ease-estado),color 200ms var(--ease-estado);
+  }
+  .nav-list a:hover{background:rgba(38,34,26,.07)}
+  .nav-list .nav-cta{
+    background:var(--ink);
+    color:var(--bg);
+    margin-left:6px;
+    padding:10px 18px;
+    transition:transform 200ms var(--ease-estado),box-shadow 200ms var(--ease-estado);
+  }
+  .nav-list .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(38,34,26,.22)}
+
+  .menu-toggle{
+    display:none;
+    width:48px;height:48px;
+    border:2px solid var(--linha);
+    border-radius:14px;
+    background:var(--bg);
+    cursor:pointer;
+    position:relative;
+  }
+  .menu-barras,.menu-barras::before,.menu-barras::after{
+    position:absolute;
+    left:50%;top:50%;
+    width:20px;height:2px;
+    background:var(--ink);
+    border-radius:2px;
+    transform:translate(-50%,-50%);
+    transition:transform 220ms var(--ease-estado),opacity 160ms linear;
+  }
+  .menu-barras::before{content:"";left:0;top:-6px;transform:none}
+  .menu-barras::after{content:"";left:0;top:6px;transform:none}
+  .menu-aberto .menu-barras{transform:translate(-50%,-50%) rotate(45deg)}
+  .menu-aberto .menu-barras::before{opacity:0}
+  .menu-aberto .menu-barras::after{transform:rotate(-90deg)}
+
+  @media (max-width:759px){
+    .menu-toggle{display:block}
+    .nav-list{
+      position:absolute;
+      top:calc(100% + 6px);
+      left:20px;right:20px;
+      flex-direction:column;
+      align-items:stretch;
+      gap:2px;
+      background:var(--bg);
+      border:1px solid var(--linha);
+      border-radius:20px;
+      padding:10px;
+      box-shadow:0 18px 40px rgba(38,34,26,.14);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(-10px);
+      transition:opacity 220ms var(--ease-estado),transform 220ms var(--ease-estado),visibility 220ms linear;
+    }
+    .menu-aberto .nav-list{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-list a{justify-content:flex-start;padding:12px 14px}
+    .nav-list .nav-cta{margin:6px 0 0;justify-content:center}
+  }
+
+  /* ---------- botões ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:48px;
+    padding:12px 22px;
+    border-radius:999px;
+    border:2px solid transparent;
+    font-family:"Fredoka",sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform 200ms var(--ease-estado),background-color 200ms var(--ease-estado),box-shadow 200ms var(--ease-estado),color 200ms var(--ease-estado);
+  }
+  .btn--primario{background:var(--ink);color:#FFFDF5}
+  .btn--primario:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(38,34,26,.24)}
+  .btn--contorno{background:transparent;color:var(--ink);border-color:rgba(38,34,26,.30)}
+  .btn--contorno:hover{background:rgba(38,34,26,.06);transform:translateY(-2px)}
+
+  section[id]{scroll-margin-top:92px}
+  .secao{padding:76px 0}
+
+  .eyebrow{
+    font-family:"Fredoka",sans-serif;
+    font-weight:500;
+    font-size:.95rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 14px;
+  }
+  .secao-cabeca{max-width:640px;margin-bottom:40px}
+  .secao-cabeca h2{font-size:clamp(1.7rem,4.4vw,2.4rem)}
+
+  /* ---------- revelação em scroll ---------- */
+  .revelar{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 700ms var(--ease),transform 700ms var(--ease);
+    transition-delay:calc(var(--i,0) * 75ms);
+  }
+  .revelar.visivel{opacity:1;transform:translateY(0)}
+  .revelar--lado{transform:translateX(-20px)}
+  .revelar--lado.visivel{transform:translateX(0)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:132px 0 64px;
+    background:
+      radial-gradient(circle at 12% 18%,rgba(255,245,157,.55),transparent 42%),
+      radial-gradient(circle at 88% 12%,rgba(144,202,249,.40),transparent 46%),
+      radial-gradient(circle at 78% 88%,rgba(248,187,208,.42),transparent 44%),
+      var(--bg);
+  }
+  .hero-grade{
+    display:grid;
+    gap:44px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  @media (min-width:760px){
+    .hero{padding:150px 0 84px}
+    .hero-grade{grid-template-columns:1.05fr .95fr;gap:48px}
+  }
+  .hero h1{font-size:clamp(2.1rem,6.2vw,3.3rem)}
+  .hero-sub{font-size:1.14rem;color:var(--muted);max-width:34ch}
+  .hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
+  .hero-nota{font-size:.95rem;color:var(--muted);margin:0}
+  .hero-arte{max-width:460px;width:100%}
+
+  /* entrada da página: escalonada, sem piscar */
+  .hero .anim{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 620ms var(--ease),transform 620ms var(--ease);
+    transition-delay:calc(var(--i,0) * 90ms);
+  }
+  body.carregado .hero .anim{opacity:1;transform:translateY(0)}
+
+  /* formas flutuando: assinatura do nicho, poucas e lentas */
+  .hero-formas{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    transform:translate3d(0,calc(var(--py,0) * 1px),0);
+  }
+  .forma{position:absolute;width:44px;height:44px;will-change:transform}
+  .forma--1{left:5%;top:16%;width:46px;height:46px;animation:flutua-a 9s var(--ease) infinite alternate}
+  .forma--2{right:6%;top:12%;width:36px;height:36px;animation:flutua-b 11s var(--ease) infinite alternate}
+  .forma--3{left:2%;bottom:16%;width:40px;height:40px;animation:flutua-b 13s var(--ease) infinite alternate}
+  .forma--4{right:3%;bottom:22%;width:52px;height:52px;animation:flutua-c 12s var(--ease) infinite alternate}
+  .forma--5{left:44%;top:6%;width:26px;height:26px;animation:flutua-a 10s var(--ease) infinite alternate}
+
+  @keyframes flutua-a{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(8px,-20px,0) rotate(12deg)}}
+  @keyframes flutua-b{from{transform:translate3d(0,0,0) rotate(-8deg)}to{transform:translate3d(-12px,16px,0) rotate(6deg)}}
+  @keyframes flutua-c{from{transform:translate3d(0,0,0) rotate(6deg)}to{transform:translate3d(10px,18px,0) rotate(-10deg)}}
+
+  .raios{transform-box:fill-box;transform-origin:50% 50%;animation:brilha 14s var(--ease) infinite alternate}
+  @keyframes brilha{from{transform:rotate(-11deg)}to{transform:rotate(11deg)}}
+
+  /* ---------- timeline: um dia na escola ---------- */
+  .timeline{position:relative;max-width:760px}
+  .timeline-linha{
+    position:absolute;
+    left:23px;top:10px;bottom:14px;
+    width:8px;height:auto;
+  }
+  .timeline-linha path{
+    stroke:var(--ink);
+    stroke-width:2;
+    stroke-dasharray:1;
+    stroke-dashoffset:1;
+    opacity:.28;
+    transition:stroke-dashoffset 900ms var(--ease);
+  }
+  .traco.visivel .timeline-linha path{stroke-dashoffset:0}
+  .tl-item{position:relative;padding:0 0 30px 62px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:19px;top:9px;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--pastel,var(--p1));
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  .tl-item:nth-child(4n+1){--pastel:var(--p1)}
+  .tl-item:nth-child(4n+2){--pastel:var(--p2)}
+  .tl-item:nth-child(4n+3){--pastel:var(--p3)}
+  .tl-item:nth-child(4n+4){--pastel:var(--p4)}
+  .tl-topo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:4px}
+  .tl-hora{
+    font-family:"Fredoka",sans-serif;
+    font-weight:600;
+    font-size:.92rem;
+    padding:4px 12px;
+    border-radius:999px;
+    background:var(--pastel,var(--p1));
+  }
+  .tl-item h3{font-size:1.2rem;margin:0}
+  .tl-item p{margin:0;color:var(--muted);max-width:52ch}
+
+  /* ---------- atividades ---------- */
+  .atv-grade{display:grid;gap:20px}
+  @media (min-width:560px){.atv-grade{grid-template-columns:repeat(2,1fr)}}
+  @media (min-width:980px){.atv-grade{grid-template-columns:repeat(3,1fr)}}
+  .bloco{
+    background:var(--pastel);
+    border-radius:var(--raio);
+    padding:26px 24px 24px;
+    transition:transform 220ms var(--ease-estado),box-shadow 220ms var(--ease-estado);
+  }
+  .bloco:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(38,34,26,.14)}
+  .bloco:nth-child(4n+1){--pastel:var(--p1)}
+  .bloco:nth-child(4n+2){--pastel:var(--p2)}
+  .bloco:nth-child(4n+3){--pastel:var(--p3)}
+  .bloco:nth-child(4n+4){--pastel:var(--p4)}
+  .bloco-icone{width:34px;height:34px;margin-bottom:14px;color:var(--ink)}
+  .bloco h3{font-size:1.2rem;margin-bottom:6px}
+  .bloco p{margin:0;color:rgba(38,34,26,.82)}
+  .bloco-meta{
+    margin:14px 0 0;
+    font-size:.88rem;
+    font-weight:800;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:rgba(38,34,26,.72);
+  }
+  .bloco-lista{margin:12px 0 0}
+  .bloco-lista li{position:relative;padding-left:16px;font-size:.98rem}
+  .bloco-lista li::before{
+    content:"";
+    position:absolute;left:0;top:.62em;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--ink);
+  }
+
+  /* ---------- estrutura em lista ---------- */
+  .est-lista{display:grid;gap:14px}
+  .est-item{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:14px 18px;
+    align-items:start;
+    background:#FFFFFF;
+    border:1px solid var(--linha);
+    border-radius:18px;
+    padding:20px 22px;
+    transition:transform 220ms var(--ease-estado),box-shadow 220ms var(--ease-estado);
+  }
+  .est-item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(38,34,26,.10)}
+  .est-num{
+    font-family:"Fredoka",sans-serif;
+    font-weight:600;
+    width:46px;height:46px;
+    display:grid;place-items:center;
+    border-radius:14px;
+    background:var(--pastel,var(--p1));
+    font-size:1rem;
+  }
+  .est-item:nth-child(4n+1){--pastel:var(--p1)}
+  .est-item:nth-child(4n+2){--pastel:var(--p2)}
+  .est-item:nth-child(4n+3){--pastel:var(--p3)}
+  .est-item:nth-child(4n+4){--pastel:var(--p4)}
+  .est-item h3{font-size:1.14rem;margin-bottom:4px}
+  .est-item p{margin:0;color:var(--muted)}
+  .est-tag{
+    grid-column:1 / -1;
+    justify-self:start;
+    font-size:.86rem;
+    font-weight:800;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--linha);
+    border-radius:999px;
+    padding:4px 12px;
+  }
+  @media (min-width:700px){
+    .est-item{grid-template-columns:auto 1fr auto;align-items:center}
+    .est-tag{grid-column:auto}
+  }
+
+  /* ---------- calendário de matrículas ---------- */
+  .cal-grade{display:grid;gap:22px}
+  @media (min-width:860px){.cal-grade{grid-template-columns:1.05fr .95fr;align-items:start}}
+  .cal-lista{display:grid;gap:10px}
+  .turma{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px 14px;
+    text-align:left;
+    background:#FFFFFF;
+    border:2px solid var(--linha);
+    border-radius:18px;
+    padding:14px 16px;
+    min-height:56px;
+    cursor:pointer;
+    font-family:"Nunito",sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+    transition:border-color 200ms var(--ease-estado),transform 200ms var(--ease-estado),box-shadow 200ms var(--ease-estado);
+  }
+  .turma:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(38,34,26,.10);border-color:rgba(38,34,26,.32)}
+  .turma.selecionada{border-color:var(--ink);box-shadow:0 12px 26px rgba(38,34,26,.14)}
+  .turma[aria-disabled="true"]{opacity:.72}
+  .turma-nome{font-weight:800;flex:1 1 150px;min-width:0}
+  .turma-turno{color:var(--muted);font-size:.95rem}
+  .estado{
+    font-size:.84rem;
+    font-weight:800;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .estado--aberta{background:var(--p4)}
+  .estado--espera{background:var(--p2)}
+  .estado--encerrada{background:var(--off);color:var(--muted)}
+
+  .cal-detalhe{
+    background:#FFFFFF;
+    border:1px solid var(--linha);
+    border-radius:var(--raio);
+    padding:26px 24px;
+    min-height:260px;
+  }
+  .cal-detalhe h3{font-size:1.3rem;margin:10px 0 8px}
+  .cal-detalhe p{color:var(--muted)}
+  .detalhe-vazio{display:grid;gap:12px;place-content:center;min-height:210px;text-align:center;color:var(--muted)}
+  .detalhe-vazio svg{width:44px;height:44px;margin:0 auto;color:rgba(38,34,26,.45)}
+  .troca{animation:troca 280ms var(--ease-estado) both}
+  @keyframes troca{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .detalhe-valor{font-weight:800;color:var(--ink)}
+  .detalhe-passo{font-size:.98rem}
+
+  /* ---------- FAQ ---------- */
+  .faq-lista{max-width:760px;display:grid;gap:12px}
+  .pergunta{
+    background:#FFFFFF;
+    border:1px solid var(--linha);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .pergunta h3{margin:0;font-size:1.08rem}
+  .pergunta-botao{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    text-align:left;
+    background:none;
+    border:0;
+    padding:18px 20px;
+    min-height:56px;
+    cursor:pointer;
+    font-family:"Fredoka",sans-serif;
+    font-weight:500;
+    font-size:1.08rem;
+    color:var(--ink);
+  }
+  .pergunta-icone{position:relative;width:18px;height:18px;flex:none}
+  .pergunta-icone::before,.pergunta-icone::after{
+    content:"";
+    position:absolute;left:0;top:8px;
+    width:18px;height:2px;border-radius:2px;background:var(--ink);
+    transition:transform 260ms var(--ease-estado),opacity 200ms linear;
+  }
+  .pergunta-icone::after{transform:rotate(90deg)}
+  .pergunta.aberta .pergunta-icone::after{transform:rotate(0deg);opacity:0}
+  .pergunta.aberta .pergunta-icone::before{transform:rotate(180deg)}
+  .resposta{display:grid;grid-template-rows:0fr;transition:grid-template-rows 340ms var(--ease-estado)}
+  .pergunta.aberta .resposta{grid-template-rows:1fr}
+  .resposta-interna{overflow:hidden}
+  .resposta-interna p{padding:0 20px 20px;margin:0;color:var(--muted);max-width:62ch}
+
+  /* ---------- formulário ---------- */
+  .visita-grade{display:grid;gap:28px}
+  @media (min-width:860px){.visita-grade{grid-template-columns:.85fr 1.15fr;align-items:start}}
+  .form{
+    background:#FFFFFF;
+    border:1px solid var(--linha);
+    border-radius:var(--raio);
+    padding:26px 24px;
+    display:grid;
+    gap:18px;
+  }
+  .campo{display:grid;gap:6px}
+  .campo label{font-weight:800;font-size:.95rem}
+  .campo input,.campo select,.campo textarea{
+    font-family:"Nunito",sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+    background:var(--bg);
+    border:2px solid var(--linha);
+    border-radius:14px;
+    padding:12px 14px;
+    min-height:48px;
+    width:100%;
+    transition:border-color 200ms var(--ease-estado),background-color 200ms var(--ease-estado);
+  }
+  .campo textarea{min-height:104px;resize:vertical}
+  .campo input:hover,.campo select:hover,.campo textarea:hover{border-color:rgba(38,34,26,.30)}
+  .campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--ink);background:#FFFFFF}
+  .campo [aria-invalid="true"]{border-color:#A4331F}
+  .campo-erro{margin:0;font-size:.9rem;font-weight:700;color:#A4331F;min-height:1.2em}
+  .radios{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+  .radios legend{font-weight:800;font-size:.95rem;margin-bottom:8px;padding:0}
+  .radio{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--linha);
+    border-radius:999px;
+    padding:10px 16px;
+    min-height:44px;
+    cursor:pointer;
+    font-weight:700;
+    background:var(--bg);
+    transition:border-color 200ms var(--ease-estado),background-color 200ms var(--ease-estado);
+  }
+  .radio:hover{border-color:rgba(38,34,26,.30)}
+  .radio input{width:18px;height:18px;accent-color:var(--ink);min-height:0}
+  .radio:has(input:checked){border-color:var(--ink);background:var(--p1)}
+  .aceite{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--muted)}
+  .aceito input{width:20px;height:20px;min-height:0;margin-top:3px;accent-color:var(--ink);flex:none}
+  .sucesso{
+    background:var(--p4);
+    border-radius:var(--raio);
+    padding:30px 26px;
+  }
+  .sucesso h3{font-size:1.4rem}
+  .sucesso p{color:rgba(38,34,26,.85)}
+  .visita-lista{display:grid;gap:12px;margin-top:6px}
+  .visita-lista li{position:relative;padding-left:26px;color:var(--muted)}
+  .visita-lista li::before{
+    content:"";
+    position:absolute;left:0;top:.45em;
+    width:12px;height:12px;border-radius:4px;
+    background:var(--pastel,var(--p1));
+  }
+  .visita-lista li:nth-child(3n+1){--pastel:var(--p1)}
+  .visita-lista li:nth-child(3n+2){--pastel:var(--p2)}
+  .visita-lista li:nth-child(3n+3){--pastel:var(--p3)}
+
+  /* ---------- rodapé ---------- */
+  .rodape{
+    background:var(--ink);
+    color:#F6F1E4;
+    padding:56px 0 28px;
+    margin-top:20px;
+  }
+  .rodape-grade{display:grid;gap:32px}
+  @media (min-width:760px){.rodape-grade{grid-template-columns:1.2fr 1fr 1fr}}
+  .rodape h2{font-size:1.05rem;margin-bottom:12px}
+  .rodape p{color:rgba(246,241,228,.78)}
+  .rodape a{color:#F6F1E4;text-decoration:underline;text-underline-offset:3px;transition:color 200ms var(--ease-estado)}
+  .rodape a:hover{color:var(--p1)}
+  .rodape .brand{color:#F6F1E4}
+  .rodape-lista{display:grid;gap:8px}
+  .rodape-lista a{text-decoration:none;font-weight:700;min-height:40px;display:inline-flex;align-items:center;transition:color 200ms var(--ease-estado),transform 200ms var(--ease-estado)}
+  .rodape-lista a:hover{color:var(--p1);transform:translateX(3px)}
+  .rodape-base{
+    border-top:1px solid rgba(246,241,228,.20);
+    margin-top:34px;
+    padding-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    justify-content:space-between;
+    font-size:.92rem;
+    color:rgba(246,241,228,.72);
+  }
+  .rodape-base p{margin:0}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+    }
+    .revelar,.hero .anim{opacity:1 !important;transform:none !important}
+    .hero-formas{transform:none}
+    .timeline-linha path{stroke-dashoffset:0}
+  }
+</style>
+<noscript><style>
+  .revelar,.hero .anim{opacity:1;transform:none}
+  .timeline-linha path{stroke-dashoffset:0}
+  @media (max-width:759px){
+    .nav-list{opacity:1;visibility:visible;transform:none;position:static;box-shadow:none;border:0}
+  }
+</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="site-header" id="topo">
+  <div class="container header-interno">
+    <a class="brand" href="#inicio">
+      <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="31" height="31" rx="10" fill="#FFF59D"/>
+        <path d="M11 20.5 18 12l7 8.5" fill="none" stroke="#26221A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.5 20v6.5h9V20" fill="none" stroke="#26221A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-nome">Sua Marca</span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <span class="menu-barras" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-list" id="menu-principal">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#dia">Um dia na escola</a></li>
+        <li><a href="#atividades">Atividades</a></li>
+        <li><a href="#estrutura">Estrutura</a></li>
+        <li><a href="#matriculas">Matrículas</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+        <li><a class="nav-cta" href="#visita">Agendar visita</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- HERO: formas geométricas flutuando devagar, poucas e lentas -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="hero-formas" aria-hidden="true">
+      <svg class="forma forma--1" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#FFF59D"/></svg>
+      <svg class="forma forma--2" viewBox="0 0 40 40"><rect x="3" y="3" width="34" height="34" rx="8" fill="#90CAF9"/></svg>
+      <svg class="forma forma--3" viewBox="0 0 40 40"><path d="M20 4 36 34 4 34Z" fill="#F8BBD0"/></svg>
+      <svg class="forma forma--4" viewBox="0 0 40 40"><path d="M5 33a15 15 0 0 1 30 0" fill="none" stroke="#A5D6A7" stroke-width="5" stroke-linecap="round"/></svg>
+      <svg class="forma forma--5" viewBox="0 0 40 40"><path d="M20 5v30M5 20h30" stroke="#26221A" stroke-width="5" stroke-linecap="round" opacity=".45"/></svg>
+    </div>
+    <div class="container hero-grade">
+      <div class="hero-texto">
+        <p class="eyebrow anim" style="--i:0">Berçário, Maternal e Jardim</p>
+        <h1 id="hero-titulo" class="anim" style="--i:1">Educação Infantil com tempo para ser criança</h1>
+        <p class="hero-sub anim" style="--i:2">Cada área da escola tem um espaço e uma cor. A criança passa o dia entre arte, natureza, leitura e brincadeira, e volta para casa contando o que fez.</p>
+        <div class="hero-acoes anim" style="--i:3">
+          <a class="btn btn--primario" href="#visita">Agendar visita</a>
+          <a class="btn btn--contorno" href="#matriculas">Ver calendário de matrículas</a>
+        </div>
+        <p class="hero-nota anim" style="--i:4">Visita guiada com a coordenação, [40 min], e você pode trazer a criança.</p>
+      </div>
+      <div class="hero-arte anim" style="--i:2">
+        <svg viewBox="0 0 420 330" role="img" aria-label="Desenho de escola feita de formas geométricas, com sol, árvore e canteiros" style="width:100%;height:auto">
+          <rect x="96" y="118" width="212" height="146" rx="18" fill="#90CAF9"/>
+          <path d="M104 122 216 44 328 122Z" fill="#F8BBD0"/>
+          <rect x="192" y="206" width="44" height="58" rx="10" fill="#26221A"/>
+          <rect x="120" y="150" width="52" height="46" rx="10" fill="#FFF59D"/>
+          <rect x="256" y="150" width="52" height="46" rx="10" fill="#FFF59D"/>
+          <path d="M146 150v46M168 150v46M120 173h52M256 173h52M282 150v46" stroke="#26221A" stroke-width="2" opacity=".35"/>
+          <rect x="24" y="252" width="372" height="12" rx="6" fill="#A5D6A7"/>
+          <g class="raios">
+            <circle cx="356" cy="62" r="26" fill="#FFF59D"/>
+            <path d="M356 24v-12M356 112v-12M394 62h12M306 62h12M384 34l9-9M319 98l9-9M384 90l9 9M319 26l9 9" stroke="#26221A" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+          </g>
+          <rect x="46" y="222" width="10" height="30" rx="5" fill="#26221A"/>
+          <circle cx="51" cy="212" r="24" fill="#A5D6A7"/>
+          <rect x="352" y="230" width="9" height="34" rx="4" fill="#26221A"/>
+          <circle cx="356" cy="220" r="20" fill="#A5D6A7"/>
+          <rect x="120" y="238" width="60" height="26" rx="13" fill="#F8BBD0"/>
+          <rect x="196" y="242" width="44" height="22" rx="11" fill="#FFF59D"/>
+          <path d="M266 264h44M288 242v44" stroke="#26221A" stroke-width="4" stroke-linecap="round" opacity=".4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- UM DIA NA ESCOLA: timeline vertical -->
+  <section class="secao" id="dia" aria-labelledby="dia-titulo">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">Rotina</p>
+        <h2 id="dia-titulo">Um dia na escola</h2>
+        <p>Horários de referência do turno da manhã. A rotina segue a mesma ordem todos os dias, porque previsibilidade dá segurança para a criança.</p>
+      </div>
+      <div class="timeline traco">
+        <svg class="timeline-linha" viewBox="0 0 8 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4 0 V100" pathLength="1" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <ol class="timeline-lista">
+          <li class="tl-item revelar" style="--i:0">
+            <div class="tl-topo"><span class="tl-hora">7h30</span><h3>Entrada e acolhida</h3></div>
+            <p>Chegada sem pressa. Cada criança é recebida pelo nome e escolhe por onde começar o dia.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:1">
+            <div class="tl-topo"><span class="tl-hora">8h15</span><h3>Roda de conversa</h3></div>
+            <p>O grupo combina o dia, canta e conta o que trouxe de casa.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:2">
+            <div class="tl-topo"><span class="tl-hora">9h</span><h3>Projeto da turma</h3></div>
+            <p>Uma investigação que dura semanas: a horta, um mapa da rua, uma história escrita por eles.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:3">
+            <div class="tl-topo"><span class="tl-hora">10h</span><h3>Lanche da manhã</h3></div>
+            <p>Comida preparada na escola, servida sem pressa. A alimentação está inclusa.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:4">
+            <div class="tl-topo"><span class="tl-hora">10h40</span><h3>Parque e movimento</h3></div>
+            <p>Subir, correr, cavar e equilibrar. Área externa todos os dias, com sol da manhã e sombra à tarde.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:5">
+            <div class="tl-topo"><span class="tl-hora">12h30</span><h3>Almoço e descanso</h3></div>
+            <p>Refeição em grupo e depois sala tranquila, com livros ao alcance e colchonete para quem precisa dormir.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:6">
+            <div class="tl-topo"><span class="tl-hora">14h</span><h3>Oficinas da tarde</h3></div>
+            <p>Arte, música, culinária e faz de conta em rotação pelos espaços da escola, para o turno integral.</p>
+          </li>
+          <li class="tl-item revelar" style="--i:7">
+            <div class="tl-topo"><span class="tl-hora">16h30</span><h3>Roda de fechamento e saída</h3></div>
+            <p>A turma revisa o dia, registra o que aprendeu e cada família recebe o recado escrito.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATIVIDADES: blocos de pastel rotativo -->
+  <section class="secao" id="atividades" aria-labelledby="atv-titulo" style="background:rgba(255,245,157,.18)">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">O que acontece no dia</p>
+        <h2 id="atv-titulo">Atividades</h2>
+        <p>Seis frentes de trabalho que se repetem na semana, cada uma em seu próprio espaço. A cor de cada bloco é a cor da área onde a atividade acontece.</p>
+      </div>
+      <div class="atv-grade">
+        <article class="bloco revelar" style="--i:0">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-2s-.7-2-.7-3.2c0-1.3.9-2.3 2.3-2.3H18a3 3 0 0 0 3-3c0-4-4-7.5-9-7.5Z"/>
+            <circle cx="8.2" cy="9" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="12.4" cy="7.6" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="7.6" cy="13.4" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+          <h3>Arte e pintura</h3>
+          <p>Tinta, argila, colagem e papelão no ateliê. O erro faz parte do processo e ninguém apaga o desenho do colega.</p>
+          <p class="bloco-meta">Ateliê</p>
+        </article>
+        <article class="bloco revelar" style="--i:1">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 18V6l10-2v12"/>
+            <circle cx="6.5" cy="18" r="2.5"/>
+            <circle cx="16.5" cy="16" r="2.5"/>
+          </svg>
+          <h3>Música e movimento</h3>
+          <p>Rodas de canto, instrumentos simples e dança livre. O corpo entra na aula.</p>
+          <p class="bloco-meta">Sala de música</p>
+        </article>
+        <article class="bloco revelar" style="--i:2">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 6.5C10.5 5 8.5 4.5 5 4.5v13c3.5 0 5.5.5 7 2 1.5-1.5 3.5-2 7-2v-13c-3.5 0-5.5.5-7 2Z"/>
+            <path d="M12 6.5v13"/>
+          </svg>
+          <h3>Leitura e contação</h3>
+          <p>Cantinho de livros com consulta livre e leitura em voz alta todos os dias.</p>
+          <ul class="bloco-lista">
+            <li>Empréstimo para levar para casa</li>
+            <li>Hora da leitura antes da saída</li>
+          </ul>
+        </article>
+        <article class="bloco revelar" style="--i:3">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21v-7"/>
+            <path d="M12 14C12 9.6 8.4 6 4 6c0 4.4 3.6 8 8 8Z"/>
+            <path d="M12 14c0-4.4 3.6-8 8-8 0 4.4-3.6 8-8 8Z"/>
+          </svg>
+          <h3>Natureza e horta</h3>
+          <p>Cuidar dos canteiros, observar bichos, regar e colher o que a turma plantou.</p>
+          <p class="bloco-meta">Área externa</p>
+        </article>
+        <article class="bloco revelar" style="--i:4">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 11h13v3.5A5.5 5.5 0 0 1 12.5 20h-2A5.5 5.5 0 0 1 5 14.5V11Z"/>
+            <path d="M18.5 12.5H20"/>
+            <path d="M9 8.5c0-1.2 1.2-1.6 1.2-3"/>
+            <path d="M13.4 8.5c0-1.2 1.2-1.6 1.2-3"/>
+          </svg>
+          <h3>Culinária</h3>
+          <p>Receitas simples, sem fogo, do plantio ao prato. A turma come o que preparou.</p>
+          <p class="bloco-meta">Refeitório</p>
+        </article>
+        <article class="bloco revelar" style="--i:5">
+          <svg class="bloco-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11 12 4l8 7"/>
+            <path d="M6.5 10.5V20h11v-9.5"/>
+            <path d="M10 20v-5h4v5"/>
+          </svg>
+          <h3>Faz de conta</h3>
+          <p>Cabana, mercado e consultório montados pela turma. O jogo simbólico tem horário garantido na semana.</p>
+          <p class="bloco-meta">Sala de jogos</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRUTURA em lista -->
+  <section class="secao" id="estrutura" aria-labelledby="est-titulo">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">O espaço</p>
+        <h2 id="est-titulo">Estrutura</h2>
+        <p>Ambientes pensados por faixa de idade, com material ao alcance da criança e uso livre durante a rotina.</p>
+      </div>
+      <ul class="est-lista">
+        <li class="est-item revelar revelar--lado" style="--i:0">
+          <span class="est-num" aria-hidden="true">01</span>
+          <div><h3>Salas de aula</h3><p>Luz natural, paredes com registro do trabalho da turma e material organizado à altura de quem usa.</p></div>
+          <span class="est-tag">Berçário ao Jardim</span>
+        </li>
+        <li class="est-item revelar revelar--lado" style="--i:1">
+          <span class="est-num" aria-hidden="true">02</span>
+          <div><h3>Biblioteca</h3><p>Acervo de consulta livre, prateleiras baixas e almofadas no chão para ler de qualquer jeito.</p></div>
+          <span class="est-tag">Livros</span>
+        </li>
+        <li class="est-item revelar revelar--lado" style="--i:2">
+          <span class="est-num" aria-hidden="true">03</span>
+          <div><h3>Ateliê de arte</h3><p>Pia azulejada, cavaletes e bancada grande, com espaço para sujar sem brigar por espaço.</p></div>
+          <span class="est-tag">Arte</span>
+        </li>
+        <li class="est-item revelar revelar--lado" style="--i:3">
+          <span class="est-num" aria-hidden="true">04</span>
+          <div><h3>Refeitório</h3><p>Cardápio semanal preparado na escola e servido em grupo. A alimentação está inclusa na mensalidade.</p></div>
+          <span class="est-tag">Alimentação</span>
+        </li>
+        <li class="est-item revelar revelar--lado" style="--i:4">
+          <span class="est-num" aria-hidden="true">05</span>
+          <div><h3>Área externa e horta</h3><p>Jardim, areia, canteiros e árvores. Sol pela manhã e sombra garantida no fim da manhã.</p></div>
+          <span class="est-tag">Natureza</span>
+        </li>
+        <li class="est-item revelar revelar--lado" style="--i:5">
+          <span class="est-num" aria-hidden="true">06</span>
+          <div><h3>Sala do berçário</h3><p>Berçário com solário, trocador e espaço de sono separado da área de brincar.</p></div>
+          <span class="est-tag">Berçário</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CALENDÁRIO DE MATRÍCULAS com estados -->
+  <section class="secao" id="matriculas" aria-labelledby="mat-titulo" style="background:rgba(144,202,249,.16)">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">Vagas</p>
+        <h2 id="mat-titulo">Calendário de matrículas</h2>
+        <p>Cada turma está em um estado diferente: aberta, em lista de espera ou encerrada. Escolha uma turma para ver os detalhes e o próximo passo.</p>
+      </div>
+      <div class="cal-grade">
+        <ul class="cal-lista revelar" aria-label="Turmas e situação da matrícula">
+          <li>
+            <button class="turma" type="button" data-turma="berc-manha" aria-pressed="false">
+              <span class="turma-nome">Berçário, manhã</span>
+              <span class="turma-turno">7h30 às 12h</span>
+              <span class="estado estado--espera">Lista de espera</span>
+            </button>
+          </li>
+          <li>
+            <button class="turma" type="button" data-turma="berc-tarde" aria-disabled="true">
+              <span class="turma-nome">Berçário, tarde</span>
+              <span class="turma-turno">13h às 17h30</span>
+              <span class="estado estado--encerrada">Encerrada</span>
+            </button>
+          </li>
+          <li>
+            <button class="turma" type="button" data-turma="mat1-manha" aria-pressed="false">
+              <span class="turma-nome">Maternal I, manhã</span>
+              <span class="turma-turno">7h30 às 12h</span>
+              <span class="estado estado--aberta">Aberta</span>
+            </button>
+          </li>
+          <li>
+            <button class="turma" type="button" data-turma="mat2-tarde" aria-pressed="false">
+              <span class="turma-nome">Maternal II, tarde</span>
+              <span class="turma-turno">13h às 17h30</span>
+              <span class="estado estado--aberta">Aberta</span>
+            </button>
+          </li>
+          <li>
+            <button class="turma" type="button" data-turma="jard1-integral" aria-pressed="false">
+              <span class="turma-nome">Jardim I, integral</span>
+              <span class="turma-turno">7h30 às 17h30</span>
+              <span class="estado estado--espera">Lista de espera</span>
+            </button>
+          </li>
+          <li>
+            <button class="turma" type="button" data-turma="jard2-manha" aria-pressed="false">
+              <span class="turma-nome">Jardim II, manhã</span>
+              <span class="turma-turno">7h30 às 12h</span>
+              <span class="estado estado--aberta">Aberta</span>
+            </button>
+          </li>
+        </ul>
+        <div class="cal-detalhe" id="detalhe" aria-live="polite">
+          <div class="detalhe-vazio" id="detalhe-vazio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3"/>
+              <path d="M8 3v4M16 3v4M3 10h18"/>
+            </svg>
+            <p>Selecione uma turma ao lado para ver a situação da matrícula, os turnos e o próximo passo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="secao" id="faq" aria-labelledby="faq-titulo">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">Dúvidas frequentes</p>
+        <h2 id="faq-titulo">Perguntas que as famílias fazem</h2>
+      </div>
+      <div class="faq-lista">
+        <div class="pergunta revelar" style="--i:0">
+          <h3>
+            <button class="pergunta-botao" type="button" aria-expanded="false" aria-controls="resp-1" id="btn-1">
+              A partir de que idade vocês atendem?
+              <span class="pergunta-icone" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="resposta" id="resp-1" role="region" aria-labelledby="btn-1">
+            <div class="resposta-interna"><p>Do berçário, a partir de [00 meses], até o Jardim. A turma é definida pela idade da criança no ano letivo, e a coordenação ajuda a escolher o melhor momento de entrada.</p></div>
+          </div>
+        </div>
+        <div class="pergunta revelar" style="--i:1">
+          <h3>
+            <button class="pergunta-botao" type="button" aria-expanded="false" aria-controls="resp-2" id="btn-2">
+              Tem período integral?
+              <span class="pergunta-icone" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="resposta" id="resp-2" role="region" aria-labelledby="btn-2">
+            <div class="resposta-interna"><p>Tem. No integral a criança fica o dia todo, com almoço, descanso e oficinas à tarde. A mensalidade do integral é diferente da parcial e o valor é informado por turma, a partir de [R$ 00].</p></div>
+          </div>
+        </div>
+        <div class="pergunta revelar" style="--i:2">
+          <h3>
+            <button class="pergunta-botao" type="button" aria-expanded="false" aria-controls="resp-3" id="btn-3">
+              A alimentação está inclusa?
+              <span class="pergunta-icone" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="resposta" id="resp-3" role="region" aria-labelledby="btn-3">
+            <div class="resposta-interna"><p>Sim. Lanche da manhã, almoço e lanche da tarde são preparados na escola, e o cardápio da semana é enviado às famílias. Restrições alimentares e alergias são conversadas antes da matrícula.</p></div>
+          </div>
+        </div>
+        <div class="pergunta revelar" style="--i:3">
+          <h3>
+            <button class="pergunta-botao" type="button" aria-expanded="false" aria-controls="resp-4" id="btn-4">
+              Como funciona a adaptação da criança?
+              <span class="pergunta-icone" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="resposta" id="resp-4" role="region" aria-labelledby="btn-4">
+            <div class="resposta-interna"><p>A adaptação começa com a família na escola e o tempo da criança aumenta aos poucos, ao longo de [00 semanas]. A coordenação acompanha cada caso e combina os horários com a família.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDAR VISITA -->
+  <section class="secao" id="visita" aria-labelledby="visita-titulo" style="background:rgba(248,187,208,.16)">
+    <div class="container">
+      <div class="secao-cabeca revelar">
+        <p class="eyebrow">Venha conhecer</p>
+        <h2 id="visita-titulo">Agendar visita</h2>
+        <p>Preencha os campos e a coordenação entra em contato para confirmar o horário. A visita dura [40 min] e você pode trazer a criança.</p>
+      </div>
+      <div class="visita-grade">
+        <div class="revelar" style="--i:0">
+          <h3>Como é a visita</h3>
+          <ul class="visita-lista">
+            <li>Percurso pelas salas, pelo ateliê e pela área externa, em horário de aula.</li>
+            <li>Conversa com a coordenação sobre rotina, alimentação e adaptação.</li>
+            <li>Nada de apresentação comercial: você vê a escola funcionando.</li>
+          </ul>
+          <p style="margin-top:18px;color:var(--muted)">Endereço: [endereço]. Telefone: [(00) 00000-0000].</p>
+        </div>
+        <form class="form revelar" id="form-visita" novalidate style="--i:1">
+          <div class="campo">
+            <label for="nome">Nome do responsável</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" aria-describedby="erro-nome" placeholder="Como a escola deve te chamar">
+            <p class="campo-erro" id="erro-nome" role="alert"></p>
+          </div>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="erro-email" placeholder="[seu@email.com]">
+            <p class="campo-erro" id="erro-email" role="alert"></p>
+          </div>
+          <div class="campo">
+            <label for="telefone">Telefone com DDD</label>
+            <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="erro-telefone" placeholder="[(00) 00000-0000]">
+            <p class="campo-erro" id="erro-telefone" role="alert"></p>
+          </div>
+          <div class="campo">
+            <label for="turma">Turma de interesse</label>
+            <select id="turma" name="turma" aria-describedby="erro-turma">
+              <option value="">Selecione uma turma</option>
+              <option value="bercario">Berçário</option>
+              <option value="maternal1">Maternal I</option>
+              <option value="maternal2">Maternal II</option>
+              <option value="jardim1">Jardim I</option>
+              <option value="jardim2">Jardim II</option>
+              <option value="ainda-nao-sei">Ainda não sei</option>
+            </select>
+            <p class="campo-erro" id="erro-turma" role="alert"></p>
+          </div>
+          <fieldset class="campo">
+            <legend>Período</legend>
+            <div class="radios">
+              <label class="radio"><input type="radio" name="periodo" value="manha"> Manhã</label>
+              <label class="radio"><input type="radio" name="periodo" value="tarde"> Tarde</label>
+              <label class="radio"><input type="radio" name="periodo" value="integral"> Integral</label>
+            </div>
+            <p class="campo-erro" id="erro-periodo" role="alert"></p>
+          </fieldset>
+          <div class="campo">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Conte a idade da criança ou o que quer saber na visita."></textarea>
+          </div>
+          <div class="campo">
+            <label class="aceito aceite" for="aceite">
+              <input id="aceite" name="aceite" type="checkbox" aria-describedby="erro-aceite">
+              <span>Autorizo a escola a entrar em contato por telefone ou e-mail sobre a visita.</span>
+            </label>
+            <p class="campo-erro" id="erro-aceite" role="alert"></p>
+          </div>
+          <button class="btn btn--primario" type="submit">Agendar visita</button>
+        </form>
+        <div class="sucesso" id="sucesso" role="status" tabindex="-1" hidden>
+          <h3>Pedido de visita enviado</h3>
+          <p>Recebemos seus dados. A coordenação confirma o horário por telefone ou e-mail antes do dia marcado, em até [prazo de retorno].</p>
+          <p>Se preferir adiantar, ligue para [(00) 00000-0000].</p>
+          <button class="btn btn--contorno" type="button" id="novo-pedido">Enviar outro pedido</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape-grade">
+      <div>
+        <a class="brand" href="#topo">
+          <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="31" height="31" rx="10" fill="#FFF59D"/>
+            <path d="M11 20.5 18 12l7 8.5" fill="none" stroke="#26221A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.5 20v6.5h9V20" fill="none" stroke="#26221A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Sua Marca</span>
+        </a>
+        <p>Escola de Educação Infantil, do berçário ao Jardim, em período parcial ou integral.</p>
+      </div>
+      <div>
+        <h2>Endereço e contato</h2>
+        <p>[endereço]</p>
+        <p><a href="tel:+5500000000000">[(00) 00000-0000]</a></p>
+        <p><a href="mailto:seu@email.com">[seu@email.com]</a></p>
+      </div>
+      <div>
+        <h2>Navegar</h2>
+        <ul class="rodape-lista">
+          <li><a href="#dia">Um dia na escola</a></li>
+          <li><a href="#atividades">Atividades</a></li>
+          <li><a href="#matriculas">Calendário de matrículas</a></li>
+          <li><a href="#visita">Agendar visita</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-base">
+      <p>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></p>
+      <p>Textos, valores e dados são placeholders de demonstração.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var doc = document;
+  var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var amplo = window.matchMedia('(min-width: 760px)');
+  var corpo = doc.body;
+  var header = doc.querySelector('.site-header');
+  var alternar = doc.querySelector('.menu-toggle');
+  var menu = doc.getElementById('menu-principal');
+  var formas = doc.querySelector('.hero-formas');
+
+  /* entrada da página: classe no body depois do load, escalonada por --i */
+  function iniciarEntrada() { corpo.classList.add('carregado'); }
+  if (doc.readyState === 'complete') { iniciarEntrada(); }
+  else { window.addEventListener('load', iniciarEntrada); }
+
+  /* header que reage ao scroll + parallax leve, tudo dentro de um rAF */
+  var agendado = false;
+  function quadro() {
+    agendado = false;
+    var y = window.pageYOffset || doc.documentElement.scrollTop;
+    header.classList.toggle('rolou', y > 10);
+    if (formas && !reduzido && amplo.matches) {
+      formas.style.setProperty('--py', (y * 0.16).toFixed(1));
+    }
+  }
+  function aoRolar() {
+    if (!agendado) { agendado = true; window.requestAnimationFrame(quadro); }
+  }
+  window.addEventListener('scroll', aoRolar, { passive: true });
+  quadro();
+
+  /* menu mobile: abre e fecha de verdade */
+  function fecharMenu() {
+    header.classList.remove('menu-aberto');
+    alternar.setAttribute('aria-expanded', 'false');
+    alternar.setAttribute('aria-label', 'Abrir menu');
+  }
+  alternar.addEventListener('click', function () {
+    var aberto = header.classList.toggle('menu-aberto');
+    alternar.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    alternar.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  });
+  menu.addEventListener('click', function (evento) {
+    if (evento.target.closest('a')) { fecharMenu(); }
+  });
+  doc.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape' && header.classList.contains('menu-aberto')) {
+      fecharMenu();
+      alternar.focus();
+    }
+  });
+
+  /* scroll reveal escalonado por --i */
+  var alvos = doc.querySelectorAll('.revelar, .traco');
+  if ('IntersectionObserver' in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visivel');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -48px 0px' });
+    alvos.forEach(function (alvo) { observador.observe(alvo); });
+  } else {
+    alvos.forEach(function (alvo) { alvo.classList.add('visivel'); });
+  }
+
+  /* FAQ: acordeão com transição de altura */
+  var botoes = doc.querySelectorAll('.pergunta-botao');
+  botoes.forEach(function (botao) {
+    botao.addEventListener('click', function () {
+      var item = botao.closest('.pergunta');
+      var aberto = item.classList.contains('aberta');
+      doc.querySelectorAll('.pergunta.aberta').forEach(function (outro) {
+        outro.classList.remove('aberta');
+        outro.querySelector('.pergunta-botao').setAttribute('aria-expanded', 'false');
+      });
+      if (!aberto) {
+        item.classList.add('aberta');
+        botao.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* calendário de matrículas: seleção de turma com estados */
+  var painel = doc.getElementById('detalhe');
+  var vazio = doc.getElementById('detalhe-vazio');
+  var TURMAS = {
+    'berc-manha': {
+      nome: 'Berçário, manhã',
+      estado: 'espera',
+      estadoTexto: 'Lista de espera',
+      texto: 'Turma de berçário no turno da manhã, para crianças a partir de [00 meses]. A turma está em lista de espera: a coordenação chama na ordem de inscrição conforme as vagas vão abrindo.',
+      passo: 'Deixe seus dados que a gente avisa quando abrir vaga e explica como funciona a adaptação.'
+    },
+    'berc-tarde': {
+      nome: 'Berçário, tarde',
+      estado: 'encerrada',
+      estadoTexto: 'Encerrada',
+      texto: 'As vagas do berçário no turno da tarde estão encerradas para este ano. A escola costuma abrir uma nova turma por ano letivo, então vale conversar para saber quando a próxima abre.',
+      passo: 'Agende uma visita para a coordenação explicar a previsão da próxima turma.'
+    },
+    'mat1-manha': {
+      nome: 'Maternal I, manhã',
+      estado: 'aberta',
+      estadoTexto: 'Aberta',
+      texto: 'Turma de Maternal I no turno da manhã, com vagas abertas. A matrícula começa com uma conversa com a família e segue com um período de adaptação de [00 semanas].',
+      passo: 'Agende a visita para conhecer a sala e reservar a vaga.'
+    },
+    'mat2-tarde': {
+      nome: 'Maternal II, tarde',
+      estado: 'aberta',
+      estadoTexto: 'Aberta',
+      texto: 'Turma de Maternal II no turno da tarde, com vagas abertas. Crianças que já frequentaram outra escola entram com um período de adaptação mais curto, combinado caso a caso.',
+      passo: 'Agende a visita para conhecer a sala e reservar a vaga.'
+    },
+    'jard1-integral': {
+      nome: 'Jardim I, integral',
+      estado: 'espera',
+      estadoTexto: 'Lista de espera',
+      texto: 'O Jardim I em período integral está em lista de espera. O integral tem poucas vagas porque o número de professores por criança é menor.',
+      passo: 'Deixe seus dados que a coordenação chama quando abrir vaga no integral.'
+    },
+    'jard2-manha': {
+      nome: 'Jardim II, manhã',
+      estado: 'aberta',
+      estadoTexto: 'Aberta',
+      texto: 'Turma de Jardim II no turno da manhã, com vagas abertas. É a última turma antes da saída para o ensino fundamental, e o trabalho do ano prepara essa passagem.',
+      passo: 'Agende a visita para conhecer a sala e reservar a vaga.'
+    }
+  };
+
+  doc.querySelectorAll('.turma').forEach(function (botao) {
+    botao.addEventListener('click', function () {
+      var info = TURMAS[botao.getAttribute('data-turma')];
+      if (!info) { return; }
+      vazio.hidden = true;
+      painel.innerHTML =
+        '<span class="estado estado--' + info.estado + '">' + info.estadoTexto + '</span>' +
+        '<h3>' + info.nome + '</h3>' +
+        '<p>' + info.texto + '</p>' +
+        '<p class="detalhe-valor">Mensalidade a partir de [R$ 00], definida por turma e período.</p>' +
+        '<p class="detalhe-passo"><strong>Próximo passo:</strong> ' + info.passo + '</p>' +
+        (info.estado === 'encerrada'
+          ? '<a class="btn btn--contorno" href="#visita">Agendar visita</a>'
+          : '<a class="btn btn--primario" href="#visita">Agendar visita</a>');
+      painel.classList.remove('troca');
+      void painel.offsetWidth;
+      painel.classList.add('troca');
+      if (botao.getAttribute('aria-disabled') === 'true') { return; }
+      doc.querySelectorAll('.turma').forEach(function (outro) {
+        outro.classList.remove('selecionada');
+        outro.setAttribute('aria-pressed', 'false');
+      });
+      botao.classList.add('selecionada');
+      botao.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  /* formulário com validação por campo e estado de sucesso */
+  var form = doc.getElementById('form-visita');
+  var sucesso = doc.getElementById('sucesso');
+  var novoPedido = doc.getElementById('novo-pedido');
+
+  var regras = {
+    nome: function (valor) { return valor.trim().length >= 3; },
+    email: function (valor) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim()); },
+    telefone: function (valor) { return valor.replace(/\D/g, '').length >= 10; },
+    turma: function (valor) { return valor !== ''; }
+  };
+  var mensagens = {
+    nome: 'Informe o nome do responsável.',
+    email: 'Informe um e-mail válido.',
+    telefone: 'Informe um telefone com DDD.',
+    turma: 'Escolha a turma de interesse.',
+    periodo: 'Escolha um período.',
+    aceite: 'É preciso aceitar o contato da escola para enviar.'
+  };
+
+  function erroDe(nome) { return doc.getElementById('erro-' + nome); }
+
+  function validarCampo(nome) {
+    var campo = form.elements[nome];
+    var valido = true;
+    if (nome === 'periodo') {
+      valido = !!form.querySelector('input[name="periodo"]:checked');
+    } else if (nome === 'aceite') {
+      valido = campo.checked;
+    } else {
+      valido = regras[nome](campo.value);
+    }
+    var alvo = erroDe(nome);
+    if (alvo) { alvo.textContent = valido ? '' : mensagens[nome]; }
+    if (campo.setAttribute) { campo.setAttribute('aria-invalid', valido ? 'false' : 'true'); }
+    return valido;
+  }
+
+  ['nome', 'email', 'telefone', 'turma'].forEach(function (nome) {
+    var campo = form.elements[nome];
+    campo.addEventListener('blur', function () { validarCampo(nome); });
+    campo.addEventListener('input', function () {
+      if (campo.getAttribute('aria-invalid') === 'true') { validarCampo(nome); }
+    });
+  });
+  form.querySelectorAll('input[name="periodo"]').forEach(function (radio) {
+    radio.addEventListener('change', function () { validarCampo('periodo'); });
+  });
+  form.elements.aceite.addEventListener('change', function () { validarCampo('aceite'); });
+  form.elements.turma.addEventListener('change', function () { validarCampo('turma'); });
+
+  form.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    var ok = true;
+    ['nome', 'email', 'telefone', 'turma', 'periodo', 'aceite'].forEach(function (nome) {
+      if (!validarCampo(nome)) { ok = false; }
+    });
+    if (!ok) {
+      var primeiro = form.querySelector('[aria-invalid="true"]');
+      if (primeiro) { primeiro.focus(); }
+      return;
+    }
+    form.hidden = true;
+    sucesso.hidden = false;
+    sucesso.focus();
+  });
+
+  novoPedido.addEventListener('click', function () {
+    form.reset();
+    form.querySelectorAll('.campo-erro').forEach(function (p) { p.textContent = ''; });
+    form.querySelectorAll('[aria-invalid]').forEach(function (c) { c.setAttribute('aria-invalid', 'false'); });
+    sucesso.hidden = true;
+    form.hidden = false;
+    form.elements.nome.focus();
+  });
+})();
+</script>
+</body>
+</html>

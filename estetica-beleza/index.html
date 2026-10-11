@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espaço de estética e beleza | Sua Marca</title>
+<meta name="description" content="Estética e beleza com protocolo claro, preço à vista e agenda que respeita a sua rotina. Agende avaliação, limpeza de pele, drenagem e mais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --surface:#FFF8F0; --white:#FFFFFF;
+  --pink:#F8BBD0; --pink-soft:#FDEBF2;
+  --gold:#D4AF37; --gold-ink:#7E621B;
+  --ink:#4A2B33; --ink-2:rgba(74,43,51,.72);
+  --line:rgba(74,43,51,.14); --line-2:rgba(74,43,51,.26);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+  --shadow:0 14px 40px rgba(74,43,51,.10);
+  --shadow-strong:0 22px 60px rgba(74,43,51,.18);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--surface);color:var(--ink);
+  font-family:'Jost',system-ui,sans-serif;font-size:16px;line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;line-height:1.16;margin:0 0 .45em;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,7vw,4rem);font-weight:700}
+h2{font-size:clamp(1.7rem,4.4vw,2.5rem)}
+h3{font-size:1.18rem;font-weight:600}
+p{margin:0 0 1em}
+a{color:inherit;text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+svg{display:block}
+:focus-visible{outline:3px solid var(--gold-ink);outline-offset:3px;border-radius:8px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.sr:focus{position:fixed;top:12px;left:12px;z-index:200;width:auto;height:auto;margin:0;padding:12px 18px;clip:auto;background:var(--white);border-radius:8px;box-shadow:var(--shadow-strong)}
+
+/* entrada de pagina escalonada */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-x{opacity:0;transform:translateX(-30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-x.in{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-r.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .55s var(--ease),transform .55s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.stagger.in>*{opacity:1;transform:none}
+
+/* botoes */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 24px;border:0;border-radius:999px;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;letter-spacing:.01em;cursor:pointer;transition:transform .22s var(--ease-state),box-shadow .22s var(--ease-state),background-color .22s var(--ease-state),color .22s var(--ease-state)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 8px 22px rgba(212,175,55,.34)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(212,175,55,.42)}
+.btn-ink{background:var(--ink);color:#FFF8F0}
+.btn-ink:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+.btn-ghost:hover{background:var(--white);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+
+/* header */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(255,248,240,0);transition:background-color .35s var(--ease-state),box-shadow .35s var(--ease-state),border-color .35s var(--ease-state);border-bottom:1px solid transparent}
+.site-header.scrolled{background:rgba(255,248,240,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(74,43,51,.08);border-bottom-color:var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:16px}
+.brand{display:inline-flex;align-items:center;gap:11px;font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;letter-spacing:.01em}
+.brand-mark{width:38px;height:38px;flex:none}
+.nav-list{display:flex;align-items:center;gap:4px}
+.nav-list a{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border-radius:999px;font-size:15px;color:var(--ink-2);transition:color .2s var(--ease-state),background-color .2s var(--ease-state)}
+.nav-list a:hover{color:var(--ink);background:var(--pink-soft)}
+.header-cta{display:inline-flex}
+.nav-toggle{display:none;width:48px;height:48px;padding:0;border:1px solid var(--line-2);border-radius:14px;background:var(--white);cursor:pointer}
+.nav-toggle span{display:block;width:20px;height:2px;margin:4px auto;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease-state),opacity .2s var(--ease-state)}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:820px){
+  .nav-toggle{display:block}
+  .site-nav{position:fixed;inset:74px 0 auto 0;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow);padding:14px 20px 22px;transform:translateY(-14px);opacity:0;visibility:hidden;transition:transform .35s var(--ease-state),opacity .3s var(--ease-state),visibility .35s}
+  .site-nav.open{transform:translateY(0);opacity:1;visibility:visible}
+  .nav-list{flex-direction:column;align-items:stretch;gap:2px}
+  .nav-list a{min-height:50px;font-size:17px}
+  .header-cta{display:none}
+}
+
+/* secoes */
+main{display:block}
+section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.lead{font-size:1.06rem;color:var(--ink-2);max-width:56ch}
+.section-head{max-width:62ch;margin-bottom:44px}
+
+/* hero */
+.hero{position:relative;padding:clamp(120px,17vw,170px) 0 clamp(70px,9vw,110px);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+.hero h1{margin-bottom:22px}
+.hero-lead{font-size:1.08rem;color:var(--ink-2);max-width:44ch;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+.welcome-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:26px 28px;box-shadow:var(--shadow)}
+.welcome-card h3{margin-bottom:8px}
+.welcome-card p{margin:0;color:var(--ink-2);font-size:15px}
+.hero-visual{position:relative}
+.photo-frame{position:relative;aspect-ratio:4/5;border-radius:180px 180px 26px 26px;background:linear-gradient(160deg,var(--pink-soft),var(--pink));border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden}
+.photo-frame .ph-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.hero-flower{position:absolute;right:-14px;bottom:-18px;width:132px;height:132px;opacity:.9}
+.float-slow{animation:floaty 9s var(--ease-state) infinite alternate}
+@keyframes floaty{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-16px,0)}}
+/* petalas: poucas, discretas, lentas */
+.petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.petal{position:absolute;top:-8%;width:13px;height:13px;background:var(--pink);border-radius:60% 0 60% 0;opacity:.5;animation:fall 15s ease-in-out infinite}
+.petal:nth-child(1){left:8%;animation-duration:15s;animation-delay:-2s}
+.petal:nth-child(2){left:26%;width:10px;height:10px;animation-duration:19s;animation-delay:-7s;opacity:.38}
+.petal:nth-child(3){left:52%;width:15px;height:15px;animation-duration:17s;animation-delay:-11s;opacity:.42}
+.petal:nth-child(4){left:71%;width:9px;height:9px;animation-duration:21s;animation-delay:-4s;opacity:.34}
+.petal:nth-child(5){left:88%;width:12px;height:12px;animation-duration:16s;animation-delay:-14s;opacity:.4}
+@keyframes fall{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:0}
+  8%{opacity:.5}
+  100%{transform:translate3d(38px,115vh,0) rotate(320deg);opacity:0}
+}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{order:-1;max-width:340px;margin:0 auto}
+  .photo-frame{aspect-ratio:1/1;border-radius:140px 140px 24px 24px}
+}
+
+/* servicos: accordion */
+.acc{border-top:1px solid var(--line)}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-btn{display:flex;align-items:center;gap:18px;width:100%;padding:22px 4px;background:none;border:0;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);transition:background-color .25s var(--ease-state)}
+.acc-btn:hover{background:rgba(255,255,255,.6)}
+.acc-num{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold-ink);width:26px;flex:none}
+.acc-title{flex:1;font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;transition:transform .3s var(--ease-state)}
+.acc-btn:hover .acc-title{transform:translateX(4px)}
+.acc-price{font-size:15px;font-weight:500;color:var(--ink-2);white-space:nowrap}
+.acc-icon{width:34px;height:34px;flex:none;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;transition:transform .4s var(--ease),background-color .3s var(--ease-state),border-color .3s var(--ease-state)}
+.acc-btn[aria-expanded="true"] .acc-icon{transform:rotate(45deg);background:var(--gold);border-color:var(--gold)}
+.acc-panel{height:0;overflow:hidden;transition:height .5s var(--ease-state)}
+.acc-panel-inner{padding:2px 4px 26px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+.acc-desc{color:var(--ink-2);margin:0 0 14px}
+.acc-list li{position:relative;padding-left:20px;margin-bottom:8px;font-size:15px;color:var(--ink-2)}
+.acc-list li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--pink)}
+.acc-meta{display:flex;flex-direction:column;gap:12px}
+.acc-meta-row{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px dashed var(--line);font-size:15px}
+.acc-meta-row dt{color:var(--ink-2)}
+.acc-meta-row dd{margin:0;font-weight:500}
+@media(max-width:760px){.acc-panel-inner{grid-template-columns:1fr;padding-left:4px}}
+
+/* rotina */
+.rotina{background:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.steps::before{content:"";position:absolute;left:6%;right:6%;top:34px;height:1px;background:var(--line)}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px 22px 24px;transition:transform .3s var(--ease-state),box-shadow .3s var(--ease-state),border-color .3s var(--ease-state)}
+.step:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--pink)}
+.step-dot{width:44px;height:44px;border-radius:50%;background:var(--white);border:1px solid var(--pink);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--gold-ink);margin-bottom:16px;position:relative;z-index:1;transition:background-color .3s var(--ease-state)}
+.step:hover .step-dot{background:var(--pink)}
+.step p{margin:0;color:var(--ink-2);font-size:15px}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}.steps::before{display:none}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* pacotes: 2 blocos assimetricos */
+.packages{display:grid;grid-template-columns:1.25fr .95fr;gap:24px;align-items:stretch}
+.pkg{border-radius:24px;padding:34px 32px;border:1px solid var(--line);background:var(--white);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.pkg:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.pkg-main{background:linear-gradient(150deg,var(--pink-soft),#fff);display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center}
+.pkg-side{background:var(--ink);color:#FFF8F0}
+.pkg-side h3,.pkg-side .pkg-price{color:#FFF8F0}
+.pkg-side .pkg-desc{color:rgba(255,248,240,.78)}
+.pkg-side .pkg-list li{color:rgba(255,248,240,.82)}
+.pkg-tag{display:inline-block;margin-bottom:14px;padding:6px 14px;border-radius:999px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:var(--ink)}
+.pkg-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;line-height:1;margin:6px 0 4px}
+.pkg-note{font-size:14px;color:var(--ink-2);margin:0}
+.pkg-side .pkg-note{color:rgba(255,248,240,.7)}
+.pkg-desc{color:var(--ink-2);margin:0 0 18px}
+.pkg-list li{position:relative;padding-left:22px;margin-bottom:9px;font-size:15px}
+.pkg-list li::before{content:"";position:absolute;left:0;top:.5em;width:11px;height:11px;border-radius:50%;border:2px solid var(--gold)}
+.pkg-side .pkg-list li::before{border-color:var(--pink)}
+@media(max-width:860px){.packages{grid-template-columns:1fr}.pkg-main{grid-template-columns:1fr}}
+
+/* agenda */
+.agenda{background:var(--white)}
+.agenda-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.days{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.day{min-width:60px;min-height:48px;padding:10px 14px;border:1px solid var(--line-2);border-radius:14px;background:var(--surface);font-family:inherit;font-size:15px;color:var(--ink);cursor:pointer;transition:transform .22s var(--ease-state),background-color .22s var(--ease-state),color .22s var(--ease-state),border-color .22s var(--ease-state)}
+.day:hover{transform:translateY(-2px);border-color:var(--pink)}
+.day[aria-pressed="true"]{background:var(--ink);color:#FFF8F0;border-color:var(--ink)}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.slot{min-height:48px;padding:12px 10px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);font-family:inherit;font-size:15px;color:var(--ink);cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .4s var(--ease),transform .4s var(--ease),background-color .22s var(--ease-state),color .22s var(--ease-state),border-color .22s var(--ease-state),box-shadow .22s var(--ease-state)}
+.slot.show{opacity:1;transform:none}
+.slot:hover{border-color:var(--pink);transform:translateY(-2px)}
+.slot[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 8px 20px rgba(212,175,55,.3)}
+.empty-state{border:1px dashed var(--line-2);border-radius:16px;padding:26px 22px;text-align:center;color:var(--ink-2);font-size:15px}
+.agenda-summary{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px}
+.summary-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.summary-row:last-of-type{border-bottom:0}
+.summary-row dt{color:var(--ink-2)}
+.summary-row dd{margin:0;font-weight:500;text-align:right}
+.summary-hint{margin:16px 0 0;font-size:14px;color:var(--ink-2)}
+@media(max-width:860px){.agenda-grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq-list{max-width:760px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-btn{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;width:100%;padding:22px 4px;background:none;border:0;text-align:left;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.2vw,1.35rem);font-weight:600;color:var(--ink);transition:color .22s var(--ease-state)}
+.faq-btn:hover{color:var(--gold-ink)}
+.faq-mark{flex:none;width:30px;height:30px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;font-family:'Jost',sans-serif;font-size:18px;font-weight:400;color:var(--gold-ink);transition:transform .4s var(--ease),background-color .3s var(--ease-state),border-color .3s var(--ease-state)}
+.faq-btn[aria-expanded="true"] .faq-mark{transform:rotate(45deg);background:var(--pink);border-color:var(--pink)}
+.faq-panel{height:0;overflow:hidden;transition:height .45s var(--ease-state)}
+.faq-panel p{padding:0 44px 24px 4px;margin:0;color:var(--ink-2)}
+
+/* agendamento */
+.booking{background:linear-gradient(180deg,var(--white),var(--pink-soft))}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field-full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:500;color:var(--ink)}
+.field input,.field select,.field textarea{font-family:'Jost',sans-serif;font-size:16px;color:var(--ink);background:var(--white);border:1px solid var(--line-2);border-radius:12px;padding:13px 15px;min-height:48px;transition:border-color .22s var(--ease-state),box-shadow .22s var(--ease-state)}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.28)}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:3px solid var(--gold-ink);outline-offset:2px}
+.field .err{min-height:18px;font-size:14px;color:#9B2C22}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#9B2C22;box-shadow:0 0 0 3px rgba(155,44,34,.14)}
+.form-note{font-size:14px;color:var(--ink-2);margin:18px 0 0}
+.form-success{margin-top:22px;background:var(--white);border:1px solid var(--pink);border-radius:18px;padding:24px;display:none;box-shadow:var(--shadow)}
+.form-success.show{display:block;animation:pop .5s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+.form-success h3{margin-bottom:8px}
+.form-success p{margin:0 0 14px;color:var(--ink-2);font-size:15px}
+@media(max-width:760px){.form-grid{grid-template-columns:1fr}}
+
+/* footer */
+.site-footer{background:var(--ink);color:#FFF8F0;padding:56px 0 34px}
+.site-footer h2{color:#FFF8F0;font-size:1.5rem}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:34px;align-items:start}
+.footer-col p{color:rgba(255,248,240,.75);font-size:15px}
+.footer-list li{margin-bottom:9px;font-size:15px;color:rgba(255,248,240,.78)}
+.footer-list a{border-bottom:1px solid rgba(255,248,240,.28);transition:border-color .2s var(--ease-state),color .2s var(--ease-state)}
+.footer-list a:hover{color:var(--pink);border-bottom-color:var(--pink)}
+.footer-bottom{margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,248,240,.16);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:14px;color:rgba(255,248,240,.7)}
+.footer-bottom a{color:#FFF8F0;border-bottom:1px solid rgba(255,248,240,.35);transition:border-color .2s var(--ease-state),color .2s var(--ease-state)}
+.footer-bottom a:hover{color:var(--pink);border-bottom-color:var(--pink)}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal,.reveal-x,.reveal-r,.stagger>*{opacity:1!important;transform:none!important}
+  .petals{display:none}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="site-header" id="topo">
+  <div class="wrap">
+    <a class="brand" href="#topo" aria-label="Sua Marca, página inicial">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5" fill="none" stroke="#F8BBD0" stroke-width="1.6"/>
+        <path d="M20 9c3.6 3.4 5.4 6.7 5.4 9.9 0 3.2-2.4 5.6-5.4 5.6s-5.4-2.4-5.4-5.6c0-3.2 1.8-6.5 5.4-9.9Z" fill="#D4AF37" opacity=".9"/>
+        <path d="M11 23.5c3.4 1.6 6.1 2 9 2s5.6-.4 9-2" fill="none" stroke="#4A2B33" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>Sua Marca</span>
+    </a>
+    <nav class="site-nav" id="menu" aria-label="Navegação principal">
+      <ul class="nav-list">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#rotina">Rotina</a></li>
+        <li><a href="#pacotes">Pacotes</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-gold header-cta" href="#agendamento">Agendar horário</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero" aria-labelledby="titulo-hero">
+    <div class="petals" aria-hidden="true">
+      <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow reveal">Estética e beleza</p>
+        <h1 id="titulo-hero" class="reveal" style="--i:1">Cuidado com a pele, no seu tempo</h1>
+        <p class="hero-lead reveal" style="--i:2">Protocolo explicado antes da primeira sessão, preço à vista e agenda que respeita a sua rotina. Sem venda casada, sem promessa de resultado em prazo.</p>
+        <div class="hero-actions reveal" style="--i:3">
+          <a class="btn btn-gold" href="#agendamento">Agendar horário</a>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+          <a class="btn btn-ink" href="#agendamento">Falar no WhatsApp</a>
+        </div>
+        <div class="welcome-card reveal" style="--i:4">
+          <h3>Boas-vindas</h3>
+          <p>Aqui você escolhe o serviço, vê o preço antes e sai com o plano de sessões por escrito. A avaliação inicial é o ponto de partida de qualquer protocolo.</p>
+        </div>
+      </div>
+      <div class="hero-visual reveal-r" data-parallax="0.16">
+        <div class="photo-frame" role="img" aria-label="espaco para foto: ambiente da clínica com maca e iluminação suave">
+          <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
+            <circle cx="36" cy="36" r="30" fill="none" stroke="#D4AF37" stroke-width="1.4" stroke-dasharray="5 7"/>
+            <path d="M36 20c5 4.6 7.4 9.2 7.4 13.6 0 4.4-3.3 7.6-7.4 7.6s-7.4-3.2-7.4-7.6C28.6 29.2 31 24.6 36 20Z" fill="#4A2B33" opacity=".55"/>
+          </svg>
+          <span class="ph-label">Sua foto aqui</span>
+        </div>
+        <svg class="hero-flower float-slow" viewBox="0 0 120 120" aria-hidden="true">
+          <g fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round">
+            <path d="M60 18v84M22 60h76M33 33l54 54M87 33 33 87"/>
+          </g>
+          <circle cx="60" cy="60" r="9" fill="#F8BBD0"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVIÇOS ============ -->
+  <section id="servicos" aria-labelledby="titulo-servicos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Serviços</p>
+        <h2 id="titulo-servicos" class="reveal" style="--i:1">Seis serviços, preço à vista</h2>
+        <p class="lead reveal" style="--i:2">Toque em um serviço para ver o que está incluso, a duração e o valor. Nenhum pacote é obrigatório para marcar um horário.</p>
+      </div>
+      <div class="acc" id="acc-servicos">
+        <div class="acc-item reveal" style="--i:1">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s1" id="btn-s1">
+            <span class="acc-num">01</span>
+            <span class="acc-title">Avaliação facial</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s1" role="region" aria-labelledby="btn-s1">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Leitura da pele, histórico e rotina atual. É dessa conversa que sai o protocolo, com número de sessões e ordem de etapas.</p>
+                <ul class="acc-list">
+                  <li>Análise de pele e necessidades</li>
+                  <li>Plano de sessões por escrito</li>
+                  <li>Orientação de cuidado em casa</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[40 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Sessões</dt><dd>Avulsa</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item reveal" style="--i:2">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s2" id="btn-s2">
+            <span class="acc-num">02</span>
+            <span class="acc-title">Limpeza de pele</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s2" role="region" aria-labelledby="btn-s2">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Extração de cravos e remoção de células mortas, com produtos escolhidos para o seu tipo de pele após a avaliação.</p>
+                <ul class="acc-list">
+                  <li>Higiene e esfoliação suave</li>
+                  <li>Extração de comedões</li>
+                  <li>Máscara calmante e proteção solar</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[60 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Intervalo</dt><dd>[definir]</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item reveal" style="--i:3">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s3" id="btn-s3">
+            <span class="acc-num">03</span>
+            <span class="acc-title">Drenagem linfática</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s3" role="region" aria-labelledby="btn-s3">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Movimentos leves e ritmados sobre o corpo, conduzidos por profissional habilitado. A indicação depende da avaliação.</p>
+                <ul class="acc-list">
+                  <li>Sessão conduzida por fisioterapeuta</li>
+                  <li>Pressão ajustada ao seu conforto</li>
+                  <li>Orientação de hidratação no dia</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[60 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Pacotes</dt><dd>[definir]</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item reveal" style="--i:4">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s4" id="btn-s4">
+            <span class="acc-num">04</span>
+            <span class="acc-title">Peeling facial</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s4" role="region" aria-labelledby="btn-s4">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Renovação da camada mais superficial da pele com ácidos, escolhidos conforme o objetivo definido na avaliação.</p>
+                <ul class="acc-list">
+                  <li>Preparação da pele antes da sessão</li>
+                  <li>Aplicação do ácido indicado</li>
+                  <li>Cuidados pós sessão explicados</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[45 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Sessões</dt><dd>[definir]</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item reveal" style="--i:5">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s5" id="btn-s5">
+            <span class="acc-num">05</span>
+            <span class="acc-title">Massagem relaxante</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s5" role="region" aria-labelledby="btn-s5">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Técnica manual de pressão contínua para soltar a tensão acumulada. Você escolhe a área e a intensidade.</p>
+                <ul class="acc-list">
+                  <li>Costas, pescoço e ombros</li>
+                  <li>Óleo ou creme neutro</li>
+                  <li>Ambiente com som baixo</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[50 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Adicionar pés</dt><dd>[definir]</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item reveal" style="--i:6">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s6" id="btn-s6">
+            <span class="acc-num">06</span>
+            <span class="acc-title">Design de sobrancelhas</span>
+            <span class="acc-price">[R$ 00]</span>
+            <span class="acc-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#4A2B33" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="acc-panel" id="painel-s6" role="region" aria-labelledby="btn-s6">
+            <div class="acc-panel-inner">
+              <div>
+                <p class="acc-desc">Mapeamento do rosto antes de tirar qualquer pelo, para o desenho conversar com a medida do seu semblante.</p>
+                <ul class="acc-list">
+                  <li>Medição e mapeamento facial</li>
+                  <li>Remoção com pinça ou linha</li>
+                  <li>Acabamento com henna opcional</li>
+                </ul>
+              </div>
+              <dl class="acc-meta">
+                <div class="acc-meta-row"><dt>Duração</dt><dd>[30 min]</dd></div>
+                <div class="acc-meta-row"><dt>Valor</dt><dd>[R$ 00]</dd></div>
+                <div class="acc-meta-row"><dt>Manutenção</dt><dd>[definir]</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROTINA ============ -->
+  <section class="rotina" id="rotina" aria-labelledby="titulo-rotina">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Sua rotina de cuidados</p>
+        <h2 id="titulo-rotina" class="reveal" style="--i:1">Quatro passos, do primeiro contato à manutenção</h2>
+        <p class="lead reveal" style="--i:2">Cada etapa tem começo, meio e fim declarados. Você sabe o que vem depois antes de assinar qualquer coisa.</p>
+      </div>
+      <ol class="steps stagger">
+        <li class="step" style="--i:1">
+          <span class="step-dot">1</span>
+          <h3>Avaliação</h3>
+          <p>Conversa e leitura da pele. Definimos o que é prioridade e o que pode esperar.</p>
+        </li>
+        <li class="step" style="--i:2">
+          <span class="step-dot">2</span>
+          <h3>Protocolo</h3>
+          <p>O plano escrito com número de sessões, intervalo entre elas e valor total.</p>
+        </li>
+        <li class="step" style="--i:3">
+          <span class="step-dot">3</span>
+          <h3>Sessões</h3>
+          <p>Atendimento em horário marcado, com a mesma profissional do começo ao fim.</p>
+        </li>
+        <li class="step" style="--i:4">
+          <span class="step-dot">4</span>
+          <h3>Manutenção</h3>
+          <p>Revisão periódica do protocolo e ajuste do que mudou na sua pele.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PACOTES ============ -->
+  <section id="pacotes" aria-labelledby="titulo-pacotes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Pacotes</p>
+        <h2 id="titulo-pacotes" class="reveal" style="--i:1">Duas formas de fechar</h2>
+        <p class="lead reveal" style="--i:2">Valores de referência para o modelo. Na versão final entram os preços reais do seu negócio.</p>
+      </div>
+      <div class="packages">
+        <article class="pkg pkg-main reveal-x">
+          <div>
+            <span class="pkg-tag">Protocolo facial</span>
+            <h3>Pacote Rosto</h3>
+            <p class="pkg-desc">Para quem quer começar pelo rosto com acompanhamento do início ao fim.</p>
+            <ul class="pkg-list">
+              <li>Avaliação facial inclusa</li>
+              <li>Quatro sessões do protocolo definido</li>
+              <li>Revisão ao final de cada etapa</li>
+            </ul>
+          </div>
+          <div>
+            <p class="pkg-price">[R$ 00]</p>
+            <p class="pkg-note">Valor fechado por pacote</p>
+          </div>
+        </article>
+        <article class="pkg pkg-side reveal-r">
+          <span class="pkg-tag">Corpo e relaxamento</span>
+          <h3>Pacote Corpo</h3>
+          <p class="pkg-desc">Sessões de drenagem e massagem para encaixar na semana, com duração à sua escolha.</p>
+          <ul class="pkg-list">
+            <li>Seis sessões de [60 min]</li>
+            <li>Escolha de dia e horário fixos</li>
+            <li>Remarc com aviso prévio</li>
+          </ul>
+          <p class="pkg-price">[R$ 00]</p>
+          <p class="pkg-note">Pagamento por sessão ou pacote</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AGENDA ============ -->
+  <section class="agenda" id="agenda" aria-labelledby="titulo-agenda">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Agenda semanal</p>
+        <h2 id="titulo-agenda" class="reveal" style="--i:1">Escolha o dia e o horário</h2>
+        <p class="lead reveal" style="--i:2">Selecione um dia para ver os horários disponíveis. A escolha segue com você para o formulário de agendamento.</p>
+      </div>
+      <div class="agenda-grid">
+        <div class="reveal">
+          <div class="days" role="group" aria-label="Dias da semana">
+            <button class="day" type="button" data-dia="Segunda" aria-pressed="true">Seg</button>
+            <button class="day" type="button" data-dia="Terça" aria-pressed="false">Ter</button>
+            <button class="day" type="button" data-dia="Quarta" aria-pressed="false">Qua</button>
+            <button class="day" type="button" data-dia="Quinta" aria-pressed="false">Qui</button>
+            <button class="day" type="button" data-dia="Sexta" aria-pressed="false">Sex</button>
+            <button class="day" type="button" data-dia="Sábado" aria-pressed="false">Sáb</button>
+            <button class="day" type="button" data-dia="Domingo" aria-pressed="false">Dom</button>
+          </div>
+          <div class="slots" id="slots" role="group" aria-label="Horários disponíveis"></div>
+          <div class="empty-state" id="empty-state" hidden>Nenhum horário cadastrado para este dia. Tente outro dia da semana.</div>
+        </div>
+        <aside class="agenda-summary reveal-r">
+          <h3>Resumo da escolha</h3>
+          <dl>
+            <div class="summary-row"><dt>Dia</dt><dd id="resumo-dia">Segunda</dd></div>
+            <div class="summary-row"><dt>Horário</dt><dd id="resumo-hora">Nenhum selecionado</dd></div>
+            <div class="summary-row"><dt>Serviço</dt><dd id="resumo-servico">A definir no formulário</dd></div>
+          </dl>
+          <p class="summary-hint">A confirmação do horário é feita pelo WhatsApp depois do envio do formulário.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" aria-labelledby="titulo-faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Dúvidas frequentes</p>
+        <h2 id="titulo-faq" class="reveal" style="--i:1">O que perguntam antes de marcar</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal" style="--i:1">
+          <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p1" id="faq-b1">
+            <span>Dói?</span>
+            <span class="faq-mark" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-panel" id="faq-p1" role="region" aria-labelledby="faq-b1">
+            <p>A maioria dos procedimentos não dói. Alguns, como o peeling, provocam ardência leve que passa em minutos. Se algo incomodar, a sessão é interrompida e a conduta é reavaliada.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:2">
+          <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-b2">
+            <span>Quantas sessões vou precisar?</span>
+            <span class="faq-mark" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-panel" id="faq-p2" role="region" aria-labelledby="faq-b2">
+            <p>Depende do que a avaliação encontrar. O número de sessões é definido nessa conversa e registrado por escrito. Não trabalhamos com número fixo para todo mundo.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:3">
+          <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
+            <span>Homem pode fazer?</span>
+            <span class="faq-mark" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-panel" id="faq-p3" role="region" aria-labelledby="faq-b3">
+            <p>Pode. Todos os serviços são oferecidos para qualquer pessoa, com protocolo montado a partir da pele de cada um, não do gênero.</p>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:4">
+          <button class="faq-btn" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
+            <span>Como funciona o cancelamento?</span>
+            <span class="faq-mark" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-panel" id="faq-p4" role="region" aria-labelledby="faq-b4">
+            <p>Remarcações e cancelamentos são avisados com [antecedência a definir] pelo WhatsApp. A regra vale para os dois lados e é combinada no primeiro agendamento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AGENDAMENTO ============ -->
+  <section class="booking" id="agendamento" aria-labelledby="titulo-agendamento">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow reveal">Agendamento</p>
+        <h2 id="titulo-agendamento" class="reveal" style="--i:1">Peça seu horário</h2>
+        <p class="lead reveal" style="--i:2">Preencha os campos abaixo. O formulário não envia nada para lugar nenhum: ele valida o que você digitou e confirma na tela.</p>
+      </div>
+      <form class="form-grid" id="form-agendamento" novalidate>
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="erro-nome">
+          <span class="err" id="erro-nome" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="[(00) 00000-0000]" autocomplete="tel" aria-describedby="erro-whatsapp">
+          <span class="err" id="erro-whatsapp" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="servico">Serviço de interesse</label>
+          <select id="servico" name="servico" aria-describedby="erro-servico">
+            <option value="">Selecione um serviço</option>
+            <option>Avaliação facial</option>
+            <option>Limpeza de pele</option>
+            <option>Drenagem linfática</option>
+            <option>Peeling facial</option>
+            <option>Massagem relaxante</option>
+            <option>Design de sobrancelhas</option>
+          </select>
+          <span class="err" id="erro-servico" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="horario">Dia e horário escolhidos</label>
+          <input type="text" id="horario" name="horario" readonly value="Segunda, nenhum horário selecionado" aria-describedby="erro-horario">
+          <span class="err" id="erro-horario" aria-live="polite"></span>
+        </div>
+        <div class="field field-full">
+          <label for="mensagem">Observação (opcional)</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Conte algo que ajude no atendimento, como restrições ou preferência de horário."></textarea>
+        </div>
+        <div class="field field-full">
+          <button class="btn btn-gold" type="submit">Agendar horário</button>
+          <p class="form-note">Ao enviar, o pedido fica registrado apenas nesta tela. Nenhum dado sai do seu navegador.</p>
+        </div>
+      </form>
+      <div class="form-success" id="sucesso" role="status">
+        <h3>Pedido registrado</h3>
+        <p id="sucesso-texto">Tudo certo. Seu pedido de horário foi validado nesta tela.</p>
+        <button class="btn btn-ghost" type="button" id="btn-novo">Fazer novo pedido</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2>Sua Marca</h2>
+        <p>Espaço de estética e beleza com atendimento por horário. Protocolo explicado antes da primeira sessão e preço à vista, sem venda casada.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <ul class="footer-list">
+          <li>[endereco]</li>
+          <li>[(00) 00000-0000]</li>
+          <li>[seu@email.com]</li>
+          <li>Segunda a sábado, com horário marcado</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></span>
+      <a href="#topo">Voltar ao topo</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- entrada de pagina ---------- */
+  function carregar(){ document.body.classList.add('pronto'); }
+  if(document.readyState === 'complete'){ carregar(); }
+  else { window.addEventListener('load', carregar); }
+  window.setTimeout(carregar, 600);
+
+  /* ---------- reveal com IntersectionObserver, escalonado por --i ---------- */
+  var alvos = document.querySelectorAll('.reveal, .reveal-x, .reveal-r, .stagger');
+  if('IntersectionObserver' in window && !reduz){
+    var io = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+    alvos.forEach(function(el){ io.observe(el); });
+  } else {
+    alvos.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- header com requestAnimationFrame ---------- */
+  var header = document.querySelector('.site-header');
+  var agendado = false;
+  function noScroll(){
+    agendado = false;
+    if(window.scrollY > 24){ header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', function(){
+    if(!agendado){ agendado = true; window.requestAnimationFrame(noScroll); }
+  }, { passive:true });
+  noScroll();
+
+  /* ---------- parallax leve, nunca em mobile ---------- */
+  var mesa = window.matchMedia('(min-width: 861px)');
+  var destaques = document.querySelectorAll('[data-parallax]');
+  var parallaxAgendado = false;
+  function moveParallax(){
+    parallaxAgendado = false;
+    destaques.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.bottom < -120 || r.top > window.innerHeight + 120){ return; }
+      var fator = parseFloat(el.getAttribute('data-parallax')) || .15;
+      var centro = r.top + r.height/2 - window.innerHeight/2;
+      el.style.transform = 'translate3d(0,' + (centro * fator).toFixed(2) + 'px,0)';
+    });
+  }
+  if(!reduz){
+    window.addEventListener('scroll', function(){
+      if(!parallaxAgendado){ parallaxAgendado = true; window.requestAnimationFrame(moveParallax); }
+    }, { passive:true });
+    window.addEventListener('resize', function(){
+      if(!mesa.matches){
+        destaques.forEach(function(el){ el.style.transform = ''; });
+        return;
+      }
+      moveParallax();
+    });
+    if(!mesa.matches){
+      destaques.forEach(function(el){ el.style.transform = ''; });
+    }
+    moveParallax();
+  }
+
+  /* ---------- menu mobile ---------- */
+  var toggle = document.getElementById('nav-toggle');
+  var menu = document.getElementById('menu');
+  function fecharMenu(){
+    toggle.setAttribute('aria-expanded','false');
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-label','Abrir menu');
+  }
+  function abrirMenu(){
+    toggle.setAttribute('aria-expanded','true');
+    menu.classList.add('open');
+    toggle.setAttribute('aria-label','Fechar menu');
+  }
+  toggle.addEventListener('click', function(){
+    if(toggle.getAttribute('aria-expanded') === 'true'){ fecharMenu(); }
+    else { abrirMenu(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true'){
+      fecharMenu();
+      toggle.focus();
+    }
+  });
+  menu.addEventListener('click', function(e){
+    if(e.target.closest('a')){ fecharMenu(); }
+  });
+  document.addEventListener('click', function(e){
+    if(toggle.getAttribute('aria-expanded') !== 'true'){ return; }
+    if(!e.target.closest('.site-nav') && !e.target.closest('.nav-toggle')){ fecharMenu(); }
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 820){ fecharMenu(); }
+  });
+
+  /* ---------- accordion generico (servicos e faq) ---------- */
+  function fecharPainel(btn, painel){
+    btn.setAttribute('aria-expanded','false');
+    painel.style.height = painel.scrollHeight + 'px';
+    window.requestAnimationFrame(function(){ painel.style.height = '0px'; });
+  }
+  function abrirPainel(btn, painel){
+    btn.setAttribute('aria-expanded','true');
+    painel.style.height = painel.scrollHeight + 'px';
+  }
+  function ligarAccordion(seletorBotoes, umPorVez){
+    var botoes = document.querySelectorAll(seletorBotoes);
+    botoes.forEach(function(btn){
+      var painel = document.getElementById(btn.getAttribute('aria-controls'));
+      if(!painel){ return; }
+      painel.style.height = '0px';
+      painel.addEventListener('transitionend', function(e){
+        if(e.propertyName !== 'height'){ return; }
+        if(btn.getAttribute('aria-expanded') === 'true'){ painel.style.height = 'auto'; }
+      });
+      btn.addEventListener('click', function(){
+        var aberto = btn.getAttribute('aria-expanded') === 'true';
+        if(umPorVez){
+          botoes.forEach(function(outro){
+            var outroPainel = document.getElementById(outro.getAttribute('aria-controls'));
+            if(outro !== btn && outro.getAttribute('aria-expanded') === 'true'){
+              fecharPainel(outro, outroPainel);
+            }
+          });
+        }
+        if(aberto){ fecharPainel(btn, painel); }
+        else { abrirPainel(btn, painel); }
+      });
+    });
+  }
+  ligarAccordion('.acc-btn', true);
+  ligarAccordion('.faq-btn', false);
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.acc-btn, .faq-btn').forEach(function(btn){
+      if(btn.getAttribute('aria-expanded') !== 'true'){ return; }
+      var painel = document.getElementById(btn.getAttribute('aria-controls'));
+      if(painel && painel.style.height !== 'auto'){ painel.style.height = painel.scrollHeight + 'px'; }
+    });
+  });
+
+  /* ---------- agenda: escolha de dia e horario ---------- */
+  var dias = {
+    'Segunda': ['09:00','10:30','14:00','15:30','17:00'],
+    'Terça': ['09:00','11:00','14:00','16:00'],
+    'Quarta': ['10:00','11:30','15:00','16:30','18:00'],
+    'Quinta': ['09:30','14:30','16:00'],
+    'Sexta': ['09:00','10:30','14:00','15:30','17:00','18:00'],
+    'Sábado': ['09:00','10:30','11:30'],
+    'Domingo': []
+  };
+  var diaAtivo = 'Segunda';
+  var slotAtivo = null;
+  var botoesDia = document.querySelectorAll('.day');
+  var caixaSlots = document.getElementById('slots');
+  var vazio = document.getElementById('empty-state');
+  var resumoDia = document.getElementById('resumo-dia');
+  var resumoHora = document.getElementById('resumo-hora');
+  var campoHorario = document.getElementById('horario');
+
+  function atualizarResumo(){
+    resumoDia.textContent = diaAtivo;
+    resumoHora.textContent = slotAtivo ? slotAtivo : 'Nenhum selecionado';
+    campoHorario.value = diaAtivo + (slotAtivo ? ', ' + slotAtivo : ', nenhum horário selecionado');
+  }
+  function renderSlots(){
+    caixaSlots.innerHTML = '';
+    var horas = dias[diaAtivo] || [];
+    if(!horas.length){
+      vazio.hidden = false;
+      caixaSlots.hidden = true;
+      return;
+    }
+    vazio.hidden = true;
+    caixaSlots.hidden = false;
+    horas.forEach(function(hora, indice){
+      var botao = document.createElement('button');
+      botao.type = 'button';
+      botao.className = 'slot';
+      botao.textContent = hora;
+      botao.setAttribute('aria-pressed', slotAtivo === hora ? 'true' : 'false');
+      botao.setAttribute('aria-label', diaAtivo + ' às ' + hora);
+      botao.style.transitionDelay = (indice * 55) + 'ms';
+      botao.addEventListener('click', function(){
+        slotAtivo = (slotAtivo === hora) ? null : hora;
+        renderSlots();
+        atualizarResumo();
+        var campo = document.getElementById('horario');
+        if(campo){ campo.closest('.field').classList.remove('invalid'); }
+        var erro = document.getElementById('erro-horario');
+        if(erro){ erro.textContent = ''; }
+      });
+      caixaSlots.appendChild(botao);
+    });
+    window.requestAnimationFrame(function(){
+      window.requestAnimationFrame(function(){
+        Array.prototype.forEach.call(caixaSlots.children, function(slot){ slot.classList.add('show'); });
+      });
+    });
+  }
+  botoesDia.forEach(function(botao){
+    botao.addEventListener('click', function(){
+      diaAtivo = botao.getAttribute('data-dia');
+      slotAtivo = null;
+      botoesDia.forEach(function(outro){
+        outro.setAttribute('aria-pressed', outro === botao ? 'true' : 'false');
+      });
+      renderSlots();
+      atualizarResumo();
+    });
+  });
+  renderSlots();
+  atualizarResumo();
+
+  /* ---------- formulario com validacao e estado de sucesso ---------- */
+  var form = document.getElementById('form-agendamento');
+  var sucesso = document.getElementById('sucesso');
+  var sucessoTexto = document.getElementById('sucesso-texto');
+  var campoHorarioWrap = campoHorario.closest('.field');
+
+  function erroDe(campo, mensagem){
+    var wrap = campo.closest('.field');
+    var alvo = document.getElementById('erro-' + campo.id);
+    wrap.classList.add('invalid');
+    campo.setAttribute('aria-invalid','true');
+    if(alvo){ alvo.textContent = mensagem; }
+  }
+  function limparErro(campo){
+    var wrap = campo.closest('.field');
+    var alvo = document.getElementById('erro-' + campo.id);
+    wrap.classList.remove('invalid');
+    campo.removeAttribute('aria-invalid');
+    if(alvo){ alvo.textContent = ''; }
+  }
+  function validar(){
+    var ok = true;
+    var nome = document.getElementById('nome');
+    var whats = document.getElementById('whatsapp');
+    var servico = document.getElementById('servico');
+    var horario = document.getElementById('horario');
+
+    if(nome.value.trim().length < 3){ erroDe(nome,'Informe seu nome completo.'); ok = false; }
+    else { limparErro(nome); }
+
+    var digitos = whats.value.replace(/\D/g,'');
+    if(digitos.length < 10){ erroDe(whats,'Informe um WhatsApp com DDD.'); ok = false; }
+    else { limparErro(whats); }
+
+    if(!servico.value){ erroDe(servico,'Escolha um serviço.'); ok = false; }
+    else { limparErro(servico); }
+
+    if(!slotAtivo){ erroDe(horario,'Escolha um horário na agenda acima.'); ok = false; }
+    else { limparErro(horario); }
+
+    return ok;
+  }
+  ['nome','whatsapp','servico'].forEach(function(id){
+    var campo = document.getElementById(id);
+    campo.addEventListener('blur', function(){
+      if(campo.value){ validar(); }
+    });
+    campo.addEventListener('input', function(){
+      if(campo.closest('.field').classList.contains('invalid')){ limparErro(campo); }
+    });
+  });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validar()){
+      var primeiro = form.querySelector('.field.invalid input, .field.invalid select');
+      if(primeiro){ primeiro.focus(); }
+      return;
+    }
+    var nome = document.getElementById('nome').value.trim();
+    var servico = document.getElementById('servico').value;
+    sucessoTexto.textContent = 'Tudo certo, ' + nome.split(' ')[0] + '. Seu pedido para ' + servico + ' em ' + diaAtivo + ' às ' + slotAtivo + ' foi validado nesta tela. A confirmação segue pelo WhatsApp.';
+    sucesso.classList.add('show');
+    sucesso.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block:'center' });
+  });
+  document.getElementById('btn-novo').addEventListener('click', function(){
+    form.reset();
+    sucesso.classList.remove('show');
+    diaAtivo = 'Segunda';
+    slotAtivo = null;
+    botoesDia.forEach(function(outro){
+      outro.setAttribute('aria-pressed', outro.getAttribute('data-dia') === 'Segunda' ? 'true' : 'false');
+    });
+    renderSlots();
+    atualizarResumo();
+    document.getElementById('nome').focus();
+  });
+})();
+</script>
+</body>
+</html>
