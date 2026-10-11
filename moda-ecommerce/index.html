@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>Sua Marca · Curadoria de moda e peças sob encomenda</title>
+<meta name="description" content="Curadoria de peças de moda escolhidas uma por uma, em embalagem que mantém a peça inteira. Catálogo editorial, lookbook e novidades por e-mail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --bg:#000000;
+    --ink:#FFFFFF;
+    --accent:#D9BBA8;
+    --surface:#111111;
+    --muted:rgba(255,255,255,.72);
+    --line:rgba(217,187,168,.26);
+    --line-soft:rgba(255,255,255,.10);
+    --tag:#9b9b9b;
+    --ease-in:cubic-bezier(.22,1,.36,1);
+    --ease-state:cubic-bezier(.4,0,.2,1);
+    --maxw:1220px;
+  }
+
+  /* ---------- base ---------- */
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Jost',system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:1rem;line-height:1.6;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  p{margin:0;}
+  h1,h2,h3{font-family:'Bodoni Moda',Georgia,'Times New Roman',serif;font-weight:400;line-height:1.05;margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+  a{color:inherit;}
+  button{font-family:'Jost',sans-serif;}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+  .container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:22px;}
+  .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--accent);color:#000;padding:12px 18px;font-weight:600;border-radius:2px;}
+  .skip:focus{left:10px;top:10px;}
+
+  .eyebrow{font-size:.875rem;text-transform:uppercase;letter-spacing:.24em;color:var(--accent);font-weight:500;}
+
+  /* ---------- botoes ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+    min-height:48px;padding:0 28px;border:1px solid transparent;border-radius:2px;
+    font-size:1rem;font-weight:500;letter-spacing:.05em;text-decoration:none;cursor:pointer;
+    transition:background-color .2s var(--ease-state),color .2s var(--ease-state),
+      transform .2s var(--ease-state),box-shadow .2s var(--ease-state),border-color .2s var(--ease-state);
+  }
+  .btn-primary{background:var(--accent);color:#000;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(217,187,168,.20);}
+  .btn-primary:active{transform:translateY(0);}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:rgba(255,255,255,.28);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ---------- header ---------- */
+  .site-header{position:fixed;inset:0 0 auto 0;z-index:60;background:transparent;
+    transition:background-color .35s var(--ease-state),box-shadow .35s var(--ease-state);}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    max-width:var(--maxw);margin-inline:auto;padding:20px 22px;
+    transition:padding .35s var(--ease-state);}
+  .site-header.scrolled{background:rgba(0,0,0,.93);
+    box-shadow:0 1px 0 var(--line-soft),0 14px 44px rgba(0,0,0,.5);}
+  .site-header.scrolled .header-inner{padding-block:12px;}
+
+  .brand{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;}
+  .brand-mark{width:22px;height:22px;color:var(--accent);flex:0 0 22px;}
+  .brand-name{font-family:'Bodoni Moda',serif;font-size:1.35rem;letter-spacing:.05em;font-weight:500;}
+
+  .nav ul{display:flex;gap:28px;}
+  .nav a{position:relative;display:inline-block;padding:8px 2px;text-decoration:none;
+    font-size:.95rem;letter-spacing:.05em;transition:color .2s var(--ease-state);}
+  .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;
+    background:var(--accent);transition:right .25s var(--ease-state);}
+  .nav a:hover,.nav a.active{color:var(--accent);}
+  .nav a:hover::after,.nav a.active::after{right:0;}
+
+  .nav-toggle{display:none;}
+
+  /* hamburguer */
+  .bars{position:relative;width:22px;height:16px;}
+  .bars i{position:absolute;left:0;width:100%;height:2px;background:currentColor;
+    transition:transform .3s var(--ease-state),opacity .2s var(--ease-state);}
+  .bars i:nth-child(1){top:0;}
+  .bars i:nth-child(2){top:7px;}
+  .bars i:nth-child(3){top:14px;}
+  .site-header.open .bars i:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .site-header.open .bars i:nth-child(2){opacity:0;}
+  .site-header.open .bars i:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;display:flex;align-items:flex-end;overflow:hidden;
+    min-height:94vh;min-height:94dvh;padding:150px 0 78px;}
+  .hero-inner{position:relative;z-index:2;width:100%;}
+  .hero .eyebrow{display:block;margin-bottom:20px;}
+  .hero h1{font-size:clamp(2.9rem,9.5vw,6.6rem);font-weight:400;max-width:15ch;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero-sub{color:var(--muted);max-width:46ch;margin:24px 0 34px;font-size:1.08rem;}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:22px;}
+  .hero-note{color:var(--muted);font-size:.9rem;letter-spacing:.03em;}
+
+  .hero-ornament{position:absolute;top:14%;right:-34px;z-index:1;
+    width:min(58vw,360px);opacity:.55;will-change:transform;}
+  .hero-ornament svg{width:100%;height:auto;animation:spin 26s linear infinite;}
+  .orn-line{stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;
+    stroke-dasharray:1;stroke-dashoffset:1;
+    transition:stroke-dashoffset 1.5s var(--ease-in) .45s;}
+  body.loaded .orn-line{stroke-dashoffset:0;}
+
+  .scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+    z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
+  .cue-line{width:1px;height:46px;background:rgba(217,187,168,.45);}
+  .cue-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
+    animation:floaty 2.8s ease-in-out infinite;}
+
+  /* ---------- marquee ---------- */
+  .marquee{background:#000;border-block:1px solid var(--line-soft);overflow:hidden;}
+  .marquee-track{display:flex;align-items:center;gap:2.4rem;width:max-content;
+    padding:26px 22px;animation:drift 32s linear infinite;will-change:transform;}
+  .marquee:hover .marquee-track,.marquee:focus-within .marquee-track{animation-play-state:paused;}
+  .mq-word{font-family:'Bodoni Moda',serif;font-size:clamp(1.5rem,3.6vw,2.5rem);
+    letter-spacing:.02em;white-space:nowrap;color:var(--ink);}
+  .mq-word.is-acc{color:var(--accent);font-style:italic;}
+  .mq-sep{width:12px;height:12px;flex:0 0 12px;color:var(--accent);}
+
+  /* ---------- estrutura de secao ---------- */
+  section{padding:104px 0;scroll-margin-top:78px;}
+  .section-head{max-width:62ch;margin-bottom:54px;}
+  .section-head .eyebrow{display:block;margin-bottom:16px;}
+  .section-head h2{font-size:clamp(2.05rem,4.6vw,3.3rem);}
+  .section-head p{color:var(--muted);margin-top:16px;font-size:1.05rem;}
+
+  /* ---------- reveals (scroll) ---------- */
+  .reveal{opacity:0;transform:translateY(28px);
+    transition:opacity .66s var(--ease-in),transform .66s var(--ease-in);
+    transition-delay:calc(var(--i,0)*80ms);}
+  .reveal.rv-x{transform:translateX(-26px);}
+  .reveal.rv-s{transform:scale(.95);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* entrada de pagina */
+  .rise{opacity:0;transform:translateY(28px);
+    transition:opacity .85s var(--ease-in),transform .85s var(--ease-in);
+    transition-delay:calc(var(--i,0)*130ms);}
+  body.loaded .rise{opacity:1;transform:none;}
+
+  /* ---------- filtros + grid de produtos ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+  .filters button{min-height:44px;padding:0 20px;border-radius:999px;cursor:pointer;
+    border:1px solid rgba(255,255,255,.22);background:transparent;color:var(--ink);
+    font-size:.95rem;letter-spacing:.04em;
+    transition:background-color .2s var(--ease-state),color .2s var(--ease-state),
+      border-color .2s var(--ease-state),transform .15s var(--ease-state);}
+  .filters button:hover{border-color:var(--accent);color:var(--accent);}
+  .filters button:active{transform:scale(.97);}
+  .filters button.active{background:var(--accent);color:#000;border-color:var(--accent);}
+  .filter-count{color:var(--muted);font-size:.9rem;margin:0 0 30px;letter-spacing:.03em;}
+
+  .prod-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  .prod-media{position:relative;width:100%;height:100%;min-height:264px;overflow:hidden;
+    display:grid;place-items:center;border:1px solid rgba(217,187,168,.12);
+    transition:transform .25s var(--ease-state),border-color .25s var(--ease-state);}
+  .prod:nth-child(1) .prod-media{background:#151515;}
+  .prod:nth-child(2) .prod-media{background:#1c1c1c;}
+  .prod:nth-child(3) .prod-media{background:#131313;}
+  .prod:nth-child(4) .prod-media{background:#1f1f1f;}
+  .prod:nth-child(5) .prod-media{background:#181818;}
+  .prod:nth-child(6) .prod-media{background:#212121;}
+  .prod .tag{color:var(--tag);font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;}
+  .prod-info{margin-top:14px;}
+  .prod-info h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.2rem;}
+  .prod-cat{color:var(--accent);font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;margin-top:5px;}
+  .prod-price{position:absolute;left:14px;bottom:14px;
+    background:rgba(0,0,0,.86);color:var(--accent);border:1px solid rgba(217,187,168,.5);
+    padding:8px 13px;font-size:.95rem;letter-spacing:.02em;border-radius:2px;}
+  .prod:hover .prod-media{transform:scale(1.023);border-color:rgba(217,187,168,.42);}
+
+  /* ---------- como comprar ---------- */
+  .como-list{position:relative;max-width:780px;}
+  .rail{position:absolute;left:23px;top:30px;bottom:30px;width:4px;z-index:0;}
+  .rail-line{stroke:var(--accent);stroke-width:2;stroke-dasharray:300;stroke-dashoffset:300;
+    transition:stroke-dashoffset 1s var(--ease-in) .15s;}
+  .como-list.in .rail-line{stroke-dashoffset:0;}
+  .step{position:relative;z-index:1;display:flex;gap:20px;align-items:flex-start;padding:22px 0;}
+  .step-ico{flex:0 0 48px;width:48px;height:48px;border-radius:50%;
+    border:1px solid var(--line);background:#070707;color:var(--accent);
+    display:grid;place-items:center;}
+  .step-ico svg{width:22px;height:22px;}
+  .step-body h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.3rem;margin-bottom:6px;}
+  .step-body p{color:var(--muted);}
+  .step-body .ph{color:var(--accent);}
+
+  /* ---------- lookbook ---------- */
+  .look{display:grid;gap:20px;grid-template-columns:1fr;}
+  .look-media{position:relative;display:grid;place-items:center;overflow:hidden;
+    background:var(--surface);border:1px solid rgba(217,187,168,.12);}
+  .look-block .tag{color:var(--tag);font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;}
+  .look-frame{position:absolute;inset:12px;border:1px solid rgba(217,187,168,.32);
+    pointer-events:none;will-change:transform;}
+  .look-cap{margin-top:14px;display:flex;gap:12px;align-items:baseline;}
+  .look-cap .idx{color:var(--accent);font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;}
+  .look-cap h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.2rem;}
+  .look-a .look-media{min-height:420px;}
+  .look-b .look-media,.look-c .look-media{min-height:260px;}
+
+  /* ---------- newsletter ---------- */
+  .news-head{max-width:60ch;}
+  .news-form{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:flex-start;}
+  .field{flex:1 1 280px;display:flex;flex-direction:column;gap:8px;}
+  .field label{font-size:.95rem;}
+  .field input{height:52px;padding:0 16px;background:#0a0a0a;color:var(--ink);
+    border:1px solid rgba(255,255,255,.22);font-family:'Jost',sans-serif;font-size:1rem;
+    transition:border-color .2s var(--ease-state);}
+  .field input::placeholder{color:rgba(255,255,255,.42);}
+  .field input:focus-visible{border-color:var(--accent);}
+  .field input[aria-invalid="true"]{border-color:#ffffff;}
+  .form-msg{margin-top:12px;font-size:.95rem;min-height:1.3em;}
+  .form-msg .err{display:inline-flex;gap:9px;align-items:center;color:var(--ink);}
+  .form-msg svg{width:18px;height:18px;color:var(--accent);flex:0 0 18px;}
+  .news-note{color:var(--muted);font-size:.9rem;margin-top:16px;}
+  .news-ok{margin-top:20px;display:flex;gap:13px;align-items:flex-start;
+    border:1px solid var(--line);background:#0a0a0a;padding:18px 20px;border-radius:2px;
+    animation:popIn .5s var(--ease-in) both;}
+  .news-ok .chk{color:var(--accent);width:24px;height:24px;flex:0 0 24px;margin-top:2px;}
+  .news-ok p{margin:0;}
+  .news-ok strong{display:block;font-weight:500;margin-bottom:4px;}
+  .news-ok span{color:var(--muted);}
+  .news-ok button{margin-top:12px;background:transparent;border:1px solid rgba(255,255,255,.28);
+    color:var(--ink);min-height:44px;padding:0 18px;border-radius:2px;cursor:pointer;
+    transition:border-color .2s var(--ease-state),color .2s var(--ease-state);}
+  .news-ok button:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ---------- rodape ---------- */
+  .site-footer{background:#000;border-top:1px solid var(--line-soft);padding:70px 0 30px;}
+  .foot-grid{display:grid;gap:44px;grid-template-columns:1fr;}
+  .foot-brand .brand-name{font-size:1.7rem;}
+  .foot-brand p{color:var(--muted);margin-top:14px;max-width:34ch;}
+  .foot-col h3{font-family:'Jost',sans-serif;font-weight:500;font-size:.875rem;
+    text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:18px;}
+  .foot-col ul{display:flex;flex-direction:column;gap:12px;}
+  .foot-col a{color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s var(--ease-state);}
+  .foot-col a:hover{color:var(--accent);}
+  .contact-list{display:flex;flex-direction:column;gap:14px;color:var(--muted);font-size:.95rem;}
+  .contact-list li{display:flex;gap:11px;align-items:center;}
+  .contact-list svg{width:18px;height:18px;color:var(--accent);flex:0 0 18px;}
+  .foot-bottom{margin-top:46px;padding-top:24px;border-top:1px solid var(--line-soft);
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;}
+  .foot-bottom p{margin:0;color:var(--muted);font-size:.95rem;}
+  .foot-bottom a.demo{color:var(--ink);text-decoration:underline;
+    text-decoration-color:var(--accent);text-underline-offset:5px;transition:color .2s var(--ease-state);}
+  .foot-bottom a.demo:hover{color:var(--accent);}
+
+  /* ---------- keyframes ---------- */
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes drift{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes floaty{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(-16px);opacity:1;}}
+  @keyframes popIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+  /* ---------- responsivo ---------- */
+  @media (max-width:759px){
+    .nav{position:absolute;top:100%;left:0;right:0;background:#000;
+      border-top:1px solid var(--line-soft);max-height:0;overflow:hidden;
+      transition:max-height .45s var(--ease-state);}
+    .site-header.open .nav{max-height:74vh;}
+    .nav ul{flex-direction:column;gap:0;padding:10px 22px 22px;}
+    .nav a{display:flex;align-items:center;min-height:50px;padding:12px 0;
+      border-bottom:1px solid var(--line-soft);font-size:1.05rem;}
+    .nav a::after{display:none;}
+    .nav-toggle{display:inline-flex;align-items:center;justify-content:center;
+      width:46px;height:46px;background:transparent;color:var(--ink);
+      border:1px solid var(--line);border-radius:2px;cursor:pointer;
+      transition:border-color .2s var(--ease-state),color .2s var(--ease-state);}
+    .nav-toggle:hover{border-color:var(--accent);color:var(--accent);}
+    .hero-ornament{top:9%;right:-30px;width:66vw;opacity:.4;}
+  }
+
+  @media (min-width:760px){
+    .prod-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:172px;grid-auto-flow:dense;gap:22px;}
+    .prod .prod-media{min-height:0;}
+    .c3r2{grid-column:span 3;grid-row:span 2;}
+    .c3r1{grid-column:span 3;grid-row:span 1;}
+    .c2r1{grid-column:span 2;grid-row:span 1;}
+    .c1r2{grid-column:span 1;grid-row:span 2;}
+    .look{grid-template-columns:repeat(2,1fr);}
+    .look-a{grid-column:1/2;grid-row:1/3;}
+    .look-a .look-media{min-height:620px;}
+    .look-b{grid-column:2/3;grid-row:1/2;}
+    .look-c{grid-column:2/3;grid-row:2/3;}
+    .look-b .look-media,.look-c .look-media{min-height:300px;}
+    .foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+
+    /* revelacao de preco so onde existe hover real */
+    .prod-price{opacity:0;transform:translateY(10px);
+      transition:opacity .22s var(--ease-state),transform .22s var(--ease-state);}
+    .prod:hover .prod-price,.prod:focus-within .prod-price{opacity:1;transform:none;}
+  }
+
+  /* respeito a quem prefere menos movimento */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;}
+    .marquee-track{animation:none !important;flex-wrap:wrap;white-space:normal;}
+    .rise,.reveal{opacity:1 !important;transform:none !important;}
+    .orn-line,.rail-line{stroke-dashoffset:0 !important;}
+    .prod-price{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header" id="cabecalho">
+  <div class="header-inner">
+    <a class="brand" href="#inicio" aria-label="Sua Marca, voltar ao início">
+      <svg class="brand-mark" viewBox="-50 -50 100 100" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+          <line x1="0" y1="-40" x2="0" y2="40"/>
+          <line x1="-40" y1="0" x2="40" y2="0"/>
+          <line x1="-28" y1="-28" x2="28" y2="28"/>
+          <line x1="-28" y1="28" x2="28" y2="-28"/>
+        </g>
+      </svg>
+      <span class="brand-name">Sua Marca</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#colecao">Coleção</a></li>
+        <li><a href="#como-comprar">Como comprar</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#novidades">Novidades</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menu">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio" aria-label="Apresentação da marca">
+    <div class="hero-ornament" data-parallax="0.15" aria-hidden="true">
+      <svg viewBox="-50 -50 100 100">
+        <g>
+          <line class="orn-line" x1="0" y1="-44" x2="0" y2="44" pathLength="1"/>
+          <line class="orn-line" x1="-44" y1="0" x2="44" y2="0" pathLength="1"/>
+          <line class="orn-line" x1="-31" y1="-31" x2="31" y2="31" pathLength="1"/>
+          <line class="orn-line" x1="-31" y1="31" x2="31" y2="-31" pathLength="1"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="container hero-inner">
+      <span class="eyebrow rise" style="--i:0">Nova coleção</span>
+      <h1 class="rise" style="--i:1">Peças que atravessam o <em>tempo</em>.</h1>
+      <p class="hero-sub rise" style="--i:2">Curadoria de peças escolhidas uma por uma, em embalagem que mantém a peça inteira até você. Para quem procura durar, não liquidação.</p>
+      <div class="hero-cta rise" style="--i:3">
+        <a class="btn btn-primary" href="#colecao">Ver a coleção</a>
+        <span class="hero-note">Curadoria pequena, feita para durar.</span>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span class="cue-line"></span>
+      <span class="cue-dot"></span>
+    </div>
+  </section>
+
+  <!-- ===== FAIXA MARQUEE ===== -->
+  <section class="marquee" id="marquee" aria-label="Palavras da coleção">
+    <div class="marquee-track">
+      <span class="mq-word">Curadoria</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc">Linho</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word">Alfaiataria</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc">Seda</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word">Algodão</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc">Feito à mão</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word">Peças únicas</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc">Caixa que chega inteira</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+
+      <span class="mq-word" aria-hidden="true">Curadoria</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc" aria-hidden="true">Linho</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word" aria-hidden="true">Alfaiataria</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc" aria-hidden="true">Seda</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word" aria-hidden="true">Algodão</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc" aria-hidden="true">Feito à mão</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word" aria-hidden="true">Peças únicas</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+      <span class="mq-word is-acc" aria-hidden="true">Caixa que chega inteira</span>
+      <svg class="mq-sep" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6Z" fill="currentColor"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== PRODUTOS ===== -->
+  <section id="colecao" aria-labelledby="colecao-tit">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">O catálogo</span>
+        <h2 id="colecao-tit">A coleção, peça por peça</h2>
+        <p>Seis itens de tamanhos diferentes, do linho do dia à alfaiataria da noite. Passe o cursor sobre uma peça para ver o preço.</p>
+      </div>
+
+      <div class="filters reveal" role="group" aria-label="Filtrar peças por categoria">
+        <button type="button" data-filter="tudo" class="active" aria-pressed="true">Tudo</button>
+        <button type="button" data-filter="vestidos" aria-pressed="false">Vestidos</button>
+        <button type="button" data-filter="alfaiataria" aria-pressed="false">Alfaiataria</button>
+        <button type="button" data-filter="acessorios" aria-pressed="false">Acessórios</button>
+      </div>
+      <p class="filter-count reveal" id="prodCount" role="status" aria-live="polite">Mostrando 6 peças.</p>
+
+      <div class="prod-grid" data-stagger>
+        <article class="prod reveal c3r2" data-cat="alfaiataria">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: blazer de linho">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Blazer de linho</h3>
+            <p class="prod-cat">Alfaiataria</p>
+          </div>
+        </article>
+
+        <article class="prod reveal c3r1" data-cat="vestidos">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: vestido midi de seda">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Vestido midi de seda</h3>
+            <p class="prod-cat">Vestidos</p>
+          </div>
+        </article>
+
+        <article class="prod reveal c2r1" data-cat="alfaiataria">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: calça de alfaiataria">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Calça de alfaiataria</h3>
+            <p class="prod-cat">Alfaiataria</p>
+          </div>
+        </article>
+
+        <article class="prod reveal c1r2" data-cat="acessorios">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: bolsa estruturada">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Bolsa estruturada</h3>
+            <p class="prod-cat">Acessórios</p>
+          </div>
+        </article>
+
+        <article class="prod reveal c2r1" data-cat="alfaiataria">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: camisa de algodão">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Camisa de algodão</h3>
+            <p class="prod-cat">Alfaiataria</p>
+          </div>
+        </article>
+
+        <article class="prod reveal c3r1" data-cat="acessorios">
+          <div class="prod-media" role="img" aria-label="Espaço para foto: cinto de couro">
+            <span class="tag">Sua foto aqui</span>
+            <span class="prod-price">[R$ 00]</span>
+          </div>
+          <div class="prod-info">
+            <h3>Cinto de couro</h3>
+            <p class="prod-cat">Acessórios</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMO COMPRAR ===== -->
+  <section id="como-comprar" aria-labelledby="como-tit">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Sem mistério</span>
+        <h2 id="como-tit">Como comprar</h2>
+        <p>Três etapas simples, do clique até a peça na sua mão.</p>
+      </div>
+
+      <ol class="como-list reveal rv-x" data-draw>
+        <svg class="rail" viewBox="0 0 4 300" preserveAspectRatio="none" aria-hidden="true">
+          <line class="rail-line" x1="2" y1="0" x2="2" y2="300" pathLength="300" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <li class="step">
+          <span class="step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 7V5.2a2.4 2.4 0 1 1 2.4-2.4"/>
+              <path d="M12 7 3.6 13.6h16.8L12 7Z"/>
+              <path d="M4 14.2V19h16v-4.8"/>
+            </svg>
+          </span>
+          <div class="step-body">
+            <h3>Escolha a peça</h3>
+            <p>Veja o catálogo e separe o que combina com o seu guarda-roupa.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5.5" width="18" height="13" rx="1"/>
+              <path d="m3.6 7 8.4 5.6L20.4 7"/>
+            </svg>
+          </span>
+          <div class="step-body">
+            <h3>A gente confirma</h3>
+            <p>Tamanho, cor e prazo passam por e-mail antes de qualquer envio: <span class="ph">[prazo de produção]</span>.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z"/>
+              <path d="M3 7.5 12 12l9-4.5"/>
+              <path d="M12 12v9"/>
+            </svg>
+          </span>
+          <div class="step-body">
+            <h3>Chega inteira</h3>
+            <p>Embalagem reforçada para a peça chegar pronta para usar: <span class="ph">[prazo de entrega]</span>.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== LOOKBOOK ===== -->
+  <section id="lookbook" aria-labelledby="look-tit">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Em blocos</span>
+        <h2 id="look-tit">Lookbook</h2>
+        <p>Sessões do linho do dia à alfaiataria da noite, em blocos que respiram.</p>
+      </div>
+
+      <div class="look" data-stagger>
+        <figure class="look-block look-a reveal rv-s" style="margin:0">
+          <div class="look-media" role="img" aria-label="Espaço para foto: sessão de linho">
+            <span class="look-frame" data-parallax="0.2"></span>
+            <span class="tag">Sua foto aqui</span>
+          </div>
+          <figcaption class="look-cap">
+            <span class="idx">Sessão 01</span>
+            <h3>Linho, do escritório ao fim de semana</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="look-block look-b reveal rv-s" style="margin:0">
+          <div class="look-media" role="img" aria-label="Espaço para foto: estudo de alfaiataria">
+            <span class="tag">Sua foto aqui</span>
+          </div>
+          <figcaption class="look-cap">
+            <span class="idx">Sessão 02</span>
+            <h3>Alfaiataria que veste o corpo, não o contrário</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="look-block look-c reveal rv-s" style="margin:0">
+          <div class="look-media" role="img" aria-label="Espaço para foto: sobreposições do dia">
+            <span class="tag">Sua foto aqui</span>
+          </div>
+          <figcaption class="look-cap">
+            <span class="idx">Sessão 03</span>
+            <h3>Sobreposições para dias de temperatura <span class="idx">[a definir]</span></h3>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section id="novidades" aria-labelledby="nov-tit">
+    <div class="container">
+      <div class="section-head news-head reveal">
+        <span class="eyebrow">Fica por dentro</span>
+        <h2 id="nov-tit">Novidades da coleção</h2>
+        <p>Peças novas e sessões de look, direto no seu e-mail. Só quando vale a pena.</p>
+      </div>
+
+      <form class="news-form reveal" id="newsForm" novalidate>
+        <div class="field">
+          <label for="newsEmail">Seu e-mail</label>
+          <input type="email" id="newsEmail" name="email" placeholder="você@email.com" inputmode="email" autocomplete="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Assinar novidades</button>
+      </form>
+      <div class="form-msg" id="newsError" aria-live="polite"></div>
+      <p class="news-note">Sem barulho. Você cancela quando quiser.</p>
+
+      <div class="news-ok" id="newsOk" hidden>
+        <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="m8 12.5 2.5 2.5L16 9.5"/>
+        </svg>
+        <div>
+          <strong id="newsOkText">Pronto.</strong>
+          <span>Este é um modelo de demonstração, então nada foi enviado de verdade.</span>
+          <button type="button" id="newsAgain">Assinar outro e-mail</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== RODAPE ===== -->
+<footer class="site-footer" id="rodape">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#inicio" aria-label="Sua Marca, voltar ao início">
+          <svg class="brand-mark" viewBox="-50 -50 100 100" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+              <line x1="0" y1="-40" x2="0" y2="40"/>
+              <line x1="-40" y1="0" x2="40" y2="0"/>
+              <line x1="-28" y1="-28" x2="28" y2="28"/>
+              <line x1="-28" y1="28" x2="28" y2="-28"/>
+            </g>
+          </svg>
+          <span class="brand-name">Sua Marca</span>
+        </a>
+        <p>Curadoria de moda com cuidado de ponta a ponta, da escolha da peça até a caixa na sua porta.</p>
+      </div>
+
+      <div class="foot-col">
+        <h3>Navegar</h3>
+        <ul>
+          <li><a href="#colecao">Coleção</a></li>
+          <li><a href="#como-comprar">Como comprar</a></li>
+          <li><a href="#lookbook">Lookbook</a></li>
+          <li><a href="#novidades">Novidades</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h3>Contato</h3>
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="1"/><path d="m3.6 7 8.4 5.6L20.4 7"/></svg>
+            <span>[seu@email.com]</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l1.8 4.5-2.3 1.4a12.5 12.5 0 0 0 5.6 5.6l1.4-2.3L20 15v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+            <span>[(00) 00000-0000]</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <span>[endereço]</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p><a class="demo" href="../index.html">Modelo de demonstração por Kelvin Oliveira</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var body = document.body;
+
+  /* 1) Entrada de pagina: revela o hero depois do primeiro paint */
+  requestAnimationFrame(function(){ body.classList.add("loaded"); });
+
+  /* 2) Escalonamento: numera os filhos de cada container para o --i */
+  document.querySelectorAll("[data-stagger]").forEach(function(box){
+    Array.prototype.forEach.call(box.children, function(child, i){
+      child.style.setProperty("--i", i);
+    });
+  });
+
+  /* 3) Scroll reveal com IntersectionObserver */
+  var revealIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); revealIO.unobserve(e.target); }
+    });
+  }, { threshold:0.14, rootMargin:"0px 0px -6% 0px" });
+  document.querySelectorAll(".reveal").forEach(function(el){ revealIO.observe(el); });
+
+  /* 4) SVG que desenha (trilho do 'como comprar') */
+  var drawIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); drawIO.unobserve(e.target); }
+    });
+  }, { threshold:0.3 });
+  document.querySelectorAll("[data-draw]").forEach(function(el){ drawIO.observe(el); });
+
+  /* 5) Parallax leve (so no desktop, sem reduced-motion), via rAF */
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  var parallaxOn = !reduce && window.matchMedia("(min-width: 760px) and (hover: hover)").matches;
+  function runParallax(){
+    if(!parallaxOn) return;
+    var vh = window.innerHeight || 1;
+    parallaxEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.bottom < -120 || r.top > vh + 120) return;
+      var factor = parseFloat(el.getAttribute("data-parallax")) || 0.15;
+      var progress = (vh - r.top) / (vh + r.height);
+      var shift = (progress - 0.5) * 2 * factor * 100;
+      el.style.transform = "translate3d(0," + shift.toFixed(2) + "px,0)";
+    });
+  }
+
+  /* 6) Header que reage ao scroll + link ativo no menu */
+  var header = document.querySelector(".site-header");
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var sections = ["inicio","colecao","como-comprar","lookbook","novidades"]
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+
+  function onFrame(){
+    var y = window.scrollY || window.pageYOffset || 0;
+    header.classList.toggle("scrolled", y > 8);
+
+    var probe = y + window.innerHeight * 0.32;
+    var current = sections.length ? sections[0].id : null;
+    sections.forEach(function(s){ if(s.offsetTop <= probe) current = s.id; });
+    navLinks.forEach(function(a){
+      var on = a.getAttribute("href") === "#" + current;
+      a.classList.toggle("active", on);
+      if(on){ a.setAttribute("aria-current","true"); } else { a.removeAttribute("aria-current"); }
+    });
+
+    runParallax();
+  }
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ onFrame(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScroll, { passive:true });
+  window.addEventListener("resize", onScroll, { passive:true });
+  onFrame();
+
+  /* 7) Menu mobile: abre, fecha com Escape, fecha ao clicar em link e fora */
+  var toggle = document.getElementById("navToggle");
+  function setNav(open){
+    header.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  }
+  toggle.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    setNav(!header.classList.contains("open"));
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape" && header.classList.contains("open")){ setNav(false); toggle.focus(); }
+  });
+  navLinks.forEach(function(a){ a.addEventListener("click", function(){ setNav(false); }); });
+  document.addEventListener("click", function(ev){
+    if(header.classList.contains("open") && !ev.target.closest(".site-header")){ setNav(false); }
+  });
+
+  /* 8) Filtro do catalogo (troca de estado animada em opacidade) */
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".prod"));
+  var countEl = document.getElementById("prodCount");
+
+  function setFilter(f){
+    var shown = 0;
+    cards.forEach(function(card){
+      var cat = card.getAttribute("data-cat");
+      var show = (f === "tudo" || cat === f);
+      var wasHidden = card.hidden;
+      if(show){
+        shown++;
+        if(wasHidden){
+          card.hidden = false;
+          if(!reduce && card.animate){
+            card.animate(
+              [{ opacity:0, transform:"scale(.97)" }, { opacity:1, transform:"none" }],
+              { duration:260, easing:"cubic-bezier(.4,0,.2,1)" }
+            );
+          }
+        }
+      } else {
+        if(!wasHidden){
+          if(reduce || !card.animate){ card.hidden = true; }
+          else {
+            var a = card.animate(
+              [{ opacity:1, transform:"none" }, { opacity:0, transform:"scale(.97)" }],
+              { duration:220, easing:"cubic-bezier(.4,0,.2,1)" }
+            );
+            a.onfinish = function(){ card.hidden = true; };
+          }
+        }
+      }
+    });
+    filterBtns.forEach(function(b){
+      var on = b.getAttribute("data-filter") === f;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    if(countEl){
+      countEl.textContent = shown === 1
+        ? "Mostrando 1 peça."
+        : "Mostrando " + shown + " peças.";
+    }
+  }
+  filterBtns.forEach(function(b){
+    b.addEventListener("click", function(){ setFilter(b.getAttribute("data-filter")); });
+  });
+
+  /* 9) Newsletter: valida por campo e confirma na tela */
+  var form = document.getElementById("newsForm");
+  var input = document.getElementById("newsEmail");
+  var errBox = document.getElementById("newsError");
+  var okBox = document.getElementById("newsOk");
+  var okText = document.getElementById("newsOkText");
+  var again = document.getElementById("newsAgain");
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function showError(msg){
+    okBox.hidden = true;
+    errBox.innerHTML = '<span class="err"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 15.5h.01"/></svg>' + msg + "</span>";
+    input.setAttribute("aria-invalid","true");
+    input.focus();
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    errBox.textContent = "";
+    input.setAttribute("aria-invalid","false");
+    var v = input.value.trim();
+    if(!v){ showError("Escreva um e-mail para receber as novidades."); return; }
+    if(!emailRe.test(v)){ showError("Confira o e-mail: parece que falta o @ ou o domínio."); return; }
+    okText.textContent = "Pronto, " + v + " entrou na lista de novidades.";
+    okBox.hidden = false;
+    form.hidden = true;
+  });
+
+  again.addEventListener("click", function(){
+    okBox.hidden = true;
+    form.hidden = false;
+    input.value = "";
+    input.focus();
+  });
+})();
+</script>
+</body>
+</html>

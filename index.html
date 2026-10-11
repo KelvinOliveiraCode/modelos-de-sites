@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelos de Sites · Kelvin Oliveira</title>
+<meta name="description" content="Mostruário de 20 landing pages por nicho. Veja como eu construo sites que vendem e peça o seu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0B0C;
+  --ink-2:#131315;
+  --ink-3:#191919;
+  --line:rgba(241,241,238,.12);
+  --paper:#F4F3EF;
+  --paper-dim:#A6A6A0;
+  --accent:#E8B33A;
+  --accent-ink:#0B0B0C;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-2:cubic-bezier(.4,0,.2,1);
+  --max:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- entrance ---------- */
+body{opacity:0}
+body.ready{opacity:1;transition:opacity .7s var(--ease)}
+
+/* ---------- header ---------- */
+.hub-head{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  border-bottom:1px solid transparent;
+  transition:background .45s var(--ease-2),border-color .45s var(--ease-2),backdrop-filter .45s var(--ease-2);
+}
+.hub-head.stuck{
+  background:rgba(11,11,12,.86);
+  backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);
+}
+.hub-head .in{
+  max-width:var(--max);margin:0 auto;padding:18px 24px;
+  display:flex;align-items:center;gap:20px;
+}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.01em;font-size:15px}
+.brand .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex:none;transform:translateY(-2px)}
+.brand .sub{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-dim)}
+.hub-head nav{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hlink{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper-dim);padding:9px 12px;border-radius:3px;
+  transition:color .25s var(--ease-2),background .25s var(--ease-2);
+}
+.hlink:hover{color:var(--paper);background:rgba(241,241,238,.06)}
+.hcta{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.02em;
+  background:var(--accent);color:var(--accent-ink);padding:11px 18px;border:0;border-radius:3px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease-2);
+}
+.hcta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(232,179,58,.7)}
+.hcta svg{width:14px;height:14px}
+
+/* ---------- hero ---------- */
+.hero{
+  max-width:var(--max);margin:0 auto;padding:150px 24px 64px;
+  position:relative;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 0%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 0%,transparent 75%);
+  opacity:.7;
+}
+.hero .eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.hero .eyebrow::after{content:"";height:1px;width:64px;background:var(--accent);opacity:.5}
+.hero h1{
+  font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.95;
+  font-size:clamp(2.6rem,7.2vw,5.4rem);max-width:16ch;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{
+  margin-top:26px;max-width:60ch;color:var(--paper-dim);font-size:clamp(1rem,1.4vw,1.12rem);
+}
+.hero .lede strong{color:var(--paper);font-weight:500}
+.hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:13.5px;
+  padding:14px 24px;border-radius:3px;border:1px solid var(--line);
+  display:inline-flex;align-items:center;gap:9px;
+  transition:transform .3s var(--ease),background .3s var(--ease-2),border-color .3s var(--ease-2),color .3s var(--ease-2);
+}
+.btn svg{width:15px;height:15px;flex:none}
+.btn:hover{transform:translateY(-2px)}
+.btn.fill{background:var(--paper);color:#0B0B0C;border-color:var(--paper)}
+.btn.fill:hover{background:var(--accent);border-color:var(--accent)}
+.btn.ghost{color:var(--paper)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.hero-meta{
+  margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:36px;
+}
+.hero-meta div{display:flex;flex-direction:column;gap:2px}
+.hero-meta b{font-family:'Archivo',sans-serif;font-size:1.6rem;letter-spacing:-.02em}
+.hero-meta span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- toolbar ---------- */
+.cat{max-width:var(--max);margin:0 auto;padding:8px 24px 0}
+.toolbar{
+  position:sticky;top:70px;z-index:40;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  padding:16px 0 18px;margin-bottom:8px;
+  background:linear-gradient(to bottom,var(--ink) 72%,rgba(11,11,12,0));
+}
+.search{
+  position:relative;flex:1 1 240px;min-width:220px;
+}
+.search input{
+  width:100%;background:var(--ink-2);border:1px solid var(--line);border-radius:3px;
+  color:var(--paper);font:inherit;font-size:14px;padding:13px 14px 13px 42px;
+  transition:border-color .3s var(--ease-2),background .3s var(--ease-2);
+}
+.search input::placeholder{color:#7c7c76}
+.search input:focus{border-color:var(--accent);background:var(--ink-3);box-shadow:0 0 0 3px rgba(232,179,58,.22);outline:none}
+.search input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;box-shadow:none}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#7c7c76;pointer-events:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line);color:var(--paper-dim);
+  padding:10px 14px;border-radius:3px;
+  transition:color .25s var(--ease-2),border-color .25s var(--ease-2),background .25s var(--ease-2),transform .25s var(--ease);
+}
+.chip:hover{color:var(--paper);border-color:rgba(241,241,238,.3);transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:var(--paper);border-color:var(--paper);color:#0B0B0C}
+.count{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--paper-dim);margin-left:auto;white-space:nowrap;
+}
+
+/* ---------- grid de modelos ---------- */
+.grid{
+  max-width:var(--max);margin:0 auto;padding:0 24px 24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.card{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--ink-2);border:1px solid var(--line);border-radius:5px;
+  overflow:hidden;
+  transition:transform .45s var(--ease),border-color .45s var(--ease-2),box-shadow .45s var(--ease);
+}
+.card:hover{transform:translateY(-5px);border-color:rgba(241,241,238,.26);box-shadow:0 22px 44px -26px rgba(0,0,0,.9)}
+.card.wide{grid-column:span 2}
+.preview{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000;border-bottom:1px solid var(--line);display:block}
+.preview .bar{position:absolute;top:0;left:0;right:0;height:26px;display:flex;align-items:center;gap:6px;padding:0 12px;background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.08)}
+.preview .bar i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);display:block}
+.preview .bar i:nth-child(1){background:var(--c1)}
+.preview .bar i:nth-child(2){background:var(--c2)}
+.preview .bar i:nth-child(3){background:var(--c3)}
+.preview .blk{position:absolute;border-radius:2px;display:block;transition:transform .6s var(--ease),opacity .6s var(--ease)}
+.preview .b1{left:9%;top:22%;width:52%;height:20%;background:var(--c1);transform-origin:left center}
+.preview .b2{left:9%;top:50%;width:34%;height:11%;background:var(--c2)}
+.preview .b3{right:9%;top:22%;width:26%;height:44%;background:var(--c3)}
+.preview .b4{left:9%;bottom:11%;width:22%;height:14%;background:var(--c2);opacity:.55}
+.preview .b5{left:35%;bottom:11%;width:22%;height:14%;background:var(--c1);opacity:.4}
+.preview .sheen{
+  position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.14) 50%,transparent 65%);
+  transform:translateX(-110%);
+}
+.card:hover .preview .sheen{transform:translateX(110%);transition:transform .9s var(--ease)}
+.card:hover .preview .b1{transform:scaleX(1.06)}
+.card:hover .preview .b3{transform:translateY(-4px)}
+.card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block}
+.card h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.18rem;letter-spacing:-.02em;line-height:1.15}
+.card p{color:var(--paper-dim);font-size:14px}
+.card .foot{margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:10px}
+.card .go{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;color:var(--paper);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.card .go .arrow{transition:transform .35s var(--ease)}
+.card:hover .go .arrow{transform:translateX(4px)}
+.card .swatches{margin-left:auto;display:flex;gap:4px}
+.card .swatches i{width:12px;height:12px;border-radius:2px;border:1px solid rgba(255,255,255,.14)}
+.card .new{
+  position:absolute;top:12px;right:12px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--accent);color:var(--accent-ink);padding:5px 8px;border-radius:2px;
+}
+.empty{
+  grid-column:1/-1;text-align:center;padding:64px 24px;border:1px dashed var(--line);border-radius:5px;
+  color:var(--paper-dim);
+}
+.empty b{display:block;font-family:'Archivo',sans-serif;color:var(--paper);font-size:1.1rem;margin-bottom:8px}
+.empty button{margin-top:16px;background:none;border:1px solid var(--line);color:var(--paper);padding:10px 18px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:border-color .25s var(--ease-2),color .25s var(--ease-2)}
+.empty button:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- seções ---------- */
+.sec{max-width:var(--max);margin:0 auto;padding:96px 24px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:12px}
+.sec-head h2{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.02;font-size:clamp(1.9rem,4vw,3rem);max-width:22ch}
+.sec-head p{color:var(--paper-dim);max-width:38ch;font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.step{padding:34px 30px 34px 0;border-bottom:1px solid var(--line);position:relative}
+.step+.step{padding-left:30px;border-left:1px solid var(--line)}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:16px}
+.step h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.02em;margin-bottom:10px}
+.step p{color:var(--paper-dim);font-size:14.5px}
+.step::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--accent);transition:width .8s var(--ease)}
+.step.in::after{width:100%}
+.step+.step::after{left:30px}
+
+/* ---------- contato ---------- */
+.contact{
+  max-width:var(--max);margin:0 auto;padding:110px 24px 0;
+}
+.contact-in{
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  background:
+    radial-gradient(120% 140% at 100% 0%,rgba(232,179,58,.13),transparent 55%),
+    var(--ink-2);
+  display:grid;grid-template-columns:1.25fr .95fr;
+}
+.contact-l{padding:56px 48px}
+.contact-l .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:14px}
+.contact-l h2{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.98;font-size:clamp(2.1rem,4.6vw,3.5rem)}
+.contact-l h2 em{font-style:normal;color:var(--accent)}
+.contact-l p{margin-top:20px;color:var(--paper-dim);max-width:46ch}
+.contact-l .actions{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.wa{
+  background:#25D366;color:#06301A;border:0;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:14px;
+  padding:15px 26px;border-radius:3px;display:inline-flex;align-items:center;gap:10px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.wa:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(37,211,102,.75)}
+.wa svg{width:17px;height:17px}
+.contact-r{padding:56px 48px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:22px;background:rgba(0,0,0,.22)}
+.contact-r h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim);font-weight:400}
+.contact-r a{
+  display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);
+  transition:padding-left .35s var(--ease),color .35s var(--ease-2);
+}
+.contact-r a:last-of-type{border-bottom:0}
+.contact-r a:hover{padding-left:8px;color:var(--accent)}
+.contact-r a .ic{width:34px;height:34px;flex:none;border:1px solid var(--line);border-radius:3px;display:grid;place-items:center;transition:border-color .35s var(--ease-2),color .35s var(--ease-2)}
+.contact-r a:hover .ic{border-color:var(--accent);color:var(--accent)}
+.contact-r a .ic svg{width:16px;height:16px}
+.contact-r a b{font-weight:500;font-size:14.5px;display:block}
+.contact-r a span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-dim);letter-spacing:.04em}
+
+/* ---------- footer ---------- */
+.foot-hub{max-width:var(--max);margin:0 auto;padding:70px 24px 46px;margin-top:110px;border-top:1px solid var(--line)}
+.foot-top{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+.foot-top .brand{font-size:16px}
+.foot-note{color:var(--paper-dim);font-size:13px;max-width:44ch}
+.foot-links{display:flex;flex-wrap:wrap;gap:20px}
+.foot-links a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);transition:color .25s var(--ease-2)}
+.foot-links a:hover{color:var(--accent)}
+.foot-bottom{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#6f6f6a}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+  .step+.step{padding-left:0;border-left:0}
+  .step+.step::after{left:0}
+  .contact-in{grid-template-columns:1fr}
+  .contact-r{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  .hub-head nav .hlink{display:none}
+  .hero{padding:118px 20px 48px}
+  .hero-meta{gap:24px}
+  .hero-meta b{font-size:1.35rem}
+  .cat,.grid,.sec,.contact,.foot-hub{padding-left:20px;padding-right:20px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .card.wide{grid-column:span 1}
+  .toolbar{top:64px}
+  .count{margin-left:0;width:100%}
+  .contact-l,.contact-r{padding:38px 24px}
+  .sec{padding-top:70px}
+}
+@media (max-width:420px){
+  .hero h1{font-size:2.3rem}
+  .hcta{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+  .card:hover{transform:none}
+  .btn:hover,.wa:hover,.chip:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<header class="hub-head" id="topo">
+  <div class="in">
+    <a class="brand" href="#topo"><span class="dot"></span>KELVIN OLIVEIRA<span class="sub">modelos de sites</span></a>
+    <nav aria-label="Navegação do mostruário">
+      <a class="hlink" href="#modelos">Modelos</a>
+      <a class="hlink" href="#como-funciona">Como funciona</a>
+      <a class="hlink" href="#contato">Contato</a>
+      <a class="hcta" href="https://wa.me/5591986134599?text=Ol%C3%A1%2C%20Kelvin!%20Vi%20seus%20modelos%20de%20site%20e%20quero%20um." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.81 2.41a8.16 8.16 0 0 1 2.41 5.83c0 4.54-3.7 8.2-8.23 8.2Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42-.14 0-.3-.02-.46-.02-.16 0-.43.06-.65.31-.22.25-.86.85-.86 2.06 0 1.21.88 2.38 1 2.54.12.17 1.72 2.63 4.17 3.69.58.25 1.04.4 1.39.51.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        Pedir meu site
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <p class="eyebrow rv">Mostruário 2026 · 20 nichos</p>
+  <h1 class="rv" style="--i:1">Vinte modelos, vinte jeitos de <em>vender</em>.</h1>
+  <p class="lede rv" style="--i:2">Cada página abaixo é uma landing de verdade, feita para um nicho específico, com a paleta, a tipografia e o movimento que aquele negócio pede. <strong>Nada de modelo genérico com o nome trocado.</strong> Escolha o que parece com o seu, me chame, e eu faço o seu do mesmo jeito.</p>
+  <div class="hero-actions rv" style="--i:3">
+    <a class="btn fill" href="#modelos">
+      Ver os 20 modelos
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+    <a class="btn ghost" href="#como-funciona">Como funciona</a>
+  </div>
+  <div class="hero-meta">
+    <div class="rv" style="--i:4"><b>20</b><span>nicho</span></div>
+    <div class="rv" style="--i:5"><b>100%</b><span>responsivo</span></div>
+    <div class="rv" style="--i:6"><b>0</b><span>template repetido</span></div>
+    <div class="rv" style="--i:7"><b>1</b><span>página por nicho</span></div>
+  </div>
+</section>
+<section class="cat" id="modelos" aria-labelledby="cat-tit">
+  <h2 id="cat-tit" class="rv" style="font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:18px">Os modelos</h2>
+  <div class="toolbar">
+    <label class="search">
+      <span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar modelo</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="busca" placeholder="Buscar por nicho, clínica, academia, saúde..." autocomplete="off">
+    </label>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por segmento"></div>
+    <p class="count" id="contador" role="status">20 modelos</p>
+  </div>
+  <div class="grid" id="grid">
+    <a class="card rv" href="clinica-medica/" style="--c1:#E3F2FD;--c2:#FFFFFF;--c3:#A5D6A7">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Saúde</span>
+        <h3>Clínica Médica</h3>
+        <p>Agendamento por especialidade e convênios em faixa, sem precisar ligar.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#E3F2FD"></i><i style="background:#FFFFFF"></i><i style="background:#A5D6A7"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="academia-fitness/" style="--c1:#111111;--c2:#FF6B00;--c3:#2E2E2E">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Fitness</span>
+        <h3>Academia</h3>
+        <p>Grade semanal em abas e planos comparados em tabela, não em três cartões.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FF6B00"></i><i style="background:#2E2E2E"></i><i style="background:#111111"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="advocacia/" style="--c1:#0A1F44;--c2:#C9A227;--c3:#4A4A4A">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Serviços</span>
+        <h3>Advocacia</h3>
+        <p>Áreas de atuação em acordeão e processo em quatro etapas, em linguagem simples.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#C9A227"></i><i style="background:#0A1F44"></i><i style="background:#4A4A4A"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card wide rv" href="moda-ecommerce/" style="--c1:#000000;--c2:#D9BBA8;--c3:#FFFFFF">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Varejo</span>
+        <h3>Moda e E-commerce</h3>
+        <p>Coleção em grade assimétrica, faixa de palavras correndo e hover que revela o preço. Editorial, não vitrine de liquidação.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#D9BBA8"></i><i style="background:#FFFFFF"></i><i style="background:#000000"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="cursos-ead/" style="--c1:#6A0DAD;--c2:#FF8C00;--c3:#2563EB">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Educação</span>
+        <h3>Cursos Online</h3>
+        <p>Trilha de módulos com barra de progresso e painel de aula mockado.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FF8C00"></i><i style="background:#6A0DAD"></i><i style="background:#2563EB"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="imobiliaria/" style="--c1:#1E3A5F;--c2:#2E7D32;--c3:#F5F5F5">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Serviços</span>
+        <h3>Imobiliária</h3>
+        <p>Busca que filtra a lista de verdade e simulador de financiamento que recalcula.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#2E7D32"></i><i style="background:#1E3A5F"></i><i style="background:#F5F5F5"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="estetica-beleza/" style="--c1:#F8BBD0;--c2:#D4AF37;--c3:#FFF8F0">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Beleza</span>
+        <h3>Estética</h3>
+        <p>Serviços com preço à vista e agenda que escolhe dia e horário.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#D4AF37"></i><i style="background:#F8BBD0"></i><i style="background:#FFF8F0"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="tech-saas/" style="--c1:#0F172A;--c2:#22D3EE;--c3:#7C3AED">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Tech</span>
+        <h3>Tecnologia e SaaS</h3>
+        <p>Painel de produto com gráfico que desenha e plano em duas opcoes.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#22D3EE"></i><i style="background:#7C3AED"></i><i style="background:#0F172A"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="restaurante-delivery/" style="--c1:#1A1A1A;--c2:#D32F2F;--c3:#FFC107">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Alimentação</span>
+        <h3>Restaurante e Delivery</h3>
+        <p>Cardápio por abas e status aberto ou fechado calculado pela hora real.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FFC107"></i><i style="background:#D32F2F"></i><i style="background:#1A1A1A"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="pet-shop-vet/" style="--c1:#FFFFFF;--c2:#4CAF50;--c3:#03A9F4">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Pet</span>
+        <h3>Pet Shop e Veterinária</h3>
+        <p>Serviços com ícones próprios, planos de assinatura e agendamento por tipo de pet.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#4CAF50"></i><i style="background:#03A9F4"></i><i style="background:#FFEB3B"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card wide rv" href="financas-investimentos/" style="--c1:#004D40;--c2:#C9A227;--c3:#1565C0">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Finanças</span>
+        <h3>Finanças e Investimentos</h3>
+        <p>Simulador de aportes que calcula na hora, com estado vazio e erro tratados, e uma lista honesta de para quem não é.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#C9A227"></i><i style="background:#1565C0"></i><i style="background:#004D40"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="educacao-infantil/" style="--c1:#FFF59D;--c2:#90CAF9;--c3:#F8BBD0">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Educação</span>
+        <h3>Educação Infantil</h3>
+        <p>Um dia na escola em timeline e cada area com seu pastel.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FFEB3B"></i><i style="background:#90CAF9"></i><i style="background:#F8BBD0"></i><i style="background:#A5D6A7"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="casamento-eventos/" style="--c1:#E8B4B8;--c2:#D4AF37;--c3:#A3B18A">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Eventos</span>
+        <h3>Casamento</h3>
+        <p>Cronograma do grande dia, galeria placeholder e confirmacao de presenca.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#D4AF37"></i><i style="background:#E8B4B8"></i><i style="background:#A3B18A"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="odontologia/" style="--c1:#00BCD4;--c2:#B2DFDB;--c3:#FFFFFF">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Saúde</span>
+        <h3>Odontologia</h3>
+        <p>Tratamentos em lista técnica e antes e depois sem foto inventada.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#00BCD4"></i><i style="background:#B2DFDB"></i><i style="background:#FFFFFF"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="marketing-digital/" style="--c1:#0F0F0F;--c2:#5B21B6;--c3:#F97316">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Serviços</span>
+        <h3>Marketing Digital</h3>
+        <p>Casos com métrica marcada como placeholder e diagnóstico guiado por formulario.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#F97316"></i><i style="background:#5B21B6"></i><i style="background:#0F0F0F"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="energia-solar/" style="--c1:#FFD600;--c2:#2E7D32;--c3:#0277BD">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Casa</span>
+        <h3>Energia Solar</h3>
+        <p>Calculadora de economia pelo seu consumo antes de fechar o orçamento.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FFD600"></i><i style="background:#2E7D32"></i><i style="background:#0277BD"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="seguros/" style="--c1:#1565C0;--c2:#43A047;--c3:#FAFAFA">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Finanças</span>
+        <h3>Seguros</h3>
+        <p>Coberturas em acordeão, incluindo o que não está incluso, e simulador de perfil.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#1565C0"></i><i style="background:#43A047"></i><i style="background:#FAFAFA"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="viagens-turismo/" style="--c1:#00ACC1;--c2:#FF7043;--c3:#FFD54F">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Turismo</span>
+        <h3>Viagens</h3>
+        <p>Destinos com hover que revela detalhe e montador de roteiro por dias.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FF7043"></i><i style="background:#00ACC1"></i><i style="background:#FFD54F"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="construcao-civil/" style="--c1:#FFC107;--c2:#616161;--c3:#212121">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Casa</span>
+        <h3>Construção Civil</h3>
+        <p>Orçamento por metragem e padrão calculado na própria página.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#FFC107"></i><i style="background:#616161"></i><i style="background:#212121"></i></span>
+        </span>
+      </span>
+    </a>
+    <a class="card rv" href="cripto-web3/" style="--c1:#1A0B2E;--c2:#00E5FF;--c3:#0D0D0D">
+      <span class="preview" aria-hidden="true"><span class="bar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span><span class="blk b4"></span><span class="blk b5"></span><span class="sheen"></span></span>
+      <span class="body">
+        <span class="kicker">Tech</span>
+        <h3>Criptomoedas</h3>
+        <p>Como funciona sem promessa de ganho, com roadmap e lista de espera.</p>
+        <span class="foot"><span class="go">Ver modelo</span>
+          <span class="swatches"><i style="background:#00E5FF"></i><i style="background:#1A0B2E"></i><i style="background:#0D0D0D"></i></span>
+        </span>
+      </span>
+    </a>
+    <div class="empty" id="vazio" hidden>
+      <b>Nenhum modelo com esse nome.</b>
+      <p>Tente outro termo, ou me diga o nicho e eu faço um modelo assim.</p>
+      <button type="button" id="limpar">Limpar filtro</button>
+    </div>
+  </div>
+</section>
+<section class="sec" id="como-funciona">
+  <div class="sec-head">
+    <div>
+      <span class="num rv">Como funciona</span>
+      <h2 class="rv" style="--i:1">Do briefing ao site no ar, sem susto no meio.</h2>
+    </div>
+    <p class="rv" style="--i:2">Nada de orçamento nebuloso. Você sabe o que está comprando antes de eu abrir o editor.</p>
+  </div>
+  <div class="steps">
+    <article class="step rv">
+      <span class="n">01</span>
+      <h3>Briefing de 20 minutos</h3>
+      <p>Você me diz o que vende, para quem, e o que o site precisa fazer. Se não tiver texto pronto, eu escrevo com você nessa conversa.</p>
+    </article>
+    <article class="step rv" style="--i:1">
+      <span class="n">02</span>
+      <h3>Prova em 48 horas</h3>
+      <p>Eu mando a primeira versão navegável, no celular e no computador. Você mexe, testa, e me diz o que incomoda. Ajustar antes de pronto custa menos.</p>
+    </article>
+    <article class="step rv" style="--i:2">
+      <span class="n">03</span>
+      <h3>Publicação e ajuste</h3>
+      <p>Subo no seu domínio, configuro para o Google encontrar, e fico um período combinado para ajustar o que aparecer no uso real.</p>
+    </article>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="contact-in rv">
+    <div class="contact-l">
+      <span class="num">Contato</span>
+      <h2>Faça o seu <em>site também</em>.</h2>
+      <p>Viu um modelo que parece com o seu negócio? Me manda uma mensagem dizendo qual. Se nenhum encaixa, me diz o nicho que eu faço um modelo assim antes de fechar.</p>
+      <div class="actions">
+        <a class="wa" href="https://wa.me/5591986134599?text=Ol%C3%A1%2C%20Kelvin!%20Vi%20seus%20modelos%20de%20site%20e%20quero%20um%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.81 2.41a8.16 8.16 0 0 1 2.41 5.83c0 4.54-3.7 8.2-8.23 8.2Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42-.14 0-.3-.02-.46-.02-.16 0-.43.06-.65.31-.22.25-.86.85-.86 2.06 0 1.21.88 2.38 1 2.54.12.17 1.72 2.63 4.17 3.69.58.25 1.04.4 1.39.51.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+          WhatsApp (91) 98613-4599
+        </a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/kelvin-oliveira-code/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="contact-r">
+      <h3>Outros canais</h3>
+      <a href="https://github.com/KelvinOliveiraCode" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.22.66-.47v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .25.16.56.67.47A10 10 0 0 0 22 12A10 10 0 0 0 12 2Z"/></svg></span>
+        <span><b>GitHub</b><span>código dos projetos</span></span>
+      </a>
+      <a href="https://kelvinoliveiracode.github.io/portfolio/" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+        <span><b>Portfolio</b><span>outros trabalhos</span></span>
+      </a>
+      <a href="https://web.dio.me/users/kelvinrebelosw" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 12l3 3 5-6"/></svg></span>
+        <span><b>DIO</b><span>formação e bootcamps</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot-hub">
+  <div class="foot-top">
+    <div>
+      <span class="brand"><span class="dot"></span>KELVIN OLIVEIRA</span>
+      <p class="foot-note" style="margin-top:12px">Mostruário de landing pages por nicho. Todos os modelos são demonstração: os textos, preços e números sao placeholder e entram os dados reais do seu negócio.</p>
+    </div>
+    <nav class="foot-links" aria-label="Rodape">
+      <a href="#modelos">Modelos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#contato">Contato</a>
+      <a href="https://kelvinoliveiracode.github.io/portfolio/">Portfolio</a>
+      <a href="#topo">Voltar ao topo</a>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <span>2026 · Kelvin Oliveira</span>
+    <span>Feito à mão, sem template</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var body=document.body;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  body.classList.add('ready');
+
+  var head=document.querySelector('.hub-head');
+  var onScroll=function(){
+    if(window.scrollY>24){head.classList.add('stuck')}else{head.classList.remove('stuck')}
+  };
+  var tick=false;
+  window.addEventListener('scroll',function(){
+    if(tick)return;tick=true;
+    requestAnimationFrame(function(){onScroll();tick=false});
+  },{passive:true});
+  onScroll();
+
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+      });
+    },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv,.step').forEach(function(el){io.observe(el)});
+  }else{
+    document.querySelectorAll('.rv,.step').forEach(function(el){el.classList.add('in')});
+  }
+
+  var MODELOS=[
+    {n:'Clínica Médica',s:'clinica-medica',g:'Saúde'},
+    {n:'Academia',s:'academia-fitness',g:'Fitness'},
+    {n:'Advocacia',s:'advocacia',g:'Serviços'},
+    {n:'Moda e E-commerce',s:'moda-ecommerce',g:'Varejo'},
+    {n:'Cursos Online',s:'cursos-ead',g:'Educação'},
+    {n:'Imobiliária',s:'imobiliaria',g:'Serviços'},
+    {n:'Estética',s:'estetica-beleza',g:'Beleza'},
+    {n:'Tecnologia e SaaS',s:'tech-saas',g:'Tech'},
+    {n:'Restaurante e Delivery',s:'restaurante-delivery',g:'Alimentação'},
+    {n:'Pet Shop e Veterinária',s:'pet-shop-vet',g:'Pet'},
+    {n:'Finanças',s:'financas-investimentos',g:'Finanças'},
+    {n:'Educação Infantil',s:'educacao-infantil',g:'Educação'},
+    {n:'Casamento',s:'casamento-eventos',g:'Eventos'},
+    {n:'Odontologia',s:'odontologia',g:'Saúde'},
+    {n:'Marketing Digital',s:'marketing-digital',g:'Serviços'},
+    {n:'Energia Solar',s:'energia-solar',g:'Casa'},
+    {n:'Seguros',s:'seguros',g:'Finanças'},
+    {n:'Viagens',s:'viagens-turismo',g:'Turismo'},
+    {n:'Construção Civil',s:'construcao-civil',g:'Casa'},
+    {n:'Criptomoedas',s:'cripto-web3',g:'Tech'}
+  ];
+
+  var cards=[].slice.call(document.querySelectorAll('#grid .card'));
+  var chips=document.getElementById('chips');
+  var contador=document.getElementById('contador');
+  var busca=document.getElementById('busca');
+  var vazio=document.getElementById('vazio');
+  var limpar=document.getElementById('limpar');
+  var atual='Todos';
+
+  var grupos=['Todos'];
+  MODELOS.forEach(function(m){if(grupos.indexOf(m.g)<0)grupos.push(m.g)});
+
+  grupos.forEach(function(g,i){
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='chip';
+    b.textContent=g;
+    b.setAttribute('aria-pressed',i===0?'true':'false');
+    b.addEventListener('click',function(){atual=g;aplicar()});
+    chips.appendChild(b);
+  });
+
+  function aplicar(){
+    [].forEach.call(chips.children,function(c){
+      c.setAttribute('aria-pressed',c.textContent===atual?'true':'false');
+    });
+    var q=busca.value.trim().toLowerCase();
+    var norm=function(t){return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')};
+    var visiveis=0;
+    cards.forEach(function(c){
+      var m=MODELOS[cards.indexOf(c)];
+      var okG=atual==='Todos'||m.g===atual;
+      var okQ=!q||norm(m.n).indexOf(norm(q))>-1;
+      var mostra=okG&&okQ;
+      c.hidden=!mostra;
+      if(mostra){
+        visiveis++;
+        c.classList.remove('in');
+        void c.offsetWidth;
+        c.classList.add('in');
+      }
+    });
+    vazio.hidden=visiveis!==0;
+    if(visiveis===0){
+      var partes=[];
+      if(atual!=='Todos'){partes.push('em '+atual)}
+      if(q){partes.push('com "'+q+'"')}
+      var t=vazio.querySelector('b');
+      if(t){t.textContent=partes.length?('Nenhum modelo '+partes.join(' ')+'.'):'Nenhum modelo encontrado.'}
+    }
+    contador.textContent=visiveis+(visiveis===1?' modelo':' modelos');
+  }
+
+  var t;
+  busca.addEventListener('input',function(){
+    clearTimeout(t);
+    t=setTimeout(aplicar,120);
+  });
+
+  limpar.addEventListener('click',function(){
+    busca.value='';atual='Todos';aplicar();busca.focus();
+  });
+})();
+</script>
+</body>

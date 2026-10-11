@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica médica com agendamento online | Sua Marca</title>
+<meta name="description" content="Clínica médica com atendimento de segunda a sábado, especialidades ambulatoriais e agendamento online sem ligação. A recepção confirma seu horário pelo WhatsApp.">
+<meta name="theme-color" content="#E3F2FD">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310333F'/%3E%3Cpath d='M5 17h5l2-5 3 9 2-5h10' fill='none' stroke='%23A5D6A7' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Clínica Médica / Saúde · modelo de demonstração
+   Paleta: fundo #E3F2FD, superfície #FFFFFF, acento menta
+   #A5D6A7, tinta #10333F. Texto escuro sobre menta, nunca
+   branco. Easing de entrada: cubic-bezier(.22,1,.36,1).
+   ========================================================= */
+
+:root{
+  --bg:#E3F2FD;
+  --surface:#FFFFFF;
+  --mint:#A5D6A7;
+  --mint-soft:#EAF5EA;
+  --mint-line:#BFE0C1;
+  --ink:#10333F;
+  --ink-2:#255964;
+  --line:rgba(16,51,63,.14);
+  --line-strong:rgba(16,51,63,.26);
+  --error:#8E2A22;
+  --ok:#1F6B3A;
+  --header-h:74px;
+  --raio:14px;
+  --raio-g:22px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+  --sombra:0 10px 30px rgba(16,51,63,.09);
+  --sombra-forte:0 18px 46px rgba(16,51,63,.16);
+  --fonte-titulo:'Lora',Georgia,'Times New Roman',serif;
+  --fonte-corpo:'Nunito Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --fonte-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--fonte-corpo);
+  font-size:17px;
+  line-height:1.65;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--fonte-titulo);
+  color:var(--ink);
+  line-height:1.18;
+  margin:0 0 .5em;
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+h1{font-size:clamp(2.1rem,6vw,3.4rem);font-weight:700}
+h2{font-size:clamp(1.65rem,4.2vw,2.4rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em}
+a{color:var(--ink);text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+img,svg{display:block;max-width:100%}
+strong{font-weight:700}
+small{font-size:14px}
+
+::selection{background:var(--mint);color:var(--ink)}
+
+/* foco visivel em tudo que e interativo (nunca outline:none sem substituto) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--ink);
+  outline-offset:3px;
+  border-radius:6px;
+}
+.site-footer a:focus-visible,
+.site-footer button:focus-visible{
+  outline-color:#E3F2FD;
+}
+
+/* ---------- utilitarios ---------- */
+.na-tela{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.na-tela:focus{
+  position:fixed;top:12px;left:12px;z-index:200;width:auto;height:auto;
+  margin:0;padding:12px 18px;clip:auto;background:var(--surface);
+  color:var(--ink);border-radius:8px;box-shadow:var(--sombra-forte);
+  font-weight:700;
+}
+
+.envolve{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+.etiqueta{
+  font-family:var(--fonte-corpo);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  margin:0 0 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.etiqueta::before{
+  content:"";
+  width:26px;height:2px;background:var(--mint);
+  border-radius:2px;flex:none;
+}
+
+.legenda{
+  font-size:14px;
+  color:var(--ink-2);
+  margin:0;
+}
+.mono{font-family:var(--fonte-mono);font-size:14px}
+
+.secao{padding:84px 0}
+.secao--superficie{background:var(--surface)}
+.secao--tinta{background:var(--ink);color:#E9F4F8}
+.secao--tinta h2,.secao--tinta h3{color:#FFFFFF}
+.secao--tinta .legenda,.secao--tinta .etiqueta{color:#B7D4DE}
+
+.topo-secao{max-width:640px;margin-bottom:44px}
+.topo-secao p{font-size:1.05rem;color:var(--ink-2);margin-bottom:0}
+
+/* ---------- botoes ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:13px 24px;
+  border:2px solid transparent;
+  border-radius:999px;
+  font-family:var(--fonte-corpo);
+  font-size:16px;
+  font-weight:700;
+  line-height:1.2;
+  cursor:pointer;
+  text-align:center;
+  transition:transform .2s var(--ease-state),
+             box-shadow .2s var(--ease-state),
+             background-color .2s var(--ease-state),
+             border-color .2s var(--ease-state),
+             color .2s var(--ease-state);
+}
+.btn svg{flex:none}
+.btn--principal{
+  background:var(--ink);
+  color:#FFFFFF;
+  box-shadow:0 6px 18px rgba(16,51,63,.22);
+}
+.btn--principal:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 26px rgba(16,51,63,.28);
+}
+.btn--principal:active{transform:translateY(0)}
+.btn--menta{
+  background:var(--mint);
+  color:var(--ink);
+  border-color:var(--mint);
+}
+.btn--menta:hover{
+  transform:translateY(-2px);
+  background:#93CE96;
+  border-color:#93CE96;
+  box-shadow:0 12px 26px rgba(16,51,63,.18);
+}
+.btn--contorno{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line-strong);
+}
+.btn--contorno:hover{
+  transform:translateY(-2px);
+  border-color:var(--ink);
+  background:var(--surface);
+}
+.btn--bloco{width:100%}
+.btn--pequeno{min-height:44px;padding:10px 18px;font-size:15px}
+
+.link-simples{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:15px;
+  color:var(--ink);
+  padding:6px 2px;
+  position:relative;
+}
+.link-simples::after{
+  content:"";
+  position:absolute;left:2px;right:2px;bottom:2px;height:2px;
+  background:var(--mint);
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .22s var(--ease-state);
+}
+.link-simples:hover::after,.link-simples:focus-visible::after{transform:scaleX(1)}
+
+/* =========================================================
+   ENTRADA DE PÁGINA + REVEAL DE SCROLL
+   ========================================================= */
+.js .p-item{opacity:0;transform:translateY(22px)}
+body.page-ready .p-item{
+  opacity:1;transform:none;
+  transition:opacity .72s var(--ease) var(--atraso,0ms),
+             transform .72s var(--ease) var(--atraso,0ms);
+}
+.js .rev{opacity:0;transform:translateY(26px)}
+.js .rev.in-view{
+  opacity:1;transform:none;
+  transition:opacity .68s var(--ease) calc(var(--i,0) * 75ms),
+             transform .68s var(--ease) calc(var(--i,0) * 75ms);
+}
+.stagger>*{--i:0}
+.stagger>*:nth-child(2){--i:1}
+.stagger>*:nth-child(3){--i:2}
+.stagger>*:nth-child(4){--i:3}
+.stagger>*:nth-child(5){--i:4}
+.stagger>*:nth-child(6){--i:5}
+.stagger>*:nth-child(7){--i:6}
+.stagger>*:nth-child(8){--i:7}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header{
+  position:sticky;top:0;z-index:90;
+  background:var(--surface);
+  border-bottom:1px solid transparent;
+  transition:box-shadow .25s var(--ease-state),
+             border-color .25s var(--ease-state),
+             background-color .25s var(--ease-state);
+}
+.site-header.is-scrolled{
+  border-bottom-color:var(--line);
+  box-shadow:0 6px 22px rgba(16,51,63,.08);
+}
+.barra-topo{
+  min-height:var(--header-h);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  transition:min-height .25s var(--ease-state);
+}
+.site-header.is-scrolled .barra-topo{min-height:64px}
+
+.marca{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--fonte-titulo);font-weight:700;font-size:1.15rem;
+  color:var(--ink);
+}
+.marca__selo{
+  width:38px;height:38px;flex:none;border-radius:11px;
+  background:var(--ink);
+  display:grid;place-items:center;
+  transition:transform .25s var(--ease-state);
+}
+.marca:hover .marca__selo{transform:scale(.94) rotate(-4deg)}
+.marca__texto small{
+  display:block;font-family:var(--fonte-corpo);font-size:12px;
+  font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-2);margin-top:-2px;
+}
+
+.nav{display:flex;align-items:center;gap:6px}
+.nav__lista{display:flex;align-items:center;gap:2px}
+.nav__link{
+  display:inline-flex;align-items:center;min-height:44px;padding:8px 13px;
+  border-radius:8px;font-size:15px;font-weight:600;color:var(--ink);
+  position:relative;
+  transition:color .2s var(--ease-state),background-color .2s var(--ease-state);
+}
+.nav__link::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:8px;height:2px;
+  background:var(--mint);border-radius:2px;
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .22s var(--ease-state);
+}
+.nav__link:hover,.nav__link:focus-visible{color:var(--ink);background:rgba(165,214,167,.24)}
+.nav__link:hover::after,.nav__link:focus-visible::after{transform:scaleX(1)}
+.nav__acao{margin-left:10px}
+
+.nav-toggle{
+  display:none;
+  align-items:center;gap:10px;
+  min-height:44px;padding:10px 14px;
+  background:var(--surface);color:var(--ink);
+  border:2px solid var(--line-strong);border-radius:10px;
+  font-family:var(--fonte-corpo);font-size:15px;font-weight:700;
+  cursor:pointer;
+  transition:border-color .2s var(--ease-state),background-color .2s var(--ease-state);
+}
+.nav-toggle:hover{border-color:var(--ink);background:var(--mint-soft)}
+.nav-toggle__riscos{width:18px;height:12px;position:relative;flex:none}
+.nav-toggle__riscos i{
+  position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:2px;
+  transition:transform .25s var(--ease-state),opacity .2s var(--ease-state);
+}
+.nav-toggle__riscos i:nth-child(1){top:0}
+.nav-toggle__riscos i:nth-child(2){top:5px}
+.nav-toggle__riscos i:nth-child(3){top:10px}
+.nav-toggle[aria-expanded="true"] .nav-toggle__riscos i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle__riscos i:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .nav-toggle__riscos i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+.progresso-scroll{
+  height:3px;background:transparent;overflow:hidden;
+}
+.progresso-scroll i{
+  display:block;height:100%;background:var(--mint);
+  transform:scaleX(0);transform-origin:0 50%;
+}
+
+/* =========================================================
+   HERO  (split assimetrico: texto 7 colunas, cartao 5)
+   ========================================================= */
+.hero{
+  position:relative;
+  padding:64px 0 72px;
+  overflow:hidden;
+}
+.hero__grade{
+  display:grid;
+  grid-template-columns:7fr 5fr;
+  gap:48px;
+  align-items:start;
+  position:relative;
+  z-index:2;
+}
+.hero__texto{max-width:620px}
+.hero h1{margin-bottom:20px}
+.hero__lead{
+  font-size:1.12rem;color:var(--ink-2);max-width:52ch;margin-bottom:28px;
+}
+.hero__acoes{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+
+/* formas decorativas de fundo: so transform/opacity, loop lento */
+.forma{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:1;
+  background:var(--mint);opacity:.5;
+  will-change:transform;
+}
+.forma--a{width:300px;height:300px;top:-90px;right:12%;filter:blur(2px);opacity:.34;animation:flutuaA 13s var(--ease-state) infinite}
+.forma--b{width:180px;height:180px;bottom:6%;left:-60px;opacity:.4;animation:flutuaB 16s var(--ease-state) infinite}
+.forma--c{
+  width:520px;height:520px;top:24%;left:38%;
+  background:radial-gradient(circle,rgba(165,214,167,.34),rgba(165,214,167,0) 68%);
+  border-radius:50%;opacity:.7;
+}
+@keyframes flutuaA{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(0,26px,0) scale(1.05)}
+}
+@keyframes flutuaB{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(22px,-18px,0)}
+}
+
+/* ---------- assinatura do nicho: linha de ECG em SVG ---------- */
+.ecg{
+  position:relative;
+  margin:34px 0 22px;
+  padding:20px 0 8px;
+  border-top:1px solid var(--line);
+}
+.ecg__cabeca{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  margin-bottom:2px;
+}
+.ecg__rotulo{
+  font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);
+}
+.ecg__palco{position:relative}
+.ecg svg{width:100%;height:auto;overflow:visible}
+.ecg__trilha{
+  fill:none;stroke:var(--mint-line);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+}
+.ecg__linha{
+  fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+}
+body.page-ready .ecg__linha{
+  animation:ecgDesenha 9s var(--ease) infinite;
+}
+/* loop: desenha, segura, apaga de volta. em nenhum momento ha corte seco. */
+@keyframes ecgDesenha{
+  0%{stroke-dashoffset:100}
+  40%{stroke-dashoffset:0}
+  74%{stroke-dashoffset:0}
+  100%{stroke-dashoffset:-100}
+}
+/* varredura luminosa que acompanha o tracado (transform + opacity) */
+.ecg__brilho{
+  position:absolute;top:0;bottom:0;left:0;width:22%;
+  background:linear-gradient(90deg,rgba(165,214,167,0),rgba(165,214,167,.55),rgba(165,214,167,0));
+  opacity:0;pointer-events:none;
+  will-change:transform,opacity;
+}
+body.page-ready .ecg__brilho{animation:ecgBrilho 9s var(--ease-state) infinite}
+@keyframes ecgBrilho{
+  0%{transform:translate3d(-120%,0,0);opacity:0}
+  12%{opacity:.9}
+  62%{opacity:.9}
+  78%{transform:translate3d(460%,0,0);opacity:0}
+  100%{transform:translate3d(460%,0,0);opacity:0}
+}
+/* pulso continuo sobre o pico R: ciclo curto, discreto */
+.ecg__pulso{
+  position:absolute;left:47.5%;top:33%;
+  width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  border:2px solid var(--mint);
+  will-change:transform,opacity;
+}
+body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
+@keyframes pulsaAnel{
+  0%{transform:scale(.5);opacity:.9}
+  70%{transform:scale(2.6);opacity:0}
+  100%{transform:scale(2.6);opacity:0}
+}
+.ecg__base{
+  display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:6px;
+}
+
+.fichas{display:flex;flex-wrap:wrap;gap:8px 10px;margin:0}
+.ficha{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);
+  font-size:14px;font-weight:600;color:var(--ink);
+  transition:transform .2s var(--ease-state),border-color .2s var(--ease-state);
+}
+.ficha:hover{transform:translateY(-2px);border-color:var(--mint-line)}
+.ficha svg{color:var(--ok)}
+
+/* =========================================================
+   CARTAO DE AGENDAMENTO
+   ========================================================= */
+.agenda{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  box-shadow:var(--sombra);
+  padding:26px 24px 24px;
+  position:relative;
+}
+.agenda__cabeca{margin-bottom:18px}
+.agenda__cabeca h2{font-size:1.45rem;margin-bottom:6px}
+.agenda__cabeca p{font-size:15px;color:var(--ink-2);margin:0}
+
+.campo{margin-bottom:15px}
+.campo>label,.campo__legenda{
+  display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;
+}
+.campo__dica{font-weight:400;color:var(--ink-2)}
+.campo input,.campo select{
+  width:100%;
+  min-height:48px;
+  padding:12px 14px;
+  font-family:var(--fonte-corpo);font-size:16px;color:var(--ink);
+  background:var(--surface);
+  border:2px solid var(--line);
+  border-radius:10px;
+  transition:border-color .2s var(--ease-state),box-shadow .2s var(--ease-state),background-color .2s var(--ease-state);
+  appearance:none;
+}
+.campo select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%2310333F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:42px;
+}
+.campo input:hover,.campo select:hover{border-color:var(--line-strong)}
+.campo input:focus,.campo select:focus{
+  outline:none;border-color:var(--ink);
+  box-shadow:0 0 0 4px rgba(165,214,167,.45);
+}
+.campo input:focus-visible,.campo select:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.campo--erro input,.campo--erro select{border-color:var(--error);background:#FDF4F3}
+.campo--ok input,.campo--ok select{border-color:var(--mint-line)}
+.campo__erro{
+  display:none;
+  font-size:14px;font-weight:600;color:var(--error);margin-top:6px;
+}
+.campo--erro .campo__erro{display:block}
+.campo__erro svg{display:inline-block;vertical-align:-2px;margin-right:6px}
+
+.agenda__nota{
+  font-size:14px;color:var(--ink-2);margin:14px 0 0;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.agenda__nota svg{flex:none;color:var(--ok);margin-top:3px}
+
+/* estado de sucesso do formulario */
+.agenda__sucesso{
+  display:none;
+  text-align:left;
+  padding:6px 0 0;
+}
+.agenda__sucesso.ativo{display:block;animation:sobeEstado .5s var(--ease) both}
+@keyframes sobeEstado{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+.agenda__selo{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--mint);color:var(--ink);
+  display:grid;place-items:center;margin-bottom:14px;
+}
+.agenda__sucesso h3{font-size:1.25rem;margin-bottom:8px}
+.resumo{
+  border:1px solid var(--line);border-radius:var(--raio);
+  overflow:hidden;margin:14px 0 18px;
+}
+.resumo div{
+  display:flex;justify-content:space-between;gap:14px;
+  padding:11px 14px;font-size:15px;
+  border-bottom:1px solid var(--line);
+}
+.resumo div:last-child{border-bottom:0}
+.resumo dt{color:var(--ink-2);font-weight:600;margin:0}
+.resumo dd{margin:0;font-weight:700;text-align:right}
+
+/* =========================================================
+   ESPECIALIDADES: lista escalonada de linhas alternadas
+   ========================================================= */
+.busca{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;
+  margin-bottom:26px;
+}
+.busca__campo{flex:1 1 260px;min-width:0}
+.busca__campo label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+.busca__campo input{
+  width:100%;min-height:48px;padding:12px 14px;
+  font-family:var(--fonte-corpo);font-size:16px;color:var(--ink);
+  background:var(--surface);border:2px solid var(--line);border-radius:10px;
+  transition:border-color .2s var(--ease-state),box-shadow .2s var(--ease-state);
+}
+.busca__campo input:hover{border-color:var(--line-strong)}
+.busca__campo input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(165,214,167,.45)}
+.busca__campo input:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.busca__contagem{font-size:14px;font-weight:700;color:var(--ink-2);white-space:nowrap;padding-bottom:12px}
+
+.lista-especialidades{border-top:1px solid var(--line)}
+.linha{
+  display:grid;
+  grid-template-columns:64px 1fr auto;
+  gap:26px;
+  align-items:center;
+  padding:26px 18px;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  transition:background-color .25s var(--ease-state);
+}
+.linha:nth-child(even){background:rgba(165,214,167,.16)}
+.linha:nth-child(odd){background:var(--surface)}
+.linha:hover{background:var(--mint-soft)}
+/* regra que se desenha da esquerda: gesto proprio desta secao */
+.linha__regra{
+  position:absolute;left:0;bottom:-1px;height:2px;width:100%;
+  background:var(--mint);
+  transform:scaleX(0);transform-origin:0 50%;
+}
+.js .rev.in-view .linha__regra{
+  transform:scaleX(1);
+  transition:transform .8s var(--ease) calc(var(--i,0) * 75ms + 120ms);
+}
+.linha__num{
+  font-family:var(--fonte-titulo);font-size:1.5rem;font-weight:700;
+  color:var(--ink);opacity:.42;
+}
+.linha__corpo h3{margin-bottom:6px;font-size:1.3rem}
+.linha__corpo p{margin:0;color:var(--ink-2);font-size:15.5px;max-width:60ch}
+.linha__meta{
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+  text-align:right;
+}
+.linha__etiquetas{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.etiqueta-mini{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:999px;
+  background:var(--mint-soft);border:1px solid var(--mint-line);
+  font-size:14px;font-weight:700;color:var(--ink);
+  white-space:nowrap;
+}
+.etiqueta-mini svg{color:var(--ink-2)}
+
+.vazio{
+  display:none;
+  padding:38px 20px;
+  text-align:center;
+  background:var(--surface);
+  border:1px dashed var(--line-strong);
+  border-radius:var(--raio);
+}
+.vazio.ativo{display:block;animation:sobeEstado .4s var(--ease) both}
+.vazio h3{margin-bottom:8px}
+.vazio p{color:var(--ink-2);margin-bottom:18px;font-size:15.5px}
+.linha.oculta{display:none}
+
+/* =========================================================
+   COMO FUNCIONA: 2 passos
+   ========================================================= */
+.passos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+}
+.passo{
+  padding:32px 28px;
+  border-radius:var(--raio-g);
+  border:1px solid var(--line);
+  background:var(--surface);
+}
+.passo--1{
+  background:var(--mint-soft);
+  border-color:var(--mint-line);
+}
+.passo__num{
+  font-family:var(--fonte-titulo);font-size:3rem;font-weight:700;
+  line-height:1;color:var(--ink);opacity:.28;margin-bottom:10px;
+}
+.passo h3{font-size:1.35rem;margin-bottom:10px}
+.passo p{color:var(--ink-2);margin-bottom:16px}
+.passo__dica{
+  display:flex;gap:10px;align-items:flex-start;
+  padding-top:16px;border-top:1px solid var(--line);
+  font-size:14.5px;color:var(--ink-2);
+}
+.passo--1 .passo__dica{border-top-color:var(--mint-line)}
+.passo__dica svg{flex:none;color:var(--ink);margin-top:3px}
+
+/* gesto proprio: revelo por recorte de cima para baixo */
+.js .passo{opacity:0;clip-path:inset(0 0 100% 0)}
+.js .passo.in-view{
+  opacity:1;clip-path:inset(0 0 0 0);
+  transition:opacity .55s var(--ease) calc(var(--i,0) * 90ms),
+             clip-path .75s var(--ease) calc(var(--i,0) * 90ms);
+}
+
+/* =========================================================
+   EQUIPE (placeholders de foto)
+   ========================================================= */
+.equipe{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+.pessoa{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  padding:18px;
+  transition:transform .25s var(--ease-state),box-shadow .25s var(--ease-state),border-color .25s var(--ease-state);
+}
+.pessoa:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--sombra);
+  border-color:var(--mint-line);
+}
+/* gesto proprio: entrada com escala e desfoque sumindo */
+.js .pessoa{opacity:0;transform:scale(.94);filter:blur(7px)}
+.js .pessoa.in-view{
+  opacity:1;transform:none;filter:blur(0);
+  transition:opacity .6s var(--ease) calc(var(--i,0) * 90ms),
+             transform .6s var(--ease) calc(var(--i,0) * 90ms),
+             filter .6s var(--ease) calc(var(--i,0) * 90ms);
+}
+.pessoa__foto{
+  position:relative;
+  border-radius:var(--raio);
+  background:var(--mint-soft);
+  border:1px dashed var(--mint-line);
+  display:grid;place-items:center;
+  margin-bottom:16px;
+  overflow:hidden;
+  transition:transform .35s var(--ease-state);
+}
+.pessoa:hover .pessoa__foto{transform:scale(1.015)}
+.pessoa:nth-child(1) .pessoa__foto,.pessoa:nth-child(3) .pessoa__foto{aspect-ratio:4/5}
+.pessoa:nth-child(2) .pessoa__foto{aspect-ratio:1/1}
+.pessoa__foto span{
+  font-family:var(--fonte-mono);font-size:14px;font-weight:700;
+  color:var(--ink-2);text-align:center;padding:12px;
+}
+.pessoa__foto b{
+  display:block;font-family:var(--fonte-titulo);font-size:2.4rem;
+  color:var(--ink);opacity:.3;margin-bottom:6px;line-height:1;
+}
+.pessoa h3{font-size:1.15rem;margin-bottom:4px}
+.pessoa__papel{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 10px}
+.pessoa__reg{font-size:14px;color:var(--ink-2);margin:0}
+
+/* =========================================================
+   CONVENIOS: faixa unica
+   ========================================================= */
+.faixa{
+  background:var(--ink);
+  color:#E9F4F8;
+  padding:56px 0;
+  overflow:hidden;
+}
+.faixa__topo{
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:18px;margin-bottom:28px;
+}
+.faixa__topo h2{color:#FFFFFF;font-size:clamp(1.5rem,3.6vw,2.1rem);margin:0}
+.faixa__topo .legenda{color:#B7D4DE;max-width:44ch}
+.correia{
+  position:relative;
+  overflow:hidden;
+  padding:8px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.correia__trilha{
+  display:flex;gap:14px;width:max-content;
+  /* faixa continua: velocidade constante, sem aceleracao nas voltas */
+  animation:correiaAnda 30s linear infinite;
+  will-change:transform;
+}
+.correia:hover .correia__trilha{animation-play-state:paused}
+@keyframes correiaAnda{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+.convenio{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 20px;border-radius:999px;
+  border:1px solid rgba(233,244,248,.28);
+  font-size:15px;font-weight:700;color:#E9F4F8;
+  white-space:nowrap;
+  transition:background-color .2s var(--ease-state),border-color .2s var(--ease-state),transform .2s var(--ease-state);
+}
+.convenio:hover{background:rgba(165,214,167,.2);border-color:var(--mint);transform:translateY(-2px)}
+.convenio svg{color:var(--mint)}
+.convenio--destaque{background:var(--mint);color:var(--ink);border-color:var(--mint)}
+.convenio--destaque:hover{background:#93CE96;border-color:#93CE96}
+.convenio--destaque svg{color:var(--ink)}
+
+/* =========================================================
+   FAQ: acordeao
+   ========================================================= */
+.faq{max-width:820px}
+.faq__item{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio);
+  margin-bottom:14px;
+  overflow:hidden;
+  transition:border-color .25s var(--ease-state),box-shadow .25s var(--ease-state);
+}
+.faq__item:hover{border-color:var(--mint-line)}
+.faq__item.aberto{border-color:var(--ink);box-shadow:var(--sombra)}
+.faq__pergunta{
+  width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  min-height:56px;
+  padding:16px 20px;
+  background:transparent;border:0;
+  font-family:var(--fonte-titulo);font-size:1.1rem;font-weight:600;
+  color:var(--ink);text-align:left;cursor:pointer;
+  transition:background-color .2s var(--ease-state);
+}
+.faq__pergunta:hover{background:var(--mint-soft)}
+.faq__icone{
+  flex:none;width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--mint-line);
+  display:grid;place-items:center;color:var(--ink);
+  transition:transform .3s var(--ease-state),background-color .25s var(--ease-state),border-color .25s var(--ease-state);
+}
+.faq__item.aberto .faq__icone{
+  transform:rotate(135deg);
+  background:var(--mint);border-color:var(--mint);
+}
+/* estado animado: altura real via grid-template-rows, sem corte seco */
+.faq__painel{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows .42s var(--ease-state),opacity .3s var(--ease-state);
+}
+.faq__item.aberto .faq__painel{grid-template-rows:1fr;opacity:1}
+.faq__conteudo{
+  overflow:hidden;min-height:0;
+}
+.faq__conteudo p{
+  padding:0 20px 18px;margin:0;
+  color:var(--ink-2);font-size:15.5px;
+}
+
+/* =========================================================
+   CONTATO
+   ========================================================= */
+.contato__grade{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
+}
+.info{display:grid;gap:2px}
+.info__item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:16px 4px;
+  border-bottom:1px solid var(--line);
+}
+.info__item:last-child{border-bottom:0}
+.info__icone{
+  flex:none;width:42px;height:42px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--ink);
+}
+.info__item dt{font-size:14px;font-weight:700;color:var(--ink-2);margin:0 0 2px}
+.info__item dd{margin:0;font-size:16.5px;font-weight:600;color:var(--ink)}
+/* gesto proprio: entrada com deslocamento lateral alternado */
+.js .info__item{opacity:0;transform:translateX(-16px)}
+.js .info__item.in-view{
+  opacity:1;transform:none;
+  transition:opacity .6s var(--ease) calc(var(--i,0) * 80ms),
+             transform .6s var(--ease) calc(var(--i,0) * 80ms);
+}
+.js .info__item:nth-child(even){transform:translateX(16px)}
+
+.mapa{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  padding:18px;
+}
+.mapa__palco{position:relative;border-radius:var(--raio);overflow:hidden;background:#F3F9FD}
+.mapa svg{width:100%;height:auto;display:block}
+.mapa__rua{fill:none;stroke:var(--mint-line);stroke-width:2;stroke-linecap:round}
+.mapa__avenida{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;opacity:.5}
+.js .in-view .mapa__avenida{
+  stroke-dasharray:6 6;
+  animation:mapaTraco 1.6s var(--ease) both;
+}
+@keyframes mapaTraco{
+  from{stroke-dashoffset:40;opacity:0}
+  to{stroke-dashoffset:0;opacity:.5}
+}
+.mapa__pino{fill:var(--ink)}
+.mapa__pino-anel{fill:none;stroke:var(--mint);stroke-width:3}
+body.page-ready .mapa__pino-anel{animation:pulsaAnel 2.8s var(--ease-state) infinite;transform-origin:center}
+.mapa__legenda{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:14px;flex-wrap:wrap;
+}
+.mapa__furo{
+  position:absolute;inset:0;display:grid;place-items:center;
+  text-align:center;padding:20px;
+}
+.mapa__furo span{
+  font-family:var(--fonte-mono);font-size:14px;font-weight:700;color:var(--ink-2);
+  background:rgba(255,255,255,.9);padding:10px 14px;border-radius:8px;
+  border:1px solid var(--line);
+}
+
+/* painel do WhatsApp (interacao propria do nicho) */
+.whats{
+  margin-top:22px;
+  border:1px solid var(--mint-line);
+  border-radius:var(--raio);
+  background:var(--mint-soft);
+  overflow:hidden;
+}
+.whats[hidden]{display:none}
+.whats__dentro{padding:18px}
+.whats__dentro p{font-size:15px;color:var(--ink-2);margin:0 0 14px}
+.whats__numero{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  justify-content:space-between;
+}
+.whats__numero b{font-family:var(--fonte-mono);font-size:1.05rem;color:var(--ink)}
+.whats__aviso{
+  font-size:14px;color:var(--ink-2);margin:12px 0 0;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.whats__aviso svg{flex:none;margin-top:3px;color:var(--ink)}
+.copiado{
+  font-size:14px;font-weight:700;color:var(--ok);
+  opacity:0;transition:opacity .25s var(--ease-state);
+}
+.copiado.ativo{opacity:1}
+
+/* =========================================================
+   RODAPE
+   ========================================================= */
+.site-footer{
+  background:var(--ink);
+  color:#D6E7EE;
+  padding:44px 0 34px;
+}
+.site-footer h2{
+  color:#FFFFFF;font-size:1.3rem;margin-bottom:10px;
+}
+.site-footer p{color:#B7D4DE;font-size:15px;max-width:60ch}
+.rodape__grade{
+  display:flex;flex-wrap:wrap;gap:18px 34px;
+  align-items:center;justify-content:space-between;
+  padding-top:22px;margin-top:22px;
+  border-top:1px solid rgba(214,231,238,.2);
+}
+.rodape__linha{font-size:15px;color:#B7D4DE;margin:0}
+.rodape__linha a{
+  color:#FFFFFF;font-weight:700;
+  text-decoration:underline;text-decoration-color:var(--mint);
+  text-decoration-thickness:2px;text-underline-offset:3px;
+  transition:color .2s var(--ease-state),text-decoration-color .2s var(--ease-state);
+}
+.rodape__linha a:hover{color:var(--mint);text-decoration-color:#FFFFFF}
+.rodape__links{display:flex;flex-wrap:wrap;gap:8px 22px}
+.rodape__links a{
+  font-size:15px;font-weight:600;color:#D6E7EE;min-height:44px;
+  display:inline-flex;align-items:center;
+  transition:color .2s var(--ease-state);
+}
+.rodape__links a:hover{color:var(--mint)}
+
+/* ancoras: o cabecalho fixo nao cobre o destino */
+section[id],div[id]{scroll-margin-top:96px}
+
+/* =========================================================
+   RESPONSIVO: mobile primeiro acima de 760px
+   ========================================================= */
+@media (max-width:760px){
+  body{font-size:16.5px}
+  .secao{padding:60px 0}
+  .envolve{padding:0 18px}
+  :root{--header-h:64px}
+
+  .nav-toggle{display:inline-flex}
+  .nav{
+    position:fixed;top:var(--header-h);left:0;right:0;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 18px 30px rgba(16,51,63,.12);
+    flex-direction:column;align-items:stretch;
+    padding:14px 18px 20px;
+    gap:6px;
+    transform:translateY(-14px);opacity:0;visibility:hidden;
+    transition:transform .28s var(--ease),opacity .24s var(--ease),visibility .28s;
+  }
+  .nav.aberto{transform:translateY(0);opacity:1;visibility:visible}
+  .nav__lista{flex-direction:column;align-items:stretch;gap:0}
+  .nav__link{
+    min-height:52px;padding:12px 8px;font-size:17px;
+    border-bottom:1px solid var(--line);border-radius:0;
+  }
+  .nav__link::after{display:none}
+  .nav__acao{margin:14px 0 0}
+  .nav__acao .btn{width:100%}
+
+  .hero{padding:34px 0 54px}
+  .hero__grade{grid-template-columns:1fr;gap:34px}
+  .hero__texto{max-width:none}
+  .hero__lead{font-size:1.05rem}
+  .hero__acoes .btn{flex:1 1 100%}
+  .ecg{margin:26px 0 18px}
+
+  .linha{grid-template-columns:1fr;gap:12px;padding:22px 14px}
+  .linha__num{font-size:1.15rem}
+  .linha__meta{align-items:flex-start;text-align:left}
+  .linha__etiquetas{justify-content:flex-start}
+
+  .passos{grid-template-columns:1fr}
+  .equipe{grid-template-columns:1fr;gap:18px}
+  .contato__grade{grid-template-columns:1fr;gap:26px}
+  .busca__contagem{padding-bottom:0}
+  .faixa{padding:44px 0}
+  .rodape__grade{flex-direction:column;align-items:flex-start;gap:12px}
+  section[id],div[id]{scroll-margin-top:80px}
+}
+
+@media (max-width:480px){
+  h1{font-size:2rem}
+  .agenda{padding:20px 16px 18px;border-radius:16px}
+  .passo{padding:24px 20px}
+  .ficha{font-size:13.5px}
+  .ecg__brilho{width:34%}
+  .resumo div{flex-direction:column;gap:2px}
+  .resumo dd{text-align:left}
+}
+
+/* =========================================================
+   MOVIMENTO REDUZIDO: desliga tudo que nao e essencial
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .js .rev,.js .p-item,.js .passo,.js .pessoa,.js .info__item{
+    opacity:1 !important;transform:none !important;filter:none !important;
+    clip-path:none !important;
+  }
+  .ecg__linha{animation:none !important;stroke-dashoffset:0 !important}
+  .ecg__brilho,.ecg__pulso,.forma,.correia__trilha{animation:none !important}
+  .ecg__brilho,.ecg__pulso{opacity:0 !important}
+  .js .in-view .linha__regra{transform:scaleX(1) !important;transition:none !important}
+  .mapa__pino-anel{animation:none !important}
+}
+</style>
+</head>
+<body>
+<a class="na-tela" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="site-header" id="topo">
+  <div class="envolve barra-topo">
+    <a class="marca" href="#inicio">
+      <span class="marca__selo" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M5 17h5l2-5 3 9 2-5h10" stroke="#A5D6A7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="marca__texto">Sua Marca<small>Clínica médica</small></span>
+    </a>
+
+    <nav class="nav" id="nav-menu" aria-label="Navegação principal">
+      <ul class="nav__lista">
+        <li><a class="nav__link" href="#especialidades">Especialidades</a></li>
+        <li><a class="nav__link" href="#como-funciona">Como funciona</a></li>
+        <li><a class="nav__link" href="#equipe">Equipe</a></li>
+        <li><a class="nav__link" href="#convenios">Convênios</a></li>
+        <li><a class="nav__link" href="#faq">Dúvidas</a></li>
+        <li><a class="nav__link" href="#contato">Contato</a></li>
+      </ul>
+      <div class="nav__acao">
+        <a class="btn btn--principal btn--pequeno" href="#agendar">Agendar consulta</a>
+      </div>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav-toggle__riscos" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="nav-toggle-texto">Menu</span>
+    </button>
+  </div>
+  <div class="progresso-scroll" aria-hidden="true"><i id="barra-progresso"></i></div>
+</header>
+
+<main id="conteudo">
+
+<!-- ============ HERO: split assimétrico (texto 7 colunas, cartão 5) ============ -->
+<section class="hero" id="inicio" aria-labelledby="titulo-hero">
+  <span class="forma forma--a" data-parallax="0.16" aria-hidden="true"></span>
+  <span class="forma forma--b" data-parallax="0.24" aria-hidden="true"></span>
+  <span class="forma forma--c" aria-hidden="true"></span>
+
+  <div class="envolve hero__grade">
+    <div class="hero__texto">
+      <p class="etiqueta p-item" style="--atraso:60ms">Clínica médica em [Sua Cidade]</p>
+      <h1 id="titulo-hero" class="p-item" style="--atraso:140ms">Consulta marcada em minutos, sem ligar para ninguém.</h1>
+      <p class="hero__lead p-item" style="--atraso:230ms">
+        Atendemos de segunda a sábado, com horário que cabe na sua rotina.
+        Você escolhe a especialidade e o horário aqui, e a recepção confirma
+        tudo pelo WhatsApp antes do dia da consulta.
+      </p>
+      <div class="hero__acoes p-item" style="--atraso:310ms">
+        <a class="btn btn--principal" href="#agendar">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2.5" y="4" width="15" height="13.5" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M6.5 2.5v3M13.5 2.5v3M2.5 8.5h15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Agendar consulta
+        </a>
+        <a class="btn btn--contorno" href="#especialidades">Ver especialidades</a>
+      </div>
+
+      <ul class="fichas p-item" style="--atraso:390ms">
+        <li class="ficha">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Atendimento particular e por convênio
+        </li>
+        <li class="ficha">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Consulta online disponível
+        </li>
+        <li class="ficha">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Resposta da recepção em [prazo: 1 dia útil]
+        </li>
+      </ul>
+
+      <!-- Assinatura do nicho: linha de ECG em SVG que desenha sozinha -->
+      <div class="ecg p-item" style="--atraso:470ms">
+        <div class="ecg__cabeca">
+          <span class="ecg__rotulo">Agenda da semana</span>
+          <span class="legenda">Atualizada pela recepção</span>
+        </div>
+        <div class="ecg__palco">
+          <svg viewBox="0 0 640 170" role="img" aria-label="Traçado de eletrocardiograma estilizado, decorativo, que representa o ritmo da agenda da clínica">
+            <path class="ecg__trilha" pathLength="100" d="M 6 100 L 84 100 C 90 100 94 92 100 92 C 106 92 110 100 116 100 L 126 100 L 132 94 140 106 148 58 156 142 164 100 L 228 100 C 234 100 238 90 244 90 C 250 90 254 100 260 100 L 270 100 L 276 94 284 106 292 56 300 144 308 100 L 372 100 C 378 100 382 92 388 92 C 394 92 398 100 404 100 L 414 100 L 420 94 428 106 436 62 444 138 452 100 L 516 100 C 522 100 526 92 532 92 C 538 92 542 100 548 100 L 558 100 L 564 94 572 106 580 66 588 134 596 100 L 634 100"/>
+            <path class="ecg__linha" pathLength="100" d="M 6 100 L 84 100 C 90 100 94 92 100 92 C 106 92 110 100 116 100 L 126 100 L 132 94 140 106 148 58 156 142 164 100 L 228 100 C 234 100 238 90 244 90 C 250 90 254 100 260 100 L 270 100 L 276 94 284 106 292 56 300 144 308 100 L 372 100 C 378 100 382 92 388 92 C 394 92 398 100 404 100 L 414 100 L 420 94 428 106 436 62 444 138 452 100 L 516 100 C 522 100 526 92 532 92 C 538 92 542 100 548 100 L 558 100 L 564 94 572 106 580 66 588 134 596 100 L 634 100"/>
+          </svg>
+          <span class="ecg__brilho" aria-hidden="true"></span>
+          <span class="ecg__pulso" aria-hidden="true"></span>
+        </div>
+        <p class="ecg__base legenda">
+          Horários das 8h às 18h, de segunda a sexta, e das 8h às 12h no sábado.
+          Confirme a disponibilidade com a recepção.
+        </p>
+      </div>
+    </div>
+
+    <!-- ---------- cartão de agendamento funcional ---------- -->
+    <div class="agenda p-item" style="--atraso:350ms" id="agendar">
+      <div class="agenda__cabeca">
+        <h2>Agende sua consulta</h2>
+        <p>Preencha os campos abaixo. Leva menos de um minuto e ninguém te liga de volta cobrando dados.</p>
+      </div>
+
+      <form id="form-agenda" novalidate>
+        <div class="campo" data-campo="especialidade">
+          <label for="campo-especialidade">Especialidade</label>
+          <select id="campo-especialidade" name="especialidade" aria-describedby="erro-especialidade" required>
+            <option value="">Selecione a especialidade</option>
+            <option value="Clínica geral">Clínica geral</option>
+            <option value="Cardiologia">Cardiologia</option>
+            <option value="Dermatologia">Dermatologia</option>
+            <option value="Ginecologia e obstetrícia">Ginecologia e obstetrícia</option>
+            <option value="Pediatria">Pediatria</option>
+            <option value="Ortopedia">Ortopedia</option>
+            <option value="Ainda não sei">Ainda não sei, quero orientação</option>
+          </select>
+          <p class="campo__erro" id="erro-especialidade" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" data-campo="profissional">
+          <label for="campo-profissional">Profissional <span class="campo__dica">(opcional)</span></label>
+          <select id="campo-profissional" name="profissional" aria-describedby="erro-profissional">
+            <option value="Primeira disponibilidade">Primeira disponibilidade</option>
+            <option value="[Nome do profissional 1]">[Nome do profissional 1]</option>
+            <option value="[Nome do profissional 2]">[Nome do profissional 2]</option>
+            <option value="[Nome do profissional 3]">[Nome do profissional 3]</option>
+          </select>
+          <p class="campo__erro" id="erro-profissional" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" data-campo="data">
+          <label for="campo-data">Data preferida</label>
+          <input type="date" id="campo-data" name="data" aria-describedby="erro-data" required>
+          <p class="campo__erro" id="erro-data" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" data-campo="horario">
+          <label for="campo-horario">Horário</label>
+          <select id="campo-horario" name="horario" aria-describedby="erro-horario" required>
+            <option value="">Selecione um horário</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+          </select>
+          <p class="campo__erro" id="erro-horario" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" data-campo="nome">
+          <label for="campo-nome">Seu nome</label>
+          <input type="text" id="campo-nome" name="nome" autocomplete="name" placeholder="Nome e sobrenome" aria-describedby="erro-nome" required>
+          <p class="campo__erro" id="erro-nome" aria-live="polite"></p>
+        </div>
+
+        <div class="campo" data-campo="telefone">
+          <label for="campo-telefone">Telefone com DDD</label>
+          <input type="tel" id="campo-telefone" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000" inputmode="numeric" aria-describedby="erro-telefone" required>
+          <p class="campo__erro" id="erro-telefone" aria-live="polite"></p>
+        </div>
+
+        <button class="btn btn--principal btn--bloco" type="submit" id="btn-enviar">Agendar consulta</button>
+      </form>
+
+      <div class="agenda__sucesso" id="agenda-sucesso" aria-live="polite">
+        <span class="agenda__selo" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3>Pedido de agendamento registrado</h3>
+        <p>
+          Guarde o resumo abaixo. Este modelo é de demonstração, então nada foi
+          enviado para lugar nenhum: na versão final, a recepção recebe esse pedido
+          e confirma o horário pelo WhatsApp.
+        </p>
+        <dl class="resumo">
+          <div><dt>Especialidade</dt><dd id="resumo-especialidade"></dd></div>
+          <div><dt>Profissional</dt><dd id="resumo-profissional"></dd></div>
+          <div><dt>Data</dt><dd id="resumo-data"></dd></div>
+          <div><dt>Horário</dt><dd id="resumo-horario"></dd></div>
+          <div><dt>Nome</dt><dd id="resumo-nome"></dd></div>
+          <div><dt>Telefone</dt><dd id="resumo-telefone"></dd></div>
+        </dl>
+        <button class="btn btn--menta btn--bloco" type="button" id="btn-outra">Agendar outra consulta</button>
+      </div>
+
+      <p class="agenda__nota">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Nenhum pagamento é feito aqui. O valor da consulta e a forma de pagamento
+        são combinados na recepção.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ESPECIALIDADES: lista escalonada, linhas alternadas ============ -->
+<section class="secao secao--superficie" id="especialidades" aria-labelledby="titulo-especialidades">
+  <div class="envolve">
+    <div class="topo-secao">
+      <p class="etiqueta rev">O que você pode marcar</p>
+      <h2 id="titulo-especialidades" class="rev" style="--i:1">Especialidades</h2>
+      <p class="rev" style="--i:2">
+        São seis áreas de atendimento ambulatorial no mesmo lugar. Se não souber
+        qual escolher, marque clínica geral: o profissional avalia e te encaminha
+        para a especialidade certa.
+      </p>
+    </div>
+
+    <div class="busca rev" style="--i:3">
+      <div class="busca__campo">
+        <label for="busca-especialidade">Buscar especialidade</label>
+        <input type="search" id="busca-especialidade" placeholder="Digite o nome ou o sintoma, exemplo: pele" autocomplete="off">
+      </div>
+      <p class="busca__contagem" id="contagem">6 especialidades</p>
+      <button class="btn btn--contorno btn--pequeno" type="button" id="btn-limpar">Limpar busca</button>
+    </div>
+
+    <div class="lista-especialidades stagger" id="lista-especialidades">
+      <article class="linha rev" data-busca="clinica geral check-up rotina encaminhamento exame">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">01</span>
+        <div class="linha__corpo">
+          <h3>Clínica geral</h3>
+          <p>Consulta de rotina, check-up e encaminhamento para especialistas. É a porta de entrada para quem ainda não sabe o que tem.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [40 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+
+      <article class="linha rev" data-busca="cardiologia coração pressão hipertensão colesterol">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">02</span>
+        <div class="linha__corpo">
+          <h3>Cardiologia</h3>
+          <p>Avaliação do coração, controle de pressão alta e colesterol, e acompanhamento de quem já tem diagnóstico de doença cardíaca.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [40 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+
+      <article class="linha rev" data-busca="dermatologia pele cabelo unha mancha acne">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">03</span>
+        <div class="linha__corpo">
+          <h3>Dermatologia</h3>
+          <p>Consulta de pele, cabelo e unhas, com procedimentos ambulatoriais simples feitos no mesmo dia quando há necessidade.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [30 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+
+      <article class="linha rev" data-busca="ginecologia obstetrícia pré-natal preventivo mulher gestação">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">04</span>
+        <div class="linha__corpo">
+          <h3>Ginecologia e obstetrícia</h3>
+          <p>Pré-natal, exame preventivo e planejamento familiar, com acompanhamento em todas as fases da gestação.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [40 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+
+      <article class="linha rev" data-busca="pediatria criança bebê vacina crescimento">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">05</span>
+        <div class="linha__corpo">
+          <h3>Pediatria</h3>
+          <p>Consulta de rotina, vacina e acompanhamento do crescimento, com orientação para pais de primeira viagem.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [40 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+
+      <article class="linha rev" data-busca="ortopedia junta joelho coluna ombro dor reabilitação fisioterapia">
+        <span class="linha__regra" aria-hidden="true"></span>
+        <span class="linha__num" aria-hidden="true">06</span>
+        <div class="linha__corpo">
+          <h3>Ortopedia</h3>
+          <p>Avaliação de dor nas juntas, lesão por esporte e reabilitação depois de cirurgia, com encaminhamento para fisioterapia quando necessário.</p>
+        </div>
+        <div class="linha__meta">
+          <div class="linha__etiquetas">
+            <span class="etiqueta-mini">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              [30 min]
+            </span>
+            <span class="etiqueta-mini">A partir de [R$ 00]</span>
+          </div>
+          <a class="link-simples" href="#agendar">Agendar consulta</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="vazio" id="vazio" role="status">
+      <h3>Nenhuma especialidade encontrada</h3>
+      <p id="vazio-texto">Não encontramos nada para o que você digitou. Veja a lista completa ou fale com a recepção, que te ajuda a escolher.</p>
+      <button class="btn btn--contorno btn--pequeno" type="button" id="btn-ver-todas">Ver todas as especialidades</button>
+    </div>
+  </div>
+</section><!-- ============ COMO FUNCIONA: 2 passos ============ -->
+<section class="secao" id="como-funciona" aria-labelledby="titulo-passos">
+  <div class="envolve">
+    <div class="topo-secao">
+      <p class="etiqueta rev">Como funciona</p>
+      <h2 id="titulo-passos" class="rev" style="--i:1">Duas etapas, sem telefonema</h2>
+      <p class="rev" style="--i:2">
+        A marcação acontece aqui no site. A gente só entra para confirmar o
+        horário e te dizer o que levar no dia.
+      </p>
+    </div>
+
+    <div class="passos stagger">
+      <article class="passo passo--1 rev">
+        <p class="passo__num" aria-hidden="true">1</p>
+        <h3>Você escolhe o horário no cartão acima</h3>
+        <p>
+          Especialidade, data e horário. Se você não souber qual profissional
+          escolher, deixe em primeira disponibilidade e a recepção encaixa você
+          no melhor horário livre da agenda.
+        </p>
+        <p class="passo__dica">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Leva menos de um minuto. Nenhum pagamento é feito nesta etapa.
+        </p>
+      </article>
+
+      <article class="passo passo--2 rev">
+        <p class="passo__num" aria-hidden="true">2</p>
+        <h3>A recepção confirma pelo WhatsApp</h3>
+        <p>
+          Você recebe a confirmação com o nome do profissional, o endereço e o
+          que precisa levar. Se o horário não estiver livre, a gente oferece as
+          duas opções mais próximas.
+        </p>
+        <p class="passo__dica">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h7A2.5 2.5 0 0 1 16 5.5v5A2.5 2.5 0 0 1 13.5 13H8.5L4.8 16c-.5.4-1.3 0-1.3-.7V13a1 1 0 0 1-.5-.9v-6.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M6.5 7.5h7M6.5 10h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Precisa remarcar? Avise pela conversa do WhatsApp com a antecedência combinada no agendamento.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPE: placeholders de foto ============ -->
+<section class="secao secao--superficie" id="equipe" aria-labelledby="titulo-equipe">
+  <div class="envolve">
+    <div class="topo-secao">
+      <p class="etiqueta rev">Quem atende você</p>
+      <h2 id="titulo-equipe" class="rev" style="--i:1">Equipe fixa, com registro profissional ativo</h2>
+      <p class="rev" style="--i:2">
+        Os mesmos profissionais acompanham você nas consultas de retorno. Nomes,
+        fotos e registros entram na versão final, no lugar dos blocos abaixo.
+      </p>
+    </div>
+
+    <div class="equipe stagger">
+      <article class="pessoa rev">
+        <div class="pessoa__foto" role="img" aria-label="Espaço para foto: retrato da profissional de clínica geral">
+          <span><b aria-hidden="true">Sua foto aqui</b>Retrato 4:5 da profissional</span>
+        </div>
+        <h3>[Nome do profissional 1]</h3>
+        <p class="pessoa__papel">Clínica geral</p>
+        <p class="pessoa__reg mono">[CRM 00.000]</p>
+      </article>
+
+      <article class="pessoa rev">
+        <div class="pessoa__foto" role="img" aria-label="Espaço para foto: retrato do profissional de cardiologia">
+          <span><b aria-hidden="true">Sua foto aqui</b>Retrato quadrado do profissional</span>
+        </div>
+        <h3>[Nome do profissional 2]</h3>
+        <p class="pessoa__papel">Cardiologia</p>
+        <p class="pessoa__reg mono">[CRM 00.000]</p>
+      </article>
+
+      <article class="pessoa rev">
+        <div class="pessoa__foto" role="img" aria-label="Espaço para foto: retrato da profissional de pediatria">
+          <span><b aria-hidden="true">Sua foto aqui</b>Retrato 4:5 da profissional</span>
+        </div>
+        <h3>[Nome do profissional 3]</h3>
+        <p class="pessoa__papel">Pediatria</p>
+        <p class="pessoa__reg mono">[CRM 00.000]</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONVÊNIOS: faixa única ============ -->
+<section class="faixa" id="convenios" aria-labelledby="titulo-convenios">
+  <div class="envolve">
+    <div class="faixa__topo">
+      <div>
+        <p class="etiqueta rev">Convênios e formas de atendimento</p>
+        <h2 id="titulo-convenios" class="rev" style="--i:1">Atendemos particular e por convênio</h2>
+      </div>
+      <p class="legenda rev" style="--i:2">
+        A lista de planos aceitos muda com frequência. Confirme a cobertura do
+        seu convênio pelo WhatsApp antes de marcar.
+      </p>
+    </div>
+  </div>
+
+  <div class="correia" aria-hidden="true">
+    <div class="correia__trilha" id="correia-trilha">
+      <span class="convenio convenio--destaque">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Atendimento particular
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 1]
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 2]
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 3]
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 4]
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 5]
+      </span>
+      <span class="convenio">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3 9.5 7 13.5 15 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        [Convênio 6]
+      </span>
+    </div>
+  </div>
+
+  <div class="envolve">
+    <p class="legenda rev" style="margin-top:20px">
+      Se o seu plano não estiver na lista, você pode ser atendido no particular
+      e pedir o recibo para reembolso, quando o convênio permitir.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FAQ: acordeão com 4 perguntas ============ -->
+<section class="secao" id="faq" aria-labelledby="titulo-faq">
+  <div class="envolve">
+    <div class="topo-secao">
+      <p class="etiqueta rev">Dúvidas frequentes</p>
+      <h2 id="titulo-faq" class="rev" style="--i:1">O que perguntam antes de marcar</h2>
+    </div>
+
+    <div class="faq stagger">
+      <article class="faq__item rev">
+        <h3 style="margin:0">
+          <button class="faq__pergunta" type="button" aria-expanded="false" aria-controls="painel-1" id="pergunta-1">
+            Quais convênios vocês atendem?
+            <span class="faq__icone" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="painel-1" role="region" aria-labelledby="pergunta-1">
+          <div class="faq__conteudo">
+            <p>
+              Atendemos os convênios listados na faixa acima e também no
+              particular. Como a lista de planos aceitos muda com frequência, o
+              caminho mais seguro é confirmar pelo WhatsApp antes de marcar: a
+              recepção verifica se o seu plano cobre essa consulta e quais
+              documentos você precisa levar.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq__item rev">
+        <h3 style="margin:0">
+          <button class="faq__pergunta" type="button" aria-expanded="false" aria-controls="painel-2" id="pergunta-2">
+            Precisa de encaminhamento para marcar?
+            <span class="faq__icone" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="painel-2" role="region" aria-labelledby="pergunta-2">
+          <div class="faq__conteudo">
+            <p>
+              Para a maioria das especialidades, não. Você pode marcar direto por
+              esta página. Alguns convênios exigem encaminhamento do clínico
+              geral para liberar a consulta com especialista, e nesse caso a
+              recepção te avisa na confirmação do horário.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq__item rev">
+        <h3 style="margin:0">
+          <button class="faq__pergunta" type="button" aria-expanded="false" aria-controls="painel-3" id="pergunta-3">
+            Quanto tempo dura a primeira consulta?
+            <span class="faq__icone" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="painel-3" role="region" aria-labelledby="pergunta-3">
+          <div class="faq__conteudo">
+            <p>
+              A primeira consulta costuma durar mais, porque inclui histórico
+              completo, exame físico e explicação do plano de tratamento. O tempo
+              exato depende da especialidade e é informado na confirmação do
+              agendamento. Leve exames anteriores e a lista dos medicamentos que
+              você toma.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="faq__item rev">
+        <h3 style="margin:0">
+          <button class="faq__pergunta" type="button" aria-expanded="false" aria-controls="painel-4" id="pergunta-4">
+            Vocês atendem emergência?
+            <span class="faq__icone" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="painel-4" role="region" aria-labelledby="pergunta-4">
+          <div class="faq__conteudo">
+            <p>
+              Não somos pronto-socorro. Atendemos consultas agendadas e urgências
+              ambulatoriais dentro do horário de funcionamento. Em caso de
+              emergência, ligue para o 192 ou vá ao pronto-socorro mais próximo.
+              Se ficar na dúvida, fale com a recepção pelo WhatsApp antes de sair
+              de casa.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="secao secao--superficie" id="contato" aria-labelledby="titulo-contato">
+  <div class="envolve">
+    <div class="topo-secao">
+      <p class="etiqueta rev">Contato e localização</p>
+      <h2 id="titulo-contato" class="rev" style="--i:1">Fale com a recepção</h2>
+      <p class="rev" style="--i:2">
+        Para dúvidas sobre convênio, valores e remarcação, o WhatsApp é o canal
+        mais rápido. Endereço e telefone entram na versão final.
+      </p>
+    </div>
+
+    <div class="contato__grade">
+      <dl class="info stagger">
+        <div class="info__item rev">
+          <span class="info__icone" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 18s6-5.4 6-10a6 6 0 1 0-12 0c0 4.6 6 10 6 10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="10" cy="8" r="2.2" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <div>
+            <dt>Endereço</dt>
+            <dd>[endereço completo]</dd>
+          </div>
+        </div>
+
+        <div class="info__item rev">
+          <span class="info__icone" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 3h2.5l1.5 4-2 1.5a9 9 0 0 0 4.5 4.5L14 11l4 1.5v2.5A2 2 0 0 1 15.8 17C9.4 16.4 4.6 11.6 4 5.2 3.9 3.9 4.9 3 6 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <dt>Telefone</dt>
+            <dd>[(00) 00000-0000]</dd>
+          </div>
+        </div>
+
+        <div class="info__item rev">
+          <span class="info__icone" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4.5" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 6l7 5 7-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <dt>E-mail</dt>
+            <dd>[seu@email.com]</dd>
+          </div>
+        </div>
+
+        <div class="info__item rev">
+          <span class="info__icone" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.7"/><path d="M10 5.5V10l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <dt>Horário de atendimento</dt>
+            <dd>Segunda a sexta, 8h às 18h. Sábado, 8h às 12h.</dd>
+          </div>
+        </div>
+
+        <div class="info__item rev">
+          <span class="info__icone" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5 16.5 5v5c0 4.2-3 6.8-6.5 7.8C6.5 16.8 3.5 14.2 3.5 10V5L10 2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7.5 10l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <dt>Convênios</dt>
+            <dd>Particular e os planos da faixa acima.</dd>
+          </div>
+        </div>
+      </dl>
+
+      <div class="mapa rev" style="--i:2">
+        <div class="mapa__palco">
+          <svg viewBox="0 0 420 300" role="img" aria-label="Mapa estilizado e decorativo da região da clínica, com a avenida principal e a rua de acesso">
+            <rect width="420" height="300" fill="#F3F9FD"/>
+            <g stroke="#DCEEF8" stroke-width="1">
+              <path d="M0 60h420M0 120h420M0 180h420M0 240h420M60 0v300M120 0v300M180 0v300M240 0v300M300 0v300M360 0v300"/>
+            </g>
+            <path class="mapa__avenida" d="M-10 176 L430 168"/>
+            <path class="mapa__rua" d="M150 300 L160 40"/>
+            <path class="mapa__rua" d="M300 300 L292 40"/>
+            <path class="mapa__rua" d="M-10 96 L430 90"/>
+            <path class="mapa__rua" d="M-10 248 L430 254"/>
+            <path class="mapa__rua" d="M0 20 L420 26"/>
+            <path class="mapa__pino" d="M180 84c-11 0-20 9-20 20 0 14 20 32 20 32s20-18 20-32c0-11-9-20-20-20Zm0 27a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/>
+            <circle class="mapa__pino-anel" cx="180" cy="104" r="20" stroke-width="3"/>
+            <text x="196" y="148" font-family="Lora, Georgia, serif" font-size="15" font-weight="600" fill="#10333F">Sua Marca</text>
+            <text x="196" y="166" font-family="Nunito Sans, sans-serif" font-size="12.5" fill="#255964">[endereço completo]</text>
+          </svg>
+          <span class="mapa__furo" aria-hidden="true"><span>Espaço para o mapa real da clínica</span></span>
+        </div>
+        <div class="mapa__legenda">
+          <p class="legenda" style="margin:0">A 300 metros da estação [nome da estação].</p>
+          <span class="etiqueta-mini">Estacionamento no local</span>
+        </div>
+
+        <div class="whats" id="whats-painel" hidden>
+          <div class="whats__dentro">
+            <p>Fale com a recepção pelo WhatsApp para confirmar convênio, valores e horários livres.</p>
+            <div class="whats__numero">
+              <b>[(00) 00000-0000]</b>
+              <button class="btn btn--menta btn--pequeno" type="button" id="btn-copiar">
+                <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M13 7V5.5A1.5 1.5 0 0 0 11.5 4H5.5A1.5 1.5 0 0 0 4 5.5v6A1.5 1.5 0 0 0 5.5 13H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                Copiar número
+              </button>
+              <span class="copiado" id="aviso-copiado" aria-live="polite">Número copiado.</span>
+            </div>
+            <p class="whats__aviso">
+              <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.2" stroke="currentColor" stroke-width="1.7"/><path d="M9 5.5v.5M9 8v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              O número do cliente entra aqui na versão final. Neste modelo o valor é um placeholder.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero__acoes" style="margin-top:18px;margin-bottom:0">
+          <button class="btn btn--menta" type="button" id="btn-whats" aria-expanded="false" aria-controls="whats-painel">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h7A2.5 2.5 0 0 1 16 5.5v5A2.5 2.5 0 0 1 13.5 13H8.5L4.8 16c-.5.4-1.3 0-1.3-.7V13a1 1 0 0 1-.5-.9v-6.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            Falar no WhatsApp
+          </button>
+          <a class="btn btn--contorno" href="#agendar">Agendar consulta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="site-footer">
+  <div class="envolve">
+    <h2>Modelo de demonstração</h2>
+    <p>
+      Esta landing é um exemplar do mostruário. Todos os dados, fotos, nomes e
+      contatos são placeholders e serão substituídos pelos dados reais do
+      cliente na versão final.
+    </p>
+    <div class="rodape__grade">
+      <p class="rodape__linha">
+        Modelo de demonstração por
+        <a href="../index.html">Kelvin Oliveira</a>
+      </p>
+      <nav class="rodape__links" aria-label="Links do rodapé">
+        <a href="../index.html">Voltar ao hub</a>
+        <a href="#topo">Voltar ao topo</a>
+        <a href="#especialidades">Especialidades</a>
+      </nav>
+    </div>
+  </div>
+</footer><script>
+(function () {
+  'use strict';
+
+  var doc = document;
+  var corpo = doc.body;
+  var mqReduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mqMesa = window.matchMedia('(min-width: 761px)');
+
+  /* ---------- 1. entrada de pagina (depois do load, sem piscar) ---------- */
+  function paginaPronta() {
+    corpo.classList.add('page-ready');
+  }
+  if (doc.readyState === 'complete') {
+    paginaPronta();
+  } else {
+    window.addEventListener('load', paginaPronta);
+  }
+  // rede de seguranca: se o load demorar, a pagina entra do mesmo jeito
+  window.setTimeout(paginaPronta, 1500);
+
+  /* ---------- 2. scroll reveal com IntersectionObserver ---------- */
+  var observaveis = doc.querySelectorAll('.rev');
+  if ('IntersectionObserver' in window) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('in-view');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+    observaveis.forEach(function (alvo) { observador.observe(alvo); });
+  } else {
+    observaveis.forEach(function (alvo) { alvo.classList.add('in-view'); });
+  }
+
+  /* ---------- 3. header que reage ao scroll + barra de progresso ---------- */
+  var cabecalho = doc.querySelector('.site-header');
+  var barra = doc.getElementById('barra-progresso');
+  var agendado = false;
+
+  function desenhaRolagem() {
+    agendado = false;
+    var y = window.pageYOffset || doc.documentElement.scrollTop || 0;
+    if (cabecalho) {
+      cabecalho.classList.toggle('is-scrolled', y > 10);
+    }
+    if (barra) {
+      var total = doc.documentElement.scrollHeight - window.innerHeight;
+      var fracao = total > 0 ? Math.min(y / total, 1) : 0;
+      barra.style.transform = 'scaleX(' + fracao.toFixed(4) + ')';
+    }
+    aplicaParallax(y);
+  }
+
+  function naRolagem() {
+    if (!agendado) {
+      agendado = true;
+      window.requestAnimationFrame(desenhaRolagem);
+    }
+  }
+
+  window.addEventListener('scroll', naRolagem, { passive: true });
+  window.addEventListener('resize', naRolagem);
+
+  /* ---------- 4. parallax leve (so em mesa, nunca no mobile) ---------- */
+  var camadas = Array.prototype.slice.call(doc.querySelectorAll('[data-parallax]'));
+  function aplicaParallax(y) {
+    if (!camadas.length) { return; }
+    if (!mqMesa.matches || mqReduz.matches) {
+      camadas.forEach(function (camada) { camada.style.transform = ''; });
+      return;
+    }
+    camadas.forEach(function (camada) {
+      var fator = parseFloat(camada.getAttribute('data-parallax')) || 0.15;
+      camada.style.transform = 'translate3d(0,' + (y * fator).toFixed(2) + 'px,0)';
+    });
+  }
+  desenhaRolagem();
+
+  /* ---------- 5. menu mobile: abre, fecha com Escape, fecha no link ---------- */
+  var botaoMenu = doc.getElementById('nav-toggle');
+  var menu = doc.getElementById('nav-menu');
+  var textoMenu = doc.getElementById('nav-toggle-texto');
+
+  function fechaMenu() {
+    if (!menu) { return; }
+    menu.classList.remove('aberto');
+    if (botaoMenu) { botaoMenu.setAttribute('aria-expanded', 'false'); }
+    if (textoMenu) { textoMenu.textContent = 'Menu'; }
+  }
+  function abreMenu() {
+    if (!menu) { return; }
+    menu.classList.add('aberto');
+    if (botaoMenu) { botaoMenu.setAttribute('aria-expanded', 'true'); }
+    if (textoMenu) { textoMenu.textContent = 'Fechar'; }
+  }
+
+  if (botaoMenu && menu) {
+    botaoMenu.addEventListener('click', function () {
+      if (menu.classList.contains('aberto')) {
+        fechaMenu();
+      } else {
+        abreMenu();
+      }
+    });
+    doc.addEventListener('keydown', function (evento) {
+      if (evento.key === 'Escape' && menu.classList.contains('aberto')) {
+        fechaMenu();
+        botaoMenu.focus();
+      }
+    });
+    menu.addEventListener('click', function (evento) {
+      if (evento.target.closest('a')) {
+        fechaMenu();
+      }
+    });
+  }
+
+  /* ---------- 6. formulario de agendamento: validacao por campo ---------- */
+  var formulario = doc.getElementById('form-agenda');
+  var sucesso = doc.getElementById('agenda-sucesso');
+  var iconeErro = '<svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.2" stroke="currentColor" stroke-width="1.7"/><path d="M9 5.5v.5M9 8v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+  function caixaDoCampo(nome) {
+    return formulario.querySelector('[data-campo="' + nome + '"]');
+  }
+  function marcaErro(nome, mensagem) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.add('campo--erro');
+    caixa.classList.remove('campo--ok');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.innerHTML = iconeErro + mensagem; }
+    var controle = caixa.querySelector('input, select');
+    if (controle) { controle.setAttribute('aria-invalid', 'true'); }
+  }
+  function limpaCampo(nome) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.remove('campo--erro');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.textContent = ''; }
+    var controle = caixa.querySelector('input, select');
+    if (controle) { controle.removeAttribute('aria-invalid'); }
+  }
+  function marcaOk(nome) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.remove('campo--erro');
+    caixa.classList.add('campo--ok');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.textContent = ''; }
+    var controle = caixa.querySelector('input, select');
+    if (controle) { controle.removeAttribute('aria-invalid'); }
+  }
+
+  function hojeLocal() {
+    var agora = new Date();
+    var mes = String(agora.getMonth() + 1).padStart(2, '0');
+    var dia = String(agora.getDate()).padStart(2, '0');
+    return agora.getFullYear() + '-' + mes + '-' + dia;
+  }
+  var campoData = doc.getElementById('campo-data');
+  if (campoData) {
+    campoData.setAttribute('min', hojeLocal());
+  }
+
+  var regras = {
+    especialidade: function (valor) {
+      if (!valor) { return 'Escolha uma especialidade para continuar.'; }
+      return '';
+    },
+    profissional: function () { return ''; },
+    data: function (valor) {
+      if (!valor) { return 'Informe a data preferida da consulta.'; }
+      if (valor < hojeLocal()) { return 'Escolha uma data a partir de hoje.'; }
+      return '';
+    },
+    horario: function (valor) {
+      if (!valor) { return 'Selecione um dos horários disponíveis.'; }
+      return '';
+    },
+    nome: function (valor) {
+      var nome = valor.trim();
+      if (!nome) { return 'Informe o seu nome.'; }
+      if (nome.length < 3) { return 'Escreva o nome completo, com nome e sobrenome.'; }
+      if (nome.indexOf(' ') < 0) { return 'Inclua também o sobrenome.'; }
+      return '';
+    },
+    telefone: function (valor) {
+      var digitos = valor.replace(/\D/g, '');
+      if (!digitos) { return 'Informe um telefone com DDD para contato.'; }
+      if (digitos.length < 10 || digitos.length > 11) { return 'O telefone precisa ter DDD e 8 ou 9 dígitos.'; }
+      return '';
+    }
+  };
+
+  function validaCampo(nome) {
+    var controle = doc.getElementById('campo-' + nome);
+    if (!controle) { return true; }
+    var mensagem = regras[nome](controle.value);
+    if (mensagem) {
+      marcaErro(nome, mensagem);
+      return false;
+    }
+    marcaOk(nome);
+    return true;
+  }
+
+  if (formulario) {
+    Object.keys(regras).forEach(function (nome) {
+      var controle = doc.getElementById('campo-' + nome);
+      if (!controle) { return; }
+      controle.addEventListener('blur', function () { validaCampo(nome); });
+      controle.addEventListener('change', function () {
+        var caixa = caixaDoCampo(nome);
+        if (caixa && caixa.classList.contains('campo--erro')) {
+          validaCampo(nome);
+        }
+      });
+      controle.addEventListener('input', function () {
+        var caixa = caixaDoCampo(nome);
+        if (caixa && caixa.classList.contains('campo--erro')) {
+          validaCampo(nome);
+        }
+      });
+    });
+
+    formulario.addEventListener('submit', function (evento) {
+      evento.preventDefault();
+      var nomes = Object.keys(regras);
+      var primeiroRuim = null;
+      var valido = true;
+      nomes.forEach(function (nome) {
+        var ok = validaCampo(nome);
+        if (!ok && !primeiroRuim) {
+          primeiroRuim = doc.getElementById('campo-' + nome);
+        }
+        if (!ok) { valido = false; }
+      });
+
+      if (!valido) {
+        if (primeiroRuim) { primeiroRuim.focus(); }
+        return;
+      }
+
+      function texto(id, alternativa) {
+        var elemento = doc.getElementById(id);
+        return elemento && elemento.value ? elemento.value : alternativa;
+      }
+      function preenche(id, valor) {
+        var elemento = doc.getElementById(id);
+        if (elemento) { elemento.textContent = valor; }
+      }
+
+      var dataCrua = doc.getElementById('campo-data').value;
+      var dataBonita = dataCrua;
+      if (dataCrua) {
+        var partes = dataCrua.split('-');
+        dataBonita = partes[2] + '/' + partes[1] + '/' + partes[0];
+      }
+
+      preenche('resumo-especialidade', texto('campo-especialidade', ''));
+      preenche('resumo-profissional', texto('campo-profissional', 'Primeira disponibilidade'));
+      preenche('resumo-data', dataBonita);
+      preenche('resumo-horario', texto('campo-horario', ''));
+      preenche('resumo-nome', texto('campo-nome', ''));
+      preenche('resumo-telefone', texto('campo-telefone', ''));
+
+      formulario.hidden = true;
+      if (sucesso) {
+        sucesso.classList.add('ativo');
+      }
+      if (sucesso) { sucesso.setAttribute('tabindex', '-1'); sucesso.focus(); }
+    });
+  }
+
+  var botaoOutra = doc.getElementById('btn-outra');
+  if (botaoOutra && formulario) {
+    botaoOutra.addEventListener('click', function () {
+      if (sucesso) { sucesso.classList.remove('ativo'); }
+      formulario.hidden = false;
+      formulario.reset();
+      Object.keys(regras).forEach(function (nome) { limpaCampo(nome); });
+      var primeiro = doc.getElementById('campo-especialidade');
+      if (primeiro) { primeiro.focus(); }
+    });
+  }
+
+  /* ---------- 7. filtro de especialidades, com estado vazio ---------- */
+  var campoBusca = doc.getElementById('busca-especialidade');
+  var lista = doc.getElementById('lista-especialidades');
+  var vazio = doc.getElementById('vazio');
+  var vazioTexto = doc.getElementById('vazio-texto');
+  var contagem = doc.getElementById('contagem');
+  var linhas = lista ? Array.prototype.slice.call(lista.querySelectorAll('.linha')) : [];
+  var TOTAL = linhas.length;
+
+  function normaliza(texto) {
+    return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function aplicaFiltro() {
+    if (!campoBusca || !lista) { return; }
+    var termo = normaliza(campoBusca.value.trim());
+    var achadas = 0;
+    linhas.forEach(function (linha) {
+      var alvo = normaliza((linha.getAttribute('data-busca') || '') + ' ' + linha.textContent);
+      var bateu = !termo || alvo.indexOf(termo) > -1;
+      linha.classList.toggle('oculta', !bateu);
+      if (bateu) {
+        achadas += 1;
+        linha.classList.add('in-view');
+      }
+    });
+
+    if (contagem) {
+      contagem.textContent = termo
+        ? achadas + (achadas === 1 ? ' de ' + TOTAL + ' especialidade' : ' de ' + TOTAL + ' especialidades')
+        : TOTAL + ' especialidades';
+    }
+    if (vazio) {
+      var semResultado = termo && achadas === 0;
+      vazio.classList.toggle('ativo', semResultado);
+      if (semResultado && vazioTexto) {
+        vazioTexto.textContent = 'Não encontramos nada para "' + campoBusca.value.trim() + '". Veja a lista completa ou fale com a recepção, que te ajuda a escolher.';
+      }
+    }
+  }
+
+  if (campoBusca) {
+    campoBusca.addEventListener('input', aplicaFiltro);
+  }
+  var botaoLimpar = doc.getElementById('btn-limpar');
+  if (botaoLimpar && campoBusca) {
+    botaoLimpar.addEventListener('click', function () {
+      campoBusca.value = '';
+      aplicaFiltro();
+      campoBusca.focus();
+    });
+  }
+  var botaoTodas = doc.getElementById('btn-ver-todas');
+  if (botaoTodas && campoBusca) {
+    botaoTodas.addEventListener('click', function () {
+      campoBusca.value = '';
+      aplicaFiltro();
+      campoBusca.focus();
+    });
+  }
+  aplicaFiltro();
+
+  /* ---------- 8. acordeão do FAQ: anima a altura, um aberto por vez ---------- */
+  var itensFaq = doc.querySelectorAll('.faq__item');
+  itensFaq.forEach(function (item) {
+    var gatilho = item.querySelector('.faq__pergunta');
+    if (!gatilho) { return; }
+    gatilho.addEventListener('click', function () {
+      var estavaAberto = item.classList.contains('aberto');
+      itensFaq.forEach(function (outro) {
+        outro.classList.remove('aberto');
+        var outroGatilho = outro.querySelector('.faq__pergunta');
+        if (outroGatilho) { outroGatilho.setAttribute('aria-expanded', 'false'); }
+      });
+      if (!estavaAberto) {
+        item.classList.add('aberto');
+        gatilho.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ---------- 9. painel do WhatsApp: revela o numero e copia ---------- */
+  var botaoWhats = doc.getElementById('btn-whats');
+  var painelWhats = doc.getElementById('whats-painel');
+  if (botaoWhats && painelWhats) {
+    botaoWhats.addEventListener('click', function () {
+      var visivel = !painelWhats.hidden;
+      painelWhats.hidden = visivel;
+      botaoWhats.setAttribute('aria-expanded', visivel ? 'false' : 'true');
+      if (!visivel) {
+        var primeiroFoco = painelWhats.querySelector('button');
+        if (primeiroFoco) { primeiroFoco.focus(); }
+      }
+    });
+  }
+
+  var botaoCopiar = doc.getElementById('btn-copiar');
+  var avisoCopiado = doc.getElementById('aviso-copiado');
+  if (botaoCopiar && avisoCopiado) {
+    botaoCopiar.addEventListener('click', function () {
+      var numero = '[(00) 00000-0000]';
+      function mostraAviso() {
+        avisoCopiado.textContent = 'Número copiado: ' + numero;
+        avisoCopiado.classList.add('ativo');
+        window.setTimeout(function () { avisoCopiado.classList.remove('ativo'); }, 2600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(numero).then(mostraAviso, function () {
+          avisoCopiado.textContent = 'Copie manualmente: ' + numero;
+          avisoCopiado.classList.add('ativo');
+        });
+      } else {
+        avisoCopiado.textContent = 'Copie manualmente: ' + numero;
+        avisoCopiado.classList.add('ativo');
+      }
+    });
+  }
+
+  /* ---------- 10. correia de convenios: duplica a trilha para o loop ---------- */
+  var trilha = doc.getElementById('correia-trilha');
+  if (trilha && !mqReduz.matches) {
+    var filhos = Array.prototype.slice.call(trilha.children);
+    filhos.forEach(function (filho) {
+      var copia = filho.cloneNode(true);
+      copia.setAttribute('aria-hidden', 'true');
+      trilha.appendChild(copia);
+    });
+  }
+})();
+</script>
+</body>
+</html>

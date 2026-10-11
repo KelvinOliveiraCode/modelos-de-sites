@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formação em análise de dados com projeto no portfólio | Sua Marca</title>
+<meta name="description" content="Curso online de análise de dados com aulas ao vivo, comunidade de revisão e um projeto pronto no portfólio ao final de cada módulo. Veja a trilha, o formato e as formas de participação.">
+<meta name="theme-color" content="#FAF8FF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%236A0DAD'/%3E%3Cpath d='M7 21l5-9 4 6 3-4 6 7' fill='none' stroke='%23FAF8FF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Cursos Online / EAD · modelo de demonstração
+   Fundo #FAF8FF, tinta #1B1035, marca roxo #6A0DAD
+   (identidade do nicho, liberada pelo dono), apoio azul
+   #2563EB com parcimônia, acento laranja #FF8C00 só no
+   CTA principal. Sem gradiente azul e roxo de decoração.
+   Easing de entrada: cubic-bezier(.22,1,.36,1).
+   ========================================================= */
+
+:root{
+  --bg:#FAF8FF;
+  --surface:#FFFFFF;
+  --surface-2:#F4EFFC;
+  --surface-3:#EADDF8;
+  --ink:#1B1035;
+  --ink-2:#4B3B71;
+  --ink-3:#6B5C90;
+  --roxo:#6A0DAD;
+  --roxo-esc:#530A87;
+  --roxo-claro:#F1E6FB;
+  --roxo-linha:#DCC6F0;
+  --azul:#2563EB;
+  --azul-claro:#E7EFFF;
+  --laranja:#FF8C00;
+  --laranja-esc:#E07700;
+  --line:rgba(27,16,53,.13);
+  --line-2:rgba(27,16,53,.22);
+  --erro:#8E2A22;
+  --ok:#1F6B3A;
+  --header-h:74px;
+  --raio:16px;
+  --raio-g:26px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-estado:cubic-bezier(.4,0,.2,1);
+  --sombra:0 10px 28px rgba(27,16,53,.08);
+  --sombra-forte:0 22px 54px rgba(27,16,53,.16);
+  --fonte-titulo:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fonte-corpo:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fonte-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+/* garante que [hidden] vença os display definidos nas classes */
+[hidden]{display:none!important}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--fonte-corpo);
+  font-size:17px;
+  line-height:1.65;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--fonte-titulo);
+  color:var(--ink);
+  line-height:1.16;
+  margin:0 0 .55em;
+  font-weight:700;
+  letter-spacing:-.015em;
+}
+h1{font-size:clamp(2.15rem,5.4vw,3.5rem);font-weight:800}
+h2{font-size:clamp(1.7rem,4vw,2.5rem)}
+h3{font-size:1.14rem;font-weight:600}
+p{margin:0 0 1em}
+a{color:var(--ink);text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+svg{display:block;max-width:100%}
+strong{font-weight:600}
+::selection{background:var(--roxo);color:#fff}
+
+/* foco visível em tudo que é interativo (nunca removemos o foco sem substituto) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+  outline:3px solid var(--roxo);
+  outline-offset:3px;
+  border-radius:8px;
+}
+.site-footer a:focus-visible,
+.site-footer button:focus-visible{
+  outline-color:var(--laranja);
+}
+
+/* ---------- utilitários ---------- */
+.na-tela{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.na-tela:focus{
+  position:fixed;top:12px;left:12px;z-index:300;width:auto;height:auto;
+  margin:0;padding:12px 18px;clip:auto;background:var(--surface);
+  color:var(--ink);border-radius:10px;box-shadow:var(--sombra-forte);
+  font-weight:600;
+}
+
+.envolve{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+.etiqueta{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--roxo);
+  margin:0 0 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.etiqueta::before{
+  content:"";
+  width:26px;height:2px;background:var(--roxo);
+  border-radius:2px;flex:none;
+}
+
+.secao{padding:88px 0;position:relative}
+.secao.tinta{background:var(--surface-2)}
+.secao-sub{
+  font-size:1.06rem;
+  color:var(--ink-2);
+  max-width:62ch;
+  margin:0 0 40px;
+}
+section[id]{scroll-margin-top:96px}
+
+.mini-titulo{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin:0 0 10px;
+}
+
+.vazio{
+  background:var(--surface-2);
+  border:1px dashed var(--roxo-linha);
+  border-radius:var(--raio);
+  padding:16px 18px;
+  color:var(--ink-2);
+  font-size:15px;
+  margin:0;
+}
+
+/* barra de progresso: só transform, nunca width */
+.barra{
+  height:10px;
+  background:var(--surface-3);
+  border-radius:99px;
+  overflow:hidden;
+}
+.barra-fill{
+  display:block;
+  height:100%;
+  background:var(--roxo);
+  border-radius:99px;
+  transform:scaleX(var(--p,0));
+  transform-origin:left center;
+  transition:transform .85s var(--ease);
+}
+/* as barras da trilha enchem no reveal da seção */
+.js .trilha .barra-fill{transform:scaleX(0)}
+.js .trilha.ativo .barra-fill{transform:scaleX(var(--p,0))}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:13px 24px;
+  border-radius:999px;
+  border:2px solid transparent;
+  font-family:var(--fonte-corpo);
+  font-size:16px;
+  font-weight:600;
+  line-height:1.2;
+  cursor:pointer;
+  transition:background-color .2s var(--ease-estado),
+             color .2s var(--ease-estado),
+             border-color .2s var(--ease-estado),
+             transform .2s var(--ease-estado),
+             box-shadow .2s var(--ease-estado);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{flex:none}
+
+.btn-acento{background:var(--laranja);color:var(--ink)}
+.btn-acento:hover{background:var(--laranja-esc);box-shadow:0 14px 28px rgba(255,140,0,.3)}
+
+.btn-roxo{background:var(--roxo);color:#fff}
+.btn-roxo:hover{background:var(--roxo-esc);box-shadow:0 14px 28px rgba(106,13,173,.3)}
+
+.btn-contorno{border-color:var(--roxo);color:var(--roxo);background:transparent}
+.btn-contorno:hover{background:var(--roxo-claro);border-color:var(--roxo-esc);color:var(--roxo-esc)}
+
+.btn-texto{
+  background:transparent;
+  color:var(--roxo);
+  padding:13px 12px;
+  text-decoration:underline;
+  text-decoration-color:var(--roxo-linha);
+  text-underline-offset:5px;
+  transition:color .2s var(--ease-estado),
+             text-decoration-color .2s var(--ease-estado),
+             transform .2s var(--ease-estado);
+}
+.btn-texto:hover{color:var(--roxo-esc);text-decoration-color:var(--roxo-esc);transform:translateY(-2px)}
+
+/* ---------- header ---------- */
+.topo{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:120;
+  background:transparent;
+  transition:background-color .25s var(--ease-estado),
+             box-shadow .25s var(--ease-estado);
+}
+.topo.rolado{
+  background:var(--bg);
+  box-shadow:0 6px 22px rgba(27,16,53,.09);
+}
+.topo-linha{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  min-height:var(--header-h);
+  padding:14px 22px;
+  transition:padding .25s var(--ease-estado);
+}
+.topo.rolado .topo-linha{padding:8px 22px}
+
+.marca{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-right:auto;
+  transition:transform .2s var(--ease-estado);
+}
+.marca:hover{transform:translateY(-1px)}
+.marca-selo{
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.04em;
+  background:var(--roxo);
+  color:#fff;
+  border-radius:9px;
+  padding:7px 9px;
+}
+.marca-nome{
+  font-family:var(--fonte-titulo);
+  font-weight:700;
+  font-size:1.12rem;
+  letter-spacing:-.01em;
+}
+
+.menu-principal ul{display:flex;gap:26px}
+.menu-principal a{
+  font-size:15px;
+  font-weight:500;
+  color:var(--ink-2);
+  padding:6px 2px;
+  border-bottom:2px solid transparent;
+  transition:color .2s var(--ease-estado),
+             border-color .2s var(--ease-estado);
+}
+.menu-principal a:hover{color:var(--roxo);border-color:var(--roxo)}
+
+.topo-acoes{display:flex;align-items:center;gap:12px}
+.menu-botao{
+  display:none;
+  align-items:center;
+  gap:9px;
+  min-height:48px;
+  padding:11px 16px;
+  border-radius:999px;
+  border:1px solid var(--line-2);
+  background:var(--surface);
+  color:var(--ink);
+  font-family:var(--fonte-corpo);
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:border-color .2s var(--ease-estado),
+             background-color .2s var(--ease-estado),
+             transform .2s var(--ease-estado);
+}
+.menu-botao:hover{border-color:var(--roxo);background:var(--roxo-claro);transform:translateY(-1px)}
+
+.menu-mobile{
+  position:absolute;
+  top:100%;left:0;right:0;
+  background:var(--surface);
+  border-block:1px solid var(--line);
+  box-shadow:var(--sombra);
+  padding:14px 22px 24px;
+  display:grid;
+  gap:4px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-12px);
+  transition:opacity .25s var(--ease-estado),
+             transform .25s var(--ease-estado),
+             visibility .25s var(--ease-estado);
+}
+.topo.aberto .menu-mobile{opacity:1;visibility:visible;transform:none}
+.menu-mobile a{
+  padding:13px 8px;
+  border-radius:10px;
+  font-weight:500;
+  color:var(--ink);
+  transition:background-color .2s var(--ease-estado),
+             color .2s var(--ease-estado);
+}
+.menu-mobile a:hover{background:var(--roxo-claro);color:var(--roxo-esc)}
+.menu-mobile .btn{margin-top:10px}
+
+/* ---------- entrada de página (escalonada) ---------- */
+.js .entrada-item{opacity:0}
+@keyframes entra-sobe{
+  from{opacity:0;transform:translateY(26px)}
+  to{opacity:1;transform:none}
+}
+@keyframes entra-painel{
+  from{opacity:0;transform:translateY(34px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+body.pronto .entrada-item{
+  animation:entra-sobe .85s var(--ease) both;
+  animation-delay:calc(var(--i,0)*90ms + 100ms);
+}
+body.pronto .entrada-painel{
+  animation-name:entra-painel;
+  animation-duration:.95s;
+}
+
+/* ---------- scroll reveal ---------- */
+.js .revelar{opacity:0}
+.js .revelar.sobe{transform:translateY(30px)}
+.js .revelar.lado{transform:translateX(var(--dx,34px))}
+.js .revelar.escala{transform:scale(.955)}
+.js .revelar{
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay:calc(var(--i,0)*70ms);
+}
+.js [data-revelar].ativo .revelar{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  padding:calc(var(--header-h) + 46px) 0 78px;
+  overflow:hidden;
+}
+.hero-fundo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+/* wrapper do parallax: recebe o transform, a flutuação fica no filho */
+.parallax{position:absolute;inset:0}
+.forma{position:absolute;display:block}
+/* flutuação lenta: 12s por ciclo, só transform */
+.forma-a{
+  width:min(46vw,380px);
+  aspect-ratio:1;
+  top:-70px;right:-90px;
+  border-radius:44% 56% 61% 39% / 48% 42% 58% 52%;
+  background:var(--surface-3);
+  animation:flutua-a 12s var(--ease-estado) infinite;
+  will-change:transform;
+}
+.forma-b{
+  width:min(34vw,240px);
+  aspect-ratio:1;
+  bottom:-60px;left:-70px;
+  border-radius:58% 42% 37% 63% / 55% 61% 39% 45%;
+  background:var(--azul-claro);
+  animation:flutua-b 14s var(--ease-estado) infinite;
+  will-change:transform;
+}
+@keyframes flutua-a{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-18px,26px,0) scale(1.05)}
+}
+@keyframes flutua-b{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(22px,-18px,0)}
+}
+/* anel tracejado girando devagar: 16s, elemento decorativo */
+.anel{
+  position:absolute;
+  width:230px;height:230px;
+  top:38%;right:6%;
+  animation:gira 16s var(--ease-estado) infinite;
+  will-change:transform;
+}
+@keyframes gira{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.hero-grade{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:52px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.hero-sub{font-size:1.12rem;color:var(--ink-2);max-width:52ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 10px}
+.hero-status{font-size:14px;color:var(--ok);font-weight:600;min-height:22px;margin:0}
+
+.hero-fatos{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 34px;
+  margin-top:26px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.hero-fatos li{display:grid;gap:2px}
+.fato-rotulo{
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+.fato-valor{font-family:var(--fonte-mono);font-size:15px;color:var(--ink)}
+
+.painel-wrap{position:relative;min-width:0}
+.painel-nota{
+  font-size:14px;
+  color:var(--ink-3);
+  margin:14px 2px 0;
+}
+
+/* ---------- painel de aula mockado ---------- */
+.painel{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  box-shadow:var(--sombra-forte);
+  overflow:hidden;
+}
+.painel-topo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--line);
+  background:var(--surface-2);
+}
+.painel-curso{
+  font-size:13px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin:0 0 2px;
+}
+.painel-modulo{
+  font-family:var(--fonte-titulo);
+  font-weight:700;
+  font-size:1.02rem;
+  margin:0;
+  line-height:1.3;
+}
+.pill-ao-vivo{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--azul-claro);
+  color:#1D4ED8;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:7px 12px;
+  border-radius:999px;
+  flex:none;
+}
+.pill-ao-vivo .ponto{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--azul);
+}
+
+.painel-corpo{
+  padding:20px;
+  transition:opacity .2s var(--ease-estado),transform .2s var(--ease-estado);
+}
+.painel.trocando .painel-corpo{opacity:0;transform:translateY(10px)}
+
+/* área de vídeo: onda que desenha sozinha (assinatura do herói, 9s) */
+.painel-video{
+  position:relative;
+  background:var(--ink);
+  border-radius:var(--raio);
+  padding:18px 18px 14px;
+  overflow:hidden;
+}
+.onda{width:100%;height:60px}
+.onda-linha{
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+  animation:desenha-onda 9s var(--ease-estado) infinite;
+  will-change:stroke-dashoffset;
+}
+.onda-2{animation-duration:11s;animation-delay:.4s;opacity:.75}
+.painel.pausado .onda-linha{animation-play-state:paused}
+@keyframes desenha-onda{
+  0%{stroke-dashoffset:100}
+  62%,100%{stroke-dashoffset:0}
+}
+.play{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:60px;height:60px;
+  border-radius:50%;
+  border:0;
+  background:#fff;
+  color:var(--ink);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow:0 10px 26px rgba(0,0,0,.35);
+  transition:transform .2s var(--ease-estado),background-color .2s var(--ease-estado);
+}
+.play:hover{transform:translate(-50%,-50%) scale(1.07);background:var(--surface-2)}
+.painel-meta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  color:#DCCBf5;
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  margin:8px 0 0;
+}
+.painel-barra{margin-top:16px;display:grid;gap:8px}
+.painel-prog{font-size:13px;color:var(--ink-3);margin:0}
+.painel-desc{font-size:15px;color:var(--ink-2);margin:16px 0 0}
+
+.materiais-lista{display:grid;gap:8px;margin-top:4px}
+.materiais-lista li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:15px;
+  color:var(--ink);
+}
+.materiais-lista svg{color:var(--roxo);flex:none}
+
+/* lista de módulos: troca o painel */
+.mod-lista{padding:6px 14px 16px;border-top:1px solid var(--line)}
+.mod-titulo{padding:14px 8px 8px}
+.mod-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  text-align:left;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-family:var(--fonte-corpo);
+  transition:background-color .2s var(--ease-estado),
+             border-color .2s var(--ease-estado),
+             transform .2s var(--ease-estado);
+}
+.mod-item:hover{background:var(--surface-2);transform:translateX(3px)}
+.mod-item[aria-current="true"]{background:var(--roxo-claro);border-color:var(--roxo-linha)}
+.mod-num{
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  font-weight:500;
+  color:var(--roxo);
+  flex:none;
+}
+.mod-nome{font-size:15px;font-weight:500;color:var(--ink);line-height:1.35}
+
+/* ---------- trilha em passos ---------- */
+.trilha-grade{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+  position:relative;
+  margin-top:42px;
+}
+/* linha da trilha que cresce no reveal (só transform) */
+.trilha-linha{
+  position:absolute;
+  left:22px;right:22px;top:21px;
+  height:4px;
+  background:var(--roxo-linha);
+  border-radius:99px;
+  overflow:hidden;
+}
+.trilha-linha::after{
+  content:"";
+  display:block;
+  height:100%;
+  background:var(--roxo);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform 1.1s var(--ease) .15s;
+}
+.ativo .trilha-linha::after{transform:scaleX(1)}
+
+.passo{position:relative;padding-top:62px}
+.passo-num{
+  position:absolute;
+  top:0;left:0;
+  width:46px;height:46px;
+  border-radius:50%;
+  background:var(--surface);
+  border:2px solid var(--roxo);
+  color:var(--roxo);
+  display:grid;
+  place-items:center;
+  font-family:var(--fonte-titulo);
+  font-weight:700;
+  font-size:15px;
+  transition:transform .45s var(--ease),
+             background-color .25s var(--ease-estado),
+             color .25s var(--ease-estado);
+}
+.passo:hover .passo-num{background:var(--roxo);color:#fff;transform:scale(1.08)}
+.passo h3{margin-bottom:.35em}
+.passo p{font-size:15px;color:var(--ink-2);margin:0 0 12px}
+.passo-aulas{
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  color:var(--ink-3);
+  margin:0 0 8px;
+}
+
+/* ---------- projetos ---------- */
+.filtros{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px}
+.chip{
+  min-height:44px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--line-2);
+  background:var(--surface);
+  color:var(--ink-2);
+  font-family:var(--fonte-corpo);
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+  transition:background-color .2s var(--ease-estado),
+             border-color .2s var(--ease-estado),
+             color .2s var(--ease-estado),
+             transform .2s var(--ease-estado);
+}
+.chip:hover{border-color:var(--roxo);color:var(--roxo);transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:var(--roxo);border-color:var(--roxo);color:#fff}
+.proj-contador{
+  font-size:14px;
+  color:var(--ink-3);
+  margin:0 0 20px;
+  font-family:var(--fonte-mono);
+}
+
+.proj-lista{border-top:1px solid var(--line);transition:opacity .18s var(--ease-estado)}
+.proj-lista.filtragem{opacity:.35}
+.proj{
+  display:grid;
+  grid-template-columns:58px 1fr 290px;
+  gap:24px;
+  align-items:center;
+  padding:24px 4px;
+  border-bottom:1px solid var(--line);
+  transition:background-color .25s var(--ease-estado);
+}
+.proj:hover{background:rgba(106,13,173,.045)}
+.proj-num{
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  color:var(--roxo);
+  font-weight:500;
+}
+.proj h3{margin:0 0 4px}
+.proj p{margin:0;font-size:15px;color:var(--ink-2)}
+.proj-tag{
+  display:inline-block;
+  font-size:14px;
+  color:var(--ink-3);
+  margin-top:8px;
+}
+.proj-img{
+  aspect-ratio:16/10;
+  border:2px dashed var(--roxo-linha);
+  border-radius:var(--raio);
+  background:var(--surface-2);
+  display:grid;
+  place-items:center;
+  gap:4px;
+  text-align:center;
+  color:var(--ink-3);
+  font-size:14px;
+  padding:10px;
+  transition:transform .3s var(--ease-estado),
+             border-color .3s var(--ease-estado),
+             background-color .3s var(--ease-estado);
+}
+.proj:hover .proj-img{transform:scale(1.03);border-color:var(--roxo);background:var(--surface)}
+.proj-img .icone-proj{color:var(--roxo-linha);transition:color .3s var(--ease-estado)}
+.proj:hover .proj-img .icone-proj{color:var(--roxo)}
+.proj-vazio{margin-top:24px}
+
+/* ---------- instrutor ---------- */
+.instrutor-grade{
+  display:grid;
+  grid-template-columns:330px 1fr;
+  gap:52px;
+  align-items:center;
+}
+.instrutor-foto{
+  aspect-ratio:4/5;
+  border:2px dashed var(--roxo-linha);
+  border-radius:var(--raio-g);
+  background:var(--surface);
+  display:grid;
+  place-items:center;
+  gap:10px;
+  text-align:center;
+  color:var(--ink-3);
+  font-size:14px;
+  padding:16px;
+  transition:border-color .3s var(--ease-estado),transform .3s var(--ease-estado);
+}
+.instrutor-foto:hover{border-color:var(--roxo);transform:translateY(-4px)}
+.instrutor-foto .icone-foto{color:var(--roxo-linha);transition:color .3s var(--ease-estado)}
+.instrutor-foto:hover .icone-foto{color:var(--roxo)}
+.instrutor-texto p{color:var(--ink-2);font-size:1.04rem}
+.instrutor-nome{font-size:1.5rem;margin-bottom:.3em}
+.assinatura{width:min(320px,100%);height:26px;margin:6px 0 22px}
+.assinatura path{
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+  transition:stroke-dashoffset 1.3s var(--ease) .25s;
+}
+.ativo .assinatura path{stroke-dashoffset:0}
+.instrutor-lista{display:grid;gap:10px;margin-top:18px}
+.instrutor-lista li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:15px;
+  color:var(--ink);
+}
+.instrutor-lista svg{color:var(--roxo);flex:none;margin-top:4px}
+
+/* ---------- formato em 2 blocos ---------- */
+.formato-grade{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.bloco{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  padding:34px;
+  box-shadow:var(--sombra);
+  transition:transform .3s var(--ease-estado),
+             box-shadow .3s var(--ease-estado),
+             border-color .3s var(--ease-estado);
+}
+.bloco:hover{transform:translateY(-6px);box-shadow:var(--sombra-forte);border-color:var(--roxo-linha)}
+.bloco-icone{
+  width:58px;height:58px;
+  border-radius:18px;
+  background:var(--roxo-claro);
+  color:var(--roxo);
+  display:grid;
+  place-items:center;
+  margin-bottom:20px;
+  transition:transform .3s var(--ease-estado),background-color .3s var(--ease-estado);
+}
+.bloco:hover .bloco-icone{transform:rotate(-6deg) scale(1.06);background:var(--surface-3)}
+.bloco h3{font-size:1.35rem}
+.bloco > p{color:var(--ink-2);font-size:15.5px}
+.bloco-lista{display:grid;gap:12px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.bloco-lista li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.bloco-lista svg{color:var(--roxo);flex:none;margin-top:4px}
+
+/* ---------- investimento ---------- */
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.plano{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  transition:transform .3s var(--ease-estado),
+             box-shadow .3s var(--ease-estado),
+             border-color .3s var(--ease-estado);
+}
+.plano:hover{transform:translateY(-6px);box-shadow:var(--sombra-forte);border-color:var(--roxo-linha)}
+.plano.destaque{border-color:var(--roxo);box-shadow:0 16px 40px rgba(106,13,173,.14)}
+.plano-selo{
+  align-self:flex-start;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--roxo);
+  background:var(--roxo-claro);
+  border-radius:999px;
+  padding:6px 12px;
+}
+.plano h3{font-size:1.4rem;margin:0}
+.plano-preco{
+  font-family:var(--fonte-titulo);
+  font-size:2.3rem;
+  font-weight:800;
+  color:var(--roxo);
+  line-height:1;
+  margin:0;
+}
+.plano-preco span{
+  display:block;
+  font-family:var(--fonte-corpo);
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink-3);
+  margin-top:8px;
+}
+.plano-lista{display:grid;gap:11px;margin:6px 0 8px}
+.plano-lista li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
+.plano-lista svg{color:var(--roxo);flex:none;margin-top:4px}
+.plano .btn{margin-top:auto}
+.planos-nota{font-size:14px;color:var(--ink-3);margin:20px 0 0}
+
+/* ---------- FAQ ---------- */
+.faq-lista{display:grid;gap:12px;max-width:840px}
+.faq-item{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio);
+  overflow:hidden;
+  transition:border-color .25s var(--ease-estado),box-shadow .25s var(--ease-estado);
+}
+.faq-item:hover{border-color:var(--roxo-linha)}
+.faq-item.aberto{border-color:var(--roxo-linha);box-shadow:var(--sombra)}
+.faq-item h3{margin:0}
+.faq-botao{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:20px 22px;
+  background:transparent;
+  border:0;
+  font-family:var(--fonte-corpo);
+  font-size:1.02rem;
+  font-weight:600;
+  text-align:left;
+  color:var(--ink);
+  cursor:pointer;
+  min-height:60px;
+  transition:background-color .2s var(--ease-estado);
+}
+.faq-botao:hover{background:var(--surface-2)}
+.faq-sinal{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:1px solid var(--roxo-linha);
+  display:grid;
+  place-items:center;
+  color:var(--roxo);
+  flex:none;
+  transition:transform .3s var(--ease-estado),
+             background-color .3s var(--ease-estado),
+             color .3s var(--ease-estado),
+             border-color .3s var(--ease-estado);
+}
+.faq-item.aberto .faq-sinal{
+  transform:rotate(45deg);
+  background:var(--roxo);
+  border-color:var(--roxo);
+  color:#fff;
+}
+.faq-painel{
+  height:0;
+  overflow:hidden;
+  transition:height .32s var(--ease-estado);
+}
+.faq-painel p{padding:0 22px 22px;margin:0;color:var(--ink-2)}
+
+/* ---------- matrícula ---------- */
+.matricula-grade{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:52px;
+  align-items:start;
+}
+.passos-matricula{display:grid;gap:20px;margin-top:26px}
+.passo-matricula{display:flex;gap:16px;align-items:flex-start}
+.passo-matricula .num{
+  width:38px;height:38px;
+  border-radius:50%;
+  background:var(--roxo);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-family:var(--fonte-titulo);
+  font-weight:700;
+  font-size:15px;
+  flex:none;
+}
+.passo-matricula p{margin:0;color:var(--ink-2);font-size:15.5px}
+.passo-matricula strong{display:block;color:var(--ink);font-weight:600}
+
+.cartao-form{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--raio-g);
+  padding:32px;
+  box-shadow:var(--sombra-forte);
+}
+.campo{display:grid;gap:6px;margin-bottom:18px}
+.campo label{font-weight:600;font-size:15px}
+.campo .dica{font-size:14px;color:var(--ink-3)}
+.campo input,
+.campo select,
+.campo textarea{
+  font-family:var(--fonte-corpo);
+  font-size:16px;
+  padding:13px 14px;
+  min-height:48px;
+  border:1px solid var(--line-2);
+  border-radius:12px;
+  background:var(--bg);
+  color:var(--ink);
+  transition:border-color .2s var(--ease-estado),
+             background-color .2s var(--ease-estado);
+}
+.campo textarea{min-height:104px;resize:vertical}
+.campo input:hover,.campo select:hover,.campo textarea:hover{border-color:var(--roxo-linha)}
+.campo.erro input,.campo.erro select,.campo.erro textarea{border-color:var(--erro);background:#FCF1F0}
+.msg-erro{display:none;font-size:14px;font-weight:600;color:var(--erro)}
+.campo.erro .msg-erro{display:block}
+.check-linha{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  font-size:15px;
+  color:var(--ink-2);
+  margin-bottom:22px;
+}
+.check-linha input{
+  width:22px;height:22px;
+  min-height:22px;
+  margin-top:3px;
+  accent-color:var(--roxo);
+  flex:none;
+}
+.check-linha.erro{color:var(--erro)}
+.form-aviso{font-size:14px;color:var(--ink-3);margin:16px 0 0}
+
+.sucesso{display:none}
+.cartao-form.ok .form-conteudo{display:none}
+.cartao-form.ok .sucesso{
+  display:block;
+  animation:entra-sobe .5s var(--ease) both;
+}
+.sucesso-icone{
+  width:56px;height:56px;
+  border-radius:50%;
+  background:var(--roxo-claro);
+  color:var(--roxo);
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+}
+.sucesso h3{font-size:1.4rem}
+.sucesso p{color:var(--ink-2)}
+.sucesso .btn{margin-top:8px}
+
+/* ---------- rodapé ---------- */
+.site-footer{
+  background:var(--ink);
+  color:#EDE7F7;
+  padding:60px 0 30px;
+}
+.site-footer h2{
+  color:#fff;
+  font-size:1.25rem;
+  margin:0 0 14px;
+}
+.rodape-grade{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:34px;
+  border-bottom:1px solid rgba(237,231,247,.16);
+}
+.rodape-marca{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+  color:#fff;
+}
+.rodape-marca .marca-selo{background:#fff;color:var(--roxo)}
+.rodape-marca span{font-family:var(--fonte-titulo);font-weight:700;font-size:1.1rem}
+.site-footer p{color:#C9BCE4;font-size:15px;max-width:38ch}
+.rodape-lista{display:grid;gap:10px}
+.rodape-lista a,.rodape-lista span{
+  color:#CBB8E8;
+  font-size:15px;
+  transition:color .2s var(--ease-estado);
+}
+.rodape-lista a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rodape-lista .rotulo{
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#9C8CC4;
+}
+.rodape-fim{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 22px;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:22px;
+  font-size:14px;
+  color:#C9BCE4;
+}
+.rodape-fim a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rodape-fim a:hover{color:var(--laranja)}
+
+/* ---------- responsivo: 760 e 480 ---------- */
+@media (max-width:760px){
+  body{font-size:16.5px}
+  .secao{padding:64px 0}
+  .menu-principal,.topo-cta{display:none}
+  .menu-botao{display:inline-flex}
+  .marca-selo{display:none}
+
+  .hero{padding:calc(var(--header-h) + 30px) 0 56px}
+  .hero-grade{grid-template-columns:1fr;gap:44px}
+  .forma-a{top:-110px;right:-120px}
+  .forma-b{display:none}
+  .anel{display:none}
+  .hero-fatos{gap:16px 26px}
+
+  .trilha-grade{grid-template-columns:1fr;gap:26px;margin-top:30px}
+  .trilha-linha{display:none}
+  .passo{padding:0 0 0 62px}
+  .passo::before{
+    content:"";
+    position:absolute;
+    left:22px;top:52px;bottom:-30px;
+    width:2px;
+    background:var(--roxo-linha);
+  }
+  .passo:last-child::before{display:none}
+
+  .proj{grid-template-columns:40px 1fr;gap:16px;padding:22px 2px}
+  .proj-img{grid-column:2;max-width:440px}
+
+  .instrutor-grade{grid-template-columns:1fr;gap:34px}
+  .instrutor-foto{max-width:300px}
+
+  .formato-grade{grid-template-columns:1fr}
+  .bloco{padding:26px}
+
+  .planos{grid-template-columns:1fr}
+  .plano{padding:26px}
+
+  .matricula-grade{grid-template-columns:1fr;gap:38px}
+  .cartao-form{padding:24px}
+
+  .rodape-grade{grid-template-columns:1fr;gap:30px}
+  .site-footer p{max-width:none}
+}
+
+@media (max-width:480px){
+  .envolve{padding:0 16px}
+  .topo-linha{padding:12px 16px}
+  .hero-ctas{gap:10px}
+  .hero-ctas .btn{width:100%}
+  .btn{font-size:15.5px;padding:13px 20px}
+  .painel-topo{flex-direction:column;align-items:flex-start;gap:10px}
+  .faq-botao{font-size:16px;padding:18px 16px}
+  .faq-painel p{padding:0 16px 18px}
+  .play{width:52px;height:52px}
+  .plano-preco{font-size:2rem}
+}
+
+/* movimento reduzido: desliga tudo que não é essencial */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .entrada-item,.js .revelar{opacity:1!important;transform:none!important}
+  body.pronto .entrada-item,
+  body.pronto .entrada-painel{animation:none!important}
+  .forma-a,.forma-b,.anel,.onda-linha{animation:none!important}
+  .onda-linha{stroke-dashoffset:0}
+  .trilha-linha::after{transform:scaleX(1)!important;transition:none!important}
+  .barra-fill{transition:none!important}
+  .assinatura path{stroke-dashoffset:0!important;transition:none!important}
+  .btn:hover,.chip:hover,.bloco:hover,.plano:hover,.proj-img,.instrutor-foto{transform:none!important}
+  .faq-painel{transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="na-tela" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo" id="topo-site">
+  <div class="envolve topo-linha">
+    <a class="marca" href="#inicio">
+      <span class="marca-selo" aria-hidden="true">[LOGO]</span>
+      <span class="marca-nome">Sua Marca</span>
+    </a>
+    <nav class="menu-principal" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#trilha">A trilha</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#formato">Formato</a></li>
+        <li><a href="#investimento">Investimento</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="topo-acoes">
+      <a class="btn btn-acento topo-cta" href="#matricula">Quero me matricular</a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu-mobile">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+  </div>
+  <div class="menu-mobile" id="menu-mobile">
+    <a href="#trilha">A trilha</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#formato">Formato</a>
+    <a href="#investimento">Investimento</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn-acento" href="#matricula">Quero me matricular</a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+    <div class="hero-fundo" aria-hidden="true">
+      <div class="parallax" data-parallax="0.14"><span class="forma forma-a"></span></div>
+      <span class="forma forma-b"></span>
+      <svg class="anel" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="94" fill="none" stroke="#DCC6F0" stroke-width="2" stroke-dasharray="7 12"/>
+      </svg>
+    </div>
+
+    <div class="envolve hero-grade">
+      <div class="hero-texto">
+        <p class="etiqueta entrada-item" style="--i:0">Curso online de análise de dados</p>
+        <h1 id="titulo-hero" class="entrada-item" style="--i:1">A formação que termina com projeto pronto no portfólio</h1>
+        <p class="hero-sub entrada-item" style="--i:2">Cinco módulos, aulas ao vivo e uma comunidade que revisa o que você constrói. Cada módulo entrega uma peça de portfólio, não apenas mais uma anotação.</p>
+        <div class="hero-ctas entrada-item" style="--i:3">
+          <a class="btn btn-acento" href="#matricula">Quero me matricular</a>
+          <a class="btn btn-contorno" href="#trilha">Ver a trilha</a>
+          <button class="btn btn-texto" type="button" id="baixar-programa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Baixar o programa
+          </button>
+        </div>
+        <p class="hero-status" id="status-download" role="status" aria-live="polite"></p>
+        <ul class="hero-fatos entrada-item" style="--i:4">
+          <li><span class="fato-rotulo">Duração</span><span class="fato-valor">[X semanas]</span></li>
+          <li><span class="fato-rotulo">Aulas ao vivo</span><span class="fato-valor">[X por semana]</span></li>
+          <li><span class="fato-rotulo">Nível</span><span class="fato-valor">Iniciante a intermediário</span></li>
+        </ul>
+      </div>
+
+      <div class="painel-wrap entrada-item entrada-painel" style="--i:5">
+        <div class="painel" id="painel" role="group" aria-label="Painel de aula de demonstração">
+          <div class="painel-topo">
+            <div>
+              <p class="painel-curso">Formação em análise de dados</p>
+              <p class="painel-modulo" id="painel-titulo">Módulo 1 · Fundamentos: planilha, SQL e a pergunta certa</p>
+            </div>
+            <span class="pill-ao-vivo"><span class="ponto" aria-hidden="true"></span>Ao vivo</span>
+          </div>
+
+          <div class="painel-corpo" id="painel-corpo">
+            <div class="painel-video">
+              <svg class="onda" viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
+                <path class="onda-linha" d="M4 34 L18 34 L26 12 L34 50 L44 22 L58 34 L78 34 L86 8 L96 52 L108 18 L124 34 L150 34 L158 14 L168 46 L180 24 L196 34 L216 34 L224 10 L236 50 L248 20 L264 34 L316 34" pathLength="100" fill="none" stroke="#D9C2F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="onda-linha onda-2" d="M4 30 L20 30 L30 18 L40 44 L52 26 L70 30 L92 30 L100 16 L110 42 L122 24 L140 30 L164 30 L172 20 L182 40 L194 28 L212 30 L234 30 L242 18 L252 42 L264 26 L282 30 L316 30" pathLength="100" fill="none" stroke="#9B7BD0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <button class="play" type="button" id="play-btn" aria-pressed="true" aria-label="Pausar a prévia da aula">
+                <svg id="ic-pause" width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="6" height="22" rx="1.5"/><rect x="19" y="5" width="6" height="22" rx="1.5"/></svg>
+                <svg id="ic-play" width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" hidden><path d="M9 5v22l17-11z"/></svg>
+              </button>
+              <p class="painel-meta"><span id="painel-aula">Aula 3 de 8</span><span aria-hidden="true">·</span><span id="painel-dura">12:40</span></p>
+            </div>
+
+            <div class="painel-barra">
+              <div class="barra"><span class="barra-fill" id="painel-fill"></span></div>
+              <p class="painel-prog" id="painel-prog">Andamento do módulo: 38%</p>
+            </div>
+
+            <p class="painel-desc" id="painel-desc">Aprender a fazer a pergunta antes de abrir a ferramenta: planilha do zero e SQL de leitura.</p>
+
+            <div class="painel-materiais">
+              <p class="mini-titulo">Materiais desta aula</p>
+              <ul class="materiais-lista" id="painel-materiais">
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Planilha de exercícios</li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Guia de SQL de leitura em 4 páginas</li>
+              </ul>
+              <p class="vazio" id="painel-vazio" hidden>Nenhum material liberado ainda. Os arquivos do projeto final abrem no primeiro dia de aula.</p>
+            </div>
+          </div>
+
+          <div class="mod-lista" role="group" aria-label="Módulos do curso">
+            <p class="mini-titulo mod-titulo">Módulos</p>
+            <button class="mod-item" type="button" data-modulo="0" aria-current="true">
+              <span class="mod-num">01</span><span class="mod-nome">Fundamentos: planilha, SQL e a pergunta certa</span>
+            </button>
+            <button class="mod-item" type="button" data-modulo="1">
+              <span class="mod-num">02</span><span class="mod-nome">Coleta e limpeza: do dado cru ao dado usável</span>
+            </button>
+            <button class="mod-item" type="button" data-modulo="2">
+              <span class="mod-num">03</span><span class="mod-nome">Painéis que respondem pergunta</span>
+            </button>
+            <button class="mod-item" type="button" data-modulo="3">
+              <span class="mod-num">04</span><span class="mod-nome">Estatística aplicada, sem decoreba</span>
+            </button>
+            <button class="mod-item" type="button" data-modulo="4">
+              <span class="mod-num">05</span><span class="mod-nome">Projeto final com dado público</span>
+            </button>
+          </div>
+        </div>
+        <p class="painel-nota">Painel de demonstração: escolha um módulo para ver o conteúdo da aula.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRILHA ================= -->
+  <section class="secao tinta trilha" id="trilha" data-revelar aria-labelledby="titulo-trilha">
+    <div class="envolve">
+      <p class="etiqueta revelar sobe" style="--i:0">A trilha</p>
+      <h2 id="titulo-trilha" class="revelar sobe" style="--i:1">Cinco módulos, cinco projetos</h2>
+      <p class="secao-sub revelar sobe" style="--i:2">A ordem importa: primeiro a pergunta, depois a ferramenta. Ao todo, 30 aulas e 5 projetos entregues.</p>
+
+      <div class="trilha-grade">
+        <div class="trilha-linha" aria-hidden="true"></div>
+
+        <article class="passo revelar sobe" style="--i:3">
+          <span class="passo-num" aria-hidden="true">01</span>
+          <h3>Fundamentos: planilha, SQL e a pergunta certa</h3>
+          <p>Você aprende a escrever a pergunta e a ler dado com planilha e SQL de leitura.</p>
+          <p class="passo-aulas">8 aulas de 30</p>
+          <div class="barra" role="img" aria-label="8 aulas de 30 na trilha"><span class="barra-fill" style="--p:.86"></span></div>
+        </article>
+
+        <article class="passo revelar sobe" style="--i:4">
+          <span class="passo-num" aria-hidden="true">02</span>
+          <h3>Coleta e limpeza: do dado cru ao dado usável</h3>
+          <p>Do arquivo cru ao dado pronto, com rotina que não depende de copiar e colar.</p>
+          <p class="passo-aulas">6 aulas de 30</p>
+          <div class="barra" role="img" aria-label="6 aulas de 30 na trilha"><span class="barra-fill" style="--p:.65"></span></div>
+        </article>
+
+        <article class="passo revelar sobe" style="--i:5">
+          <span class="passo-num" aria-hidden="true">03</span>
+          <h3>Painéis que respondem pergunta</h3>
+          <p>Escolher o gráfico pela pergunta e montar painel que cabe em uma tela.</p>
+          <p class="passo-aulas">7 aulas de 30</p>
+          <div class="barra" role="img" aria-label="7 aulas de 30 na trilha"><span class="barra-fill" style="--p:.75"></span></div>
+        </article>
+
+        <article class="passo revelar sobe" style="--i:6">
+          <span class="passo-num" aria-hidden="true">04</span>
+          <h3>Estatística aplicada, sem decoreba</h3>
+          <p>Média, variação e amostra do tamanho que você tem, com leitura honesta.</p>
+          <p class="passo-aulas">5 aulas de 30</p>
+          <div class="barra" role="img" aria-label="5 aulas de 30 na trilha"><span class="barra-fill" style="--p:.54"></span></div>
+        </article>
+
+        <article class="passo revelar sobe" style="--i:7">
+          <span class="passo-num" aria-hidden="true">05</span>
+          <h3>Projeto final com dado público</h3>
+          <p>Painel publicado com dado aberto e a leitura dele escrita em três parágrafos.</p>
+          <p class="passo-aulas">4 aulas de 30</p>
+          <div class="barra" role="img" aria-label="4 aulas de 30 na trilha"><span class="barra-fill" style="--p:.43"></span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJETOS ================= -->
+  <section class="secao" id="projetos" data-revelar aria-labelledby="titulo-projetos">
+    <div class="envolve">
+      <p class="etiqueta revelar sobe" style="--i:0">O que você vai construir</p>
+      <h2 id="titulo-projetos" class="revelar sobe" style="--i:1">Seis peças de portfólio, uma por entrega</h2>
+      <p class="secao-sub revelar sobe" style="--i:2">Cada projeto nasce de uma pergunta de negócio e termina em algo que você pode mostrar. Filtre por tipo para ver o que combina com o seu objetivo.</p>
+
+      <div class="filtros revelar sobe" style="--i:3" role="group" aria-label="Filtrar projetos por tipo">
+        <button class="chip" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+        <button class="chip" type="button" data-filtro="interface" aria-pressed="false">Interface</button>
+        <button class="chip" type="button" data-filtro="dados" aria-pressed="false">Dados</button>
+        <button class="chip" type="button" data-filtro="automacao" aria-pressed="false">Automação</button>
+      </div>
+      <p class="proj-contador revelar sobe" style="--i:3" id="proj-contador" aria-live="polite">6 projetos no filtro atual</p>
+
+      <div class="proj-lista" id="proj-lista">
+        <article class="proj revelar sobe" style="--i:4" data-cat="interface">
+          <span class="proj-num" aria-hidden="true">01</span>
+          <div>
+            <h3>Painel de acompanhamento mensal</h3>
+            <p>Um painel que responde se o mês fechou melhor ou pior que o anterior, e por quê.</p>
+            <span class="proj-tag">Tipo: interface</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: print do painel de acompanhamento mensal">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: print do painel</span>
+          </div>
+        </article>
+
+        <article class="proj revelar sobe" style="--i:5" data-cat="automacao">
+          <span class="proj-num" aria-hidden="true">02</span>
+          <div>
+            <h3>Rotina de limpeza de planilha</h3>
+            <p>Um script que arruma a planilha crua e devolve o dado pronto para analisar.</p>
+            <span class="proj-tag">Tipo: automação</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: captura da rotina de limpeza de planilha">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: captura da rotina</span>
+          </div>
+        </article>
+
+        <article class="proj revelar sobe" style="--i:6" data-cat="dados">
+          <span class="proj-num" aria-hidden="true">03</span>
+          <div>
+            <h3>Relatório de pergunta de negócio</h3>
+            <p>Três páginas que respondem uma pergunta de negócio com dado, não com opinião.</p>
+            <span class="proj-tag">Tipo: dados</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: página do relatório de pergunta de negócio">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: página do relatório</span>
+          </div>
+        </article>
+
+        <article class="proj revelar sobe" style="--i:7" data-cat="interface">
+          <span class="proj-num" aria-hidden="true">04</span>
+          <div>
+            <h3>Dashboard com dado público</h3>
+            <p>Painel publicado com dado aberto, do jeito que aparece em portfólio.</p>
+            <span class="proj-tag">Tipo: interface</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: print do dashboard com dado público">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: print do dashboard</span>
+          </div>
+        </article>
+
+        <article class="proj revelar sobe" style="--i:8" data-cat="automacao">
+          <span class="proj-num" aria-hidden="true">05</span>
+          <div>
+            <h3>Rotina que junta duas planilhas</h3>
+            <p>Duas bases diferentes viram uma tabela só, sem copiar e colar.</p>
+            <span class="proj-tag">Tipo: automação</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: captura da rotina que junta duas planilhas">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: captura da rotina</span>
+          </div>
+        </article>
+
+        <article class="proj revelar sobe" style="--i:9" data-cat="dados">
+          <span class="proj-num" aria-hidden="true">06</span>
+          <div>
+            <h3>Estudo de caso com teste simples</h3>
+            <p>Leitura honesta de um teste: o que o dado mostra e o que ele não mostra.</p>
+            <span class="proj-tag">Tipo: dados</span>
+          </div>
+          <div class="proj-img" role="img" aria-label="espaco para foto: página do estudo de caso com teste simples">
+            <svg class="icone-proj" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l4.5-4 3.5 3 3-2.5L21 16"/><circle cx="8" cy="8.5" r="1.5"/></svg>
+            <span>Lugar do projeto: página do estudo</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="vazio proj-vazio" id="proj-vazio" hidden>Nenhum projeto neste filtro ainda. Escolha outro tipo ou veja todos.</p>
+    </div>
+  </section>
+
+  <!-- ================= INSTRUTOR ================= -->
+  <section class="secao tinta" id="instrutor" data-revelar aria-labelledby="titulo-instrutor">
+    <div class="envolve instrutor-grade">
+      <div class="instrutor-foto revelar escala" style="--i:0" role="img" aria-label="espaco para foto: retrato do instrutor">
+        <svg class="icone-foto" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m4 18 5-4 4 3 3.5-3L20 17"/></svg>
+        <span>Sua foto aqui</span>
+      </div>
+      <div class="instrutor-texto">
+        <p class="etiqueta revelar sobe" style="--i:1">Quem dá aula</p>
+        <h2 id="titulo-instrutor" class="revelar sobe" style="--i:1">[nome do instrutor]</h2>
+        <svg class="assinatura revelar sobe" style="--i:2" viewBox="0 0 300 26" aria-hidden="true">
+          <path d="M4 18 C 55 4, 105 24, 150 12 S 245 4, 296 16" pathLength="100" fill="none" stroke="#6A0DAD" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <p class="revelar sobe" style="--i:3">[minibio do instrutor: formação, onde trabalha hoje e desde quando dá aula. Escreva em duas ou três linhas, no mesmo tom do resto da página.]</p>
+        <ul class="instrutor-lista">
+          <li class="revelar sobe" style="--i:4"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>[Tempo de mercado: X anos]</li>
+          <li class="revelar sobe" style="--i:5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dá aula em [instituição ou empresa]</li>
+          <li class="revelar sobe" style="--i:6"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atende em [cidade/UF] e online</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORMATO ================= -->
+  <section class="secao" id="formato" data-revelar aria-labelledby="titulo-formato">
+    <div class="envolve">
+      <p class="etiqueta revelar sobe" style="--i:0">Formato</p>
+      <h2 id="titulo-formato" class="revelar sobe" style="--i:1">Duas partes que se sustentam</h2>
+      <p class="secao-sub revelar sobe" style="--i:2">Aula ao vivo dá o ritmo. A comunidade dá a revisão. Nenhuma das duas está aqui para parecer completa.</p>
+
+      <div class="formato-grade">
+        <article class="bloco revelar lado" style="--i:3;--dx:-40px">
+          <div class="bloco-icone" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m11 8.6 4 2.4-4 2.4z"/></svg>
+          </div>
+          <h3>Aulas ao vivo</h3>
+          <p>A turma se encontra [X] vezes por semana, em horário [definir]. A aula fica gravada e liberada em até [X] horas.</p>
+          <ul class="bloco-lista">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Encontro ao vivo de [X] minutos</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Gravação liberada em até [X] horas</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Plantão de dúvidas antes de cada entrega</li>
+          </ul>
+        </article>
+
+        <article class="bloco revelar lado" style="--i:4;--dx:40px">
+          <div class="bloco-icone" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.6"/><circle cx="5" cy="18" r="2.6"/><circle cx="19" cy="18" r="2.6"/><path d="M10.6 8.2 6.4 15.6"/><path d="M13.4 8.2l4.2 7.4"/><path d="M7.6 18h8.8"/></svg>
+          </div>
+          <h3>Comunidade</h3>
+          <p>Canal de dúvidas com resposta da equipe, revisão de projeto entre alunos e encontro mensal de portfólio.</p>
+          <ul class="bloco-lista">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Canal de dúvidas com resposta em até [X] dias úteis</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Revisão de projeto entre alunos</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Encontro mensal de portfólio</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INVESTIMENTO ================= -->
+  <section class="secao tinta" id="investimento" data-revelar aria-labelledby="titulo-investimento">
+    <div class="envolve">
+      <p class="etiqueta revelar sobe" style="--i:0">Investimento</p>
+      <h2 id="titulo-investimento" class="revelar sobe" style="--i:1">Duas formas de participar</h2>
+      <p class="secao-sub revelar sobe" style="--i:2">A diferença está no acompanhamento, não no acesso ao conteúdo. As duas opções incluem os mesmos 30 aulas e os mesmos materiais.</p>
+
+      <div class="planos">
+        <article class="plano destaque revelar escala" style="--i:3">
+          <span class="plano-selo">Para quem quer acompanhamento</span>
+          <h3>Turma ao vivo</h3>
+          <p class="plano-preco">[R$ 00]<span>Valor a definir (placeholder)</span></p>
+          <ul class="plano-lista">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aulas ao vivo com a turma</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Revisão de projeto pela equipe</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Comunidade e plantão de dúvidas</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Certificado de conclusão</li>
+          </ul>
+          <a class="btn btn-roxo" href="#matricula" data-modalidade="Turma ao vivo">Quero me matricular</a>
+        </article>
+
+        <article class="plano revelar escala" style="--i:4">
+          <span class="plano-selo">Para quem faz no próprio ritmo</span>
+          <h3>No meu ritmo</h3>
+          <p class="plano-preco">[R$ 00]<span>Valor a definir (placeholder)</span></p>
+          <ul class="plano-lista">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Acesso a todas as gravações</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Comunidade e materiais</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Revisão de projeto no encontro mensal</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Certificado de conclusão</li>
+          </ul>
+          <a class="btn btn-contorno" href="#matricula" data-modalidade="No meu ritmo">Quero me matricular</a>
+        </article>
+      </div>
+      <p class="planos-nota revelar sobe" style="--i:5">Valores, duração e condições são placeholders deste modelo de demonstração.</p>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="secao" id="faq" data-revelar aria-labelledby="titulo-faq">
+    <div class="envolve">
+      <p class="etiqueta revelar sobe" style="--i:0">Perguntas frequentes</p>
+      <h2 id="titulo-faq" class="revelar sobe" style="--i:1">O que perguntam antes de matricular</h2>
+      <p class="secao-sub revelar sobe" style="--i:2">Cinco dúvidas reais de quem está decidindo. Se a sua não estiver aqui, ela cabe no formulário de matrícula.</p>
+
+      <div class="faq-lista">
+        <div class="faq-item revelar sobe" style="--i:3">
+          <h3>
+            <button class="faq-botao" type="button" aria-expanded="false" aria-controls="faq-p1" id="faq-b1">
+              Quanto tempo por semana eu preciso dedicar?
+              <span class="faq-sinal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-painel" id="faq-p1" role="region" aria-labelledby="faq-b1">
+            <p>Conta com [X] horas por semana: [X] de aula ao vivo e o resto nos exercícios. Se a semana apertar, as gravações ficam disponíveis e você acompanha no seu ritmo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item revelar sobe" style="--i:4">
+          <h3>
+            <button class="faq-botao" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-b2">
+              Serve para quem está começando?
+              <span class="faq-sinal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-painel" id="faq-p2" role="region" aria-labelledby="faq-b2">
+            <p>Os dois primeiros módulos partem do zero, de planilha e SQL de leitura. A partir do módulo 3 o ritmo aumenta, e aí pesa mais a constância do que o talento.</p>
+          </div>
+        </div>
+
+        <div class="faq-item revelar sobe" style="--i:5">
+          <h3>
+            <button class="faq-botao" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-b3">
+              Tem certificado?
+              <span class="faq-sinal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-painel" id="faq-p3" role="region" aria-labelledby="faq-b3">
+            <p>Sim, quem entrega os projetos recebe certificado de conclusão. Ele comprova as horas do curso e não substitui diploma nem experiência.</p>
+          </div>
+        </div>
+
+        <div class="faq-item revelar sobe" style="--i:6">
+          <h3>
+            <button class="faq-botao" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-b4">
+              Posso assistir as aulas gravadas?
+              <span class="faq-sinal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-painel" id="faq-p4" role="region" aria-labelledby="faq-b4">
+            <p>Pode. Todas as aulas ao vivo ficam gravadas e disponíveis em até [X] horas. O plantão de dúvidas é o único momento que depende do horário da turma.</p>
+          </div>
+        </div>
+
+        <div class="faq-item revelar sobe" style="--i:7">
+          <h3>
+            <button class="faq-botao" type="button" aria-expanded="false" aria-controls="faq-p5" id="faq-b5">
+              E se eu não gostar do curso?
+              <span class="faq-sinal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+            </button>
+          </h3>
+          <div class="faq-painel" id="faq-p5" role="region" aria-labelledby="faq-b5">
+            <p>Nas primeiras [X] aulas você pode pedir o reembolso e recebe [definir: percentual] de volta, sem explicar o motivo. A regra completa fica no contrato de matrícula.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MATRÍCULA ================= -->
+  <section class="secao tinta" id="matricula" data-revelar aria-labelledby="titulo-matricula">
+    <div class="envolve matricula-grade">
+      <div>
+        <p class="etiqueta revelar sobe" style="--i:0">Matrícula</p>
+        <h2 id="titulo-matricula" class="revelar sobe" style="--i:1">Quero me matricular</h2>
+        <p class="secao-sub revelar sobe" style="--i:2">Preencha seus dados e a gente confirma a turma e os valores por e-mail. Nada de pagamento nesta etapa.</p>
+        <ul class="passos-matricula">
+          <li class="passo-matricula revelar sobe" style="--i:3">
+            <span class="num" aria-hidden="true">1</span>
+            <p><strong>Você envia seus dados</strong>Leva menos de dois minutos e não pede cartão.</p>
+          </li>
+          <li class="passo-matricula revelar sobe" style="--i:4">
+            <span class="num" aria-hidden="true">2</span>
+            <p><strong>Confirmamos a turma</strong>Respondemos por e-mail em até [X] dias úteis com valores e datas.</p>
+          </li>
+          <li class="passo-matricula revelar sobe" style="--i:5">
+            <span class="num" aria-hidden="true">3</span>
+            <p><strong>Acesso liberado</strong>No primeiro dia de aula você entra na comunidade e pega os materiais.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cartao-form revelar escala" id="cartao-form" style="--i:2">
+        <form class="form-conteudo" id="form-matricula" novalidate>
+          <div class="campo" data-campo="nome">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como você quer ser chamado" aria-describedby="erro-nome">
+            <p class="msg-erro" id="erro-nome"></p>
+          </div>
+
+          <div class="campo" data-campo="email">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com" aria-describedby="erro-email">
+            <p class="msg-erro" id="erro-email"></p>
+          </div>
+
+          <div class="campo" data-campo="telefone">
+            <label for="telefone">WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="dica-tel erro-telefone">
+            <p class="dica" id="dica-tel">Usamos o WhatsApp só para confirmar a matrícula.</p>
+            <p class="msg-erro" id="erro-telefone"></p>
+          </div>
+
+          <div class="campo" data-campo="modalidade">
+            <label for="modalidade">Modalidade</label>
+            <select id="modalidade" name="modalidade" aria-describedby="erro-modalidade">
+              <option value="">Escolha uma modalidade</option>
+              <option value="Turma ao vivo">Turma ao vivo</option>
+              <option value="No meu ritmo">No meu ritmo</option>
+            </select>
+            <p class="msg-erro" id="erro-modalidade"></p>
+          </div>
+
+          <div class="campo" data-campo="objetivo">
+            <label for="objetivo">Qual seu objetivo com o curso? (opcional)</label>
+            <textarea id="objetivo" name="objetivo" placeholder=" Mudar de área, provar resultado no trabalho atual, montar portfólio."></textarea>
+          </div>
+
+          <label class="check-linha" data-campo="aceite" for="aceite">
+            <input type="checkbox" id="aceite" name="aceite" aria-describedby="erro-aceite">
+            <span>Autorizo contato por e-mail e WhatsApp sobre a matrícula.</span>
+          </label>
+          <p class="msg-erro" id="erro-aceite" style="margin-top:-14px;margin-bottom:14px"></p>
+
+          <button class="btn btn-acento" type="submit" style="width:100%">Quero me matricular</button>
+          <p class="form-aviso">Este é um modelo de demonstração: o formulário não envia nada para lugar nenhum, a confirmação aparece na própria tela.</p>
+        </form>
+
+        <div class="sucesso" id="sucesso" role="status" aria-live="polite">
+          <div class="sucesso-icone" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h3>Pedido de matrícula registrado</h3>
+          <p id="sucesso-texto">Obrigado! Em até [X] dias úteis a gente confirma sua turma por e-mail.</p>
+          <p>Nada foi enviado: este é um modelo de demonstração e os dados ficaram apenas no seu navegador.</p>
+          <button class="btn btn-contorno" type="button" id="refazer">Preencher de novo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="envolve">
+    <div class="rodape-grade">
+      <div>
+        <span class="rodape-marca"><span class="marca-selo" aria-hidden="true">[LOGO]</span><span>Sua Marca</span></span>
+        <p>Modelo de landing page para curso online, feito para o mostruário da agência. Conteúdo e dados são placeholders.</p>
+      </div>
+      <div>
+        <h2>A página</h2>
+        <ul class="rodape-lista">
+          <li><a href="#trilha">A trilha</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#formato">Formato</a></li>
+          <li><a href="#investimento">Investimento</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#matricula">Matrícula</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contato (placeholder)</h2>
+        <ul class="rodape-lista">
+          <li><span class="rotulo">E-mail</span><span>[seu@email.com]</span></li>
+          <li><span class="rotulo">WhatsApp</span><span>[(00) 00000-0000]</span></li>
+          <li><span class="rotulo">Cidade</span><span>[cidade/UF]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <span>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></span>
+      <a href="../index.html">Voltar ao mostruário</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+document.documentElement.classList.add("js");
+var corpo=document.body;
+
+/* ---------- 1. entrada de página escalonada ---------- */
+requestAnimationFrame(function(){
+  requestAnimationFrame(function(){corpo.classList.add("pronto");});
+});
+
+/* ---------- 2. header que reage ao scroll + parallax leve (rAF, só desktop) ---------- */
+var topo=document.querySelector(".topo");
+var alvosParallax=[].slice.call(document.querySelectorAll("[data-parallax]"));
+var mqReduz=window.matchMedia("(prefers-reduced-motion: reduce)");
+var mqDesktop=window.matchMedia("(min-width: 761px)");
+var parallaxLigado=mqDesktop.matches&&!mqReduz.matches;
+var agendado=false;
+
+function aplicaScroll(){
+  var y=window.scrollY||window.pageYOffset;
+  topo.classList.toggle("rolado",y>12);
+  if(parallaxLigado){
+    for(var i=0;i<alvosParallax.length;i++){
+      var el=alvosParallax[i];
+      var f=parseFloat(el.getAttribute("data-parallax"))||0.14;
+      var r=el.getBoundingClientRect();
+      var centro=r.top+r.height/2-window.innerHeight/2;
+      el.style.transform="translate3d(0,"+(centro*f).toFixed(1)+"px,0)";
+    }
+  }
+}
+function noScroll(){
+  if(agendado)return;
+  agendado=true;
+  requestAnimationFrame(function(){agendado=false;aplicaScroll();});
+}
+window.addEventListener("scroll",noScroll,{passive:true});
+window.addEventListener("resize",noScroll);
+function ligaParallax(e){
+  parallaxLigado=e.matches&&!mqReduz.matches;
+  if(!parallaxLigado){
+    for(var i=0;i<alvosParallax.length;i++){alvosParallax[i].style.transform="";}
+  }
+  aplicaScroll();
+}
+if(mqDesktop.addEventListener){mqDesktop.addEventListener("change",ligaParallax);}
+else if(mqDesktop.addListener){mqDesktop.addListener(ligaParallax);}
+aplicaScroll();
+
+/* ---------- 3. scroll reveal com IntersectionObserver, escalonado por --i ---------- */
+var revelaveis=[].slice.call(document.querySelectorAll("[data-revelar]"));
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if(e.isIntersecting || e.boundingClientRect.top < 0){e.target.classList.add("ativo");io.unobserve(e.target);}
+    });
+  },{threshold:0.15,rootMargin:"0px 0px -6% 0px"});
+  revelaveis.forEach(function(el){io.observe(el);});
+}else{
+  revelaveis.forEach(function(el){el.classList.add("ativo");});
+}
+
+/* ---------- 4. menu mobile de verdade ---------- */
+var botaoMenu=document.querySelector(".menu-botao");
+var menuMobile=document.getElementById("menu-mobile");
+function fechaMenu(){
+  topo.classList.remove("aberto");
+  botaoMenu.setAttribute("aria-expanded","false");
+}
+botaoMenu.addEventListener("click",function(){
+  var aberto=topo.classList.toggle("aberto");
+  botaoMenu.setAttribute("aria-expanded",aberto?"true":"false");
+});
+menuMobile.addEventListener("click",function(e){
+  if(e.target.closest("a")){fechaMenu();}
+});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"&&topo.classList.contains("aberto")){fechaMenu();botaoMenu.focus();}
+});
+
+/* ---------- 5. painel de aula: troca de módulo com transição ---------- */
+var ICONE_CHECK='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+var MODULOS=[
+  {titulo:"Fundamentos: planilha, SQL e a pergunta certa",aulas:8,aula:3,dura:"12:40",prog:38,
+   desc:"Aprender a fazer a pergunta antes de abrir a ferramenta: planilha do zero e SQL de leitura.",
+   materiais:["Planilha de exercícios","Guia de SQL de leitura em 4 páginas"]},
+  {titulo:"Coleta e limpeza: do dado cru ao dado usável",aulas:6,aula:1,dura:"09:12",prog:12,
+   desc:"Trazer dado de lugar ruim, arrumar e deixar pronto para analisar sem copiar e colar.",
+   materiais:["Base de treino em CSV","Checklist de limpeza"]},
+  {titulo:"Painéis que respondem pergunta",aulas:7,aula:4,dura:"15:48",prog:55,
+   desc:"Escolher o gráfico pela pergunta e montar painel que cabe em uma tela.",
+   materiais:["Modelo de painel","Roteiro de leitura de painel"]},
+  {titulo:"Estatística aplicada, sem decoreba",aulas:5,aula:2,dura:"11:05",prog:26,
+   desc:"Média, variação e amostra do tamanho que você tem, com leitura honesta do resultado.",
+   materiais:["Resumo das fórmulas usadas"]},
+  {titulo:"Projeto final com dado público",aulas:4,aula:1,dura:"18:05",prog:10,
+   desc:"Publicar um painel completo com dado aberto e escrever a leitura dele em três parágrafos.",
+   materiais:[]}
+];
+
+var PROJETOS=[
+  "Painel de acompanhamento mensal",
+  "Rotina de limpeza de planilha",
+  "Relatório de pergunta de negócio",
+  "Dashboard com dado público",
+  "Rotina que junta duas planilhas",
+  "Estudo de caso com teste simples"
+];
+
+var painel=document.getElementById("painel");
+var pTitulo=document.getElementById("painel-titulo");
+var pAula=document.getElementById("painel-aula");
+var pDura=document.getElementById("painel-dura");
+var pProg=document.getElementById("painel-prog");
+var pDesc=document.getElementById("painel-desc");
+var pFill=document.getElementById("painel-fill");
+var pLista=document.getElementById("painel-materiais");
+var pVazio=document.getElementById("painel-vazio");
+var botoes=[].slice.call(document.querySelectorAll(".mod-item"));
+var atual=-1;
+
+function desenhaModulo(i){
+  var m=MODULOS[i];
+  atual=i;
+  pTitulo.textContent="Módulo "+(i+1)+" · "+m.titulo;
+  pAula.textContent="Aula "+m.aula+" de "+m.aulas;
+  pDura.textContent=m.dura;
+  pProg.textContent="Andamento do módulo: "+m.prog+"%";
+  pDesc.textContent=m.desc;
+  pFill.style.setProperty("--p","0");
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){pFill.style.setProperty("--p",(m.prog/100).toFixed(2));});
+  });
+  if(m.materiais.length){
+    pVazio.hidden=true;
+    pLista.hidden=false;
+    pLista.innerHTML=m.materiais.map(function(t){return "<li>"+ICONE_CHECK+"<span>"+t+"</span></li>";}).join("");
+  }else{
+    pLista.hidden=true;
+    pLista.innerHTML="";
+    pVazio.hidden=false;
+  }
+  botoes.forEach(function(b){
+    b.setAttribute("aria-current",b.getAttribute("data-modulo")===String(i)?"true":"false");
+  });
+}
+botoes.forEach(function(b){
+  b.addEventListener("click",function(){
+    var i=parseInt(b.getAttribute("data-modulo"),10);
+    if(i===atual){return;}
+    painel.classList.add("trocando");
+    setTimeout(function(){
+      desenhaModulo(i);
+      requestAnimationFrame(function(){painel.classList.remove("trocando");});
+    },180);
+  });
+});
+desenhaModulo(0);
+
+/* prévia da aula: pausa e volta a onda do painel */
+var playBtn=document.getElementById("play-btn");
+var icPlay=document.getElementById("ic-play");
+var icPause=document.getElementById("ic-pause");
+playBtn.addEventListener("click",function(){
+  var pausado=painel.classList.toggle("pausado");
+  playBtn.setAttribute("aria-pressed",pausado?"false":"true");
+  playBtn.setAttribute("aria-label",pausado?"Reproduzir a prévia da aula":"Pausar a prévia da aula");
+  icPlay.hidden=!pausado;
+  icPause.hidden=pausado;
+});
+
+/* ---------- 6. filtro de projetos com estado vazio ---------- */
+var chips=[].slice.call(document.querySelectorAll(".chip"));
+var projetos=[].slice.call(document.querySelectorAll(".proj"));
+var listaProj=document.getElementById("proj-lista");
+var vazioProj=document.getElementById("proj-vazio");
+var contador=document.getElementById("proj-contador");
+
+function aplicaFiltro(filtro){
+  var visiveis=0;
+  projetos.forEach(function(p){
+    var mostra=(filtro==="todos"||p.getAttribute("data-cat")===filtro);
+    p.hidden=!mostra;
+    if(mostra){visiveis=visiveis+1;}
+  });
+  vazioProj.hidden=visiveis!==0;
+  contador.textContent=visiveis+(visiveis===1?" projeto no filtro atual":" projetos no filtro atual");
+}
+chips.forEach(function(chip){
+  chip.addEventListener("click",function(){
+    chips.forEach(function(c){c.setAttribute("aria-pressed",c===chip?"true":"false");});
+    listaProj.classList.add("filtragem");
+    setTimeout(function(){
+      aplicaFiltro(chip.getAttribute("data-filtro"));
+      listaProj.classList.remove("filtragem");
+    },170);
+  });
+});
+
+/* ---------- 7. FAQ em acordeão, com transição de altura ---------- */
+var itensFaq=[].slice.call(document.querySelectorAll(".faq-item"));
+function fechaItem(item){
+  var botao=item.querySelector(".faq-botao");
+  var painelItem=item.querySelector(".faq-painel");
+  item.classList.remove("aberto");
+  botao.setAttribute("aria-expanded","false");
+  painelItem.style.height="0px";
+}
+function abreItem(item){
+  var botao=item.querySelector(".faq-botao");
+  var painelItem=item.querySelector(".faq-painel");
+  itensFaq.forEach(function(o){if(o!==item){fechaItem(o);}});
+  item.classList.add("aberto");
+  botao.setAttribute("aria-expanded","true");
+  painelItem.style.height=painelItem.scrollHeight+"px";
+}
+itensFaq.forEach(function(item){
+  var botao=item.querySelector(".faq-botao");
+  botao.addEventListener("click",function(){
+    if(item.classList.contains("aberto")){fechaItem(item);}else{abreItem(item);}
+  });
+});
+window.addEventListener("resize",function(){
+  itensFaq.forEach(function(item){
+    if(item.classList.contains("aberto")){
+      var painelItem=item.querySelector(".faq-painel");
+      painelItem.style.height=painelItem.scrollHeight+"px";
+    }
+  });
+});
+
+/* ---------- 8. formulário de matrícula validado ---------- */
+var form=document.getElementById("form-matricula");
+var cartao=document.getElementById("cartao-form");
+var regras=[
+  {id:"nome",teste:function(v){var t=v.trim();return t.length>=3&&t.indexOf(" ")>-1;},msg:"Escreva seu nome e sobrenome."},
+  {id:"email",teste:function(v){return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim());},msg:"Informe um e-mail válido, com @."},
+  {id:"telefone",teste:function(v){var d=v.replace(/\D/g,"");return d.length>=10&&d.length<=13;},msg:"Informe o WhatsApp com DDD, como (00) 00000-0000."},
+  {id:"modalidade",teste:function(v){return v!=="";},msg:"Escolha uma modalidade."}
+];
+function validaCampo(r){
+  var el=document.getElementById(r.id);
+  var campo=el.closest(".campo");
+  var msg=document.getElementById("erro-"+r.id);
+  if(r.teste(el.value)){
+    campo.classList.remove("erro");
+    msg.textContent="";
+    el.removeAttribute("aria-invalid");
+    return true;
+  }
+  campo.classList.add("erro");
+  msg.textContent=r.msg;
+  el.setAttribute("aria-invalid","true");
+  return false;
+}
+regras.forEach(function(r){
+  var el=document.getElementById(r.id);
+  el.addEventListener("blur",function(){validaCampo(r);});
+  el.addEventListener("input",function(){
+    if(el.closest(".campo").classList.contains("erro")){validaCampo(r);}
+  });
+  el.addEventListener("change",function(){validaCampo(r);});
+});
+
+/* máscara leve de WhatsApp */
+var tel=document.getElementById("telefone");
+tel.addEventListener("input",function(){
+  var d=tel.value.replace(/\D/g,"").slice(0,11);
+  var saida=d;
+  if(d.length>6){saida="("+d.slice(0,2)+") "+d.slice(2,6)+"-"+d.slice(6);}
+  else if(d.length>2){saida="("+d.slice(0,2)+") "+d.slice(2);}
+  else if(d.length>0){saida="("+d;}
+  tel.value=saida;
+});
+
+var aceite=document.getElementById("aceite");
+var erroAceite=document.getElementById("erro-aceite");
+function validaAceite(){
+  var linha=document.querySelector(".check-linha");
+  if(aceite.checked){
+    linha.classList.remove("erro");
+    erroAceite.textContent="";
+    return true;
+  }
+  linha.classList.add("erro");
+  erroAceite.textContent="Marque a autorização para a gente poder responder.";
+  return false;
+}
+aceite.addEventListener("change",validaAceite);
+
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  var ok=true;
+  var primeiro=null;
+  regras.forEach(function(r){
+    if(!validaCampo(r)){
+      ok=false;
+      if(!primeiro){primeiro=document.getElementById(r.id);}
+    }
+  });
+  if(!validaAceite()){
+    ok=false;
+    if(!primeiro){primeiro=aceite;}
+  }
+  if(!ok){primeiro.focus();return;}
+  var nome=document.getElementById("nome").value.trim().split(/\s+/)[0];
+  document.getElementById("sucesso-texto").textContent="Obrigado, "+nome+"! Em até [X] dias úteis a gente confirma sua turma por e-mail.";
+  cartao.classList.add("ok");
+});
+
+document.getElementById("refazer").addEventListener("click",function(){
+  form.reset();
+  cartao.classList.remove("ok");
+  [].slice.call(document.querySelectorAll(".campo.erro")).forEach(function(c){c.classList.remove("erro");});
+  document.querySelector(".check-linha").classList.remove("erro");
+  erroAceite.textContent="";
+  document.getElementById("nome").focus();
+});
+
+/* ---------- 9. baixar o programa (arquivo de texto gerado na hora) ---------- */
+document.getElementById("baixar-programa").addEventListener("click",function(){
+  var linhas=["PROGRAMA (modelo de demonstração)","Formação em análise de dados · Sua Marca","","Módulos e aulas:"];
+  MODULOS.forEach(function(m,i){
+    linhas.push((i+1)+". "+m.titulo+" ("+m.aulas+" aulas)");
+  });
+  linhas.push("","Projetos entregues:");
+  PROJETOS.forEach(function(p,i){linhas.push((i+1)+". "+p);});
+  linhas.push("","Valores, duração e datas: placeholders a definir.");
+  var blob=new Blob([linhas.join("\n")],{type:"text/plain;charset=utf-8"});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url;
+  a.download="programa-formacao-analise-de-dados.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},2000);
+  document.getElementById("status-download").textContent="Programa baixado como arquivo de texto.";
+});
+
+/* ---------- 10. planos já escolhem a modalidade no formulário ---------- */
+[].slice.call(document.querySelectorAll("[data-modalidade]")).forEach(function(el){
+  el.addEventListener("click",function(){
+    var sel=document.getElementById("modalidade");
+    var valor=el.getAttribute("data-modalidade");
+    if(valor){
+      sel.value=valor;
+      validaCampo(regras[3]);
+    }
+  });
+});
+})();
+</script>
+</body>
+</html>

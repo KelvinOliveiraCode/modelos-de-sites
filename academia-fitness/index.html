@@ -1,0 +1,1615 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua Academia | Treino com rotina, grade e plano que cabe na semana</title>
+<meta name="description" content="Academia e fitness com treino acompanhado por professor, grade semanal de aulas coletivas e planos claros. Teste uma aula antes de se matricular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#111111;
+  --surface:#2E2E2E;
+  --surface-2:#262626;
+  --accent:#FF6B00;
+  --accent-deep:#E05F00;
+  --ink:#F5F5F5;
+  --ink-dim:#B7B7B7;
+  --line:rgba(245,245,245,.14);
+  --line-soft:rgba(245,245,245,.08);
+  --accent-ink:#141414;
+  --accent-wash:rgba(255,107,0,.12);
+
+  --ease-in:cubic-bezier(.22,1,.36,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+
+  --dur-hover:180ms;
+  --dur-reveal:640ms;
+  --dur-state:420ms;
+
+  --pad-x:clamp(20px,5vw,48px);
+  --sec-y:clamp(72px,10vw,132px);
+  --maxw:1180px;
+  --header-h:64px;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1.55;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+html{scroll-behavior:smooth}
+section{scroll-margin-top:calc(var(--header-h) + 16px)}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+.container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad-x)}
+.display{font-family:"Anton",Impact,system-ui,sans-serif;font-weight:400;text-transform:uppercase;line-height:.94;letter-spacing:.005em}
+.eyebrow{
+  font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.eyebrow::after{content:"";height:1px;width:44px;background:var(--accent);opacity:.6}
+.accent-text{color:var(--accent)}
+.dim{color:var(--ink-dim)}
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.section{padding-block:var(--sec-y);position:relative}
+.section--surface{background:var(--surface-2)}
+.section-head{max-width:640px;margin-bottom:clamp(36px,5vw,60px)}
+.section-head h2{font-size:clamp(2.1rem,5.4vw,3.4rem);margin-bottom:16px}
+.section-head p{color:var(--ink-dim);font-size:clamp(17px,1.6vw,19px)}
+.rule{height:1px;background:var(--line-soft);border:0;margin:0}
+
+/* ============================================================
+   BUTTONS  (alvo de toque 44px)
+   ============================================================ */
+.btn{
+  --btn-bg:transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:12px 26px;border-radius:2px;
+  font-weight:600;font-size:17px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--btn-bg);
+  transition:background-color var(--dur-hover) var(--ease-state),
+             color var(--dur-hover) var(--ease-state),
+             transform var(--dur-hover) var(--ease-state),
+             box-shadow var(--dur-hover) var(--ease-state);
+}
+.btn svg{flex:none}
+.btn--primary{--btn-bg:var(--accent);color:var(--accent-ink);box-shadow:0 6px 0 -2px rgba(0,0,0,.45)}
+.btn--primary:hover{background:#FF8226;transform:translateY(-2px);box-shadow:0 10px 0 -2px rgba(0,0,0,.5)}
+.btn--primary:active{transform:translateY(1px);box-shadow:0 3px 0 -2px rgba(0,0,0,.45)}
+.btn--ghost{--btn-bg:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn--ghost:hover{box-shadow:inset 0 0 0 2px var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn--sm{min-height:44px;padding:9px 18px;font-size:15px}
+.btn--block{width:100%}
+.btn--lg{min-height:56px;padding:16px 34px;font-size:19px}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  transition:background-color 260ms var(--ease-state),box-shadow 260ms var(--ease-state),border-color 260ms var(--ease-state);
+  border-bottom:1px solid transparent;
+}
+.site-header.is-scrolled{
+  background:rgba(17,17,17,.94);
+  border-bottom-color:var(--line-soft);
+  box-shadow:0 10px 30px -18px rgba(0,0,0,.9);
+}
+.header-inner{display:flex;align-items:center;gap:20px;min-height:var(--header-h)}
+.brand{display:inline-flex;align-items:center;gap:11px;padding:6px 2px;border-radius:4px;transition:opacity var(--dur-hover) var(--ease-state)}
+.brand:hover{opacity:.82}
+.brand-mark{color:var(--accent);flex:none}
+.brand-name{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.02em;line-height:1}
+.nav-desktop{margin-left:auto;display:flex;align-items:center;gap:6px}
+.nav-link{
+  position:relative;padding:10px 12px;font-weight:500;font-size:16px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-dim);border-radius:2px;
+  transition:color var(--dur-hover) var(--ease-state);
+}
+.nav-link::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform var(--dur-hover) var(--ease-state);
+}
+.nav-link:hover,.nav-link.is-active{color:var(--ink)}
+.nav-link:hover::after,.nav-link.is-active::after{transform:scaleX(1)}
+.nav-cta{margin-left:8px}
+
+.menu-btn{
+  margin-left:auto;display:none;width:48px;height:48px;border-radius:2px;
+  align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px var(--line);
+  transition:box-shadow var(--dur-hover) var(--ease-state),color var(--dur-hover) var(--ease-state);
+}
+.menu-btn:hover{box-shadow:inset 0 0 0 2px var(--accent);color:var(--accent)}
+.menu-btn .bars{position:relative;width:22px;height:14px}
+.menu-btn .bars i{position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform 260ms var(--ease-state),opacity 200ms var(--ease-state)}
+.menu-btn .bars i:nth-child(1){top:0}
+.menu-btn .bars i:nth-child(2){top:6px}
+.menu-btn .bars i:nth-child(3){top:12px}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.mobile-menu{
+  overflow:hidden;max-height:0;opacity:0;visibility:hidden;
+  background:rgba(17,17,17,.98);
+  border-bottom:1px solid var(--line-soft);
+  transition:max-height var(--dur-state) var(--ease-state),opacity 240ms var(--ease-state),visibility var(--dur-state) linear;
+}
+.mobile-menu.is-open{max-height:min(78vh,560px);opacity:1;visibility:visible}
+.mobile-menu ul{padding:10px var(--pad-x) 6px}
+.mobile-menu li + li{border-top:1px solid var(--line-soft)}
+.mobile-menu .nav-link{display:block;padding:15px 2px;font-size:18px}
+.mobile-menu .nav-link::after{display:none}
+.mobile-menu .menu-cta{padding:14px var(--pad-x) 22px}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  padding-top:calc(var(--header-h) + 40px);padding-bottom:clamp(40px,7vw,84px);
+  background:var(--bg);overflow:hidden;
+}
+/* fundo com textura de linhas verticais (SVG inline), sem cor decorativa extra */
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='8'%3E%3Cpath d='M0 0v8' stroke='%23f5f5f5' stroke-opacity='.045' stroke-width='1'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-eyebrow{margin-bottom:22px}
+.hero-eyebrow span{color:var(--ink-dim)}
+.hero-title{font-size:clamp(2.7rem,13.5vw,9.5rem);margin-bottom:clamp(22px,3vw,34px)}
+.hero-line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.hero-line .w{display:inline-block;transform:translateY(105%);opacity:0}
+body.is-loaded .hero-line .w{transform:translateY(0);opacity:1}
+.hero-line .w{
+  transition:transform 820ms var(--ease-in),opacity 820ms var(--ease-in);
+  transition-delay:calc(var(--i,0) * 95ms + 140ms);
+}
+.hero-sub{max-width:46ch;font-size:clamp(18px,2vw,21px);color:var(--ink-dim);margin-bottom:32px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero-note{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:15px;color:var(--ink-dim);letter-spacing:.04em}
+.hero-note b{color:var(--ink);font-weight:600}
+
+.hero-pulse{position:absolute;right:-6%;top:16%;width:min(46vw,420px);z-index:1;opacity:.9;pointer-events:none;will-change:transform}
+.hero-pulse .ring{transform-origin:60px 60px;animation:ringPulse 9s var(--ease-state) infinite;opacity:0}
+.hero-pulse .r1{animation-delay:0s}
+.hero-pulse .r2{animation-delay:2.25s}
+.hero-pulse .r3{animation-delay:4.5s}
+.hero-pulse .r4{animation-delay:6.75s}
+/* Assinatura do nicho: anel de energia que pulsa devagar (transform + opacity). */
+@keyframes ringPulse{
+  0%{transform:scale(.24);opacity:0}
+  14%{opacity:.5}
+  100%{transform:scale(2.5);opacity:0}
+}
+.hero-underline{position:absolute;left:var(--pad-x);bottom:clamp(18px,3vw,34px);width:min(320px,62vw);height:16px;z-index:2}
+.hero-underline--inline{position:relative;left:auto;bottom:auto;width:min(300px,58vw);height:14px;margin-bottom:26px}
+.hero-underline path{stroke:var(--accent);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 900ms var(--ease-in) 950ms}
+body.is-loaded .hero-underline path{stroke-dashoffset:0}
+/* link inline dentro de texto: sobe o acento sem virar seta */
+.link-u{color:var(--accent);border-bottom:1px solid rgba(255,107,0,.45);transition:color var(--dur-hover) var(--ease-state),border-color var(--dur-hover) var(--ease-state)}
+.link-u:hover{color:#FF8226;border-color:#FF8226}
+
+/* ============================================================
+   REVEAL (IntersectionObserver, atraso por --i)
+   ============================================================ */
+.js [data-reveal]{opacity:0;transition:opacity var(--dur-reveal) var(--ease-in),transform var(--dur-reveal) var(--ease-in);transition-delay:calc(var(--i,0) * 70ms)}
+.js [data-reveal="y"]{transform:translateY(26px)}
+.js [data-reveal="x"]{transform:translateX(-30px)}
+.js [data-reveal="fade"]{transform:none}
+.js [data-reveal].is-in{opacity:1;transform:none}
+
+/* ============================================================
+   PLANOS: tabela comparativa
+   ============================================================ */
+.plans-note{
+  display:flex;flex-wrap:wrap;gap:8px 26px;align-items:center;margin-bottom:34px;
+  font-size:15px;color:var(--ink-dim);letter-spacing:.03em;
+}
+.plans-note .dot{width:9px;height:9px;background:var(--accent);border-radius:50%;flex:none}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.compare{width:100%;border-collapse:collapse;min-width:560px;font-size:17px}
+.compare caption{text-align:left;font-size:14px;color:var(--ink-dim);letter-spacing:.14em;text-transform:uppercase;padding-bottom:14px}
+.compare th,.compare td{padding:15px 16px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+.compare thead th{border-bottom:1px solid var(--line);font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:19px;letter-spacing:.02em;vertical-align:bottom}
+.compare thead .th-plan{width:26%}
+.compare .col-hi{background:var(--accent-wash)}
+.compare thead .th-hi{border-bottom:2px solid var(--accent)}
+.compare .bene{color:var(--ink);font-weight:500;width:48%}
+.compare tbody tr:hover td{background:rgba(245,245,245,.03)}
+.compare tbody tr:hover .col-hi{background:rgba(255,107,0,.18)}
+.price{font-family:"Anton",Impact,sans-serif;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1;color:var(--ink)}
+.price span{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:500;color:var(--ink-dim);letter-spacing:.06em;text-transform:uppercase;display:block;margin-top:6px}
+.plan-tag{
+  display:inline-block;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--accent);color:var(--accent-ink);padding:4px 10px;border-radius:2px;margin-bottom:8px;
+}
+.cell-cta{padding-top:20px;padding-bottom:22px;border-bottom:0}
+.tick{color:var(--accent);flex:none}
+.tick--no{color:#6E6E6E}
+.compare .val{display:flex;align-items:center;gap:10px}
+.plans-foot{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;margin-top:30px}
+.plans-foot p{font-size:15px;color:var(--ink-dim);max-width:48ch}
+
+.split-box{
+  margin-top:clamp(40px,6vw,64px);background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:4px;padding:clamp(22px,3vw,34px);
+}
+.split-box h3{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:21px;letter-spacing:.02em;margin-bottom:6px}
+.split-box .split-tag{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.split-list{display:grid;gap:12px}
+.split-list li{display:flex;gap:16px;align-items:baseline;padding-bottom:12px;border-bottom:1px dashed var(--line-soft)}
+.split-list li:last-child{border-bottom:0;padding-bottom:0}
+.split-list .k{font-family:"Anton",Impact,sans-serif;font-size:19px;color:var(--accent);min-width:26px}
+.split-list .v b{display:block;font-weight:600;font-size:18px;letter-spacing:.02em}
+.split-list .v span{color:var(--ink-dim);font-size:16px}
+.split-note{margin-top:18px;font-size:15px;color:var(--ink-dim)}
+
+/* ============================================================
+   GRADE: abas + filtro de período
+   ============================================================ */
+.grade-tools{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:space-between;margin-bottom:26px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tab{
+  flex:none;min-height:48px;padding:10px 18px;border-radius:2px;font-weight:600;font-size:16px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);
+  box-shadow:inset 0 0 0 1px var(--line);
+  transition:color var(--dur-hover) var(--ease-state),box-shadow var(--dur-hover) var(--ease-state),background-color var(--dur-hover) var(--ease-state),transform var(--dur-hover) var(--ease-state);
+}
+.tab:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent);transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);box-shadow:none}
+.periods{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  min-height:40px;padding:8px 15px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-dim);box-shadow:inset 0 0 0 1px var(--line);
+  transition:color var(--dur-hover) var(--ease-state),box-shadow var(--dur-hover) var(--ease-state),background-color var(--dur-hover) var(--ease-state);
+}
+.chip:hover{color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+
+.schedule{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden}
+.panel[hidden]{display:none}
+.panel-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;padding:20px clamp(18px,3vw,30px);border-bottom:1px solid var(--line-soft)}
+.panel-head h3{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.4rem,3.6vw,2rem);letter-spacing:.02em}
+.panel-head span{font-size:15px;color:var(--ink-dim);letter-spacing:.05em;text-transform:uppercase}
+.rows{display:grid}
+.row{
+  display:grid;grid-template-columns:96px 1fr auto;gap:8px 20px;align-items:center;
+  padding:16px clamp(18px,3vw,30px);border-bottom:1px solid var(--line-soft);
+  transition:opacity 460ms var(--ease-in),transform 460ms var(--ease-in),background-color var(--dur-hover) var(--ease-state);
+  transition-delay:calc(var(--i,0) * 60ms);
+}
+/* gesto da grade: cada linha entra sozinha, em sequência */
+.js .row{opacity:0;transform:translateY(14px)}
+.js .row.is-in{opacity:1;transform:none}
+.row:last-child{border-bottom:0}
+.row:hover{background:rgba(255,107,0,.08)}
+.row .t{font-family:"Anton",Impact,sans-serif;font-size:19px;color:var(--accent);letter-spacing:.01em}
+.row .m{display:flex;align-items:center;gap:12px;font-weight:500;font-size:18px}
+.row .m svg{color:var(--ink-dim);flex:none}
+.row .r{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);white-space:nowrap}
+.empty{padding:44px clamp(18px,3vw,30px);text-align:center}
+.empty svg{color:var(--ink-dim);margin:0 auto 14px}
+.empty h4{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:19px;margin-bottom:6px}
+.empty p{color:var(--ink-dim);font-size:16px;max-width:44ch;margin-inline:auto}
+
+/* troca de aba animada: painel sobe e entra */
+.panel.is-swapping{animation:panelIn var(--dur-state) var(--ease-state) both}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   MODALIDADES: lista numerada vertical
+   ============================================================ */
+.mod-list{display:grid;gap:0;border-top:1px solid var(--line-soft)}
+.mod-item{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,44px);align-items:start;
+  padding:clamp(24px,3.4vw,38px) 0;border-bottom:1px solid var(--line-soft);
+  transition:background-color var(--dur-hover) var(--ease-state);
+}
+.mod-item:hover{background:rgba(255,107,0,.06)}
+.mod-num{
+  font-family:"Anton",Impact,sans-serif;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.86;
+  color:transparent;-webkit-text-stroke:2px var(--accent);
+  /* gesto da seção: o número entra com escala, como carimbo */
+  transition:transform 540ms var(--ease-in),opacity 420ms var(--ease-in),color var(--dur-hover) var(--ease-state);
+}
+.js .mod-num{opacity:0;transform:scale(1.4)}
+.mod-item.is-in .mod-num{opacity:1;transform:scale(1)}
+.mod-item:hover .mod-num{color:var(--accent)}
+.mod-body{display:grid;grid-template-columns:1fr auto;gap:14px 26px;align-items:start}
+.mod-body h3{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.35rem,3.2vw,1.9rem);letter-spacing:.02em;margin-bottom:8px}
+.mod-body p{color:var(--ink-dim);font-size:17px;max-width:56ch}
+.mod-icon{color:var(--accent);opacity:.85}
+.mod-icon svg{width:44px;height:44px}
+/* ícone que se desenha no reveal (stroke) */
+.mod-icon svg [data-stroke]{stroke-dasharray:var(--len,320);stroke-dashoffset:var(--len,320);transition:stroke-dashoffset 900ms var(--ease-state)}
+.mod-item.is-in .mod-icon svg [data-stroke]{stroke-dashoffset:0;transition-delay:calc(var(--i,0) * 90ms + 120ms)}
+
+/* ============================================================
+   ESTRUTURA: placeholders
+   ============================================================ */
+.struct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.tile{
+  position:relative;background:var(--surface);border:1px dashed var(--line);border-radius:4px;
+  min-height:190px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;
+  transition:border-color 240ms var(--ease-state),transform 240ms var(--ease-state),background-color 240ms var(--ease-state);
+}
+.tile:hover{border-color:var(--accent);transform:translateY(-4px);background:var(--surface-2)}
+.tile .ico{color:var(--accent)}
+.tile .ico svg{width:36px;height:36px}
+.tile .lbl{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:18px;letter-spacing:.02em}
+.tile .ph{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+.struct-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 32px;margin-top:34px}
+.struct-info li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
+.struct-info svg{color:var(--accent);flex:none;margin-top:4px}
+.struct-info b{display:block;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-bottom:2px}
+
+/* ============================================================
+   FAQ: acordeão
+   ============================================================ */
+.faq{max-width:820px}
+.faq-item{border-bottom:1px solid var(--line-soft)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 4px;text-align:left;min-height:64px;
+  font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.05rem,2.6vw,1.35rem);letter-spacing:.02em;
+  transition:color var(--dur-hover) var(--ease-state);
+}
+.faq-q:hover{color:var(--accent)}
+.faq-q .sign{position:relative;width:20px;height:20px;flex:none}
+.faq-q .sign::before,.faq-q .sign::after{
+  content:"";position:absolute;background:var(--accent);border-radius:2px;
+  transition:transform 300ms var(--ease-state),opacity 200ms var(--ease-state);
+}
+.faq-q .sign::before{top:9px;left:0;width:20px;height:2px}
+.faq-q .sign::after{left:9px;top:0;width:2px;height:20px}
+.faq-q[aria-expanded="true"] .sign::after{transform:rotate(90deg);opacity:0}
+.faq-q[aria-expanded="true"] .sign::before{transform:rotate(180deg)}
+.faq-a{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows var(--dur-state) var(--ease-state),visibility var(--dur-state) linear}
+.faq-item.is-open .faq-a{grid-template-rows:1fr;visibility:visible}
+.faq-a .inner{overflow:hidden;min-height:0}
+.faq-a p{color:var(--ink-dim);font-size:17px;padding:0 4px 24px;max-width:64ch;opacity:0;transition:opacity 260ms var(--ease-state)}
+.faq-item.is-open .faq-a p{opacity:1;transition-delay:90ms}
+
+/* ============================================================
+   MATRÍCULA: formulário
+   ============================================================ */
+.enroll-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(32px,5vw,64px);align-items:start}
+.form{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:clamp(22px,3vw,36px)}
+.field{margin-bottom:20px}
+.field > label,.legend{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px}
+.req{color:var(--accent)}
+.input{
+  width:100%;min-height:50px;padding:12px 14px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:2px;font-size:17px;
+  transition:border-color var(--dur-hover) var(--ease-state),box-shadow var(--dur-hover) var(--ease-state),background-color var(--dur-hover) var(--ease-state);
+}
+textarea.input{min-height:96px;resize:vertical}
+select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23B7B7B7' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px}
+.input:hover{border-color:rgba(245,245,245,.28)}
+.input:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,107,0,.25);background:#2A2A2A}
+.input[aria-invalid="true"]{border-color:#FF7A7A;box-shadow:0 0 0 3px rgba(255,122,122,.16)}
+.err{display:none;margin-top:7px;font-size:15px;color:#FF9A9A;letter-spacing:.02em}
+.err.is-on{display:block}
+fieldset{border:0;padding:0;margin:0 0 20px}
+.checks{display:flex;flex-wrap:wrap;gap:10px}
+.check{
+  display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:8px 15px;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:2px;cursor:pointer;
+  transition:border-color var(--dur-hover) var(--ease-state),background-color var(--dur-hover) var(--ease-state),color var(--dur-hover) var(--ease-state);
+}
+.check:hover{border-color:var(--accent)}
+.check input{accent-color:var(--accent);width:18px;height:18px;flex:none}
+.check:has(input:checked){border-color:var(--accent);background:var(--accent-wash)}
+.check:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-dim);line-height:1.45}
+.consent input{accent-color:var(--accent);width:20px;height:20px;flex:none;margin-top:2px}
+.form .btn{margin-top:6px}
+.form-foot{margin-top:16px;font-size:14px;color:var(--ink-dim);letter-spacing:.02em}
+
+.success{
+  display:none;background:var(--surface);border:1px solid var(--accent);border-radius:4px;
+  padding:clamp(26px,4vw,40px);text-align:left;
+}
+.success.is-on{display:block;animation:panelIn 520ms var(--ease-in) both}
+.success .badge{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:14px;margin-bottom:14px}
+.success h3{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.5rem,3.6vw,2.1rem);margin-bottom:12px}
+.success p{color:var(--ink-dim);font-size:17px;margin-bottom:10px}
+.success .recap{background:var(--surface-2);border:1px solid var(--line-soft);border-radius:2px;padding:14px 16px;margin:18px 0;font-size:16px}
+.success .recap b{color:var(--ink);font-weight:600}
+.contact-side .eyebrow{margin-bottom:16px}
+.contact-side h2{font-size:clamp(2rem,5vw,3.1rem);margin-bottom:18px}
+.contact-side p{color:var(--ink-dim);font-size:18px;margin-bottom:24px;max-width:42ch}
+.contact-list{display:grid;gap:14px;margin-top:26px}
+.contact-list li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
+.contact-list svg{color:var(--accent);flex:none;margin-top:4px}
+.contact-list b{display:block;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-bottom:2px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{background:var(--bg);border-top:1px solid var(--line-soft);padding:44px 0 34px}
+.foot-top{display:flex;flex-wrap:wrap;gap:22px 40px;align-items:center;justify-content:space-between;margin-bottom:26px}
+.foot-nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+.foot-nav a{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);padding:8px 2px;border-radius:2px;transition:color var(--dur-hover) var(--ease-state)}
+.foot-nav a:hover{color:var(--accent)}
+.foot-credit{font-size:15px;color:var(--ink-dim);letter-spacing:.03em}
+.foot-credit a{color:var(--accent);border-bottom:1px solid rgba(255,107,0,.4);transition:color var(--dur-hover) var(--ease-state),border-color var(--dur-hover) var(--ease-state)}
+.foot-credit a:hover{color:#FF8226;border-color:#FF8226}
+
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
+.skip{
+  position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--accent-ink);
+  padding:12px 18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;
+  transition:top 200ms var(--ease-state);
+}
+.skip:focus{top:12px}
+
+/* ============================================================
+   RESPONSIVO (breakpoint único em 760px)
+   ============================================================ */
+@media (max-width:760px){
+  .nav-desktop{display:none}
+  .menu-btn{display:inline-flex}
+  .hero{min-height:92svh;align-items:center}
+  .hero-pulse{width:min(70vw,300px);top:8%;right:-18%;opacity:.55}
+  .hero-sub{max-width:none}
+  .enroll-grid{grid-template-columns:1fr}
+  .mod-body{grid-template-columns:1fr}
+  .mod-icon{display:none}
+  .row{grid-template-columns:74px 1fr;grid-template-areas:"t m" ". r"}
+  .row .t{grid-area:t}
+  .row .m{grid-area:m}
+  .row .r{grid-area:r}
+  .compare{min-width:0}
+  /* a tabela vira blocos por benefício, mas continua uma tabela real */
+  .compare thead,.compare caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .compare tbody{display:block}
+  .compare tr{display:block;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:4px 16px;margin-bottom:14px}
+  .compare th,.compare td{display:block;border-bottom:1px solid var(--line-soft);background:transparent}
+  .compare th:last-child,.compare td:last-child{border-bottom:0}
+  .compare .vh-cell{display:none}
+  .compare .bene{width:auto;font-size:18px;padding:14px 0 8px;color:var(--ink)}
+  .compare td[data-label]{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+  .compare td[data-label]::before{content:attr(data-label);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+  .compare .col-hi{background:var(--accent-wash)}
+  .compare tbody tr:hover td{background:transparent}
+  .compare tbody tr:hover .col-hi{background:var(--accent-wash)}
+  .compare .cell-cta{padding-top:12px}
+  .compare .split-box{margin-top:14px}
+}
+
+@media (max-width:480px){
+  body{font-size:16px}
+  .brand-name{font-size:18px}
+  .hero-ctas .btn{width:100%}
+  .grade-tools{align-items:flex-start}
+  .tabs{width:100%}
+}
+
+/* ============================================================
+   MOVIMENTO REDUZIDO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    transition-delay:0ms !important;
+  }
+  .js [data-reveal],.hero-line .w,.row,.js .mod-num{opacity:1 !important;transform:none !important}
+  .mod-icon svg [data-stroke]{stroke-dashoffset:0 !important}
+  .hero-pulse .ring{opacity:.45 !important;transform:scale(1) !important}
+  .hero-underline path{stroke-dashoffset:0 !important}
+  .faq-a p{opacity:1 !important}
+}
+</style>
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+<a class="skip" href="#main">Ir para o conteúdo</a>
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a class="brand" href="#inicio" aria-label="Sua Academia, voltar ao início">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M3 9.5v5M6 7.5v9M18 7.5v9M21 9.5v5M6 12h12"/>
+        </svg>
+      </span>
+      <span class="brand-name">Sua <span class="accent-text">Academia</span></span>
+    </a>
+    <nav class="nav-desktop" aria-label="Navegação principal">
+      <a class="nav-link" href="#planos">Planos</a>
+      <a class="nav-link" href="#grade">Grade</a>
+      <a class="nav-link" href="#modalidades">Modalidades</a>
+      <a class="nav-link" href="#estrutura">Estrutura</a>
+      <a class="nav-link" href="#duvidas">Dúvidas</a>
+      <a class="btn btn--primary btn--sm nav-cta" href="#matricula">Quero me matricular</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu de navegação">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <nav aria-label="Navegação mobile">
+      <ul>
+        <li><a class="nav-link" href="#planos">Planos</a></li>
+        <li><a class="nav-link" href="#grade">Grade de aulas</a></li>
+        <li><a class="nav-link" href="#modalidades">Modalidades</a></li>
+        <li><a class="nav-link" href="#estrutura">Estrutura</a></li>
+        <li><a class="nav-link" href="#duvidas">Dúvidas</a></li>
+      </ul>
+      <div class="menu-cta">
+        <a class="btn btn--primary btn--block" href="#matricula">Quero me matricular</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <!-- Assinatura do nicho: anel de energia pulsando devagar, 9s por ciclo. -->
+    <svg class="hero-pulse" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+      <circle cx="60" cy="60" r="3.4" fill="var(--accent)"/>
+      <g fill="none" stroke="var(--accent)" stroke-width="1.6">
+        <circle class="ring r1" cx="60" cy="60" r="14"/>
+        <circle class="ring r2" cx="60" cy="60" r="14"/>
+        <circle class="ring r3" cx="60" cy="60" r="14"/>
+        <circle class="ring r4" cx="60" cy="60" r="14"/>
+      </g>
+    </svg>
+    <div class="container hero-inner">
+      <p class="eyebrow hero-eyebrow">Academia e fitness em <span>[sua cidade]</span></p>
+      <h1 class="display hero-title" id="hero-title">
+        <span class="hero-line"><span class="w" style="--i:0">Treino</span> <span class="w" style="--i:1">que</span></span>
+        <span class="hero-line"><span class="w" style="--i:2">cabe</span> <span class="w" style="--i:3">na</span> <span class="w" style="--i:4">sua</span></span>
+        <span class="hero-line"><span class="w accent-text" style="--i:5">semana</span></span>
+      </h1>
+      <svg class="hero-underline hero-underline--inline" viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M4 12C60 4 120 4 150 10S240 16 296 6" pathLength="1"/>
+      </svg>
+      <p class="hero-sub">Treino acompanhado por professor, grade de aulas coletivas que respeita o seu horário e aula experimental antes de fechar plano. Sem promessa de resultado, com rotina que dá para manter.</p>
+      <div class="hero-ctas">
+        <a class="btn btn--primary btn--lg" href="#matricula">Quero me matricular</a>
+        <a class="btn btn--ghost btn--lg" href="#grade">Ver grade de aulas</a>
+      </div>
+      <p class="hero-note">Aula experimental antes de fechar plano, sem compromisso de mensalidade. <a class="link-u" href="#matricula">Testar uma aula</a>.</p>
+    </div>
+  </section>
+
+  <!-- ================= PLANOS ================= -->
+  <section class="section" id="planos" aria-labelledby="planos-title">
+    <div class="container">
+      <div class="section-head" data-reveal="y">
+        <p class="eyebrow">Planos</p>
+        <h2 class="display" id="planos-title">Dois planos, comparados linha por linha</h2>
+        <p>Sem letra miúda e sem terceiro plano colocado só para parecer oferta. Os dois incluem acompanhamento de professor na zona de treino e aula experimental antes de fechar.</p>
+      </div>
+
+      <div class="plans-note" data-reveal="fade">
+        <span><span class="dot" aria-hidden="true"></span> Comparativo fechado, sem opção escondida</span>
+        <span>Valores de demonstração: defina os preços reais antes de publicar.</span>
+      </div>
+
+      <div class="table-wrap" data-reveal="y" style="--i:1">
+        <table class="compare">
+          <caption>Comparativo entre os planos Simples e Completo</caption>
+          <thead>
+            <tr>
+              <th scope="col">Benefício</th>
+              <th scope="col" class="th-plan">Simples</th>
+              <th scope="col" class="th-plan col-hi th-hi">
+                <span class="plan-tag">Mais completo</span><br>Completo
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-reveal="x" style="--i:0">
+              <th scope="row" class="bene">Musculação e cardio em horário livre</th>
+              <td data-label="Simples"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:1">
+              <th scope="row" class="bene">Acompanhamento de professor na zona de treino</th>
+              <td data-label="Simples"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:2">
+              <th scope="row" class="bene">Aulas coletivas, 6 modalidades na grade</th>
+              <td data-label="Simples"><span class="val"><svg class="tick tick--no" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vh">Não inclui</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:3">
+              <th scope="row" class="bene">Avaliação física antes do primeiro treino</th>
+              <td data-label="Simples"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:4">
+              <th scope="row" class="bene">Treino remontado a cada ciclo</th>
+              <td data-label="Simples"><span class="val"><svg class="tick tick--no" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vh">Não inclui</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:5">
+              <th scope="row" class="bene">Acesso a toda a estrutura, vestiários e bebedouros</th>
+              <td data-label="Simples"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:6">
+              <th scope="row" class="bene">Trancar o plano por até [X] dias no ano</th>
+              <td data-label="Simples"><span class="val"><svg class="tick tick--no" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span class="vh">Não inclui</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="x" style="--i:7">
+              <th scope="row" class="bene">Aula experimental antes de fechar plano</th>
+              <td data-label="Simples"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+              <td data-label="Completo" class="col-hi"><span class="val"><svg class="tick" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span class="vh">Incluído</span></span></td>
+            </tr>
+            <tr data-reveal="fade" style="--i:8">
+              <th scope="row" class="bene">Mensalidade</th>
+              <td data-label="Simples"><div class="price">[R$ 00]<span>por mês</span></div></td>
+              <td data-label="Completo" class="col-hi"><div class="price">[R$ 00]<span>por mês</span></div></td>
+            </tr>
+            <tr data-reveal="fade" style="--i:9">
+              <td class="vh-cell"><span class="vh">Escolha do plano</span></td>
+              <td data-label="Simples" class="cell-cta"><a class="btn btn--ghost btn--block" href="#matricula">Quero me matricular</a></td>
+              <td data-label="Completo" class="cell-cta col-hi"><a class="btn btn--primary btn--block" href="#matricula">Quero me matricular</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plans-foot" data-reveal="fade" style="--i:2">
+        <a class="btn btn--primary" href="#matricula">Quero me matricular</a>
+        <a class="btn btn--ghost" href="#grade">Ver grade de aulas</a>
+        <p>A taxa de matrícula é cobrada à parte, no valor de [R$ 00], e não substitui a mensalidade.</p>
+      </div>
+
+      <div class="split-box" data-reveal="y" style="--i:3">
+        <p class="split-tag">Como montamos o seu treino</p>
+        <h3>Divisão de exemplo</h3>
+        <ul class="split-list">
+          <li><span class="k">A</span><span class="v"><b>Empurrar e core</b><span>Peito, ombro, tríceps e abdomenal</span></span></li>
+          <li><span class="k">B</span><span class="v"><b>Puxar e perna</b><span>Costas, bíceps, quadríceps e posterior de coxa</span></span></li>
+          <li><span class="k">C</span><span class="v"><b>Corpo inteiro e cardio</b><span>Circuito completo e 20 minutos de bike</span></span></li>
+        </ul>
+        <p class="split-note">Isto é um exemplo de organização, não é o seu treino. A divisão é montada na avaliação, de acordo com o seu objetivo e com os dias da semana que você pode vir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GRADE SEMANAL ================= -->
+  <section class="section section--surface" id="grade" aria-labelledby="grade-title">
+    <div class="container">
+      <div class="section-head" data-reveal="y">
+        <p class="eyebrow">Grade semanal</p>
+        <h2 class="display" id="grade-title">Aulas de segunda a sábado</h2>
+        <p>Cada dia tem uma combinação diferente de modalidades. Filtre pelo período em que você consegue vir e veja o que está disponível naquele horário.</p>
+      </div>
+
+      <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+        <symbol id="i-bike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17 9 11h5l4.5 6M9 11l3-4h2.5M14 7l1.6 4"/>
+        </symbol>
+        <symbol id="i-kb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6.5a3 3 0 0 1 6 0"/><path d="M6.6 10.5h10.8L16 19a2 2 0 0 1-2 1.7h-4A2 2 0 0 1 8 19z"/><path d="M10.4 14.2v2.6M13.6 14.2v2.6"/>
+        </symbol>
+        <symbol id="i-glove" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="4.5" width="12" height="14" rx="3"/><circle cx="12" cy="11.5" r="2.6"/><path d="M9.5 18.5h5"/>
+        </symbol>
+        <symbol id="i-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="3.2"/>
+        </symbol>
+        <symbol id="i-yoga" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5.6" r="2.3"/><path d="M12 8v4.4"/><path d="M12 12.4c-3.1 0-5.2 1.9-5.2 4.2M12 12.4c3.1 0 5.2 1.9 5.2 4.2M5.4 16.6h13.2"/>
+        </symbol>
+        <symbol id="i-dance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8.6" cy="16.6" r="2.7"/><path d="M11.3 16.6V5.6l6.2-1.6v3.6l-6.2 1.6"/>
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v3.5M15.5 3.5v3.5"/><path d="M8.5 14h2.5M13.5 14H16M8.5 17h2.5"/>
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"/>
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/>
+        </symbol>
+        <symbol id="i-room" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20V4.5A1.5 1.5 0 0 1 5.5 3H15l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M14.5 3v5.5H20M8 13h8M8 16.5h5"/>
+        </symbol>
+      </svg>
+
+      <div class="grade-tools" data-reveal="fade">
+        <div class="tabs" role="tablist" aria-label="Dias da semana">
+          <button class="tab" type="button" role="tab" id="tab-seg" aria-controls="painel-seg" aria-selected="true" tabindex="0">Segunda</button>
+          <button class="tab" type="button" role="tab" id="tab-ter" aria-controls="painel-ter" aria-selected="false" tabindex="-1">Terça</button>
+          <button class="tab" type="button" role="tab" id="tab-qua" aria-controls="painel-qua" aria-selected="false" tabindex="-1">Quarta</button>
+          <button class="tab" type="button" role="tab" id="tab-qui" aria-controls="painel-qui" aria-selected="false" tabindex="-1">Quinta</button>
+          <button class="tab" type="button" role="tab" id="tab-sex" aria-controls="painel-sex" aria-selected="false" tabindex="-1">Sexta</button>
+          <button class="tab" type="button" role="tab" id="tab-sab" aria-controls="painel-sab" aria-selected="false" tabindex="-1">Sábado</button>
+        </div>
+        <div class="periods" role="group" aria-label="Filtrar por período do dia">
+          <button class="chip" type="button" data-period="todos" aria-pressed="true">Todos</button>
+          <button class="chip" type="button" data-period="manha" aria-pressed="false">Manhã</button>
+          <button class="chip" type="button" data-period="tarde" aria-pressed="false">Tarde</button>
+          <button class="chip" type="button" data-period="noite" aria-pressed="false">Noite</button>
+        </div>
+      </div>
+
+      <div class="schedule" data-reveal="y" style="--i:1">
+
+        <div class="panel" id="painel-seg" role="tabpanel" aria-labelledby="tab-seg" tabindex="0">
+          <div class="panel-head"><h3>Segunda</h3><span>6 aulas</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">06:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">07:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="tarde" style="--i:2"><span class="t">12:10</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-dance"/></svg>Ritmos</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:3"><span class="t">18:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-glove"/></svg>Muay Thai</span><span class="r">Studio</span></li>
+            <li class="row" data-period="noite" style="--i:4"><span class="t">19:15</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-ring"/></svg>Pilates</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:5"><span class="t">20:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Este dia não tem aula no período escolhido. Volte para "Todos" ou troque de dia para ver a grade completa.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="painel-ter" role="tabpanel" aria-labelledby="tab-ter" tabindex="0" hidden>
+          <div class="panel-head"><h3>Terça</h3><span>6 aulas</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">06:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">07:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-yoga"/></svg>Yoga</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="tarde" style="--i:2"><span class="t">12:10</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+            <li class="row" data-period="noite" style="--i:3"><span class="t">18:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Circuito</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="noite" style="--i:4"><span class="t">19:15</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-dance"/></svg>Ritmos</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:5"><span class="t">20:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-glove"/></svg>Muay Thai</span><span class="r">Studio</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Este dia não tem aula no período escolhido. Volte para "Todos" ou troque de dia para ver a grade completa.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="painel-qua" role="tabpanel" aria-labelledby="tab-qua" tabindex="0" hidden>
+          <div class="panel-head"><h3>Quarta</h3><span>6 aulas</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">06:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">07:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-yoga"/></svg>Mobilidade</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="tarde" style="--i:2"><span class="t">12:10</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-ring"/></svg>Pilates</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:3"><span class="t">18:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="noite" style="--i:4"><span class="t">19:15</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-glove"/></svg>Muay Thai</span><span class="r">Studio</span></li>
+            <li class="row" data-period="noite" style="--i:5"><span class="t">20:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-dance"/></svg>Ritmos</span><span class="r">Sala 2</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Este dia não tem aula no período escolhido. Volte para "Todos" ou troque de dia para ver a grade completa.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="painel-qui" role="tabpanel" aria-labelledby="tab-qui" tabindex="0" hidden>
+          <div class="panel-head"><h3>Quinta</h3><span>6 aulas</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">06:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Circuito</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">07:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-yoga"/></svg>Yoga</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="tarde" style="--i:2"><span class="t">12:10</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+            <li class="row" data-period="noite" style="--i:3"><span class="t">18:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-ring"/></svg>Pilates</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:4"><span class="t">19:15</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="noite" style="--i:5"><span class="t">20:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-glove"/></svg>Muay Thai</span><span class="r">Studio</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Este dia não tem aula no período escolhido. Volte para "Todos" ou troque de dia para ver a grade completa.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="painel-sex" role="tabpanel" aria-labelledby="tab-sex" tabindex="0" hidden>
+          <div class="panel-head"><h3>Sexta</h3><span>5 aulas</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">06:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">07:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+            <li class="row" data-period="tarde" style="--i:2"><span class="t">12:10</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-dance"/></svg>Ritmos</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="noite" style="--i:3"><span class="t">18:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Circuito</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="noite" style="--i:4"><span class="t">20:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-yoga"/></svg>Yoga</span><span class="r">Sala 2</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Este dia não tem aula no período escolhido. Volte para "Todos" ou troque de dia para ver a grade completa.</p>
+          </div>
+        </div>
+
+        <div class="panel" id="painel-sab" role="tabpanel" aria-labelledby="tab-sab" tabindex="0" hidden>
+          <div class="panel-head"><h3>Sábado</h3><span>3 aulas, só de manhã</span></div>
+          <ul class="rows">
+            <li class="row" data-period="manha" style="--i:0"><span class="t">08:00</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-kb"/></svg>Funcional</span><span class="r">Sala 1</span></li>
+            <li class="row" data-period="manha" style="--i:1"><span class="t">09:15</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-dance"/></svg>Ritmos</span><span class="r">Sala 2</span></li>
+            <li class="row" data-period="manha" style="--i:2"><span class="t">10:30</span><span class="m"><svg width="22" height="22" aria-hidden="true"><use href="#i-bike"/></svg>Bike Indoor</span><span class="r">Studio</span></li>
+          </ul>
+          <div class="empty" hidden>
+            <svg width="34" height="34" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <h4>Sem aula nesse período</h4>
+            <p>Aos sábados a grade funciona só de manhã. Volte para "Todos" ou escolha outro dia da semana.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODALIDADES ================= -->
+  <section class="section" id="modalidades" aria-labelledby="modalidades-title">
+    <div class="container">
+      <div class="section-head" data-reveal="y">
+        <p class="eyebrow">Modalidades</p>
+        <h2 class="display" id="modalidades-title">Seis modalidades, uma rotina</h2>
+        <p>Todas as aulas coletivas entram no plano Completo e podem ser misturadas com a musculação: três dias de peso e dois de aula, por exemplo.</p>
+      </div>
+
+      <ol class="mod-list">
+        <li class="mod-item" data-reveal="fade" style="--i:0">
+          <span class="mod-num" aria-hidden="true">01</span>
+          <div class="mod-body">
+            <div>
+              <h3>Musculação</h3>
+              <p>Treino montado na avaliação, com carga anotada e ajuste conforme você evolui. É a base de todos os planos.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-stroke style="--len:260" d="M3 9.5v5M6 7v10M18 7v10M21 9.5v5M6 12h12"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+        <li class="mod-item" data-reveal="fade" style="--i:1">
+          <span class="mod-num" aria-hidden="true">02</span>
+          <div class="mod-body">
+            <div>
+              <h3>Treino funcional</h3>
+              <p>Circuito em turma com peso do corpo e acessórios. Serve para quem enjoa de repetir sempre o mesmo exercício.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path data-stroke style="--len:260" d="M9 6.5a3 3 0 0 1 6 0"/>
+                <path data-stroke style="--len:260" d="M6.6 10.5h10.8L16 19a2 2 0 0 1-2 1.7h-4A2 2 0 0 1 8 19z"/>
+                <path data-stroke style="--len:260" d="M10.4 14.2v2.6M13.6 14.2v2.6"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+        <li class="mod-item" data-reveal="fade" style="--i:2">
+          <span class="mod-num" aria-hidden="true">03</span>
+          <div class="mod-body">
+            <div>
+              <h3>Bike Indoor</h3>
+              <p>Aula de 50 minutos em bicicleta estacionária, com a intensidade controlada pelo ritmo de pedalada.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle data-stroke style="--len:260" cx="5.5" cy="17" r="3"/>
+                <circle data-stroke style="--len:260" cx="18.5" cy="17" r="3"/>
+                <path data-stroke style="--len:260" d="M5.5 17 9 11h5l4.5 6M9 11l3-4h2.5M14 7l1.6 4"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+        <li class="mod-item" data-reveal="fade" style="--i:3">
+          <span class="mod-num" aria-hidden="true">04</span>
+          <div class="mod-body">
+            <div>
+              <h3>Muay Thai</h3>
+              <p>Técnica e condicionamento em turma, do aquecimento ao sparring leve. Luva e proteção são emprestadas na aula.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect data-stroke style="--len:260" x="6" y="4.5" width="12" height="14" rx="3"/>
+                <circle data-stroke style="--len:260" cx="12" cy="11.5" r="2.6"/>
+                <path data-stroke style="--len:260" d="M9.5 18.5h5"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+        <li class="mod-item" data-reveal="fade" style="--i:4">
+          <span class="mod-num" aria-hidden="true">05</span>
+          <div class="mod-body">
+            <div>
+              <h3>Pilates</h3>
+              <p>Trabalho de core, postura e mobilidade em turmas reduzidas. Complementa o treino de força e cabe para qualquer idade.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle data-stroke style="--len:260" cx="12" cy="12" r="7.5"/>
+                <circle data-stroke style="--len:260" cx="12" cy="12" r="3.2"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+        <li class="mod-item" data-reveal="fade" style="--i:5">
+          <span class="mod-num" aria-hidden="true">06</span>
+          <div class="mod-body">
+            <div>
+              <h3>Yoga e mobilidade</h3>
+              <p>Alongamento e respiração para recuperar entre os treinos. Aula mais calma, de baixo impacto, sem pressa.</p>
+            </div>
+            <span class="mod-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle data-stroke style="--len:260" cx="12" cy="5.6" r="2.3"/>
+                <path data-stroke style="--len:260" d="M12 8v4.4"/>
+                <path data-stroke style="--len:260" d="M12 12.4c-3.1 0-5.2 1.9-5.2 4.2M12 12.4c3.1 0 5.2 1.9 5.2 4.2M5.4 16.6h13.2"/>
+              </svg>
+            </span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= ESTRUTURA ================= -->
+  <section class="section section--surface" id="estrutura" aria-labelledby="estrutura-title">
+    <div class="container">
+      <div class="section-head" data-reveal="y">
+        <p class="eyebrow">Estrutura</p>
+        <h2 class="display" id="estrutura-title">O que você encontra por aqui</h2>
+        <p>Os blocos abaixo estão reservados para as fotos reais da sua academia. Cada um descreve o que a área oferece.</p>
+      </div>
+
+      <div class="struct-grid">
+        <figure class="tile" role="img" aria-label="espaco para foto: area de musculacao e cardio" data-reveal="y" style="--i:0">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5v5M6 7v10M18 7v10M21 9.5v5M6 12h12"/></svg>
+          </span>
+          <figcaption><span class="lbl">Musculação e cardio</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+        <figure class="tile" role="img" aria-label="espaco para foto: sala de aulas coletivas" data-reveal="y" style="--i:1">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4.5A1.5 1.5 0 0 1 5.5 3H15l5 5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M14.5 3v5.5H20M8 13h8M8 16.5h5"/></svg>
+          </span>
+          <figcaption><span class="lbl">Sala de coletivas</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+        <figure class="tile" role="img" aria-label="espaco para foto: vestiarios" data-reveal="y" style="--i:2">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M4 9.5h16M4 15.5h16M12 3.5v17"/></svg>
+          </span>
+          <figcaption><span class="lbl">Vestiários</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+        <figure class="tile" role="img" aria-label="espaco para foto: recepcao e area de avaliacao" data-reveal="y" style="--i:3">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5h16v3H4z"/><path d="M6 11.5v8M18 11.5v8M4 8.5V6h16v2.5"/></svg>
+          </span>
+          <figcaption><span class="lbl">Recepção e avaliação</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+        <figure class="tile" role="img" aria-label="espaco para foto: estacionamento" data-reveal="y" style="--i:4">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5v-3l1.8-4.2A2 2 0 0 1 8.1 8h7.8a2 2 0 0 1 1.8 1.3l1.8 4.2v3"/><path d="M4.5 16.5h15"/><circle cx="8" cy="17.5" r="1.7"/><circle cx="16" cy="17.5" r="1.7"/></svg>
+          </span>
+          <figcaption><span class="lbl">Estacionamento</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+        <figure class="tile" role="img" aria-label="espaco para foto: area de convivencia" data-reveal="y" style="--i:5">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5h16"/><path d="M6.5 19.5V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v10.5"/><path d="M10 7V5.5A1.5 1.5 0 0 1 11.5 4h1A1.5 1.5 0 0 1 14 5.5V7"/></svg>
+          </span>
+          <figcaption><span class="lbl">Área de convivência</span><br><span class="ph">Sua foto aqui</span></figcaption>
+        </figure>
+      </div>
+
+      <ul class="struct-info" data-reveal="fade" style="--i:2">
+        <li>
+          <svg width="22" height="22" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span><b>Funcionamento</b>Segunda a sexta, 6h às 22h. Sábado, 8h às 12h.</span>
+        </li>
+        <li>
+          <svg width="22" height="22" aria-hidden="true"><use href="#i-room"/></svg>
+          <span><b>Endereço</b>[endereço]</span>
+        </li>
+        <li>
+          <svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg>
+          <span><b>Telefone</b><a class="link-u" href="tel:+5500000000000">[(00) 00000-0000]</a></span>
+        </li>
+        <li>
+          <svg width="22" height="22" aria-hidden="true"><use href="#i-mail"/></svg>
+          <span><b>E-mail</b><a class="link-u" href="mailto:seu@email.com">[seu@email.com]</a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="duvidas" aria-labelledby="duvidas-title">
+    <div class="container">
+      <div class="section-head" data-reveal="y">
+        <p class="eyebrow">Dúvidas</p>
+        <h2 class="display" id="duvidas-title">Perguntas que sempre aparecem</h2>
+        <p>Respostas curtas, sem letra miúda e sem promessa de resultado. Se ficar alguma dúvida de fora, pergunte na matrícula.</p>
+      </div>
+
+      <div class="faq" data-reveal="fade" style="--i:1">
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+              Tem taxa de matrícula?
+              <span class="sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="inner"><p>Sim. A matrícula é cobrada uma única vez, no valor de [R$ 00], e cobre a avaliação física e a montagem do treino. Ela não substitui a mensalidade.</p></div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+              Posso trancar o plano?
+              <span class="sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="inner"><p>Dá para trancar por até [X] dias por ano, sem custo enquanto estiver trancado. Basta avisar na recepção com [X] dias de antecedência. O contrato continua com o mesmo prazo final.</p></div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+              Tem aula experimental?
+              <span class="sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="inner"><p>Tem. Você pode testar uma aula coletiva antes de fechar plano. Escolha a modalidade e o horário no formulário de matrícula que a recepção reserva a vaga para você.</p></div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+              O personal está incluso?
+              <span class="sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="inner"><p>O acompanhamento de professor na zona de treino está incluso nos dois planos: você tira dúvida de execução e de carga com a equipe. O personal exclusivo, um a um, é contratado à parte, a partir de [R$ 00] por sessão.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MATRÍCULA ================= -->
+  <section class="section section--surface" id="matricula" aria-labelledby="matricula-title">
+    <div class="container enroll-grid">
+      <div class="contact-side" data-reveal="y">
+        <p class="eyebrow">Matrícula</p>
+        <h2 class="display" id="matricula-title">Preencha e a gente chama você</h2>
+        <p>Deixe os dados abaixo e a recepção entra em contato para agendar a avaliação e a aula experimental. Nada é assinado por aqui.</p>
+        <ul class="contact-list">
+          <li>
+            <svg width="22" height="22" aria-hidden="true"><use href="#i-room"/></svg>
+            <span><b>Endereço</b>[endereço]</span>
+          </li>
+          <li>
+            <svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg>
+            <span><b>Telefone</b><a class="link-u" href="tel:+5500000000000">[(00) 00000-0000]</a></span>
+          </li>
+          <li>
+            <svg width="22" height="22" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span><b>E-mail</b><a class="link-u" href="mailto:seu@email.com">[seu@email.com]</a></span>
+          </li>
+          <li>
+            <svg width="22" height="22" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <span><b>Atendimento</b>Segunda a sexta, 9h às 21h. Sábado, 9h às 12h.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div data-reveal="y" style="--i:1">
+        <form class="form" id="form-matricula" novalidate>
+          <div class="field">
+            <label for="f-nome">Nome completo <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="text" id="f-nome" name="nome" autocomplete="name" placeholder="Como você se chama" aria-describedby="err-nome" required>
+            <p class="err" id="err-nome" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="f-email">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="email" id="f-email" name="email" autocomplete="email" placeholder="seu@email.com" aria-describedby="err-email" required>
+            <p class="err" id="err-email" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="f-tel">Telefone ou WhatsApp <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="tel" id="f-tel" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="err-tel" required>
+            <p class="err" id="err-tel" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="f-objetivo">Qual é o seu objetivo? <span class="req" aria-hidden="true">*</span></label>
+            <select class="input" id="f-objetivo" name="objetivo" aria-describedby="err-objetivo" required>
+              <option value="">Selecione uma opção</option>
+              <option value="Voltar a treinar depois de um tempo">Voltar a treinar depois de um tempo</option>
+              <option value="Emagrecer e condicionar">Emagrecer e condicionar</option>
+              <option value="Ganhar massa muscular">Ganhar massa muscular</option>
+              <option value="Melhorar mobilidade e postura">Melhorar mobilidade e postura</option>
+              <option value="Ainda não sei, quero conversar">Ainda não sei, quero conversar</option>
+            </select>
+            <p class="err" id="err-objetivo" role="alert"></p>
+          </div>
+
+          <fieldset aria-describedby="err-plano">
+            <legend class="legend">Plano de interesse <span class="req" aria-hidden="true">*</span></legend>
+            <div class="checks">
+              <label class="check"><input type="radio" name="plano" value="Simples"> Simples</label>
+              <label class="check"><input type="radio" name="plano" value="Completo"> Completo</label>
+              <label class="check"><input type="radio" name="plano" value="Ainda não decidi"> Ainda não decidi</label>
+            </div>
+            <p class="err" id="err-plano" role="alert"></p>
+          </fieldset>
+
+          <fieldset>
+            <legend class="legend">Melhor período para treinar</legend>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="periodo" value="manhã"> Manhã</label>
+              <label class="check"><input type="checkbox" name="periodo" value="tarde"> Tarde</label>
+              <label class="check"><input type="checkbox" name="periodo" value="noite"> Noite</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="f-msg">Alguma lesão, restrição ou dúvida?</label>
+            <textarea class="input" id="f-msg" name="mensagem" placeholder="Opcional. Conte se há algo que o professor precisa saber antes do primeiro treino."></textarea>
+          </div>
+
+          <div class="field">
+            <label class="consent" for="f-consent">
+              <input type="checkbox" id="f-consent" name="consentimento" aria-describedby="err-consent">
+              <span>Autorizo o contato da recepção sobre a matrícula e a aula experimental. <span class="req" aria-hidden="true">*</span></span>
+            </label>
+            <p class="err" id="err-consent" role="alert"></p>
+          </div>
+
+          <button class="btn btn--primary btn--lg btn--block" type="submit">Quero me matricular</button>
+          <p class="form-foot">Esta é uma demonstração: o formulário não envia os dados para lugar nenhum. Em um site real, a recepção receberia estas informações.</p>
+        </form>
+
+        <div class="success" id="form-sucesso" role="status" aria-live="polite">
+          <p class="badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+            Recebemos os seus dados
+          </p>
+          <h3>Pronto, <span id="sucesso-nome">tudo certo</span>.</h3>
+          <p>Este é o estado de sucesso da demonstração. O formulário não envia nada, então ninguém foi avisado: em um site real, a recepção entraria em contato pelo telefone ou e-mail que você deixou.</p>
+          <div class="recap" id="sucesso-recap"></div>
+          <p>Enquanto isso, você pode <a class="link-u" href="#grade">ver a grade de aulas</a> ou <a class="link-u" href="#planos">comparar os planos</a>.</p>
+          <button class="btn btn--ghost" type="button" id="btn-outro">Preencher outra matrícula</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="foot-top">
+        <a class="brand" href="#inicio" aria-label="Sua Academia, voltar ao início">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M3 9.5v5M6 7.5v9M18 7.5v9M21 9.5v5M6 12h12"/>
+            </svg>
+          </span>
+          <span class="brand-name">Sua <span class="accent-text">Academia</span></span>
+        </a>
+        <nav class="foot-nav" aria-label="Navegação do rodapé">
+          <a href="#planos">Planos</a>
+          <a href="#grade">Grade</a>
+          <a href="#modalidades">Modalidades</a>
+          <a href="#estrutura">Estrutura</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#matricula">Matrícula</a>
+        </nav>
+      </div>
+      <p class="foot-credit">Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a>, landing do nicho Academia / Fitness. <a class="link-u" href="../index.html">Voltar ao catálogo de modelos</a>.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var doc = document;
+  doc.documentElement.classList.add('js');
+
+  var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mqDesktop = window.matchMedia('(min-width: 761px)');
+  var reduced = mqReduce.matches;
+
+  /* ---------- 1. entrada de página, escalonada ---------- */
+  function boot() { doc.body.classList.add('is-loaded'); }
+  if (doc.readyState === 'complete') { boot(); }
+  else { window.addEventListener('load', boot); }
+
+  /* ---------- 2. header no scroll + parallax, tudo em rAF ---------- */
+  var header = doc.getElementById('header');
+  var pulse = doc.querySelector('.hero-pulse');
+  var menuBtn = doc.getElementById('menu-btn');
+  var menu = doc.getElementById('mobile-menu');
+  var ticking = false;
+
+  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'duvidas', 'matricula'];
+  var sections = sectionIds.map(function (id) { return doc.getElementById(id); });
+  var navLinks = Array.prototype.slice.call(doc.querySelectorAll('.nav-desktop .nav-link'));
+
+  function markActive(y) {
+    var line = y + 140;
+    var active = null;
+    sections.forEach(function (s) { if (s && s.offsetTop <= line) { active = s.id; } });
+    navLinks.forEach(function (a) {
+      a.classList.toggle('is-active', a.getAttribute('href') === '#' + active);
+    });
+  }
+
+  function frame() {
+    ticking = false;
+    var y = window.pageYOffset || doc.documentElement.scrollTop || 0;
+    if (header) { header.classList.toggle('is-scrolled', y > 8); }
+    /* parallax leve no anel do herói, fator 0.18, só no desktop */
+    if (pulse) {
+      pulse.style.transform = (mqDesktop.matches && !reduced)
+        ? 'translate3d(0,' + (y * 0.18).toFixed(1) + 'px,0)' : '';
+    }
+    if (mqDesktop.matches && menuBtn && menuBtn.getAttribute('aria-expanded') === 'true') { closeMenu(); }
+    markActive(y);
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(frame); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  frame();
+
+  /* ---------- 3. scroll reveal, atraso por --i nos irmãos ---------- */
+  var revealEls = Array.prototype.slice.call(doc.querySelectorAll('[data-reveal]'));
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------- 4. menu mobile de verdade ---------- */
+  function openMenu() {
+    menuBtn.setAttribute('aria-expanded', 'true');
+    menuBtn.setAttribute('aria-label', 'Fechar menu de navegação');
+    menu.classList.add('is-open');
+    doc.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', 'Abrir menu de navegação');
+    menu.classList.remove('is-open');
+    doc.body.style.overflow = '';
+  }
+  if (menuBtn && menu) {
+    menuBtn.addEventListener('click', function () {
+      if (menuBtn.getAttribute('aria-expanded') === 'true') { closeMenu(); } else { openMenu(); }
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { closeMenu(); }
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+        menuBtn.focus();
+      }
+    });
+  }
+
+  /* ---------- 5. grade: abas reais + filtro de período ---------- */
+  var tablist = doc.querySelector('[role="tablist"]');
+  var tabs = Array.prototype.slice.call(doc.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return doc.getElementById(t.getAttribute('aria-controls')); });
+  var current = 0;
+  var period = 'todos';
+  var gradeInView = false;
+
+  function revealRows(panel) {
+    if (!panel) { return; }
+    var rows = Array.prototype.slice.call(panel.querySelectorAll('.row'));
+    rows.forEach(function (r, i) { r.style.setProperty('--i', i); });
+    if (reduced) {
+      Array.prototype.slice.call(doc.querySelectorAll('.row')).forEach(function (r) { r.classList.add('is-in'); });
+      return;
+    }
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        rows.forEach(function (r) { r.classList.add('is-in'); });
+      });
+    });
+  }
+
+  function selectTab(index, moveFocus) {
+    if (index < 0 || index >= tabs.length) { return; }
+    tabs.forEach(function (t, i) {
+      var on = i === index;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (panels[i]) { panels[i].hidden = !on; }
+    });
+    current = index;
+    var panel = panels[index];
+    if (panel) {
+      panel.classList.remove('is-swapping');
+      void panel.offsetWidth;
+      if (!reduced) { panel.classList.add('is-swapping'); }
+    }
+    if (moveFocus) { tabs[index].focus(); }
+    applyFilter();
+    /* as linhas do novo dia só entram se a grade já estava visível */
+    if (gradeInView) { revealRows(panels[index]); }
+  }
+
+  if (tablist && tabs.length) {
+    tabs.forEach(function (t, i) { t.addEventListener('click', function () { selectTab(i); }); });
+    tablist.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') { next = (current + 1) % tabs.length; }
+      else if (e.key === 'ArrowLeft') { next = (current - 1 + tabs.length) % tabs.length; }
+      else if (e.key === 'Home') { next = 0; }
+      else if (e.key === 'End') { next = tabs.length - 1; }
+      if (next !== null) { e.preventDefault(); selectTab(next, true); }
+    });
+  }
+
+  var chips = Array.prototype.slice.call(doc.querySelectorAll('.chip'));
+
+  function applyFilter() {
+    chips.forEach(function (c) {
+      c.setAttribute('aria-pressed', c.getAttribute('data-period') === period ? 'true' : 'false');
+    });
+    var panel = panels[current];
+    if (!panel) { return; }
+    var shown = 0;
+    panel.querySelectorAll('.row').forEach(function (r) {
+      var ok = period === 'todos' || r.getAttribute('data-period') === period;
+      r.hidden = !ok;
+      if (ok) { shown += 1; }
+    });
+    var empty = panel.querySelector('.empty');
+    if (empty) { empty.hidden = shown > 0; }
+    var count = panel.querySelector('.panel-head span');
+    if (count) {
+      if (period === 'todos') { count.textContent = shown + (shown === 1 ? ' aula' : ' aulas'); }
+      else if (shown === 0) { count.textContent = 'nenhuma aula neste período'; }
+      else { count.textContent = shown + (shown === 1 ? ' aula' : ' aulas') + ' no período'; }
+    }
+    var i = 0;
+    Array.prototype.slice.call(panel.querySelectorAll('.row')).forEach(function (r) {
+      if (!r.hidden) { r.style.setProperty('--i', i); i += 1; }
+    });
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      period = c.getAttribute('data-period');
+      applyFilter();
+    });
+  });
+
+  var schedule = doc.querySelector('.schedule');
+  if (schedule) {
+    if ('IntersectionObserver' in window && !reduced) {
+      var rowsIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            gradeInView = true;
+            revealRows(activePanelSafe());
+            rowsIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      rowsIO.observe(schedule);
+    } else {
+      gradeInView = true;
+      Array.prototype.slice.call(doc.querySelectorAll('.row')).forEach(function (r) { r.classList.add('is-in'); });
+    }
+  }
+  function activePanelSafe() { return panels[current]; }
+  selectTab(0);
+
+  /* ---------- 6. FAQ: acordeão com transição de altura ---------- */
+  Array.prototype.slice.call(doc.querySelectorAll('.faq-q')).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      var item = btn.closest('.faq-item');
+      if (item) { item.classList.toggle('is-open', !open); }
+    });
+  });
+
+  /* ---------- 7. formulário com validação por campo ---------- */
+  var form = doc.getElementById('form-matricula');
+  var success = doc.getElementById('form-sucesso');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+  function markError(input, errId, msg) {
+    var err = doc.getElementById(errId);
+    if (err) { err.textContent = msg; err.classList.add('is-on'); }
+    if (input) { input.setAttribute('aria-invalid', 'true'); }
+  }
+  function clearError(input, errId) {
+    var err = doc.getElementById(errId);
+    if (err) { err.textContent = ''; err.classList.remove('is-on'); }
+    if (input) { input.removeAttribute('aria-invalid'); }
+  }
+  function vNome(el) {
+    var v = el.value.trim();
+    if (!v) { return 'Informe o seu nome.'; }
+    if (v.replace(/\s+/g, ' ').split(' ').length < 2) { return 'Escreva nome e sobrenome.'; }
+    return '';
+  }
+  function vEmail(el) {
+    var v = el.value.trim();
+    if (!v) { return 'Informe um e-mail para contato.'; }
+    if (!EMAIL_RE.test(v)) { return 'E-mail inválido. Confira o endereço.'; }
+    return '';
+  }
+  function vTel(el) {
+    var d = el.value.replace(/\D/g, '');
+    if (!d) { return 'Informe um telefone ou WhatsApp.'; }
+    if (d.length < 10 || d.length > 13) { return 'Telefone incompleto. Inclua o DDD.'; }
+    return '';
+  }
+  function vObjetivo(el) { return el.value ? '' : 'Escolha um objetivo.'; }
+  function vPlano() { return form.querySelector('input[name="plano"]:checked') ? '' : 'Escolha um plano de interesse.'; }
+  function vConsent() {
+    return doc.getElementById('f-consent').checked ? '' : 'Precisamos da sua autorização para entrar em contato.';
+  }
+
+  function bind(id, errId, fn, evt) {
+    var el = doc.getElementById(id);
+    if (!el) { return; }
+    el.addEventListener('blur', function () {
+      var msg = fn(el);
+      if (msg) { markError(el, errId, msg); } else { clearError(el, errId); }
+    });
+    el.addEventListener(evt, function () { if (!fn(el)) { clearError(el, errId); } });
+  }
+
+  if (form && success) {
+    bind('f-nome', 'err-nome', vNome, 'input');
+    bind('f-email', 'err-email', vEmail, 'input');
+    bind('f-tel', 'err-tel', vTel, 'input');
+    bind('f-objetivo', 'err-objetivo', vObjetivo, 'change');
+
+    var planoRadios = Array.prototype.slice.call(form.querySelectorAll('input[name="plano"]'));
+    function clearPlanoErr() {
+      var err = doc.getElementById('err-plano');
+      if (err) { err.textContent = ''; err.classList.remove('is-on'); }
+      planoRadios.forEach(function (x) { x.removeAttribute('aria-invalid'); });
+    }
+    planoRadios.forEach(function (r) {
+      r.addEventListener('change', function () { if (!vPlano()) { clearPlanoErr(); } });
+    });
+
+    var consent = doc.getElementById('f-consent');
+    consent.addEventListener('change', function () { if (!vConsent()) { clearError(consent, 'err-consent'); } });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = [];
+
+      [['f-nome', 'err-nome', vNome], ['f-email', 'err-email', vEmail],
+       ['f-tel', 'err-tel', vTel], ['f-objetivo', 'err-objetivo', vObjetivo]]
+        .forEach(function (c) {
+          var el = doc.getElementById(c[0]);
+          var msg = c[2](el);
+          if (msg) { markError(el, c[1], msg); bad.push(el); } else { clearError(el, c[1]); }
+        });
+
+      var pMsg = vPlano();
+      if (pMsg) {
+        var pErr = doc.getElementById('err-plano');
+        if (pErr) { pErr.textContent = pMsg; pErr.classList.add('is-on'); }
+        planoRadios.forEach(function (x) { x.setAttribute('aria-invalid', 'true'); });
+        bad.push(planoRadios[0]);
+      } else { clearPlanoErr(); }
+
+      var cMsg = vConsent();
+      if (cMsg) { markError(consent, 'err-consent', cMsg); bad.push(consent); }
+      else { clearError(consent, 'err-consent'); }
+
+      if (bad.length) { bad[0].focus(); return; }
+
+      /* estado de sucesso visível, sem fingir que enviou */
+      doc.getElementById('sucesso-nome').textContent =
+        doc.getElementById('f-nome').value.trim().split(' ')[0];
+
+      var objetivo = doc.getElementById('f-objetivo');
+      var plano = form.querySelector('input[name="plano"]:checked');
+      var periodos = Array.prototype.slice.call(form.querySelectorAll('input[name="periodo"]:checked'))
+        .map(function (i) { return i.value; });
+      var obs = doc.getElementById('f-msg').value.trim();
+
+      var dados = [
+        ['Objetivo', objetivo.options[objetivo.selectedIndex].text],
+        ['Plano de interesse', plano ? plano.value : 'não informado'],
+        ['Melhor período', periodos.length ? periodos.join(', ') : 'não informado'],
+        ['Telefone informado', doc.getElementById('f-tel').value.trim()],
+        ['Observação', obs ? obs : 'nenhuma']
+      ];
+      var recap = doc.getElementById('sucesso-recap');
+      recap.textContent = '';
+      dados.forEach(function (par) {
+        var p = doc.createElement('p');
+        p.textContent = par[0] + ': ';
+        var b = doc.createElement('b');
+        b.textContent = par[1];
+        p.appendChild(b);
+        recap.appendChild(p);
+      });
+
+      form.hidden = true;
+      success.classList.add('is-on');
+      success.setAttribute('tabindex', '-1');
+      success.focus();
+    });
+
+    doc.getElementById('btn-outro').addEventListener('click', function () {
+      form.reset();
+      Array.prototype.slice.call(form.querySelectorAll('.err')).forEach(function (el) {
+        el.textContent = '';
+        el.classList.remove('is-on');
+      });
+      Array.prototype.slice.call(form.querySelectorAll('[aria-invalid]')).forEach(function (el) {
+        el.removeAttribute('aria-invalid');
+      });
+      success.classList.remove('is-on');
+      success.removeAttribute('tabindex');
+      form.hidden = false;
+      doc.getElementById('f-nome').focus();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
+
+

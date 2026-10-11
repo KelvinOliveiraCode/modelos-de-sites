@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua Marca · Restaurante e Delivery</title>
+<meta name="description" content="Restaurante e delivery com cardápio em abas, entrega no bairro e reserva de mesa. Modelo de demonstração.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1A1A1A;
+    --bg-soft:#202020;
+    --surface:#242424;
+    --surface-2:#2B2B2B;
+    --line:#3A3A3A;
+    --ink:#FFF8F0;
+    --muted:#BDB5AD;
+    --brand:#D32F2F;
+    --brand-strong:#B02828;
+    --accent:#FFC107;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --ease-state:cubic-bezier(.4,0,.2,1);
+    --wrap:1160px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+
+  [hidden]{display:none !important;}
+
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:92px;
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Bebas Neue',Impact,sans-serif;
+    font-weight:400;
+    letter-spacing:.01em;
+    line-height:1.02;
+    margin:0;
+    text-transform:uppercase;
+  }
+
+  p{margin:0;}
+
+  ul,ol{margin:0;padding:0;list-style:none;}
+
+  a{color:inherit;text-decoration:none;}
+
+  img,svg{display:block;max-width:100%;}
+
+  button{font:inherit;color:inherit;}
+
+  :focus-visible{
+    outline:3px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:var(--wrap);
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  .eyebrow{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .note{
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  .sr-only{
+    position:absolute;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+    border:0;
+  }
+
+  /* ---------- botoes ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:46px;
+    padding:12px 22px;
+    border:2px solid transparent;
+    border-radius:6px;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.02em;
+    cursor:pointer;
+    background:var(--brand);
+    color:var(--ink);
+    transition:transform 180ms var(--ease-state),background-color 180ms var(--ease-state),box-shadow 180ms var(--ease-state),color 180ms var(--ease-state);
+  }
+
+  .btn:hover{
+    background:var(--brand-strong);
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(0,0,0,.35);
+  }
+
+  .btn-accent{
+    background:var(--accent);
+    color:#1A1A1A;
+  }
+
+  .btn-accent:hover{
+    background:#FFD257;
+    color:#1A1A1A;
+  }
+
+  .btn-accent:focus-visible{outline-color:#1A1A1A;}
+
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--line);
+  }
+
+  .btn-ghost:hover{
+    background:var(--surface-2);
+    border-color:var(--muted);
+    color:var(--ink);
+  }
+
+  .btn-sm{min-height:44px;padding:10px 16px;font-size:14px;}
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:rgba(26,26,26,.82);
+    border-bottom:1px solid transparent;
+    transition:background-color 250ms var(--ease-state),box-shadow 250ms var(--ease-state),border-color 250ms var(--ease-state);
+  }
+
+  .site-header.is-scrolled{
+    background:rgba(26,26,26,.97);
+    border-bottom-color:var(--line);
+    box-shadow:0 8px 24px rgba(0,0,0,.45);
+  }
+
+  .header-inner{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    max-width:var(--wrap);
+    margin:0 auto;
+    padding:14px 20px;
+    transition:padding 250ms var(--ease-state);
+  }
+
+  .site-header.is-scrolled .header-inner{padding-top:9px;padding-bottom:9px;}
+
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .brand-mark{
+    font-family:'DM Sans',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--muted);
+    border:1px dashed var(--line);
+    border-radius:4px;
+    padding:4px 7px;
+    transition:color 200ms var(--ease-state),border-color 200ms var(--ease-state);
+  }
+
+  .brand:hover .brand-mark{color:var(--accent);border-color:var(--accent);}
+
+  .brand-name{
+    font-family:'Bebas Neue',Impact,sans-serif;
+    font-size:26px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--ink);
+    transition:color 200ms var(--ease-state);
+  }
+
+  .brand:hover .brand-name{color:var(--accent);}
+
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:44px;
+    padding:8px 14px;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:background-color 200ms var(--ease-state),border-color 200ms var(--ease-state);
+  }
+
+  .nav-toggle:hover{background:var(--surface-2);border-color:var(--muted);}
+
+  .nav-toggle svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+
+  .nav-list{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  .nav-list a{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    padding:8px 12px;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+    position:relative;
+    transition:color 200ms var(--ease-state),background-color 200ms var(--ease-state);
+  }
+
+  .nav-list a::after{
+    content:"";
+    position:absolute;
+    left:12px;right:12px;bottom:6px;
+    height:2px;
+    background:var(--accent);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 220ms var(--ease-state);
+  }
+
+  .nav-list a:hover{color:var(--accent);}
+  .nav-list a:hover::after{transform:scaleX(1);}
+
+  .header-cta{flex-shrink:0;}
+
+  @media (max-width:760px){
+    .nav-list{
+      position:absolute;
+      top:100%;left:0;right:0;
+      flex-direction:column;
+      align-items:stretch;
+      gap:2px;
+      padding:10px 20px 18px;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      box-shadow:0 18px 30px rgba(0,0,0,.5);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(-10px);
+      transition:opacity 220ms var(--ease-state),transform 220ms var(--ease-state),visibility 220ms;
+    }
+    .nav-list.is-open{opacity:1;visibility:visible;transform:none;}
+    .nav-list a{min-height:48px;border-bottom:1px solid var(--line);border-radius:0;}
+    .nav-list a::after{display:none;}
+    .nav-list a:hover{background:var(--surface-2);}
+    .header-cta{display:none;}
+  }
+
+  @media (min-width:761px){
+    .nav-toggle{display:none;}
+  }
+
+  /* ---------- entrada de pagina ---------- */
+  .enter{opacity:0;transform:translateY(18px);}
+
+  body.is-loaded .enter{
+    opacity:1;
+    transform:none;
+    transition:opacity 700ms var(--ease),transform 700ms var(--ease);
+    transition-delay:var(--d,0ms);
+  }
+
+  /* ---------- reveal com IntersectionObserver ---------- */
+  [data-reveal]{opacity:0;transform:translateY(22px);}
+
+  [data-reveal].is-visible{
+    opacity:1;
+    transform:none;
+    transition:opacity 800ms var(--ease),transform 800ms var(--ease);
+    transition-delay:calc(var(--i,0) * 80ms);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:104px 0 64px;
+    background:
+      radial-gradient(120% 90% at 85% 0%,rgba(211,47,47,.22),transparent 60%),
+      var(--bg);
+  }
+
+  .hero-grid{
+    display:grid;
+    gap:40px;
+    align-items:center;
+  }
+
+  .hero h1{
+    font-size:clamp(3rem,13vw,6.2rem);
+    letter-spacing:.005em;
+    margin:14px 0 22px;
+  }
+
+  .hero h1 .hero-outline{
+    color:transparent;
+    -webkit-text-stroke:2px var(--accent);
+  }
+
+  .band-wrap{overflow:hidden;border-radius:6px;}
+
+  .band{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    background:var(--accent);
+    color:#1A1A1A;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    padding:12px 18px;
+    transform:translateX(-102%);
+    transition:transform 800ms var(--ease) 240ms;
+  }
+
+  body.is-loaded .band{transform:none;}
+
+  .band svg{width:18px;height:18px;stroke:#1A1A1A;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+  .lead{
+    margin-top:22px;
+    font-size:clamp(1rem,2.4vw,1.15rem);
+    color:#EDE4DC;
+    max-width:52ch;
+  }
+
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+  }
+
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 26px;
+    margin-top:28px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  .hero-meta li{display:flex;align-items:center;gap:8px;}
+
+  .hero-meta strong{color:var(--ink);font-weight:700;}
+
+  .hero-visual{position:relative;margin:0;}
+
+  .photo-ph{
+    position:relative;
+    min-height:280px;
+    border:2px dashed var(--line);
+    border-radius:12px;
+    background:linear-gradient(180deg,var(--surface),var(--bg-soft));
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding:18px;
+    overflow:hidden;
+    transition:border-color 250ms var(--ease-state),transform 250ms var(--ease-state);
+  }
+
+  .photo-ph:hover{border-color:var(--accent);}
+
+  .photo-ph-label{
+    font-family:'DM Sans',monospace;
+    font-size:14px;
+    letter-spacing:.08em;
+    color:var(--muted);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:6px 10px;
+    background:rgba(26,26,26,.7);
+  }
+
+  .steam{
+    position:absolute;
+    left:50%;
+    bottom:52%;
+    width:150px;
+    height:190px;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+
+  .steam path{
+    fill:none;
+    stroke:rgba(255,248,240,.5);
+    stroke-width:3;
+    stroke-linecap:round;
+  }
+
+  /* assinatura do nicho: vapor subindo, ciclo de 7s, discreto */
+  .steam-g{
+    transform-box:fill-box;
+    transform-origin:50% 100%;
+    animation:steam-rise 7s var(--ease-state) infinite;
+  }
+
+  .steam-g--2{animation-delay:2.6s;}
+
+  .steam-g path{
+    stroke-dasharray:46;
+    animation:steam-dash 7s var(--ease-state) infinite;
+  }
+
+  .steam-g--2 path{animation-delay:2.6s;}
+
+  @keyframes steam-rise{
+    0%{opacity:0;transform:translateY(10px) scale(.94);}
+    25%{opacity:.7;}
+    100%{opacity:0;transform:translateY(-34px) scale(1.12);}
+  }
+
+  @keyframes steam-dash{
+    0%{stroke-dashoffset:46;}
+    45%{stroke-dashoffset:0;}
+    100%{stroke-dashoffset:-46;}
+  }
+
+  .hero-chip{
+    position:absolute;
+    top:16px;left:16px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 14px;
+    font-size:14px;
+    font-weight:700;
+  }
+
+  .hero-chip .dot{
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  @media (min-width:761px){
+    .hero{padding:132px 0 96px;}
+    .hero-grid{grid-template-columns:1.15fr .85fr;gap:56px;}
+    .photo-ph{min-height:360px;}
+  }
+
+  /* ---------- estrutura de secao ---------- */
+  section{scroll-margin-top:92px;}
+
+  .section{padding:76px 0;}
+
+  .section-alt{background:var(--bg-soft);}
+
+  .section-head{max-width:62ch;margin-bottom:34px;}
+
+  .section-head h2{
+    font-size:clamp(2.1rem,6vw,3.2rem);
+    margin:12px 0 14px;
+  }
+
+  .section-head p{color:#DED5CD;}
+
+  /* ---------- cardapio ---------- */
+  .menu-top{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:22px;
+  }
+
+  .tablist{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+  }
+
+  .tab{
+    min-height:46px;
+    padding:10px 18px;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:15px;
+    font-weight:700;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state),border-color 200ms var(--ease-state),transform 200ms var(--ease-state);
+  }
+
+  .tab:hover{background:var(--surface-2);border-color:var(--muted);transform:translateY(-1px);}
+
+  .tab[aria-selected="true"]{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#1A1A1A;
+  }
+
+  .menu-search{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    min-width:min(100%,280px);
+  }
+
+  .menu-search label{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+
+  .menu-search input{
+    min-height:46px;
+    padding:10px 14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--ink);
+    font-size:15px;
+    transition:border-color 200ms var(--ease-state),background-color 200ms var(--ease-state);
+  }
+
+  .menu-search input:hover{border-color:var(--muted);}
+  .menu-search input:focus{border-color:var(--accent);background:var(--surface-2);}
+
+  .menu-count{
+    font-size:14px;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+
+  .menu-list{
+    display:grid;
+    gap:2px;
+  }
+
+  .menu-item{
+    padding:18px 14px;
+    border-radius:8px;
+    border-bottom:1px solid var(--line);
+    transition:background-color 200ms var(--ease-state),transform 200ms var(--ease-state);
+  }
+
+  .menu-item:hover{background:var(--surface);transform:translateX(4px);}
+
+  .menu-item-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:14px;
+  }
+
+  .menu-item-head h3{font-size:1.5rem;letter-spacing:.02em;}
+
+  .price{
+    font-weight:700;
+    font-size:15px;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+
+  .menu-item-desc{margin-top:4px;color:#D8CFC7;font-size:15px;}
+
+  .tag{
+    display:inline-block;
+    margin-left:10px;
+    padding:2px 8px;
+    border:1px solid var(--accent);
+    border-radius:999px;
+    font-family:'DM Sans',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    vertical-align:middle;
+  }
+
+  .menu-empty{
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:26px 18px;
+    text-align:center;
+    display:grid;
+    gap:6px;
+  }
+
+  .menu-note{
+    margin-top:20px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    background:var(--surface);
+  }
+
+  /* troca de aba: crossfade em opacity/transform, corte seco proibido */
+  .tab-panel{transition:opacity 220ms var(--ease-state),transform 220ms var(--ease-state);}
+  .tab-panel.is-leaving{opacity:0;transform:translateY(-8px);}
+  .tab-panel.is-entering{opacity:0;transform:translateY(10px);}
+
+  /* ---------- delivery ---------- */
+  .steps{position:relative;display:grid;gap:26px;padding-left:66px;}
+
+  .steps::before{
+    content:"";
+    position:absolute;
+    left:25px;top:14px;bottom:14px;
+    width:2px;
+    background:var(--line);
+  }
+
+  .steps-line{
+    position:absolute;
+    left:20px;top:12px;
+    width:12px;height:calc(100% - 24px);
+    overflow:visible;
+  }
+
+  .draw-line{
+    fill:none;
+    stroke:var(--accent);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray:600;
+    stroke-dashoffset:600;
+  }
+
+  .steps.is-visible .draw-line{animation:draw 800ms var(--ease) 280ms forwards;}
+
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  .step{position:relative;}
+
+  .step-num{
+    position:absolute;
+    left:-66px;top:0;
+    width:52px;height:52px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:var(--brand);
+    color:var(--ink);
+    font-family:'Bebas Neue',Impact,sans-serif;
+    font-size:1.7rem;
+    line-height:1;
+    border:2px solid var(--bg-soft);
+  }
+
+  .step-body{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px;
+    transition:transform 220ms var(--ease-state),border-color 220ms var(--ease-state);
+  }
+
+  .step-body:hover{transform:translateY(-3px);border-color:var(--muted);}
+
+  .step-body h3{font-size:1.6rem;}
+
+  .step-body p{margin-top:8px;color:#D8CFC7;}
+
+  .step-body .note{margin-top:10px;}
+
+  /* ---------- status ---------- */
+  .status-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--surface);
+    padding:24px;
+    display:grid;
+    gap:22px;
+  }
+
+  .status-now{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .status-dot{
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--muted);
+    flex-shrink:0;
+  }
+
+  .status-card.is-open .status-dot{
+    background:var(--accent);
+    animation:pulse 6s var(--ease-state) infinite;
+  }
+
+  @keyframes pulse{
+    0%,100%{transform:scale(1);opacity:1;box-shadow:0 0 0 0 rgba(255,193,7,.5);}
+    50%{transform:scale(1.18);opacity:.75;box-shadow:0 0 0 10px rgba(255,193,7,0);}
+  }
+
+  .status-text{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(2rem,7vw,2.8rem);text-transform:uppercase;line-height:1;}
+
+  .status-sub{font-size:15px;color:var(--muted);margin-top:4px;}
+
+  .status-week{display:grid;gap:0;border-top:1px solid var(--line);}
+
+  .status-week li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:11px 4px;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+
+  .status-week .day{color:var(--ink);}
+  .status-week .hours{color:var(--muted);}
+  .status-week .today{color:var(--accent);font-weight:700;}
+  .status-week .today .day,.status-week .today .hours{color:var(--accent);}
+
+  @media (min-width:761px){
+    .status-card{grid-template-columns:1fr 1fr;align-items:center;padding:32px;}
+    .status-now{flex-direction:column;align-items:flex-start;gap:10px;}
+  }
+
+  /* ---------- reserva ---------- */
+  .reserva-grid{display:grid;gap:30px;}
+
+  .form{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    display:grid;
+    gap:16px;
+  }
+
+  .field{display:grid;gap:6px;}
+
+  .field label{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+
+  .field input,.field select,.field textarea{
+    width:100%;
+    min-height:48px;
+    padding:11px 13px;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--ink);
+    font-size:16px;
+    font-family:inherit;
+    transition:border-color 200ms var(--ease-state),background-color 200ms var(--ease-state);
+  }
+
+  .field textarea{min-height:96px;resize:vertical;}
+
+  .field input:hover,.field select:hover,.field textarea:hover{border-color:var(--muted);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);background:var(--surface-2);}
+
+  .field-error{
+    font-size:14px;
+    color:#FF8A80;
+    min-height:0;
+  }
+
+  .field.has-error input,.field.has-error select{border-color:#FF8A80;}
+
+  .form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;}
+
+  .form-success{
+    border:1px solid var(--accent);
+    border-radius:14px;
+    background:var(--surface);
+    padding:26px 22px;
+    display:grid;
+    gap:12px;
+    justify-items:start;
+  }
+
+  .form-success h3{font-size:1.8rem;color:var(--accent);}
+
+  .form-success:not([hidden]){animation:pop 450ms var(--ease) both;}
+
+  @keyframes pop{
+    from{opacity:0;transform:scale(.97) translateY(8px);}
+    to{opacity:1;transform:none;}
+  }
+
+  .success-summary{
+    display:grid;
+    gap:4px;
+    padding:14px 16px;
+    border-left:2px solid var(--accent);
+    background:var(--bg-soft);
+    border-radius:0 8px 8px 0;
+    font-size:15px;
+  }
+
+  .reserva-aside{
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--bg-soft);
+    padding:22px;
+    display:grid;
+    gap:12px;
+    align-content:start;
+  }
+
+  .reserva-aside h3{font-size:1.5rem;}
+
+  .reserva-aside ul{display:grid;gap:10px;}
+
+  .reserva-aside li{
+    display:flex;
+    gap:10px;
+    font-size:15px;
+    color:#D8CFC7;
+  }
+
+  .reserva-aside li svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:3px;}
+
+  @media (min-width:761px){
+    .reserva-grid{grid-template-columns:1.2fr .8fr;}
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{display:grid;gap:12px;max-width:820px;}
+
+  .faq-item{
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--surface);
+    overflow:hidden;
+    transition:border-color 220ms var(--ease-state);
+  }
+
+  .faq-item:hover{border-color:var(--muted);}
+  .faq-item.is-open{border-color:var(--accent);}
+
+  .faq-q{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    min-height:56px;
+    padding:14px 18px;
+    background:transparent;
+    border:0;
+    text-align:left;
+    cursor:pointer;
+    font-family:'Bebas Neue',Impact,sans-serif;
+    font-size:1.35rem;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    color:var(--ink);
+    transition:color 200ms var(--ease-state);
+  }
+
+  .faq-q:hover{color:var(--accent);}
+
+  .faq-icon{
+    width:26px;height:26px;
+    flex-shrink:0;
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:50%;
+    transition:transform 300ms var(--ease-state),border-color 200ms var(--ease-state);
+  }
+
+  .faq-icon::before,.faq-icon::after{
+    content:"";
+    position:absolute;
+    inset:50% auto auto 50%;
+    width:11px;height:2px;
+    background:var(--accent);
+    transform:translate(-50%,-50%);
+    transition:opacity 200ms var(--ease-state);
+  }
+
+  .faq-icon::after{transform:translate(-50%,-50%) rotate(90deg);}
+
+  .faq-item.is-open .faq-icon{transform:rotate(180deg);border-color:var(--accent);}
+  .faq-item.is-open .faq-icon::after{opacity:0;}
+
+  .faq-a{
+    height:0;
+    overflow:hidden;
+    transition:height 320ms var(--ease-state);
+  }
+
+  .faq-a-inner{padding:0 18px 18px;color:#D8CFC7;font-size:15px;}
+
+  /* ---------- footer ---------- */
+  .site-footer{
+    border-top:1px solid var(--line);
+    background:var(--bg-soft);
+    padding:52px 0 26px;
+  }
+
+  .footer-grid{
+    display:grid;
+    gap:30px;
+  }
+
+  .footer-grid h2{
+    font-size:1.3rem;
+    letter-spacing:.06em;
+    color:var(--accent);
+    margin-bottom:12px;
+  }
+
+  .footer-grid p,.footer-grid li{font-size:15px;color:#D8CFC7;}
+
+  .footer-grid ul{display:grid;gap:8px;}
+
+  .footer-grid a{
+    transition:color 200ms var(--ease-state);
+    border-bottom:1px solid transparent;
+  }
+
+  .footer-grid a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+  .footer-brand .brand-name{font-size:2rem;}
+
+  .footer-bottom{
+    margin-top:34px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  .footer-bottom a{color:var(--ink);border-bottom:1px solid var(--accent);}
+  .footer-bottom a:hover{color:var(--accent);}
+
+  @media (min-width:761px){
+    .footer-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.001ms !important;
+      transition-delay:0ms !important;
+    }
+    .enter,[data-reveal]{opacity:1 !important;transform:none !important;}
+    .band{transform:none !important;}
+    .draw-line{stroke-dashoffset:0 !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="topo">
+  <div class="header-inner">
+    <a class="brand" href="#topo">
+      <span class="brand-mark" aria-hidden="true">[LOGO]</span>
+      <span class="brand-name">Sua Marca</span>
+      <span class="sr-only">Sua Marca, restaurante e delivery</span>
+    </a>
+
+    <nav aria-label="Navegação principal">
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        Menu
+      </button>
+      <ul class="nav-list" id="menu-principal">
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#delivery">Delivery</a></li>
+        <li><a href="#horario">Horário</a></li>
+        <li><a href="#reserva">Reservar</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn-accent btn-sm header-cta" href="#reserva">Reservar mesa</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO: faixa amarela, vapor subindo, entrada escalonada -->
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow enter" style="--d:60ms">Restaurante e delivery</p>
+        <h1 id="hero-titulo" class="enter" style="--d:140ms">Do fogão<br><span class="hero-outline">para a sua porta</span></h1>
+
+        <div class="band-wrap enter" style="--d:220ms">
+          <p class="band">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            Delivery todas as noites
+            <span aria-hidden="true">·</span>
+            18h às 23h30
+            <span aria-hidden="true">·</span>
+            Terça a domingo
+          </p>
+        </div>
+
+        <p class="lead enter" style="--d:300ms">
+          Panela no fogo, comida servida pouco depois de pronta. Escolha no cardápio,
+          peça pelo delivery ou reserve sua mesa no salão.
+        </p>
+
+        <div class="hero-actions enter" style="--d:380ms">
+          <a class="btn btn-accent" href="#cardapio">Ver cardápio</a>
+          <a class="btn" href="#delivery">Pedir delivery</a>
+        </div>
+
+        <ul class="hero-meta enter" style="--d:460ms">
+          <li><strong>[40 min]</strong> tempo médio de entrega</li>
+          <li>Taxa de entrega <strong>[R$ 00]</strong></li>
+          <li>Pagamento na entrega ou no Pix</li>
+        </ul>
+      </div>
+
+      <figure class="hero-visual enter" style="--d:260ms">
+        <div class="hero-chip">
+          <span class="dot" aria-hidden="true"></span>
+          Cozinha aberta até 23h30
+        </div>
+        <div class="photo-ph" role="img" aria-label="espaco para foto: prato principal do restaurante">
+          <span class="photo-ph-label">Sua foto aqui</span>
+          <!-- vapor: assinatura do nicho, 2 elementos, ciclo de 7s -->
+          <svg class="steam" viewBox="0 0 130 170" aria-hidden="true" focusable="false">
+            <g class="steam-g steam-g--1">
+              <path d="M42 152 C 32 124, 54 112, 42 84 C 32 60, 50 50, 42 26"/>
+            </g>
+            <g class="steam-g steam-g--2">
+              <path d="M84 152 C 74 126, 96 114, 84 88 C 74 66, 92 56, 84 32"/>
+            </g>
+          </svg>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CARDÁPIO: abas reais + busca com estado vazio -->
+  <section class="section section-alt" id="cardapio" aria-labelledby="cardapio-titulo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Cardápio</p>
+        <h2 id="cardapio-titulo">O que tem hoje na cozinha</h2>
+        <p>Quatro abas, do jeito que a casa funciona. Preço de referência em cada item, definido no dia.</p>
+      </div>
+
+      <div class="menu-top" data-reveal style="--i:1">
+        <div class="tablist" role="tablist" aria-label="Categorias do cardápio">
+          <button class="tab" type="button" role="tab" id="tab-entradas" aria-controls="painel-entradas" aria-selected="true" tabindex="0">Entradas</button>
+          <button class="tab" type="button" role="tab" id="tab-pratos" aria-controls="painel-pratos" aria-selected="false" tabindex="-1">Pratos</button>
+          <button class="tab" type="button" role="tab" id="tab-sobremesas" aria-controls="painel-sobremesas" aria-selected="false" tabindex="-1">Sobremesas</button>
+          <button class="tab" type="button" role="tab" id="tab-bebidas" aria-controls="painel-bebidas" aria-selected="false" tabindex="-1">Bebidas</button>
+        </div>
+
+        <div class="menu-search">
+          <label for="busca">Buscar no cardápio</label>
+          <input type="search" id="busca" placeholder="peixe, massa, doce" autocomplete="off">
+        </div>
+      </div>
+
+      <p class="menu-count" id="menu-count" aria-live="polite">4 itens nesta aba</p>
+
+      <div class="tab-panel" role="tabpanel" id="painel-entradas" aria-labelledby="tab-entradas" tabindex="0">
+        <div class="menu-list">
+          <article class="menu-item" data-search="bolinho de bacalhau porcao molho da casa">
+            <div class="menu-item-head"><h3>Bolinho de bacalhau</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Porção com seis unidades e molho da casa.</p>
+          </article>
+          <article class="menu-item" data-search="pastel de carne de sol queijo">
+            <div class="menu-item-head"><h3>Pastel de carne de sol</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Massa fina, queijo derretido na hora.</p>
+          </article>
+          <article class="menu-item" data-search="bruschetta de tomate vegetariano managericao">
+            <div class="menu-item-head"><h3>Bruschetta de tomate<span class="tag">vegetariano</span></h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Pão rústico, tomate em fatias, azeite e manjericão.</p>
+          </article>
+          <article class="menu-item" data-search="camarao empanado limao siciliano">
+            <div class="menu-item-head"><h3>Camarão empanado</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Seis unidades crocantes com limão siciliano.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="painel-pratos" aria-labelledby="tab-pratos" tabindex="0" hidden>
+        <div class="menu-list">
+          <article class="menu-item" data-search="feijoada completa arroz couve farofa laranja">
+            <div class="menu-item-head"><h3>Feijoada completa</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Arroz, couve refogada, farofa e laranja.</p>
+          </article>
+          <article class="menu-item" data-search="moqueca de peixe pirao arroz duas pessoas">
+            <div class="menu-item-head"><h3>Moqueca de peixe</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Serve duas pessoas, com pirão e arroz.</p>
+          </article>
+          <article class="menu-item" data-search="risoto de cogumelos sem gluten parmesao">
+            <div class="menu-item-head"><h3>Risoto de cogumelos<span class="tag">sem glúten</span></h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Parmesão ralado na hora e cebolinha.</p>
+          </article>
+          <article class="menu-item" data-search="file com fritas manteiga de ervas">
+            <div class="menu-item-head"><h3>Filé com fritas</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Ao ponto, com manteiga de ervas e batata rústica.</p>
+          </article>
+          <article class="menu-item" data-search="lasanha da casa massa fresca molho">
+            <div class="menu-item-head"><h3>Lasanha da casa</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Massa fresca e molho de cozimento longo.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="painel-sobremesas" aria-labelledby="tab-sobremesas" tabindex="0" hidden>
+        <div class="menu-list">
+          <article class="menu-item" data-search="pudim de leite calda de caramelo">
+            <div class="menu-item-head"><h3>Pudim de leite</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Calda de caramelo, feito na casa.</p>
+          </article>
+          <article class="menu-item" data-search="petit gateau recheio quente sorvete de creme">
+            <div class="menu-item-head"><h3>Petit gâteau</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Recheio quente com sorvete de creme.</p>
+          </article>
+          <article class="menu-item" data-search="quindim coco">
+            <div class="menu-item-head"><h3>Quindim</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Coco ralado na hora, massa bem cremosa.</p>
+          </article>
+          <article class="menu-item" data-search="salada de frutas da estacao">
+            <div class="menu-item-head"><h3>Salada de frutas</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Frutas da estação cortadas no dia.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="painel-bebidas" aria-labelledby="tab-bebidas" tabindex="0" hidden>
+        <div class="menu-list">
+          <article class="menu-item" data-search="suco natural laranja abacaxi maracuja">
+            <div class="menu-item-head"><h3>Suco natural</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Laranja, abacaxi ou maracujá.</p>
+          </article>
+          <article class="menu-item" data-search="refrigerante lata">
+            <div class="menu-item-head"><h3>Refrigerante lata</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Opções com e sem açúcar.</p>
+          </article>
+          <article class="menu-item" data-search="agua com gas sem gas">
+            <div class="menu-item-head"><h3>Água</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Com ou sem gás, garrafa de 500ml.</p>
+          </article>
+          <article class="menu-item" data-search="cerveja artesanal da casa consumo no local">
+            <div class="menu-item-head"><h3>Cerveja artesanal da casa</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Chope e garrafa. Consumo apenas no local, com moderação.</p>
+          </article>
+          <article class="menu-item" data-search="cafe espresso">
+            <div class="menu-item-head"><h3>Café espresso</h3><span class="price">[R$ 00]</span></div>
+            <p class="menu-item-desc">Grão torrado na casa, servido após a refeição.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="menu-empty" id="menu-empty" hidden>
+        <p><strong>Nada encontrado nesta aba.</strong></p>
+        <p class="note">Tente outro termo, como peixe, massa ou doce, ou troque de aba.</p>
+      </div>
+
+      <div class="menu-note" data-reveal>
+        <p>Cardápio sujeito a mudança por falta de ingrediente no dia.</p>
+        <a class="btn btn-ghost btn-sm" href="#delivery">Pedir delivery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY: 2 passos, linha que desenha -->
+  <section class="section" id="delivery" aria-labelledby="delivery-titulo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Delivery</p>
+        <h2 id="delivery-titulo">Pedir em 2 passos</h2>
+        <p>Sem app, sem cadastro. O pedido é feito por telefone ou mensagem, e o total é confirmado antes de sair da cozinha.</p>
+      </div>
+
+      <ol class="steps" data-reveal>
+        <svg class="steps-line" viewBox="0 0 12 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="draw-line" d="M6 0 V 400"/>
+        </svg>
+
+        <li class="step" style="--i:0">
+          <span class="step-num" aria-hidden="true">1</span>
+          <div class="step-body">
+            <h3>Escolha e feche o pedido</h3>
+            <p>Ligue ou mande mensagem no [(00) 00000-0000] com os itens do cardápio. A gente lê o pedido, confirma o valor da taxa e o total.</p>
+            <p class="note">Atendemos das 18h às 23h30, de terça a domingo.</p>
+          </div>
+        </li>
+
+        <li class="step" style="--i:1">
+          <span class="step-num" aria-hidden="true">2</span>
+          <div class="step-body">
+            <h3>Receba quente em casa</h3>
+            <p>Saímos para entrega em até [40 min] nos [bairros atendidos]. Embalagem fechada, talher e guardanapo inclusos.</p>
+            <p class="note">Taxa de entrega [R$ 00], informada antes de fechar o pedido.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STATUS: aberto ou fechado pela hora real do navegador -->
+  <section class="section section-alt" id="horario" aria-labelledby="horario-titulo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Horário</p>
+        <h2 id="horario-titulo">Estamos abertos agora?</h2>
+        <p>O estado abaixo é calculado com a hora do seu navegador, não com texto fixo.</p>
+      </div>
+
+      <div class="status-card" id="status-card" data-reveal style="--i:1">
+        <div class="status-now">
+          <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+          <div>
+            <p class="status-text" id="status-text" role="status">Verificando horário</p>
+            <p class="status-sub" id="status-sub">Um momento, lendo a hora do seu dispositivo.</p>
+          </div>
+        </div>
+
+        <ul class="status-week" id="status-week">
+          <li data-day="1"><span class="day">Segunda</span><span class="hours">Fechado</span></li>
+          <li data-day="2"><span class="day">Terça</span><span class="hours">18h às 23h30</span></li>
+          <li data-day="3"><span class="day">Quarta</span><span class="hours">18h às 23h30</span></li>
+          <li data-day="4"><span class="day">Quinta</span><span class="hours">18h às 23h30</span></li>
+          <li data-day="5"><span class="day">Sexta</span><span class="hours">18h às 23h30</span></li>
+          <li data-day="6"><span class="day">Sábado</span><span class="hours">18h às 23h30</span></li>
+          <li data-day="0"><span class="day">Domingo</span><span class="hours">18h às 23h30</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVA: formulário validado com estado de sucesso -->
+  <section class="section" id="reserva" aria-labelledby="reserva-titulo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Reserva</p>
+        <h2 id="reserva-titulo">Reservar mesa</h2>
+        <p>Mesas para até 6 pessoas por reserva. Grupos maiores a gente combina por telefone.</p>
+      </div>
+
+      <div class="reserva-grid">
+        <form class="form" id="form-reserva" novalidate data-reveal style="--i:1">
+          <div class="field" id="campo-nome">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" aria-describedby="erro-nome" required>
+            <p class="field-error" id="erro-nome" hidden></p>
+          </div>
+
+          <div class="field" id="campo-telefone">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" aria-describedby="erro-telefone" required>
+            <p class="field-error" id="erro-telefone" hidden></p>
+          </div>
+
+          <div class="field" id="campo-pessoas">
+            <label for="pessoas">Pessoas</label>
+            <select id="pessoas" name="pessoas" aria-describedby="erro-pessoas" required>
+              <option value="">Quantas pessoas</option>
+              <option value="1">1 pessoa</option>
+              <option value="2">2 pessoas</option>
+              <option value="3">3 pessoas</option>
+              <option value="4">4 pessoas</option>
+              <option value="5">5 pessoas</option>
+              <option value="6">6 pessoas</option>
+            </select>
+            <p class="field-error" id="erro-pessoas" hidden></p>
+          </div>
+
+          <div class="field" id="campo-data">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data" aria-describedby="erro-data" required>
+            <p class="field-error" id="erro-data" hidden></p>
+          </div>
+
+          <div class="field" id="campo-hora">
+            <label for="hora">Horário</label>
+            <input type="time" id="hora" name="hora" aria-describedby="erro-hora" required>
+            <p class="field-error" id="erro-hora" hidden></p>
+          </div>
+
+          <div class="field" id="campo-obs">
+            <label for="obs">Observação (opcional)</label>
+            <textarea id="obs" name="obs" placeholder="Mesa perto da janela, restrição alimentar, aniversário"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-accent" type="submit">Reservar mesa</button>
+            <p class="note">Nada é enviado para servidor. A confirmação aparece nesta tela.</p>
+          </div>
+        </form>
+
+        <div class="form-success" id="reserva-sucesso" role="status" hidden>
+          <h3>Reserva registrada nesta tela</h3>
+          <p class="success-summary" id="sucesso-resumo"></p>
+          <p class="note">Modelo de demonstração: nenhum dado sai do navegador e ninguém foi avisado. Na vida real, a casa confirma por telefone.</p>
+          <button class="btn btn-ghost btn-sm" type="button" id="nova-reserva">Fazer outra reserva</button>
+        </div>
+
+        <aside class="reserva-aside" aria-label="Como funciona a reserva" data-reveal style="--i:2">
+          <h3>Como funciona</h3>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span>Você pede a mesa pelo formulário e recebe a confirmação na tela.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span>Chegando, a mesa fica reservada por [15 min] de tolerância.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span>Eventos e grupos maiores: fale no [(00) 00000-0000].</span>
+            </li>
+          </ul>
+          <p class="note">Salão com [40 lugares], incluindo mesa externa na calçada.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ: acordeão com 4 perguntas -->
+  <section class="section section-alt" id="faq" aria-labelledby="faq-titulo">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Dúvidas</p>
+        <h2 id="faq-titulo">Perguntas frequentes</h2>
+        <p>Resposta curta, sem letra miúda.</p>
+      </div>
+
+      <div class="faq-list" data-reveal style="--i:1">
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" id="faq-b1" aria-expanded="false" aria-controls="faq-p1">
+              Qual a taxa de entrega?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-p1" role="region" aria-labelledby="faq-b1">
+            <div class="faq-a-inner">
+              A taxa é [R$ 00] por entrega e varia conforme o bairro. O valor certo aparece no
+              total antes de você confirmar o pedido, sem cobrança depois.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" id="faq-b2" aria-expanded="false" aria-controls="faq-p2">
+              Quanto tempo demora a entrega?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-p2" role="region" aria-labelledby="faq-b2">
+            <div class="faq-a-inner">
+              O tempo médio é [40 min]. Em noite de movimento alto a previsão passa um pouco,
+              e avisamos no telefone antes de sair para entregar.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" id="faq-b3" aria-expanded="false" aria-controls="faq-p3">
+              Vocês fazem evento?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-p3" role="region" aria-labelledby="faq-b3">
+            <div class="faq-a-inner">
+              Fazemos encomenda para evento com antecedência de [3 dias], com menu montado
+              junto com a cozinha. Chame no [(00) 00000-0000] para conversar sobre o que
+              precisa sair e em que horário.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3>
+            <button class="faq-q" type="button" id="faq-b4" aria-expanded="false" aria-controls="faq-p4">
+              Tem opção sem glúten?
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" id="faq-p4" role="region" aria-labelledby="faq-b4">
+            <div class="faq-a-inner">
+              Sim, parte do cardápio tem versão sem glúten e está marcada na aba de pratos.
+              A cozinha é compartilhada e manipula glúten, então escreva na observação do
+              pedido quando a restrição for por saúde.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <p class="brand-name">Sua Marca</p>
+      <p>Restaurante e delivery. Cozinha aberta de terça a domingo, das 18h às 23h30.</p>
+    </div>
+
+    <div>
+      <h2>Endereço</h2>
+      <p>[endereco]</p>
+      <p>[bairro], [cidade]</p>
+    </div>
+
+    <div>
+      <h2>Contato</h2>
+      <ul>
+        <li>Telefone: [(00) 00000-0000]</li>
+        <li>E-mail: [seu@email.com]</li>
+        <li>Pedidos só pelo telefone</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Navegar</h2>
+      <nav aria-label="Navegação do rodapé">
+        <ul>
+          <li><a href="#cardapio">Ver cardápio</a></li>
+          <li><a href="#delivery">Pedir delivery</a></li>
+          <li><a href="#reserva">Reservar mesa</a></li>
+          <li><a href="#horario">Horário de funcionamento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></p>
+    <p>Preços, endereço e telefone são placeholders deste modelo.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var doc = document;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- entrada de pagina (depois do load) ---------- */
+  function pageEnter(){ doc.body.classList.add("is-loaded"); }
+  if(doc.readyState === "complete"){ pageEnter(); }
+  else { window.addEventListener("load", pageEnter); }
+
+  /* ---------- header que reage ao scroll + parallax, com rAF ---------- */
+  var header = doc.querySelector(".site-header");
+  var parallaxEl = doc.querySelector(".hero-visual");
+  var canParallax = window.matchMedia("(min-width: 761px)").matches;
+  var ticking = false;
+
+  function frame(){
+    var y = window.pageYOffset || doc.documentElement.scrollTop || 0;
+    header.classList.toggle("is-scrolled", y > 12);
+    /* parallax leve, fator 0.12, nunca no mobile */
+    if(canParallax && parallaxEl){
+      parallaxEl.style.transform = "translate3d(0," + (y * 0.12).toFixed(1) + "px,0)";
+    }
+    ticking = false;
+  }
+
+  function onScroll(){
+    if(!ticking){
+      ticking = true;
+      window.requestAnimationFrame(frame);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, {passive:true});
+  frame();
+
+  /* ---------- menu mobile: aria-expanded, Escape, fecha no link ---------- */
+  var toggle = doc.getElementById("nav-toggle");
+  var menu = doc.getElementById("menu-principal");
+
+  function setMenu(open){
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    menu.classList.toggle("is-open", open);
+  }
+
+  toggle.addEventListener("click", function(){
+    setMenu(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  doc.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true"){
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+
+  menu.addEventListener("click", function(e){
+    if(e.target.closest("a")){ setMenu(false); }
+  });
+
+  /* ---------- reveal com IntersectionObserver, atraso por --i ---------- */
+  var revealEls = doc.querySelectorAll("[data-reveal]");
+
+  if("IntersectionObserver" in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.12});
+
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  /* ---------- abas do cardapio ---------- */
+  var tabs = Array.prototype.slice.call(doc.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function(tab){ return doc.getElementById(tab.getAttribute("aria-controls")); });
+  var current = 0;
+  var search = doc.getElementById("busca");
+  var count = doc.getElementById("menu-count");
+  var empty = doc.getElementById("menu-empty");
+
+  function paintTabs(){
+    tabs.forEach(function(tab, i){
+      var selected = i === current;
+      tab.setAttribute("aria-selected", selected ? "true" : "false");
+      tab.tabIndex = selected ? 0 : -1;
+    });
+  }
+
+  function applyFilter(){
+    var panel = panels[current];
+    var q = search.value.trim().toLowerCase();
+    var items = panel.querySelectorAll(".menu-item");
+    var visible = 0;
+
+    items.forEach(function(item){
+      var hay = (item.getAttribute("data-search") || item.textContent).toLowerCase();
+      var match = q === "" || hay.indexOf(q) !== -1;
+      item.hidden = !match;
+      if(match){ visible += 1; }
+    });
+
+    empty.hidden = visible > 0;
+    count.textContent = visible === 1 ? "1 item nesta aba" : visible + " itens nesta aba";
+  }
+
+  function activate(index, focusTab){
+    if(index === current){ return; }
+    var oldPanel = panels[current];
+    var newPanel = panels[index];
+    current = index;
+    paintTabs();
+    if(focusTab){ tabs[index].focus(); }
+
+    if(reduceMotion){
+      oldPanel.hidden = true;
+      newPanel.hidden = false;
+      applyFilter();
+      return;
+    }
+
+    /* crossfade: sai em 220ms, entra com fade e leve subida */
+    oldPanel.classList.add("is-leaving");
+    window.setTimeout(function(){
+      oldPanel.classList.remove("is-leaving");
+      oldPanel.hidden = true;
+      newPanel.hidden = false;
+      newPanel.classList.add("is-entering");
+      applyFilter();
+      window.requestAnimationFrame(function(){
+        window.requestAnimationFrame(function(){
+          newPanel.classList.remove("is-entering");
+        });
+      });
+    }, 220);
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ activate(i, false); });
+    tab.addEventListener("keydown", function(e){
+      var next = null;
+      if(e.key === "ArrowRight"){ next = (i + 1) % tabs.length; }
+      else if(e.key === "ArrowLeft"){ next = (i - 1 + tabs.length) % tabs.length; }
+      else if(e.key === "Home"){ next = 0; }
+      else if(e.key === "End"){ next = tabs.length - 1; }
+      if(next !== null){
+        e.preventDefault();
+        activate(next, true);
+      }
+    });
+  });
+
+  search.addEventListener("input", applyFilter);
+  applyFilter();
+
+  /* ---------- status aberto/fechado pela hora real do navegador ---------- */
+  var HORAS = {
+    0:[18, 23.5], /* domingo */
+    1:null,       /* segunda fechado */
+    2:[18, 23.5],
+    3:[18, 23.5],
+    4:[18, 23.5],
+    5:[18, 23.5],
+    6:[18, 23.5]
+  };
+  var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+
+  function fmtHora(h){
+    var hh = Math.floor(h);
+    var mm = Math.round((h - hh) * 60);
+    return hh + "h" + (mm < 10 ? "0" + mm : mm);
+  }
+
+  function updateStatus(){
+    var agora = new Date();
+    var dia = agora.getDay();
+    var minutos = agora.getHours() * 60 + agora.getMinutes();
+    var hoje = HORAS[dia];
+    var aberto = false;
+
+    if(hoje){
+      var inicio = hoje[0] * 60;
+      var fim = hoje[1] * 60;
+      aberto = minutos >= inicio && minutos < fim;
+    }
+
+    var card = doc.getElementById("status-card");
+    var texto = doc.getElementById("status-text");
+    var sub = doc.getElementById("status-sub");
+
+    card.classList.toggle("is-open", aberto);
+
+    if(aberto){
+      texto.textContent = "Aberto agora";
+      sub.textContent = "Fecha hoje às " + fmtHora(hoje[1]) + ". Delivery e salão no ar.";
+    } else {
+      texto.textContent = "Fechado agora";
+      if(hoje && minutos < hoje[0] * 60){
+        sub.textContent = "Abre hoje às " + fmtHora(hoje[0]) + ".";
+      } else {
+        var achou = false;
+        for(var passo = 1; passo <= 7; passo++){
+          var d = (dia + passo) % 7;
+          if(HORAS[d]){
+            sub.textContent = "Abre " + DIAS[d] + " às " + fmtHora(HORAS[d][0]) + ".";
+            achou = true;
+            break;
+          }
+        }
+        if(!achou){ sub.textContent = "Sem horário de funcionamento cadastrado."; }
+      }
+    }
+
+    var linhas = doc.getElementById("status-week").children;
+    for(var i = 0; i < linhas.length; i++){
+      linhas[i].classList.toggle("today", Number(linhas[i].getAttribute("data-day")) === dia);
+    }
+  }
+
+  updateStatus();
+  window.setInterval(updateStatus, 60000);
+
+  /* ---------- FAQ: acordeão com altura real ---------- */
+  var faqItems = Array.prototype.slice.call(doc.querySelectorAll(".faq-item"));
+
+  function closeItem(item){
+    var btn = item.querySelector(".faq-q");
+    var painel = item.querySelector(".faq-a");
+    item.classList.remove("is-open");
+    btn.setAttribute("aria-expanded", "false");
+    painel.style.height = painel.scrollHeight + "px";
+    window.requestAnimationFrame(function(){ painel.style.height = "0px"; });
+  }
+
+  function openItem(item){
+    var btn = item.querySelector(".faq-q");
+    var painel = item.querySelector(".faq-a");
+    item.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+    painel.style.height = painel.scrollHeight + "px";
+    window.setTimeout(function(){
+      if(item.classList.contains("is-open")){ painel.style.height = "auto"; }
+    }, 340);
+  }
+
+  faqItems.forEach(function(item){
+    var btn = item.querySelector(".faq-q");
+    btn.addEventListener("click", function(){
+      var isOpen = item.classList.contains("is-open");
+      faqItems.forEach(function(other){ if(other !== item){ closeItem(other); } });
+      if(isOpen){ closeItem(item); } else { openItem(item); }
+    });
+  });
+
+  /* ---------- reserva: validação por campo + estado de sucesso ---------- */
+  var form = doc.getElementById("form-reserva");
+  var sucesso = doc.getElementById("reserva-sucesso");
+  var resumo = doc.getElementById("sucesso-resumo");
+  var novaBtn = doc.getElementById("nova-reserva");
+  var campoData = doc.getElementById("data");
+
+  var hojeISO = new Date().toISOString().slice(0,10);
+  campoData.setAttribute("min", hojeISO);
+
+  function setErro(campoId, msgId, mensagem){
+    var campo = doc.getElementById(campoId);
+    var erro = doc.getElementById(msgId);
+    if(mensagem){
+      campo.classList.add("has-error");
+      campo.setAttribute("aria-invalid", "true");
+      erro.textContent = mensagem;
+      erro.hidden = false;
+      return false;
+    }
+    campo.classList.remove("has-error");
+    campo.removeAttribute("aria-invalid");
+    erro.hidden = true;
+    return true;
+  }
+
+  function validar(){
+    var ok = true;
+    var nome = doc.getElementById("nome").value.trim();
+    var tel = doc.getElementById("telefone").value.replace(/\D/g, "");
+    var pessoas = doc.getElementById("pessoas").value;
+    var data = doc.getElementById("data").value;
+    var hora = doc.getElementById("hora").value;
+    var agora = new Date();
+    var hojeLocal = agora.getFullYear() + "-" +
+      String(agora.getMonth() + 1).padStart(2, "0") + "-" +
+      String(agora.getDate()).padStart(2, "0");
+
+    if(nome.length < 3){ ok = setErro("campo-nome", "erro-nome", "Escreva seu nome com pelo menos 3 letras.") && ok; }
+    else { setErro("campo-nome", "erro-nome", ""); }
+
+    if(tel.length < 10 || tel.length > 11){ ok = setErro("campo-telefone", "erro-telefone", "Telefone com DDD, ex.: (00) 00000-0000.") && ok; }
+    else { setErro("campo-telefone", "erro-telefone", ""); }
+
+    if(!pessoas){ ok = setErro("campo-pessoas", "erro-pessoas", "Escolha para quantas pessoas.") && ok; }
+    else { setErro("campo-pessoas", "erro-pessoas", ""); }
+
+    if(!data){ ok = setErro("campo-data", "erro-data", "Escolha a data da reserva.") && ok; }
+    else if(data < hojeLocal){ ok = setErro("campo-data", "erro-data", "A data não pode ser no passado.") && ok; }
+    else { setErro("campo-data", "erro-data", ""); }
+
+    if(!hora){ ok = setErro("campo-hora", "erro-hora", "Escolha o horário.") && ok; }
+    else {
+      var partes = hora.split(":");
+      var minHora = Number(partes[0]) * 60 + Number(partes[1]);
+      if(minHora < 18 * 60 || minHora > 23 * 60){ ok = setErro("campo-hora", "erro-hora", "O salão funciona das 18h às 23h.") && ok; }
+      else { setErro("campo-hora", "erro-hora", ""); }
+    }
+
+    return ok;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(!validar()){
+      var primeiro = form.querySelector(".has-error input, .has-error select");
+      if(primeiro){ primeiro.focus(); }
+      return;
+    }
+
+    var dataValor = doc.getElementById("data").value;
+    var dataBonita = dataValor.split("-").reverse().join("/");
+
+    resumo.innerHTML = "";
+    var linhas = [
+      "Nome: " + doc.getElementById("nome").value.trim(),
+      "Pessoas: " + doc.getElementById("pessoas").value,
+      "Data: " + dataBonita,
+      "Horário: " + doc.getElementById("hora").value
+    ];
+    linhas.forEach(function(texto){
+      var p = doc.createElement("span");
+      p.textContent = texto;
+      resumo.appendChild(p);
+    });
+
+    form.hidden = true;
+    sucesso.hidden = false;
+    sucesso.setAttribute("tabindex", "-1");
+    sucesso.focus();
+  });
+
+  novaBtn.addEventListener("click", function(){
+    form.reset();
+    form.hidden = false;
+    sucesso.hidden = true;
+    doc.getElementById("nome").focus();
+  });
+
+})();
+</script>
+</body>
+</html>
