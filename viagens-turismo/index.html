@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rota Certa Viagens | Roteiros sob medida para quem quer viajar sem pesquisar 40 sites</title>
+<meta name="description" content="Agência de viagens que monta roteiro dia a dia para casais e famílias: destinos, hospedagem, transfer e documentação explicados antes de fechar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#0A2E38;
+--turq:#00ACC1;
+--coral:#FF7043;
+--yellow:#FFD54F;
+--bg:#FFFFFF;
+--paper:#F4FAFB;
+--line:rgba(10,46,56,.14);
+--dark:#07222B;
+--ease-out:cubic-bezier(.22,1,.36,1);
+--ease-state:cubic-bezier(.4,0,.2,1);
+--font:'Poppins',system-ui,sans-serif;
+--display:'Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;background:var(--bg);color:var(--ink);
+font-family:var(--font);font-size:16px;line-height:1.6;
+-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;font-weight:600;transition:top 200ms var(--ease-state)}
+.skip:focus{top:12px}
+.btn{
+display:inline-flex;align-items:center;justify-content:center;gap:10px;
+min-height:48px;padding:12px 22px;border-radius:999px;border:2px solid transparent;
+font:600 15px/1.2 var(--font);text-decoration:none;cursor:pointer;
+transition:transform 220ms var(--ease-out),background-color 220ms var(--ease-state),color 220ms var(--ease-state),border-color 220ms var(--ease-state),box-shadow 220ms var(--ease-state);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-coral{background:var(--coral);color:var(--ink)}
+.btn-coral:hover{background:#ff8a63;box-shadow:0 10px 22px rgba(255,112,67,.28)}
+.btn-turq{background:var(--turq);color:var(--ink)}
+.btn-turq:hover{background:#26c6da;box-shadow:0 10px 22px rgba(0,172,193,.28)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn svg{width:18px;height:18px;flex:none}
+.eyebrow{
+display:inline-flex;align-items:center;gap:8px;font:600 12px/1 var(--font);
+letter-spacing:.14em;text-transform:uppercase;color:#00727F;margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--coral);border-radius:2px}
+.sec-title{font-size:clamp(1.7rem,4.6vw,2.5rem);font-weight:700}
+.sec-sub{margin-top:14px;max-width:62ch;color:#33535D;font-size:1rem}
+section{padding:76px 0}
+[data-reveal]{
+opacity:0;transform:translateY(20px);
+transition:opacity 720ms var(--ease-out),transform 720ms var(--ease-out);
+transition-delay:calc(var(--i,0)*75ms);
+will-change:opacity,transform;
+}
+[data-reveal].is-revealed{opacity:1;transform:none;will-change:auto}
+
+/* Entrada de pagina: escalonada, so depois do load. */
+.hero-copy>*{opacity:0;transform:translateY(16px);transition:opacity 620ms var(--ease-out),transform 620ms var(--ease-out)}
+body.is-ready .hero-copy>*{opacity:1;transform:none}
+body.is-ready .hero-copy>*:nth-child(1){transition-delay:60ms}
+body.is-ready .hero-copy>*:nth-child(2){transition-delay:140ms}
+body.is-ready .hero-copy>*:nth-child(3){transition-delay:220ms}
+body.is-ready .hero-copy>*:nth-child(4){transition-delay:300ms}
+body.is-ready .hero-copy>*:nth-child(5){transition-delay:380ms}
+
+.site-header{
+position:sticky;top:0;z-index:60;background:#fff;
+border-bottom:1px solid transparent;
+transition:background-color 240ms var(--ease-state),box-shadow 240ms var(--ease-state),border-color 240ms var(--ease-state);
+}
+.site-header.is-scrolled{border-bottom-color:var(--line);box-shadow:0 6px 20px rgba(10,46,56,.07)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.15rem}
+.logo .mark{width:34px;height:34px;flex:none}
+.logo b{color:var(--ink)}
+.logo span{color:var(--coral)}
+.nav-toggle{
+display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 14px;
+background:#fff;border:2px solid var(--ink);border-radius:12px;color:var(--ink);
+font:600 14px/1 var(--font);cursor:pointer;
+transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state);
+}
+.nav-toggle:hover{background:var(--ink);color:#fff}
+.nav-toggle svg{width:20px;height:20px}
+.site-nav{
+position:fixed;left:0;right:0;top:66px;z-index:55;
+background:#fff;border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(10,46,56,.12);
+padding:10px 20px 22px;display:grid;gap:2px;
+transform:translateY(-10px);opacity:0;visibility:hidden;
+transition:transform 280ms var(--ease-state),opacity 280ms var(--ease-state),visibility 280ms;
+}
+.site-nav.is-open{transform:none;opacity:1;visibility:visible}
+.site-nav a{
+display:flex;align-items:center;min-height:48px;padding:10px 6px;border-radius:10px;
+text-decoration:none;font-weight:500;color:var(--ink);
+transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state);
+}
+.site-nav a:hover{background:var(--paper);color:#00727F}
+.site-nav .nav-cta{margin-top:10px}
+.hd-cta{display:none}
+
+.hero{position:relative;overflow:hidden;padding:56px 0 84px;background:linear-gradient(180deg,#F2FAFB 0%,#FFFFFF 62%)}
+.hero-grid{position:relative;display:grid;gap:44px}
+.hero h1{font-size:clamp(2.15rem,7.2vw,3.6rem);font-weight:700;margin:0 0 20px}
+.hero h1 em{font-style:italic;color:var(--coral)}
+.hero-lead{font-size:1.06rem;max-width:52ch;color:#2E4E57}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero-note{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem;color:#3C5B64}
+.hero-note span{display:inline-flex;align-items:center;gap:7px}
+.hero-note svg{width:15px;height:15px;color:var(--turq);flex:none}
+.hero-shapes{position:relative;min-height:280px}
+.blob{position:absolute;border-radius:50%;will-change:transform}
+.blob-a{width:190px;height:190px;background:var(--turq);opacity:.16;top:-10px;left:4%}
+.blob-b{width:130px;height:130px;background:var(--yellow);opacity:.3;bottom:2%;right:0}
+.blob-c{width:88px;height:88px;border:14px solid var(--coral);opacity:.18;top:44%;left:44%}
+.blob{animation:floaty 8s var(--ease-out) infinite alternate}
+.blob-b{animation-duration:9.5s;animation-delay:-2s}
+.blob-c{animation-duration:11s;animation-delay:-4s}
+@keyframes floaty{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-22px,0) rotate(6deg)}}
+.map-card{position:absolute;inset:0;display:grid;place-items:center;padding:4px}
+.map-card svg{width:100%;height:auto}
+.route-path{stroke-dasharray:260;stroke-dashoffset:260;animation:draw 8.5s var(--ease-out) infinite}
+@keyframes draw{0%{stroke-dashoffset:260}52%{stroke-dashoffset:0}56%{stroke-dashoffset:0}100%{stroke-dashoffset:-260}}
+.route-ring{transform-origin:center;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dest-chips{position:absolute;inset:auto 0 0 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{
+display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
+border-radius:999px;padding:8px 14px;font:500 13px/1 var(--font);color:var(--ink);
+box-shadow:0 6px 16px rgba(10,46,56,.08);animation:floaty 7s var(--ease-out) infinite alternate;
+}
+.chip:nth-child(2){animation-delay:-1.4s}
+.chip:nth-child(3){animation-delay:-2.8s}
+.chip:nth-child(4){animation-delay:-4.2s}
+.chip:nth-child(5){animation-delay:-5.6s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--coral);flex:none}
+
+.sec-head{max-width:70ch;margin-bottom:38px}
+.dest-grid{display:grid;gap:18px}
+.dest-card{
+position:relative;display:block;min-height:250px;border-radius:18px;overflow:hidden;
+border:1px solid var(--line);background:var(--paper);text-decoration:none;color:var(--ink);
+transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state),border-color 300ms var(--ease-state);
+}
+.dest-card:hover,.dest-card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 36px rgba(10,46,56,.16);border-color:rgba(0,172,193,.5)}
+.dest-media{position:absolute;inset:0;display:grid;place-items:center;background:var(--turq);opacity:.14}
+.dest-media svg{width:62%;height:auto;color:var(--turq);opacity:.85}
+.dest-top{position:relative;padding:20px 20px 0}
+.dest-top h3{font-size:1.28rem;font-weight:700}
+.dest-top p{margin-top:6px;font:600 12px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;color:#00727F}
+.dest-detail{
+position:absolute;left:0;right:0;bottom:0;padding:18px 20px 20px;background:#fff;
+border-top:1px solid var(--line);
+opacity:0;transform:translateY(14px);
+transition:opacity 320ms var(--ease-state),transform 320ms var(--ease-out);
+}
+.dest-card:hover .dest-detail,.dest-card:focus-visible .dest-detail,.dest-card:focus-within .dest-detail{opacity:1;transform:none}
+.dest-detail p{font-size:.92rem;color:#2E4E57}
+.dest-detail .go{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font:600 13px/1 var(--font);color:var(--coral)}
+.dest-detail .go svg{width:15px;height:15px}
+.dest-foot{margin-top:26px;font-size:.92rem;color:#3C5B64}
+
+.builder{background:var(--paper)}
+.builder-grid{display:grid;gap:24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 22px}
+.field{margin-bottom:18px}
+.field label,.legend{display:block;font:600 13px/1.4 var(--font);margin-bottom:8px;color:var(--ink)}
+.field input,.field select,.field textarea{
+width:100%;min-height:48px;padding:12px 14px;border:2px solid var(--line);border-radius:12px;
+background:#fff;color:var(--ink);font:400 15px/1.4 var(--font);
+transition:border-color 200ms var(--ease-state),box-shadow 200ms var(--ease-state);
+}
+.field textarea{min-height:104px;resize:vertical}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(0,172,193,.6)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--turq);box-shadow:0 0 0 4px rgba(0,172,193,.16)}
+.field .hint{margin-top:6px;font-size:.82rem;color:#3C5B64}
+.err{display:none;margin-top:7px;font:500 .84rem/1.4 var(--font);color:#B33A17}
+.field.is-invalid .err{display:block}
+.field.is-invalid input,.field.is-invalid select,.field.is-invalid textarea{border-color:#B33A17;box-shadow:0 0 0 4px rgba(179,58,23,.12)}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt span{
+display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border:2px solid var(--line);
+border-radius:999px;font:500 14px/1 var(--font);cursor:pointer;background:#fff;
+transition:border-color 200ms var(--ease-state),background-color 200ms var(--ease-state),color 200ms var(--ease-state),transform 200ms var(--ease-out);
+}
+.opt span:hover{border-color:var(--turq);transform:translateY(-1px)}
+.opt input:checked+span{border-color:var(--ink);background:var(--ink);color:#fff}
+.opt input:focus-visible+span{outline:3px solid var(--coral);outline-offset:3px}
+.checks{display:grid;gap:10px}
+.check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:.94rem;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--coral);flex:none}
+.summary{background:var(--dark);color:#EAF6F8;border-radius:20px;padding:26px 22px}
+.summary h3{color:#fff;font-size:1.25rem}
+.summary .lead{margin-top:8px;color:#A9CBD2;font-size:.92rem}
+.sum-list{margin-top:20px;display:grid;gap:14px}
+.sum-list div{display:flex;justify-content:space-between;gap:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.14)}
+.sum-list dt{font:600 12px/1.4 var(--font);letter-spacing:.08em;text-transform:uppercase;color:#8FBAC2}
+.sum-list dd{margin:0;font-weight:600;text-align:right;color:#fff}
+.sum-actions{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+.sum-actions .btn-coral{background:var(--coral);color:var(--ink)}
+.sum-actions .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
+.sum-actions .btn-ghost:hover{background:#fff;color:var(--ink)}
+.empty{
+margin-top:20px;border:2px dashed rgba(255,255,255,.34);border-radius:16px;padding:26px 18px;text-align:center;
+}
+.empty svg{width:44px;height:44px;margin:0 auto 12px;color:#5FA9B4}
+.empty p{color:#A9CBD2;font-size:.92rem}
+.empty strong{display:block;color:#fff;font-size:1.02rem;margin-bottom:6px}
+.is-hidden{display:none}
+
+.pack-grid{display:grid;gap:20px}
+.pack{
+position:relative;border-radius:22px;padding:28px 24px;border:2px solid var(--line);background:#fff;
+transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state);
+}
+.pack:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(10,46,56,.13)}
+.pack-main{border-color:var(--coral);background:linear-gradient(180deg,#FFF4EF 0%,#FFFFFF 55%)}
+.pack .tag{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;border-radius:999px;padding:7px 13px;font:600 12px/1 var(--font)}
+.pack h3{margin-top:16px;font-size:1.45rem;font-weight:700}
+.pack .price{margin-top:6px;font:600 13px/1.4 var(--font);color:#B33A17}
+.pack ul{margin-top:18px;display:grid;gap:11px}
+.pack li{display:flex;gap:10px;font-size:.95rem;color:#2E4E57}
+.pack li svg{width:18px;height:18px;flex:none;color:var(--turq);margin-top:2px}
+.pack .btn{margin-top:22px;width:100%}
+
+.crew-grid{display:grid;gap:18px}
+.crew-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state)}
+.crew-card:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(10,46,56,.12)}
+.crew-photo{
+height:150px;display:grid;place-items:center;background:var(--turq);
+font:600 12px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+}
+.crew-card:nth-child(2) .crew-photo{background:var(--yellow)}
+.crew-card:nth-child(3) .crew-photo{background:var(--coral)}
+.crew-body{padding:18px}
+.crew-body h3{font-size:1.12rem;font-weight:700}
+.crew-body p{margin-top:8px;font-size:.92rem;color:#2E4E57}
+.crew-wide{grid-column:span 1}
+.crew-photo.tall{height:200px}
+
+.faq-list{display:grid;gap:12px;max-width:840px}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:border-color 250ms var(--ease-state),box-shadow 250ms var(--ease-state)}
+.faq-item.is-open{border-color:rgba(0,172,193,.55);box-shadow:0 10px 26px rgba(10,46,56,.08)}
+.faq-q{
+width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;
+min-height:56px;padding:14px 18px;background:#fff;border:0;cursor:pointer;
+font:600 15px/1.4 var(--font);color:var(--ink);
+transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state);
+}
+.faq-q:hover{background:var(--paper)}
+.faq-q .chev{width:22px;height:22px;flex:none;color:var(--turq);transition:transform 300ms var(--ease-state)}
+.faq-item.is-open .faq-q .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;opacity:0;visibility:hidden;transition:max-height 380ms var(--ease-state),opacity 280ms var(--ease-state),visibility 380ms}
+.faq-item.is-open .faq-a{opacity:1;visibility:visible}
+.faq-a p{padding:0 18px 18px;font-size:.95rem;color:#2E4E57}
+
+.contact{background:var(--paper)}
+.contact-grid{display:grid;gap:24px}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 22px}
+.form-grid{display:grid;gap:0}
+.side-card{background:var(--dark);color:#EAF6F8;border-radius:20px;padding:26px 22px}
+.side-card h3{color:#fff;font-size:1.3rem}
+.side-card p{margin-top:10px;color:#A9CBD2;font-size:.94rem}
+.side-list{margin-top:18px;display:grid;gap:12px}
+.side-list li{display:flex;gap:10px;font-size:.94rem;color:#D6EBEF}
+.side-list svg{width:18px;height:18px;flex:none;color:#5FA9B4;margin-top:2px}
+.wa-line{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16);font-size:.92rem;color:#A9CBD2}
+.wa-line a{color:#fff;font-weight:600}
+.success{
+border:2px solid var(--turq);border-radius:16px;padding:24px 20px;background:#F1FBFD;text-align:center;
+}
+.success svg{width:44px;height:44px;margin:0 auto 12px;color:#00727F}
+.success h3{font-size:1.2rem;font-weight:700}
+.success p{margin-top:10px;font-size:.94rem;color:#2E4E57}
+.success .btn{margin-top:18px}
+
+.site-footer{background:var(--dark);color:#C9E2E7;padding:46px 0 28px}
+.foot-grid{display:grid;gap:26px}
+.foot-brand .logo b{color:#fff}
+.foot-brand p{margin-top:12px;font-size:.92rem;color:#9FC2C9;max-width:40ch}
+.foot-col h4{font-family:var(--font);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#7FA9B2;margin-bottom:12px}
+.foot-col a{display:inline-flex;min-height:36px;align-items:center;text-decoration:none;font-size:.94rem;color:#D6EBEF;transition:color 200ms var(--ease-state)}
+.foot-col a:hover{color:var(--yellow)}
+.foot-bottom{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;font-size:.86rem;color:#9FC2C9}
+.foot-bottom a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+@media (min-width:760px){
+.hd{min-height:74px}
+.nav-toggle{display:none}
+.site-nav{position:static;display:flex;align-items:center;gap:6px;padding:0;border:0;box-shadow:none;background:none;transform:none;opacity:1;visibility:visible}
+.site-nav a{padding:10px 12px;min-height:44px}
+.site-nav a:hover{background:var(--paper)}
+.site-nav .nav-cta{margin:0 0 0 8px}
+.hd-cta{display:inline-flex}
+section{padding:92px 0}
+.hero{padding:76px 0 104px}
+.hero-grid{grid-template-columns:1.05fr .95fr;align-items:center;gap:36px}
+.dest-grid{grid-template-columns:repeat(2,1fr)}
+.pack-grid{grid-template-columns:repeat(2,1fr)}
+.crew-grid{grid-template-columns:repeat(3,1fr)}
+.crew-wide{grid-column:span 3;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center}
+.crew-wide .crew-photo.tall{height:100%;min-height:190px}
+.builder-grid{grid-template-columns:1fr 1fr;align-items:start}
+.contact-grid{grid-template-columns:1.15fr .85fr;align-items:start}
+.form-2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.foot-grid{grid-template-columns:1.4fr 1fr 1fr}
+}
+@media (min-width:1040px){
+.dest-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:759px){
+.dest-detail{position:static;opacity:1;transform:none;background:#fff;margin-top:0}
+.dest-card{padding-bottom:0;display:flex;flex-direction:column}
+.dest-top{flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important}
+[data-reveal]{opacity:1;transform:none}
+.route-path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header class="site-header" id="topo">
+<div class="wrap hd">
+<a class="logo" href="#topo" aria-label="Rota Certa Viagens, página inicial">
+<svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+<circle cx="20" cy="20" r="18" fill="#00ACC1"/>
+<path d="M9 24c4-9 10-12 22-11" stroke="#0A2E38" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="30" cy="13.5" r="3.4" fill="#FF7043"/>
+</svg>
+<span><b>Rota</b> <span>Certa</span></span>
+</a>
+<button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+<path d="M4 7h16M4 12h16M4 17h16"/>
+</svg>
+Menu
+</button>
+<nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+<a href="#destinos">Destinos</a>
+<a href="#monte">Monte seu roteiro</a>
+<a href="#pacotes">Pacotes</a>
+<a href="#quem">Quem viaja</a>
+<a href="#duvidas">Dúvidas</a>
+<a href="#contato">Contato</a>
+<a class="btn btn-coral nav-cta" href="#contato">Falar no WhatsApp</a>
+</nav>
+</div>
+</header>
+<main id="conteudo">
+
+<section class="hero" aria-labelledby="hero-title">
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<p class="eyebrow">Viagens sob medida</p>
+<h1 id="hero-title">Roteiro montado por quem <em>conhece</em> o destino</h1>
+<p class="hero-lead">Você diz para onde quer ir e quantos dias tem. A gente organiza hospedagem, transfer, ordem dos passeios e o que fazer em cada dia, tudo por escrito antes de você fechar.</p>
+<div class="hero-actions">
+<a class="btn btn-coral" href="#destinos">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h10"/></svg>
+Ver destinos
+</a>
+<a class="btn btn-turq" href="#monte">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+Montar meu roteiro
+</a>
+<a class="btn btn-ghost" href="#contato">Falar no WhatsApp</a>
+</div>
+<p class="hero-note">
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Orçamento por escrito antes de qualquer pagamento</span>
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atendimento com uma pessoa só, do início ao fim</span>
+</p>
+</div>
+<div class="hero-shapes" aria-hidden="true">
+<span class="blob blob-a" data-depth="0.16"></span>
+<span class="blob blob-b" data-depth="0.26"></span>
+<span class="blob blob-c" data-depth="0.1"></span>
+<div class="map-card">
+<svg viewBox="0 0 380 210" role="img" aria-label="Mapa estilizado com uma rota de voo ligando quatro cidades">
+<path d="M28 150c46-34 84 6 128-16s84-30 196-24" fill="none" stroke="#0A2E38" stroke-width="2" stroke-opacity=".28" stroke-linecap="round" stroke-dasharray="5 7"/>
+<path class="route-path" d="M28 150c46-34 84 6 128-16s84-30 196-24" fill="none" stroke="#FF7043" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="28" cy="150" r="7" fill="#00ACC1"/>
+<circle cx="156" cy="134" r="7" fill="#00ACC1"/>
+<circle cx="324" cy="110" r="7" fill="#00ACC1"/>
+<g transform="translate(324 110)">
+<circle class="route-ring" r="17" fill="none" stroke="#0A2E38" stroke-opacity=".35" stroke-width="2" stroke-dasharray="4 8"/>
+<circle r="6.5" fill="#FF7043"/>
+</g>
+<path d="M336 96l16 9-16 9z" fill="#0A2E38"/>
+</svg>
+</div>
+<div class="dest-chips">
+<span class="chip"><i></i>Fernando de Noronha</span>
+<span class="chip"><i></i>Chapada dos Veadeiros</span>
+<span class="chip"><i></i>Jalapão</span>
+<span class="chip"><i></i>Foz do Iguaçu</span>
+<span class="chip"><i></i>Ushuaia</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="destinos" aria-labelledby="dest-title">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Explore</p>
+<h2 class="sec-title" id="dest-title">Seis destinos, com o que importa em cada um</h2>
+<p class="sec-sub">Passe o mouse (ou toque) em um destino para ver como a gente monta a visita por lá. Nenhum pacote de vitrine: o roteiro é escrito para as suas datas.</p>
+</div>
+<div class="dest-grid">
+<a class="dest-card" href="#monte" data-reveal style="--i:0">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 78c10-16 22-20 34-12s24 4 34-8"/><path d="M12 94c12-14 24-16 36-8s22 2 34-10"/><circle cx="88" cy="34" r="12"/></svg></span>
+<span class="dest-top"><h3>Fernando de Noronha</h3><p>Pernambuco, Brasil</p></span>
+<span class="dest-detail"><p>Mergulho com boa visibilidade, trilhas curtas e poucas praias abertas no mesmo dia. Acesso por barco ou avião, e a taxa ambiental entra no orçamento: [valor da taxa].</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+<a class="dest-card" href="#monte" data-reveal style="--i:1">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 92l30-52 22 30 14-18 38 40z"/><path d="M52 66c8 6 18 6 26 0"/></svg></span>
+<span class="dest-top"><h3>Chapada dos Veadeiros</h3><p>Goiás, Brasil</p></span>
+<span class="dest-detail"><p>Cerrado alto, rios de água clara e caminhadas que pedem calçado fechado. Base em Alto Paraíso, com uma saída longa por dia e folga no meio da semana.</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+<a class="dest-card" href="#monte" data-reveal style="--i:2">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 88c14-30 24-44 34-44s18 16 30 26 24 10 36 18"/><path d="M20 74c10 6 20 6 28 0"/><circle cx="94" cy="30" r="10"/></svg></span>
+<span class="dest-top"><h3>Jalapão</h3><p>Tocantins, Brasil</p></span>
+<span class="dest-detail"><p>Dunas de areia clara, fervedouro e estrada de areia por dentro do parque. Só com carro preparado ou transfer incluso: [dias de transfer incluso].</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+<a class="dest-card" href="#monte" data-reveal style="--i:3">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 88V56l22-14 22 14 22-14 22 14v32"/><path d="M36 88V70l22-12 22 12v18"/><path d="M14 96h92"/></svg></span>
+<span class="dest-top"><h3>Foz do Iguaçu</h3><p>Paraná, Brasil</p></span>
+<span class="dest-detail"><p>Cataratas em dia de pouco movimento e a noite do outro lado da ponte. Para cruzar a fronteira é preciso documento original: [regra vigente do seu destino].</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+<a class="dest-card" href="#monte" data-reveal style="--i:4">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 90h96"/><path d="M30 90V52l24-16 24 16v38"/><path d="M46 90V70h16v20"/><path d="M88 90V44l14-10v56"/></svg></span>
+<span class="dest-top"><h3>Salvador</h3><p>Bahia, Brasil</p></span>
+<span class="dest-detail"><p>Dois dias de cidade e praia, um dia só para comer bem. Pelourinho e Elevador Lacerda de um lado, Porto da Barra do outro, com sol forte na maior parte do dia.</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+<a class="dest-card" href="#monte" data-reveal style="--i:5">
+<span class="dest-media" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 96l34-64 20 26 16-22 30 60z"/><path d="M44 58c6 8 16 8 22 0"/><path d="M8 104h104"/></svg></span>
+<span class="dest-top"><h3>Ushuaia</h3><p>Terra do Fogo, Argentina</p></span>
+<span class="dest-detail"><p>Canal Beagle, parque nacional e uma tarde reservada para o frio. No verão o dia é longo e dá para encaixar duas saídas: [saídas por dia incluso].</p><span class="go">Montar roteiro com esse destino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+</a>
+</div>
+<p class="dest-foot" data-reveal>Tem outro destino na cabeça? Escreva ele no formulário no fim da página e a gente diz se conseguimos montar um roteiro honesto para as suas datas.</p>
+</div>
+</section>
+
+<section id="monte" class="builder" aria-labelledby="monte-title">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Monte seu roteiro</p>
+<h2 class="sec-title" id="monte-title">Escolha destino, dias e estilo. O resumo aparece ao lado.</h2>
+<p class="sec-sub">É um rascunho, não um orçamento. Com essas três informações a gente já sabe o que dá para encaixar e o que não cabe, e te explica o porquê.</p>
+</div>
+<div class="builder-grid">
+<form class="panel" id="tripForm" novalidate>
+<div class="field">
+<label for="trip-dest">Para onde você quer ir</label>
+<select id="trip-dest" name="destino">
+<option value="">Escolha um destino</option>
+<option value="Fernando de Noronha">Fernando de Noronha</option>
+<option value="Chapada dos Veadeiros">Chapada dos Veadeiros</option>
+<option value="Jalapão">Jalapão</option>
+<option value="Foz do Iguaçu">Foz do Iguaçu</option>
+<option value="Salvador">Salvador</option>
+<option value="Ushuaia">Ushuaia</option>
+<option value="Outro destino">Ainda não sei, quero sugestão</option>
+</select>
+<p class="err" id="trip-dest-err">Escolha um destino para ver o resumo.</p>
+</div>
+<div class="field">
+<label for="trip-days">Quantos dias você tem</label>
+<input id="trip-days" name="dias" type="number" inputmode="numeric" min="3" max="20" step="1" value="7" aria-describedby="trip-days-hint">
+<p class="hint" id="trip-days-hint">Entre 3 e 20 dias. Contamos os dias de ida e volta inclusos.</p>
+<p class="err" id="trip-days-err">Escreva um número entre 3 e 20 dias.</p>
+</div>
+<fieldset style="border:0;padding:0;margin:0 0 18px">
+<legend class="legend">Estilo da viagem</legend>
+<div class="opts">
+<label class="opt"><input type="radio" name="estilo" value="Econômico" checked><span>Econômico</span></label>
+<label class="opt"><input type="radio" name="estilo" value="Conforto"><span>Conforto</span></label>
+<label class="opt"><input type="radio" name="estilo" value="Aventura"><span>Aventura</span></label>
+</div>
+</fieldset>
+<fieldset style="border:0;padding:0;margin:0 0 6px">
+<legend class="legend">O que não pode faltar (opcional)</legend>
+<div class="checks">
+<label class="check"><input type="checkbox" name="foco" value="Trilhas e natureza" data-label="trilhas e natureza">Trilhas e natureza</label>
+<label class="check"><input type="checkbox" name="foco" value="Comida e mercados" data-label="comida e mercados">Comida e mercados</label>
+<label class="check"><input type="checkbox" name="foco" value="Museus e história" data-label="museus e história">Museus e história</label>
+<label class="check"><input type="checkbox" name="foco" value="Mergulho e praia" data-label="mergulho e praia">Mergulho e praia</label>
+<label class="check"><input type="checkbox" name="foco" value="Estradas e paisagem" data-label="estradas e paisagem">Estradas e paisagem</label>
+</div>
+</fieldset>
+<button class="btn btn-coral" type="submit" id="tripBtn" style="width:100%;margin-top:16px">Montar meu roteiro</button>
+</form>
+<div class="summary" id="tripSummary" aria-live="polite">
+<h3>Seu resumo</h3>
+<p class="lead">O que você escolheu, do jeito que a gente vai usar para montar o roteiro.</p>
+<div class="empty" id="tripEmpty">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a7 7 0 1 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg>
+<strong>Nada escolhido ainda</strong>
+<p>Comece pelo destino. Sem destino a gente não consegue propor dias, então o resumo fica vazio de propósito.</p>
+</div>
+<dl class="sum-list is-hidden" id="tripList">
+<div><dt>Destino</dt><dd id="sum-dest">,</dd></div>
+<div><dt>Dias</dt><dd id="sum-days">,</dd></div>
+<div><dt>Estilo</dt><dd id="sum-style">,</dd></div>
+<div><dt>Não pode faltar</dt><dd id="sum-focus">,</dd></div>
+</dl>
+<div class="sum-actions is-hidden" id="tripActions">
+<a class="btn btn-coral" href="#contato">Falar no WhatsApp</a>
+<a class="btn btn-ghost" href="#destinos">Ver destinos</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="pacotes" aria-labelledby="pack-title">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Como a gente trabalha</p>
+<h2 class="sec-title" id="pack-title">Dois formatos, você escolhe o quanto delega</h2>
+<p class="sec-sub">Nos dois a gente entrega o roteiro escrito antes de você pagar qualquer valor. A diferença é quem segura as reservas.</p>
+</div>
+<div class="pack-grid">
+<article class="pack pack-main" data-reveal style="--i:0">
+<span class="tag">Mais escolhido</span>
+<h3>Roteiro completo</h3>
+<p class="price">Valor: [R$ 00 (definir)]</p>
+<ul>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Roteiro dia a dia, com horário sugerido e alternativa para dia de chuva.</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Hospedagem e transfer reservados por nós, com o que está incluso escrito linha a linha.</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Uma pessoa da equipe te atende do primeiro contato até a volta.</li>
+</ul>
+<a class="btn btn-coral" href="#contato">Quero esse formato</a>
+</article>
+<article class="pack" data-reveal style="--i:1">
+<span class="tag" style="background:var(--turq);color:var(--ink)">Você reserva</span>
+<h3>Você na direção</h3>
+<p class="price">Valor: [R$ 00 (definir)]</p>
+<ul>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Roteiro escrito e mapa com a ordem dos dias, do jeito que você vai seguir.</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dicas de deslocamento, o que levar e onde comer sem cair em armadilha.</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Revisão final por chamada antes de você fechar as reservas: [duração a definir].</li>
+</ul>
+<a class="btn btn-turq" href="#contato">Quero esse formato</a>
+</article>
+</div>
+</div>
+</section>
+
+<section id="quem" aria-labelledby="crew-title" style="background:var(--paper)">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Quem viaja com a gente</p>
+<h2 class="sec-title" id="crew-title">As pessoas que escrevem o roteiro e quem está com você na estrada</h2>
+<p class="sec-sub">Nesta página os nomes e as fotos são placeholders. No site da agência entram as pessoas reais, com o tempo de estrada e os destinos que cada uma conhece.</p>
+</div>
+<div class="crew-grid">
+<article class="crew-card crew-wide" data-reveal style="--i:0">
+<div class="crew-photo tall" role="img" aria-label="espaco para foto: retrato da equipe de roteiros">Sua foto aqui</div>
+<div class="crew-body">
+<h3>[nome da pessoa que monta o roteiro]</h3>
+<p>[cargo e tempo de experiência] e [destinos que conhece pessoalmente]. É quem escreve o dia a dia da sua viagem e responde suas dúvidas antes de fechar.</p>
+</div>
+</article>
+<article class="crew-card" data-reveal style="--i:1">
+<div class="crew-photo" role="img" aria-label="espaco para foto: guia local no destino">Sua foto aqui</div>
+<div class="crew-body">
+<h3>[nome do guia local]</h3>
+<p>[cidade onde atua] e [idiomas que fala]. Recebe você no destino e conduz os passeios.</p>
+</div>
+</article>
+<article class="crew-card" data-reveal style="--i:2">
+<div class="crew-photo" role="img" aria-label="espaco para foto: pessoa do atendimento durante a viagem">Sua foto aqui</div>
+<div class="crew-body">
+<h3>[nome do atendimento]</h3>
+<p>[horário de plantão] e [canal de contato]. Se algo sair do plano no meio da viagem, é com essa pessoa que você fala.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="duvidas" aria-labelledby="faq-title">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Dúvidas frequentes</p>
+<h2 class="sec-title" id="faq-title">O que perguntam antes de fechar</h2>
+<p class="sec-sub">Se a sua dúvida não estiver aqui, mande no formulário. Respondemos com o que vale para o seu destino, não com texto genérico.</p>
+</div>
+<div class="faq-list" id="faqList">
+<div class="faq-item" data-reveal style="--i:0">
+<h3 style="margin:0">
+<button class="faq-q" type="button" id="faqb1" aria-expanded="false" aria-controls="faq1">
+Parcelo em quantas vezes?
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+</h3>
+<div class="faq-a" id="faq1" role="region" aria-labelledby="faqb1">
+<p>Parcelamos em até [número de parcelas] no cartão, e o valor de cada parcela sai no orçamento por escrito. Não cobramos taxa de conveniência escondida: o total que você vê é o total que você paga.</p>
+</div>
+</div>
+<div class="faq-item" data-reveal style="--i:1">
+<h3 style="margin:0">
+<button class="faq-q" type="button" id="faqb2" aria-expanded="false" aria-controls="faq2">
+Que documento eu preciso levar?
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+</h3>
+<div class="faq-a" id="faq2" role="region" aria-labelledby="faqb2">
+<p>Dentro do Brasil, RG original para voo nacional. Para fora, passaporte com validade mínima de [meses de validade] e, em alguns países, visto antecipado. A gente confirma a lista exata do seu destino antes de emitir qualquer coisa.</p>
+</div>
+</div>
+<div class="faq-item" data-reveal style="--i:2">
+<h3 style="margin:0">
+<button class="faq-q" type="button" id="faqb3" aria-expanded="false" aria-controls="faq3">
+Bagagem está inclusa no valor?
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+</h3>
+<div class="faq-a" id="faq3" role="region" aria-labelledby="faqb3">
+<p>Cada companhia tem a sua regra e ela muda por trecho. No orçamento a gente escreve quantas malas e qual o peso incluído em cada voo, para você escolher a tarifa sabendo disso antes de pagar.</p>
+</div>
+</div>
+<div class="faq-item" data-reveal style="--i:3">
+<h3 style="margin:0">
+<button class="faq-q" type="button" id="faqb4" aria-expanded="false" aria-controls="faq4">
+Posso cancelar depois de fechado?
+<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+</h3>
+<div class="faq-a" id="faq4" role="region" aria-labelledby="faqb4">
+<p>Depende de cada reserva, e a gente não promete o que não pode cumprir. No orçamento vem listado o que é reembolsável, o que tem multa e até quando. Se você cancelar, já sabe o valor antes de assinar.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contato" class="contact" aria-labelledby="contato-title">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<p class="eyebrow">Contato</p>
+<h2 class="sec-title" id="contato-title">Conte a sua viagem e a gente responde com um roteiro possível</h2>
+<p class="sec-sub">Preencha os campos abaixo. Nada é enviado para lugar nenhum nesta demonstração: a confirmação aparece na tela e o WhatsApp da agência é o próximo passo.</p>
+</div>
+<div class="contact-grid">
+<div class="form-card" data-reveal>
+<form id="contactForm" novalidate>
+<div class="form-2">
+<div class="field">
+<label for="c-nome">Seu nome</label>
+<input id="c-nome" name="nome" type="text" autocomplete="name" aria-describedby="c-nome-err">
+<p class="err" id="c-nome-err">Escreva seu nome com pelo menos 3 letras.</p>
+</div>
+<div class="field">
+<label for="c-wpp">WhatsApp</label>
+<input id="c-wpp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="c-wpp-err c-wpp-hint">
+<p class="hint" id="c-wpp-hint">Com DDD. É por aqui que a gente manda o roteiro.</p>
+<p class="err" id="c-wpp-err">Escreva um WhatsApp com DDD, com 10 ou 11 números.</p>
+</div>
+</div>
+<div class="form-2">
+<div class="field">
+<label for="c-email">E-mail</label>
+<input id="c-email" name="email" type="email" autocomplete="email" placeholder="seu@email.com" aria-describedby="c-email-err">
+<p class="err" id="c-email-err">Escreva um e-mail válido, por exemplo nome@dominio.com.</p>
+</div>
+<div class="field">
+<label for="c-dest">Destino de interesse</label>
+<select id="c-dest" name="destino" aria-describedby="c-dest-err">
+<option value="">Escolha um destino</option>
+<option>Fernando de Noronha</option>
+<option>Chapada dos Veadeiros</option>
+<option>Jalapão</option>
+<option>Foz do Iguaçu</option>
+<option>Salvador</option>
+<option>Ushuaia</option>
+<option>Outro destino</option>
+</select>
+<p class="err" id="c-dest-err">Escolha um destino, ou a opção de sugestão.</p>
+</div>
+</div>
+<div class="field">
+<label for="c-msg">O que você quer dessa viagem</label>
+<textarea id="c-msg" name="mensagem" aria-describedby="c-msg-err c-msg-hint"></textarea>
+<p class="hint" id="c-msg-hint">Datas previstas, quem vai junto e o que não pode faltar.</p>
+<p class="err" id="c-msg-err">Escreva pelo menos 10 caracteres para a gente entender o pedido.</p>
+</div>
+<button class="btn btn-coral" type="submit" style="width:100%">Enviar meu pedido</button>
+<p class="hint" style="margin-top:12px">Este formulário é uma demonstração e não envia dados para nenhum servidor.</p>
+</form>
+<div class="success is-hidden" id="contactSuccess" role="status">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+<h3>Recebido, está tudo na tela</h3>
+<p id="successText">Suas informações ficaram aqui no seu navegador. Nada foi enviado: este formulário é uma demonstração do modelo.</p>
+<a class="btn btn-turq" href="#duvidas">Ver as dúvidas frequentes</a>
+</div>
+</div>
+<aside class="side-card" data-reveal style="--i:1">
+<h3>Falar no WhatsApp</h3>
+<p>Se preferir pular o formulário, chame a agência direto. O número abaixo é placeholder: substitua pelo WhatsApp real antes de publicar.</p>
+<ul class="side-list">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>WhatsApp: [(00) 00000-0000]</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>E-mail: [seu@email.com]</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a7 7 0 1 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg><span>Endereço: [endereco da agência]</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Atendimento: [dias e horário de atendimento]</span></li>
+</ul>
+<p class="wa-line">Respondemos no mesmo dia útil, com o nome de quem te atendeu.</p>
+</aside>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand">
+<a class="logo" href="#topo" aria-label="Rota Certa Viagens, voltar ao topo">
+<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#00ACC1"/><path d="M9 24c4-9 10-12 22-11" stroke="#0A2E38" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="30" cy="13.5" r="3.4" fill="#FF7043"/></svg>
+<span><b>Rota</b> <span style="color:var(--coral)">Certa</span></span>
+</a>
+<p>Roteiros de viagem montados por quem conhece o destino, com tudo por escrito antes de você pagar.</p>
+</div>
+<div class="foot-col">
+<h4>Navegar</h4>
+<a href="#destinos">Destinos</a><br>
+<a href="#monte">Monte seu roteiro</a><br>
+<a href="#pacotes">Pacotes</a><br>
+<a href="#quem">Quem viaja com a gente</a>
+</div>
+<div class="foot-col">
+<h4>Ajuda</h4>
+<a href="#duvidas">Dúvidas frequentes</a><br>
+<a href="#contato">Falar no WhatsApp</a><br>
+<a href="../index.html">Voltar ao hub de modelos</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></span>
+<span>Conteúdo de exemplo, com placeholders entre colchetes para os dados reais da agência.</span>
+</div>
+</div>
+</footer>
+<script>
+(function(){
+"use strict";
+var doc=document;
+var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+var desktop=window.matchMedia("(min-width: 760px)");
+
+/* Entrada de pagina: classe no body depois do load, nada de piscar. */
+function boot(){doc.body.classList.add("is-ready");}
+if(doc.readyState==="complete"){boot();}
+else{window.addEventListener("load",boot);}
+
+/* Menu mobile: abre e fecha de verdade, com aria-expanded e Escape. */
+var toggle=doc.getElementById("navToggle");
+var nav=doc.getElementById("siteNav");
+function setNav(open){
+nav.classList.toggle("is-open",open);
+toggle.setAttribute("aria-expanded",open?"true":"false");
+}
+toggle.addEventListener("click",function(){
+setNav(toggle.getAttribute("aria-expanded")!=="true");
+});
+doc.addEventListener("keydown",function(e){
+if(e.key==="Escape"&&toggle.getAttribute("aria-expanded")==="true"){
+setNav(false);
+toggle.focus();
+}
+});
+nav.addEventListener("click",function(e){
+if(e.target.closest("a")){setNav(false);}
+});
+
+/* Reveal escalonado: --i define o atraso entre irmaos (75ms). */
+var reveals=[].slice.call(doc.querySelectorAll("[data-reveal]"));
+reveals.forEach(function(el){
+if(!el.style.getPropertyValue("--i")){
+var siblings=el.parentElement?[].slice.call(el.parentElement.children):[];
+var pos=siblings.indexOf(el);
+el.style.setProperty("--i",String(pos>0?pos:0));
+}
+});
+if("IntersectionObserver" in window&&!reduce.matches){
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(en){
+if(en.isIntersecting){
+en.target.classList.add("is-revealed");
+io.unobserve(en.target);
+}
+});
+},{threshold:0.12,rootMargin:"0px 0px -6% 0px"});
+reveals.forEach(function(el){io.observe(el);});
+}else{
+reveals.forEach(function(el){el.classList.add("is-revealed");});
+}
+
+/* Header e parallax no mesmo ciclo de requestAnimationFrame. */
+var header=doc.getElementById("siteHeader");
+var shapes=[].slice.call(doc.querySelectorAll("[data-depth]"));
+var ticking=false;
+function frame(){
+ticking=false;
+header.classList.toggle("is-scrolled",window.scrollY>8);
+if(desktop.matches&&!reduce.matches){
+var y=window.scrollY;
+shapes.forEach(function(el){
+var d=parseFloat(el.getAttribute("data-depth"))||0.1;
+el.style.transform="translate3d(0,"+(y*d).toFixed(2)+"px,0)";
+});
+}
+}
+function onScroll(){
+if(!ticking){
+ticking=true;
+window.requestAnimationFrame(frame);
+}
+}
+window.addEventListener("scroll",onScroll,{passive:true});
+window.addEventListener("resize",onScroll,{passive:true});
+frame();
+
+/* Montador de roteiro: resumo e estado vazio. */
+var form=doc.getElementById("tripForm");
+var destSel=doc.getElementById("trip-dest");
+var daysInp=doc.getElementById("trip-days");
+var emptyBox=doc.getElementById("tripEmpty");
+var list=doc.getElementById("tripList");
+var actions=doc.getElementById("tripActions");
+var sumDest=doc.getElementById("sum-dest");
+var sumDays=doc.getElementById("sum-days");
+var sumStyle=doc.getElementById("sum-style");
+var sumFocus=doc.getElementById("sumFocus")||doc.getElementById("sum-focus");
+function fieldError(input,on){
+var field=input.closest(".field");
+if(field){field.classList.toggle("is-invalid",on);}
+input.setAttribute("aria-invalid",on?"true":"false");
+}
+function checkedFocus(){
+return [].filter.call(form.querySelectorAll("input[name=foco]:checked"),function(c){return c.checked;})
+.map(function(c){return c.getAttribute("data-label");});
+}
+function styleValue(){
+var r=form.querySelector("input[name=estilo]:checked");
+return r?r.value:"";
+}
+function renderTrip(){
+var dest=destSel.value;
+var days=daysInp.value.trim();
+var focus=checkedFocus();
+var style=styleValue();
+if(!dest){
+emptyBox.classList.remove("is-hidden");
+list.classList.add("is-hidden");
+actions.classList.add("is-hidden");
+return;
+}
+var daysOk=/^\d+$/.test(days)&&+days>=3&&+days<=20;
+emptyBox.classList.add("is-hidden");
+list.classList.remove("is-hidden");
+actions.classList.remove("is-hidden");
+sumDest.textContent=dest;
+sumDays.textContent=daysOk?days+(+days===1?" dia":" dias"):"a definir";
+sumStyle.textContent=style||"a definir";
+sumFocus.textContent=focus.length?focus.join(", "):"nada definido ainda";
+}
+form.addEventListener("submit",function(e){
+e.preventDefault();
+var bad=false;
+if(!destSel.value){fieldError(destSel,true);bad=true;}else{fieldError(destSel,false);}
+var d=daysInp.value.trim();
+var daysOk=/^\d+$/.test(d)&&+d>=3&&+d<=20;
+fieldError(daysInp,!daysOk);
+if(!daysOk){bad=true;}
+if(bad){
+(!daysOk?daysInp:destSel).focus();
+return;
+}
+renderTrip();
+});
+destSel.addEventListener("change",function(){fieldError(destSel,false);renderTrip();});
+daysInp.addEventListener("input",function(){fieldError(daysInp,false);});
+form.addEventListener("change",renderTrip);
+renderTrip();
+
+/* FAQ: acordeão com transicao de altura real. */
+var items=[].slice.call(doc.querySelectorAll(".faq-item"));
+items.forEach(function(item){
+var btn=item.querySelector(".faq-q");
+var panel=item.querySelector(".faq-a");
+btn.addEventListener("click",function(){
+var open=item.classList.contains("is-open");
+items.forEach(function(other){
+if(other!==item&&other.classList.contains("is-open")){
+other.classList.remove("is-open");
+other.querySelector(".faq-q").setAttribute("aria-expanded","false");
+other.querySelector(".faq-a").style.maxHeight="0px";
+}
+});
+if(open){
+item.classList.remove("is-open");
+btn.setAttribute("aria-expanded","false");
+panel.style.maxHeight="0px";
+}else{
+item.classList.add("is-open");
+btn.setAttribute("aria-expanded","true");
+panel.style.maxHeight=panel.scrollHeight+"px";
+}
+});
+window.addEventListener("resize",function(){
+if(item.classList.contains("is-open")){
+panel.style.maxHeight=panel.scrollHeight+"px";
+}
+});
+});
+
+/* Formulario de contato: validacao por campo e painel de sucesso. */
+var cForm=doc.getElementById("contactForm");
+var success=doc.getElementById("contactSuccess");
+var successText=doc.getElementById("successText");
+var cNome=doc.getElementById("c-nome");
+var cWpp=doc.getElementById("c-wpp");
+var cMail=doc.getElementById("c-email");
+var cDest=doc.getElementById("c-dest");
+var cMsg=doc.getElementById("c-msg");
+function mark(input,ok){
+var field=input.closest(".field");
+input.setAttribute("aria-invalid",ok?"false":"true");
+if(field){field.classList.toggle("is-invalid",!ok);}
+}
+var rules={
+"c-nome":function(v){return v.trim().length>=3;},
+"c-wpp":function(v){ return v.replace(/\D/g,"").length>=10&&v.replace(/\D/g,"").length<=11;},
+"c-email":function(v){ return /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v.trim());},
+"c-dest":function(v){ return v!=="";},
+"c-msg":function(v){ return v.trim().length>=10;}
+};
+Object.keys(rules).forEach(function(id){
+var input=doc.getElementById(id);
+var check=function(){mark(input,rules[id](input.value));};
+input.addEventListener("blur",check);
+input.addEventListener("input",function(){
+if(input.closest(".field").classList.contains("is-invalid")){check();}
+});
+});
+cForm.addEventListener("submit",function(e){
+e.preventDefault();
+var order=Object.keys(rules);
+var firstBad=null;
+order.forEach(function(id){
+var input=doc.getElementById(id);
+var ok=rules[id](input.value);
+mark(input,ok);
+if(!ok&&!firstBad){firstBad=input;}
+});
+if(firstBad){
+firstBad.focus();
+return;
+}
+successText.textContent="Recebemos o pedido de "+cNome.value.trim()+
+" para "+cDest.value+". Estas informações ficaram apenas nesta tela: o modelo não envia dados. Para falar de verdade, use o WhatsApp da agência: [(00) 00000-0000].";
+cForm.classList.add("is-hidden");
+success.classList.remove("is-hidden");
+success.setAttribute("tabindex","-1");
+success.focus();
+});
+})();
+</script>
+</body>
+</html>
