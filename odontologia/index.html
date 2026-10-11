@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Odontológica [Sua Marca] | Agendar avaliação</title>
+<meta name="description" content="Clínica odontológica com avaliação completa, tratamentos com preço combinado antes e atendimento para quem evita dentista. Agende sua avaliação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --ink:#0A3A42;
+  --accent:#00BCD4;
+  --support:#B2DFDB;
+  --ink-mid:#3C5A5F;
+  --tint:#F0FAFB;
+  --erro:#9B1C1C;
+  --line:rgba(10,58,66,.14);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+  --maxw:1140px;
+  --pad:20px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Manrope',system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:clip;
+}
+h1,h2,h3{
+  font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+  font-weight:600;
+  line-height:1.14;
+  color:var(--ink);
+  margin:0 0 .5em;
+  letter-spacing:-.01em;
+}
+h1{font-size:clamp(2rem,7vw,3.4rem)}
+h2{font-size:clamp(1.6rem,4.4vw,2.4rem)}
+h3{font-size:clamp(1.1rem,2.6vw,1.3rem)}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--ink);text-decoration:none}
+strong{font-weight:700}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  border-bottom:1px solid transparent;
+  transition:background-color 250ms var(--ease-state),box-shadow 250ms var(--ease-state),border-color 250ms var(--ease-state);
+}
+.site-header.is-scrolled{
+  background:#FFFFFF;
+  border-bottom-color:var(--line);
+  box-shadow:0 6px 20px rgba(10,58,66,.08);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em}
+.brand .logo{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:44px;height:36px;padding:0 8px;border-radius:9px;
+  background:var(--accent);color:var(--ink);
+  font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;
+}
+.brand span{font-size:1.05rem}
+.nav-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  min-height:44px;padding:10px 14px;
+  background:var(--ink);color:#FFFFFF;border:0;border-radius:10px;
+  font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;
+  transition:background-color 200ms var(--ease-state),transform 200ms var(--ease-state);
+}
+.nav-toggle:hover{background:#0E4A54;transform:translateY(-1px)}
+.nav-toggle .bars{display:block;width:18px;height:2px;background:#FFFFFF;position:relative}
+.nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#FFFFFF;transition:transform 200ms var(--ease-state)}
+.nav-toggle .bars::before{top:-6px}
+.nav-toggle .bars::after{top:6px}
+.nav{display:none}
+.nav.is-open{
+  display:block;position:absolute;left:0;right:0;top:100%;
+  background:#FFFFFF;border-bottom:1px solid var(--line);
+  box-shadow:0 18px 30px rgba(10,58,66,.12);
+  animation:menuIn 250ms var(--ease-out) both;
+}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.nav ul{display:flex;flex-direction:column;gap:2px;padding:10px var(--pad) 18px}
+.nav a{display:block;padding:12px 4px;font-weight:600;position:relative}
+.nav a::after{content:"";position:absolute;left:4px;right:4px;bottom:8px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 200ms var(--ease-state)}
+.nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
+.nav .nav-cta{
+  margin-top:8px;padding:12px 16px;border-radius:10px;
+  background:var(--ink);color:#FFFFFF;text-align:center;
+}
+.nav .nav-cta::after{display:none}
+.nav .nav-cta:hover{background:#0E4A54}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(28px,5vw,52px)}
+.hero-grid{display:grid;gap:26px}
+.eyebrow{
+  font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-mid);margin-bottom:14px;
+}
+.lead{font-size:clamp(1.02rem,2.4vw,1.18rem);color:var(--ink-mid);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 14px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:13px 22px;border-radius:12px;border:2px solid transparent;
+  font-family:'Manrope',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;
+  transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state),border-color 200ms var(--ease-state),transform 200ms var(--ease-state),box-shadow 200ms var(--ease-state);
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--ink);color:#FFFFFF;box-shadow:0 8px 18px rgba(10,58,66,.16)}
+.btn-primary:hover{background:#0E4A54}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--tint)}
+.btn-quiet{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.btn-quiet:hover{background:#00A6BC;border-color:#00A6BC}
+.btn-block{width:100%}
+.hero-note{font-size:14px;color:var(--ink-mid)}
+.hero-panel{
+  position:relative;overflow:hidden;
+  background:var(--accent);color:var(--ink);
+  border-radius:22px;padding:30px 24px 24px;
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+}
+.hero-panel-caption{margin:0;font-size:14px;max-width:26em;text-align:center}
+/* assinatura do nicho: brilho que passa pelo hero, um único elemento */
+.shine{
+  position:absolute;top:-20%;left:0;width:38%;height:150%;
+  background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 100%);
+  transform:translateX(-140%) rotate(8deg);
+  will-change:transform;
+  animation:brilho 8s var(--ease-state) infinite;
+}
+@keyframes brilho{
+  0%,55%{transform:translateX(-140%) rotate(8deg)}
+  100%{transform:translateX(320%) rotate(8deg)}
+}
+.tooth{width:min(280px,72%);height:auto;display:block}
+.tooth-line{
+  fill:rgba(255,255,255,.22);
+  stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  animation:desenhar 11s var(--ease-state) infinite;
+}
+@keyframes desenhar{
+  0%{stroke-dashoffset:100;opacity:1}
+  35%{stroke-dashoffset:0;opacity:1}
+  70%{stroke-dashoffset:0;opacity:1}
+  82%{stroke-dashoffset:0;opacity:0}
+  83%{stroke-dashoffset:100;opacity:0}
+  95%{stroke-dashoffset:100;opacity:1}
+  100%{stroke-dashoffset:100;opacity:1}
+}
+.hero-band{background:var(--accent);margin-top:clamp(26px,4vw,44px)}
+.hero-band-inner{
+  display:grid;gap:8px;padding:18px var(--pad);
+  color:var(--ink);font-weight:600;font-size:15px;
+}
+.hero-band-inner p{margin:0}
+
+/* ---------- секции genéricas ---------- */
+.section{padding:clamp(48px,7vw,86px) 0;scroll-margin-top:78px}
+.section-alt{background:var(--tint)}
+.section-head{max-width:56em;margin-bottom:28px}
+.section-sub{color:var(--ink-mid);font-size:1.05rem}
+
+/* entrada do hero, disparada por classe no body */
+.enter{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out);
+  transition-delay:calc(var(--i,0) * 90ms);
+}
+body.is-loaded .enter{opacity:1;transform:none}
+
+/* scroll reveal: a classe adicionada pelo JS é .is-visible */
+.reveal{
+  opacity:0;transform:translateY(22px);
+  transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out);
+  transition-delay:calc(var(--i,0) * 70ms);
+}
+.reveal-left{transform:translateX(-30px)}
+.reveal-right{transform:translateX(30px)}
+.reveal-scale{transform:scale(.97)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* linha que desenha (passos e faixa de convênios) */
+.line-draw path{
+  fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  transition:stroke-dashoffset 900ms var(--ease-out) 250ms;
+}
+.line-draw.is-visible path{stroke-dashoffset:0}
+
+/* ---------- tratamentos: lista técnica ---------- */
+.filters{display:grid;gap:14px;margin-bottom:22px}
+.filters input[type="search"]{
+  width:100%;min-height:48px;padding:12px 14px;
+  border:1.5px solid var(--line);border-radius:12px;
+  font-family:'Manrope',sans-serif;font-size:16px;color:var(--ink);background:#FFFFFF;
+  transition:border-color 200ms var(--ease-state),box-shadow 200ms var(--ease-state);
+}
+.filters input[type="search"]:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(0,188,212,.35);outline:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  min-height:44px;padding:10px 16px;border-radius:999px;
+  border:1.5px solid var(--line);background:#FFFFFF;color:var(--ink);
+  font-family:'Manrope',sans-serif;font-size:15px;font-weight:600;cursor:pointer;
+  transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state),border-color 200ms var(--ease-state);
+}
+.chip:hover{border-color:var(--ink)}
+.chip.is-active{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.tlist{border-top:1px solid var(--line)}
+.trow{
+  display:grid;gap:10px;padding:20px 12px;
+  border-bottom:1px solid var(--line);
+  transition-property:opacity,transform;
+  transition-duration:700ms;
+  transition-timing-function:var(--ease-out);
+  transition-delay:calc(var(--i,0) * 70ms);
+}
+.trow.is-out{opacity:0;transform:translateX(-14px)}
+.trow-main h3{margin-bottom:6px}
+.trow-main h3{transition:color 200ms var(--ease-state)}
+.trow:hover .trow-main h3{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:5px}
+.trow-main p{margin:0;color:var(--ink-mid);max-width:52em}
+.trow-side{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.price{
+  font-family:'Source Serif 4',Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--ink);
+  background:var(--support);padding:4px 12px;border-radius:8px;white-space:nowrap;
+}
+.meta{font-size:14px;color:var(--ink-mid)}
+.tlist-foot{margin-top:18px;font-size:14px;color:var(--ink-mid)}
+.empty{
+  border:1.5px dashed var(--line);border-radius:14px;padding:26px 20px;text-align:center;
+  background:#FFFFFF;
+}
+.empty p{color:var(--ink-mid);margin-bottom:14px}
+
+/* ---------- primeira consulta ---------- */
+.steps-wrap{position:relative;padding-left:34px}
+.line-draw.steps-line{position:absolute;left:11px;top:6px;bottom:6px;width:2px;height:auto}
+.steps{display:grid;gap:26px}
+.step{position:relative}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--ink);color:#FFFFFF;
+  font-family:'Source Serif 4',Georgia,serif;font-size:1rem;font-weight:700;
+  margin-bottom:12px;
+}
+.step p{color:var(--ink-mid);margin:0;max-width:44em}
+
+/* ---------- antes e depois ---------- */
+.ba{display:grid;gap:16px;align-items:stretch}
+.ba-block{margin:0}
+.ph{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  min-height:220px;padding:20px;text-align:center;
+  background:var(--support);color:var(--ink);
+  border:2px dashed rgba(10,58,66,.45);border-radius:16px;
+  font-weight:700;
+}
+.ph small{font-weight:600;font-size:14px;opacity:.85}
+.ba-block figcaption{margin-top:10px;font-size:14px;color:var(--ink-mid)}
+.ba-divider{display:flex;align-items:center;justify-content:center}
+.ba-divider svg{width:26px;height:96px}
+.ba-divider path{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ba-note{margin-top:18px;font-size:14px;color:var(--ink-mid)}
+
+/* ---------- equipe ---------- */
+.team{display:grid;gap:14px}
+.member{
+  display:grid;grid-template-columns:104px 1fr;gap:18px;align-items:start;
+  padding:18px;background:#FFFFFF;border:1px solid var(--line);border-radius:16px;
+}
+.member .ph{min-height:104px;padding:8px;font-size:14px;border-radius:12px}
+.member-body h3{margin-bottom:4px}
+.member-role{font-size:15px;font-weight:700;color:var(--ink-mid);margin-bottom:6px}
+.member-bio{margin:0;color:var(--ink-mid);font-size:15px}
+
+/* ---------- convênios: faixa ---------- */
+.band{background:var(--accent);color:var(--ink);position:relative;overflow:hidden;scroll-margin-top:78px}
+.band .container{position:relative;z-index:1;padding-top:clamp(44px,6vw,70px);padding-bottom:clamp(44px,6vw,70px)}
+.band h2{position:relative;z-index:1}
+.chips-list{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 20px;position:relative;z-index:1}
+.chips-list li{
+  background:#FFFFFF;border-radius:999px;padding:10px 18px;
+  font-weight:700;font-size:15px;
+}
+.band-note{max-width:46em;position:relative;z-index:1;margin:0}
+.band-arc{position:absolute;right:-10px;top:0;width:min(320px,55%);height:auto;opacity:.35;pointer-events:none}
+.band-arc path{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;gap:10px;max-width:60em}
+.faq-item{background:#FFFFFF;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  min-height:56px;padding:16px 18px;background:transparent;border:0;cursor:pointer;
+  font-family:'Manrope',sans-serif;font-size:1.02rem;font-weight:700;color:var(--ink);text-align:left;
+  transition:background-color 200ms var(--ease-state);
+}
+.faq-q:hover{background:var(--tint)}
+.faq-q .sinal{
+  flex:0 0 auto;width:22px;height:22px;position:relative;
+}
+.faq-q .sinal::before,.faq-q .sinal::after{
+  content:"";position:absolute;left:2px;top:10px;width:18px;height:2px;background:var(--ink);
+  transition:transform 250ms var(--ease-state);
+}
+.faq-q .sinal::after{transform:rotate(90deg)}
+.faq-q[aria-expanded="true"] .sinal::after{transform:rotate(0deg)}
+.faq-p{height:0;overflow:hidden;transition:height 250ms var(--ease-state)}
+.faq-p-inner{padding:0 18px 18px}
+.faq-p-inner p{margin:0;color:var(--ink-mid)}
+
+/* ---------- agendamento ---------- */
+.form-layout{display:grid;gap:26px}
+.form-info{display:grid;gap:6px;margin:16px 0}
+.form-info li{color:var(--ink-mid)}
+.form-note{font-size:14px;color:var(--ink-mid);max-width:36em}
+.form-card{
+  background:#FFFFFF;border:1px solid var(--line);border-radius:18px;
+  padding:clamp(20px,4vw,30px);
+  box-shadow:0 14px 34px rgba(10,58,66,.08);
+}
+.field{margin-bottom:18px}
+.field label,.field legend{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.field input[type="text"],.field input[type="tel"],.field input[type="email"],.field select,.field textarea{
+  width:100%;min-height:48px;padding:12px 14px;
+  border:1.5px solid var(--line);border-radius:12px;background:#FFFFFF;
+  font-family:'Manrope',sans-serif;font-size:16px;color:var(--ink);
+  transition:border-color 200ms var(--ease-state),box-shadow 200ms var(--ease-state);
+}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(0,188,212,.35);outline:none}
+.field .has-error,.field input.has-error,.field select.has-error{border-color:var(--erro)}
+.error{display:none;margin:6px 0 0;font-size:14px;font-weight:600;color:var(--erro)}
+.error.is-on{display:block}
+.radios{display:flex;flex-wrap:wrap;gap:10px}
+.radios label{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;
+  border:1.5px solid var(--line);border-radius:999px;font-weight:600;cursor:pointer;
+  transition:border-color 200ms var(--ease-state),background-color 200ms var(--ease-state);
+}
+.radios label:hover{border-color:var(--ink)}
+.radios input{accent-color:var(--ink);width:18px;height:18px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:15px}
+.consent input{width:20px;height:20px;margin-top:2px;accent-color:var(--ink);flex:0 0 auto}
+.counter{margin:6px 0 0;font-size:14px;color:var(--ink-mid);text-align:right}
+.form-success{
+  border:2px solid var(--accent);border-radius:16px;padding:26px 22px;background:var(--tint);
+}
+.form-success h3{margin-bottom:8px}
+.form-success p{color:var(--ink-mid)}
+
+/* ---------- rodapé ---------- */
+.site-footer{background:var(--ink);color:#FFFFFF;padding-top:clamp(36px,5vw,56px)}
+.footer-grid{display:grid;gap:26px;padding-bottom:28px}
+.footer-brand{font-family:'Source Serif 4',Georgia,serif;font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.site-footer p{color:var(--support)}
+.site-footer h2{font-family:'Manrope',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:.12em;color:#FFFFFF;margin-bottom:12px}
+.footer-links{display:grid;gap:8px}
+.footer-links a{color:var(--support);padding:4px 0;transition:color 200ms var(--ease-state)}
+.footer-links a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px}
+.footer-base{
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:18px;padding-bottom:26px;
+  display:grid;gap:6px;font-size:14px;
+}
+.footer-base p{margin:0}
+.footer-base a{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- desktop ---------- */
+@media (min-width:761px){
+  .nav-toggle{display:none}
+  .nav{display:block}
+  .nav ul{flex-direction:row;align-items:center;gap:4px;padding:0}
+  .nav a{padding:10px 12px}
+  .nav .nav-cta{margin:0 0 0 8px;padding:12px 18px}
+  .hero-grid{grid-template-columns:1.15fr .85fr;align-items:center;gap:34px}
+  .hero-band-inner{grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
+  .trow{grid-template-columns:1fr 190px;align-items:start;gap:24px}
+  .trow-side{align-items:flex-end;text-align:right}
+  .steps{grid-template-columns:repeat(3,1fr);gap:28px}
+  .steps-wrap{padding-left:0}
+  .line-draw.steps-line{display:none}
+  .ba{grid-template-columns:1fr auto 1fr;gap:22px}
+  .ba-divider svg{width:96px;height:26px;transform:rotate(-90deg)}
+  .form-layout{grid-template-columns:.85fr 1.15fr;gap:34px;align-items:start}
+  .footer-grid{grid-template-columns:1.3fr 1fr 1fr}
+  .footer-base{grid-template-columns:1fr auto;align-items:center}
+}
+@media (max-width:480px){
+  .member{grid-template-columns:1fr}
+  .member .ph{min-height:120px}
+  .trow-side{flex-direction:row;align-items:center;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    transition-delay:0ms !important;
+  }
+  .enter,.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1 !important;transform:none !important}
+  .tooth-line{stroke-dashoffset:0 !important;opacity:1 !important}
+  .line-draw path{stroke-dashoffset:0 !important}
+}
+</style>
+</head>
+<body>
+<a class="visually-hidden" href="#main">Ir para o conteúdo</a>
+
+<header class="site-header" id="topo">
+  <div class="header-inner container">
+    <a class="brand" href="#topo">
+      <span class="logo">[LOGO]</span>
+      <span>Sua Marca</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span class="bars" aria-hidden="true"></span>
+      Menu
+    </button>
+    <nav class="nav" id="navMenu" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#tratamentos">Tratamentos</a></li>
+        <li><a href="#primeira-consulta">Primeira consulta</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#convenios">Convênios</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+        <li><a class="nav-cta" href="#agendamento">Agendar avaliação</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow enter" style="--i:0">Odontologia · [bairro], [sua cidade]</p>
+        <h1 id="hero-title" class="enter" style="--i:1">Você evita o dentista. A gente começa devagar.</h1>
+        <p class="lead enter" style="--i:2">Avaliação completa, explicação do que está acontecendo e plano de tratamento com preço combinado antes de qualquer procedimento.</p>
+        <div class="hero-actions enter" style="--i:3">
+          <a class="btn btn-primary" href="#agendamento">Agendar avaliação</a>
+          <a class="btn btn-ghost" href="#tratamentos">Ver tratamentos</a>
+        </div>
+        <p class="hero-note enter" style="--i:4">Atendimento por hora marcada. Urgência no mesmo dia, [combinar disponibilidade].</p>
+      </div>
+      <div class="hero-panel enter" style="--i:2">
+        <span class="shine" aria-hidden="true"></span>
+        <svg class="tooth" viewBox="0 0 100 104" role="img" aria-label="Desenho de um dente, traçado linha a linha">
+          <path class="tooth-line" pathLength="100" d="M50 6 C33 6 24 15 22 30 C21 39 25 46 27 52 C29 60 26 74 24 86 C22 96 34 97 38 87 C42 76 45 62 50 62 C55 62 58 76 62 87 C66 97 78 96 76 86 C74 74 71 60 73 52 C75 46 79 39 78 30 C76 15 67 6 50 6 Z"/>
+        </svg>
+        <p class="hero-panel-caption">Avaliação clínica completa, com radiografia só quando for necessária.</p>
+      </div>
+    </div>
+    <div class="hero-band">
+      <div class="container hero-band-inner">
+        <p>Atendimento particular e por convênio</p>
+        <p>Plano e preço por escrito</p>
+        <p>[endereço], [sua cidade]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tratamentos" aria-labelledby="tratamentos-title">
+    <div class="container">
+      <header class="section-head">
+        <h2 id="tratamentos-title" class="reveal" style="--i:0">Tratamentos</h2>
+        <p class="section-sub reveal" style="--i:1">Lista técnica, sem pacote fechado. Você sabe o que é, para que serve e quando custa antes de marcar.</p>
+      </header>
+
+      <div class="filters reveal" style="--i:2">
+        <label class="visually-hidden" for="busca">Buscar tratamento</label>
+        <input id="busca" type="search" placeholder="Buscar tratamento (ex: clareamento)" autocomplete="off">
+        <div class="chips" role="group" aria-label="Filtrar tratamentos por categoria">
+          <button type="button" class="chip is-active" data-cat="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="chip" data-cat="prevencao" aria-pressed="false">Prevenção</button>
+          <button type="button" class="chip" data-cat="restauracao" aria-pressed="false">Restauração</button>
+          <button type="button" class="chip" data-cat="estetica" aria-pressed="false">Estética</button>
+        </div>
+      </div>
+
+      <ul class="tlist" id="listaTratamentos">
+        <li class="trow reveal" data-cat="prevencao" data-nome="Avaliação e diagnóstico" style="--i:0">
+          <div class="trow-main">
+            <h3>Avaliação e diagnóstico</h3>
+            <p>Exame clínico completo, radiografia apenas se precisar, e plano de tratamento escrito com etapa por etapa.</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">Sessão única</span>
+          </div>
+        </li>
+        <li class="trow reveal" data-cat="prevencao" data-nome="Limpeza e prevenção" style="--i:1">
+          <div class="trow-main">
+            <h3>Limpeza e prevenção</h3>
+            <p>Remoção de placa e tártaro, polimento e orientação de escovação. Manutenção a cada [6 meses].</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">Sessão única</span>
+          </div>
+        </li>
+        <li class="trow reveal" data-cat="restauracao" data-nome="Restauração em resina" style="--i:2">
+          <div class="trow-main">
+            <h3>Restauração em resina</h3>
+            <p>Tratamento de cárie com resina na cor do dente, em sessão única, com teste de mordida antes de finalizar.</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">Por dente</span>
+          </div>
+        </li>
+        <li class="trow reveal" data-cat="restauracao" data-nome="Canal e endodontia" style="--i:3">
+          <div class="trow-main">
+            <h3>Canal (endodontia)</h3>
+            <p>Tratamento de raiz com anestesia e isolamento absoluto, e retorno marcado para avaliar a cicatrização.</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">Por dente</span>
+          </div>
+        </li>
+        <li class="trow reveal" data-cat="estetica" data-nome="Clareamento dental" style="--i:4">
+          <div class="trow-main">
+            <h3>Clareamento dental</h3>
+            <p>Sessões em consultório combinadas com moldeiras para usar em casa. O resultado varia de pessoa para pessoa.</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">[3 sessões]</span>
+          </div>
+        </li>
+        <li class="trow reveal" data-cat="estetica" data-nome="Alinhamento ortodôntico" style="--i:5">
+          <div class="trow-main">
+            <h3>Alinhamento ortodôntico</h3>
+            <p>Avaliação do caso e opções de aparelho fixo ou alinhador, com duração e valor definidos no plano escrito.</p>
+          </div>
+          <div class="trow-side">
+            <span class="price">[R$ 00]</span>
+            <span class="meta">Duração no plano</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="empty" id="listaVazia" role="status" hidden>
+        <p>Nenhum tratamento encontrado com esse filtro.</p>
+        <button type="button" class="btn btn-ghost" id="limparFiltro">Limpar filtro</button>
+      </div>
+
+      <p class="tlist-foot">Valores de referência deste modelo. O preço final sai da avaliação, combinado por escrito antes de começar.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="primeira-consulta" aria-labelledby="passos-title">
+    <div class="container">
+      <header class="section-head">
+        <h2 id="passos-title" class="reveal" style="--i:0">Primeira consulta</h2>
+        <p class="section-sub reveal" style="--i:1">Três passos, sem surpresa no valor e sem procedimento antes da sua autorização.</p>
+      </header>
+      <div class="steps-wrap">
+        <svg class="line-draw steps-line reveal" viewBox="0 0 2 320" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="100" d="M1 0 L1 320"/>
+        </svg>
+        <ol class="steps">
+          <li class="step reveal" style="--i:0">
+            <span class="step-num" aria-hidden="true">01</span>
+            <h3>Você conta o que sente</h3>
+            <p>Dor, sensibilidade, estética ou só uma avaliação. Diga há quanto tempo está incomodando e traga exame anterior se tiver.</p>
+          </li>
+          <li class="step reveal" style="--i:1">
+            <span class="step-num" aria-hidden="true">02</span>
+            <h3>Exame na cadeira</h3>
+            <p>Avaliação clínica, radiografia só quando necessário, e explicação do que está acontecendo em português claro.</p>
+          </li>
+          <li class="step reveal" style="--i:2">
+            <span class="step-num" aria-hidden="true">03</span>
+            <h3>Plano e preço por escrito</h3>
+            <p>Você sai com as etapas, os prazos e o valor combinado. Nada é feito antes de você decidir.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="antes-depois" aria-labelledby="antes-title">
+    <div class="container">
+      <header class="section-head">
+        <h2 id="antes-title" class="reveal" style="--i:0">Antes e depois</h2>
+        <p class="section-sub reveal" style="--i:1">Dois blocos prontos para receber as fotos reais de um caso, com autorização do paciente. Nada de imagem de banco.</p>
+      </header>
+      <div class="ba">
+        <figure class="ba-block reveal-left" style="--i:0">
+          <div class="ph" role="img" aria-label="espaco para foto: caso antes do clareamento">
+            Antes
+            <small>Espaço para foto</small>
+          </div>
+          <figcaption>[legenda do caso real: procedimento e período]</figcaption>
+        </figure>
+        <div class="ba-divider" aria-hidden="true">
+          <svg viewBox="0 0 24 120">
+            <path d="M12 2 L12 118"/>
+            <path d="M6 106 L12 118 L18 106"/>
+          </svg>
+        </div>
+        <figure class="ba-block reveal-right" style="--i:1">
+          <div class="ph" role="img" aria-label="espaco para foto: mesmo caso depois do clareamento">
+            Depois
+            <small>Espaço para foto</small>
+          </div>
+          <figcaption>[legenda do caso real: procedimento e período]</figcaption>
+        </figure>
+      </div>
+      <p class="ba-note">Cada caso tem indicação e limite. O que entra aqui é o que foi feito, não uma promessa de resultado.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="equipe" aria-labelledby="equipe-title">
+    <div class="container">
+      <header class="section-head">
+        <h2 id="equipe-title" class="reveal" style="--i:0">Equipe</h2>
+        <p class="section-sub reveal" style="--i:1">Quem vai te atender, com registro e especialidade. Fotos reais entram no lugar dos blocos.</p>
+      </header>
+      <ul class="team">
+        <li class="member reveal reveal-scale" style="--i:0">
+          <div class="ph" role="img" aria-label="espaco para foto: [nome do profissional]">Sua foto aqui</div>
+          <div class="member-body">
+            <h3>[Nome do profissional]</h3>
+            <p class="member-role">Odontologia geral e dentística · [CRO 0000]</p>
+            <p class="member-bio">Atende quem tem medo de cadeira: explica cada passo antes de encostar no dente.</p>
+          </div>
+        </li>
+        <li class="member reveal reveal-scale" style="--i:1">
+          <div class="ph" role="img" aria-label="espaco para foto: [nome do profissional]">Sua foto aqui</div>
+          <div class="member-body">
+            <h3>[Nome do profissional]</h3>
+            <p class="member-role">Endodontia (canal) · [CRO 0000]</p>
+            <p class="member-bio">Trabalha com isolamento e controle de dor, e marca retorno para avaliar a cicatrização.</p>
+          </div>
+        </li>
+        <li class="member reveal reveal-scale" style="--i:2">
+          <div class="ph" role="img" aria-label="espaco para foto: [nome do profissional]">Sua foto aqui</div>
+          <div class="member-body">
+            <h3>[Nome do profissional]</h3>
+            <p class="member-role">Ortodontia e alinhadores · [CRO 0000]</p>
+            <p class="member-bio">Explica a diferença entre aparelho fixo e alinhador antes de indicar qualquer um.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="convenios" aria-labelledby="convenios-title">
+    <svg class="band-arc line-draw reveal" viewBox="0 0 200 60" aria-hidden="true">
+      <path pathLength="100" d="M2 56 C40 6, 160 6, 198 56"/>
+    </svg>
+    <div class="container">
+      <h2 id="convenios-title" class="reveal" style="--i:0">Convênios atendidos</h2>
+      <ul class="chips-list">
+        <li class="reveal" style="--i:1">[Nome do convênio]</li>
+        <li class="reveal" style="--i:2">[Nome do convênio]</li>
+        <li class="reveal" style="--i:3">[Nome do convênio]</li>
+        <li class="reveal" style="--i:4">[Nome do convênio]</li>
+      </ul>
+      <p class="band-note reveal" style="--i:5">Não achou o seu plano? Ainda atendemos no particular, com preço combinado antes. Confirme a cobertura com a gente antes de vir.</p>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <header class="section-head">
+        <h2 id="faq-title" class="reveal" style="--i:0">Dúvidas frequentes</h2>
+        <p class="section-sub reveal" style="--i:1">As quatro perguntas que mais chegam no balcão.</p>
+      </header>
+      <div class="faq">
+        <div class="faq-item reveal" style="--i:0">
+          <h3>
+            <button type="button" class="faq-q" id="faq-b1" aria-expanded="false" aria-controls="faq-p1">
+              Dói?
+              <span class="sinal" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-p" id="faq-p1" role="region" aria-labelledby="faq-b1">
+            <div class="faq-p-inner">
+              <p>A anestesia é aplicada antes de qualquer procedimento que possa incomodar. Se você sentir dor no meio do atendimento, a gente para e ajusta. Na saída, você leva a orientação para as primeiras 24 horas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:1">
+          <h3>
+            <button type="button" class="faq-q" id="faq-b2" aria-expanded="false" aria-controls="faq-p2">
+              Clareamento funciona em quantas sessões?
+              <span class="sinal" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-p" id="faq-p2" role="region" aria-labelledby="faq-b2">
+            <div class="faq-p-inner">
+              <p>Depende do tom inicial e do tipo de mancha. Em consultório, o plano costuma ser de [3 sessões], com manutenção em casa. O resultado não é igual para todo mundo, e isso é dito antes de você decidir.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:2">
+          <h3>
+            <button type="button" class="faq-q" id="faq-b3" aria-expanded="false" aria-controls="faq-p3">
+              Atende criança?
+              <span class="sinal" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-p" id="faq-p3" role="region" aria-labelledby="faq-b3">
+            <div class="faq-p-inner">
+              <p>Sim. A primeira visita é de adaptação, sem procedimento se a criança não estiver confortável. A avaliação é retomada na consulta seguinte, sem pressa.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal" style="--i:3">
+          <h3>
+            <button type="button" class="faq-q" id="faq-b4" aria-expanded="false" aria-controls="faq-p4">
+              Vocês atendem o meu convênio?
+              <span class="sinal" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-p" id="faq-p4" role="region" aria-labelledby="faq-b4">
+            <div class="faq-p-inner">
+              <p>Veja a lista de convênios acima. Se o seu plano não estiver lá, ainda dá para atender no particular, com o preço combinado por escrito antes de marcar qualquer procedimento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="agendamento" aria-labelledby="agendar-title">
+    <div class="container form-layout">
+      <div class="form-aside">
+        <h2 id="agendar-title" class="reveal" style="--i:0">Agendar avaliação</h2>
+        <p class="reveal" style="--i:1">Preencha os campos e a gente confirma o horário por telefone ou WhatsApp. Nada é marcado sem a sua confirmação.</p>
+        <ul class="form-info reveal" style="--i:2">
+          <li>Telefone e WhatsApp: [(00) 00000-0000]</li>
+          <li>E-mail: [seu@email.com]</li>
+          <li>Endereço: [endereço], [sua cidade]</li>
+          <li>Horário: [segunda a sexta, 9h às 18h]</li>
+        </ul>
+        <p class="form-note reveal" style="--i:3">Neste modelo de demonstração, os botões de WhatsApp levam para o formulário: o número real entra no lugar de [(00) 00000-0000].</p>
+      </div>
+
+      <div class="form-card reveal reveal-scale" style="--i:1">
+        <form id="formAgendamento" novalidate>
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" aria-describedby="erro-nome" required>
+            <p class="error" id="erro-nome" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="telefone">Telefone e WhatsApp</label>
+            <input id="telefone" name="telefone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" aria-describedby="erro-telefone" required>
+            <p class="error" id="erro-telefone" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" inputmode="email" placeholder="nome@email.com" autocomplete="email" aria-describedby="erro-email" required>
+            <p class="error" id="erro-email" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="servico">Serviço</label>
+            <select id="servico" name="servico" aria-describedby="erro-servico" required>
+              <option value="">Selecione</option>
+              <option>Avaliação e diagnóstico</option>
+              <option>Limpeza e prevenção</option>
+              <option>Restauração em resina</option>
+              <option>Canal (endodontia)</option>
+              <option>Clareamento dental</option>
+              <option>Alinhamento ortodôntico</option>
+              <option>Outro ou não sei</option>
+            </select>
+            <p class="error" id="erro-servico" aria-live="polite"></p>
+          </div>
+          <fieldset class="field">
+            <legend>Período preferido</legend>
+            <div class="radios">
+              <label><input type="radio" name="periodo" value="manha" checked> Manhã</label>
+              <label><input type="radio" name="periodo" value="tarde"> Tarde</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" maxlength="300" placeholder="Conte o que está sentindo, se quiser."></textarea>
+            <p class="counter" id="contadorMsg">0/300</p>
+          </div>
+          <div class="field">
+            <label class="consent" for="consentimento">
+              <input id="consentimento" name="consentimento" type="checkbox" required>
+              <span>Autorizo contato por telefone ou WhatsApp para confirmar o horário.</span>
+            </label>
+            <p class="error" id="erro-consentimento" aria-live="polite"></p>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Agendar avaliação</button>
+        </form>
+
+        <div class="form-success" id="formSucesso" hidden>
+          <h3 id="sucessoTitulo" tabindex="-1">Pedido registrado</h3>
+          <p>Recebemos os seus dados, <span id="sucessoNome">[nome]</span>. A gente confirma o horário pelo telefone [(00) 00000-0000] em até [1 dia útil]. Se preferir adiantar, chame no WhatsApp.</p>
+          <button type="button" class="btn btn-ghost" id="novaConsulta">Agendar outra avaliação</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand">[LOGO] Sua Marca</p>
+      <p>Odontologia em [bairro], [sua cidade]. Atendimento particular e por convênio, com plano e preço combinados antes.</p>
+    </div>
+    <nav aria-label="Navegação do rodapé">
+      <h2>Seções</h2>
+      <ul class="footer-links">
+        <li><a href="#tratamentos">Tratamentos</a></li>
+        <li><a href="#primeira-consulta">Primeira consulta</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#convenios">Convênios</a></li>
+        <li><a href="#faq">Dúvidas frequentes</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Contato</h2>
+      <ul class="footer-links">
+        <li>[(00) 00000-0000]</li>
+        <li>[seu@email.com]</li>
+        <li>[endereço], [sua cidade]</li>
+        <li>[segunda a sexta, 9h às 18h]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <p>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></p>
+    <p>Texto e dados placeholder: troque pelos dados reais da clínica antes de publicar.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var body = document.body;
+  var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* Entrada da pagina: classe no body depois do load, nada de piscar. */
+  function carregou() { body.classList.add('is-loaded'); }
+  if (document.readyState === 'complete') { carregou(); }
+  else { window.addEventListener('load', function () { requestAnimationFrame(carregou); }); }
+
+  /* Header que reage ao scroll, sempre dentro de requestAnimationFrame. */
+  var header = document.querySelector('.site-header');
+  var headerAgendado = false;
+  function pintarHeader() {
+    headerAgendado = false;
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+  }
+  window.addEventListener('scroll', function () {
+    if (!headerAgendado) { headerAgendado = true; requestAnimationFrame(pintarHeader); }
+  }, { passive: true });
+  pintarHeader();
+
+  /* Menu mobile: abre e fecha de verdade, com Escape e clique em link. */
+  var botao = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  function fecharMenu(focar) {
+    botao.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+    if (focar) { botao.focus(); }
+  }
+  botao.addEventListener('click', function () {
+    var aberto = botao.getAttribute('aria-expanded') === 'true';
+    if (aberto) { fecharMenu(false); }
+    else {
+      botao.setAttribute('aria-expanded', 'true');
+      menu.classList.add('is-open');
+    }
+  });
+  menu.addEventListener('click', function (evento) {
+    if (evento.target.closest('a')) { fecharMenu(false); }
+  });
+  document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape' && botao.getAttribute('aria-expanded') === 'true') {
+      fecharMenu(true);
+    }
+  });
+
+  /* Scroll reveal escalonado por --i em cada filho. */
+  var alvos = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window && !reduzir.matches) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('is-visible');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+    alvos.forEach(function (alvo) { observador.observe(alvo); });
+  } else {
+    alvos.forEach(function (alvo) { alvo.classList.add('is-visible'); });
+  }
+
+  /* Parallax leve em um elemento do hero, nunca no mobile. */
+  var camadas = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  var permite = window.matchMedia('(min-width: 761px)');
+  var parallaxAgendado = false;
+  function moverParallax() {
+    parallaxAgendado = false;
+    var y = window.scrollY;
+    camadas.forEach(function (camada) {
+      var fator = parseFloat(camada.getAttribute('data-parallax')) || 0.15;
+      camada.style.transform = 'translate3d(0,' + (y * fator).toFixed(1) + 'px,0)';
+    });
+  }
+  window.addEventListener('scroll', function () {
+    if (!permite.matches || parallaxAgendado) { return; }
+    parallaxAgendado = true;
+    requestAnimationFrame(moverParallax);
+  }, { passive: true });
+  function checarParallax() {
+    if (!permite.matches) {
+      camadas.forEach(function (camada) { camada.style.transform = ''; });
+    } else {
+      moverParallax();
+    }
+  }
+  if (typeof permite.addEventListener === 'function') {
+    permite.addEventListener('change', checarParallax);
+  } else if (typeof permite.addListener === 'function') {
+    permite.addListener(checarParallax);
+  }
+
+  /* Filtro da lista de tratamentos, com estado vazio. */
+  var busca = document.getElementById('busca');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var linhas = Array.prototype.slice.call(document.querySelectorAll('.trow'));
+  var vazio = document.getElementById('listaVazia');
+  var limpar = document.getElementById('limparFiltro');
+  var categoria = 'todos';
+
+  function aplicarFiltro() {
+    var termo = (busca.value || '').trim().toLowerCase();
+    var visiveis = [];
+    linhas.forEach(function (linha) {
+      var nome = (linha.getAttribute('data-nome') || '').toLowerCase();
+      var texto = linha.textContent.toLowerCase();
+      var okCategoria = categoria === 'todos' || linha.getAttribute('data-cat') === categoria;
+      var okTermo = termo === '' || nome.indexOf(termo) > -1 || texto.indexOf(termo) > -1;
+      if (okCategoria && okTermo) {
+        linha.hidden = false;
+        requestAnimationFrame(function () { linha.classList.remove('is-out'); });
+        visiveis.push(linha);
+      } else {
+        linha.classList.add('is-out');
+        window.setTimeout(function () {
+          if (linha.classList.contains('is-out')) { linha.hidden = true; }
+        }, 240);
+      }
+    });
+    visiveis.forEach(function (linha, indice) { linha.style.setProperty('--i', indice); });
+    vazio.hidden = visiveis.length > 0;
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (outro) {
+        outro.classList.remove('is-active');
+        outro.setAttribute('aria-pressed', 'false');
+      });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-pressed', 'true');
+      categoria = chip.getAttribute('data-cat');
+      aplicarFiltro();
+    });
+  });
+  busca.addEventListener('input', aplicarFiltro);
+  limpar.addEventListener('click', function () {
+    busca.value = '';
+    categoria = 'todos';
+    chips.forEach(function (outro, indice) {
+      outro.classList.toggle('is-active', indice === 0);
+      outro.setAttribute('aria-pressed', indice === 0 ? 'true' : 'false');
+    });
+    aplicarFiltro();
+    busca.focus();
+  });
+
+  /* FAQ: acordeão de um por vez, com altura animada. */
+  var perguntas = Array.prototype.slice.call(document.querySelectorAll('.faq-q'));
+  function abrirPainel(painel) {
+    painel.style.height = painel.scrollHeight + 'px';
+    var aoTerminar = function (evento) {
+      if (evento.propertyName !== 'height') { return; }
+      painel.style.height = 'auto';
+      painel.removeEventListener('transitionend', aoTerminar);
+    };
+    painel.addEventListener('transitionend', aoTerminar);
+  }
+  function fecharPainel(painel) {
+    painel.style.height = painel.scrollHeight + 'px';
+    requestAnimationFrame(function () { painel.style.height = '0px'; });
+  }
+  perguntas.forEach(function (pergunta) {
+    var painel = document.getElementById(pergunta.getAttribute('aria-controls'));
+    pergunta.addEventListener('click', function () {
+      var aberto = pergunta.getAttribute('aria-expanded') === 'true';
+      perguntas.forEach(function (outra) {
+        if (outra !== pergunta && outra.getAttribute('aria-expanded') === 'true') {
+          outra.setAttribute('aria-expanded', 'false');
+          fecharPainel(document.getElementById(outra.getAttribute('aria-controls')));
+        }
+      });
+      if (aberto) {
+        pergunta.setAttribute('aria-expanded', 'false');
+        fecharPainel(painel);
+      } else {
+        pergunta.setAttribute('aria-expanded', 'true');
+        abrirPainel(painel);
+      }
+    });
+  });
+
+  /* Formulário: validação por campo, erro visível e estado de sucesso. */
+  var formulario = document.getElementById('formAgendamento');
+  var sucesso = document.getElementById('formSucesso');
+  var sucessoNome = document.getElementById('sucessoNome');
+  var sucessoTitulo = document.getElementById('sucessoTitulo');
+
+  var regras = {
+    nome: function (valor) {
+      return valor.trim().length >= 3 ? '' : 'Escreva seu nome (mínimo 3 letras).';
+    },
+    telefone: function (valor) {
+      var digitos = valor.replace(/\D/g, '');
+      return digitos.length >= 10 && digitos.length <= 13 ? '' : 'Telefone com DDD, no formato (00) 00000-0000.';
+    },
+    email: function (valor) {
+      return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(valor.trim()) ? '' : 'E-mail válido, no formato nome@email.com.';
+    },
+    servico: function (valor) {
+      return valor ? '' : 'Escolha o serviço que você procura.';
+    }
+  };
+
+  function validarCampo(campo) {
+    var regra = regras[campo.name];
+    var mensagem = regra ? regra(campo.value) : '';
+    var erro = document.getElementById('erro-' + campo.id);
+    if (erro) {
+      erro.textContent = mensagem;
+      erro.classList.toggle('is-on', mensagem !== '');
+    }
+    campo.classList.toggle('has-error', mensagem !== '');
+    campo.setAttribute('aria-invalid', mensagem !== '' ? 'true' : 'false');
+    return mensagem === '';
+  }
+
+  function validarConsentimento() {
+    var campo = document.getElementById('consentimento');
+    var erro = document.getElementById('erro-consentimento');
+    var ok = campo.checked;
+    erro.textContent = ok ? '' : 'Precisamos da sua autorização para entrar em contato.';
+    erro.classList.toggle('is-on', !ok);
+    return ok;
+  }
+
+  function limparErros() {
+    var erros = formulario.querySelectorAll('.error');
+    Array.prototype.forEach.call(erros, function (erro) {
+      erro.textContent = '';
+      erro.classList.remove('is-on');
+    });
+    var campos = formulario.querySelectorAll('.has-error');
+    Array.prototype.forEach.call(campos, function (campo) {
+      campo.classList.remove('has-error');
+      campo.removeAttribute('aria-invalid');
+    });
+  }
+
+  formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    var campos = [formulario.elements.nome, formulario.elements.telefone, formulario.elements.email, formulario.elements.servico];
+    var valido = true;
+    var primeiroRuim = null;
+    campos.forEach(function (campo) {
+      var okCampo = validarCampo(campo);
+      if (!okCampo) {
+        valido = false;
+        if (!primeiroRuim) { primeiroRuim = campo; }
+      }
+    });
+    if (!validarConsentimento()) {
+      valido = false;
+      if (!primeiroRuim) { primeiroRuim = document.getElementById('consentimento'); }
+    }
+    if (!valido) {
+      primeiroRuim.focus();
+      return;
+    }
+    sucessoNome.textContent = formulario.elements.nome.value.trim().split(' ')[0];
+    formulario.hidden = true;
+    sucesso.hidden = false;
+    sucessoTitulo.focus();
+  });
+
+  formulario.addEventListener('blur', function (evento) {
+    if (regras[evento.target.name]) { validarCampo(evento.target); }
+  }, true);
+  formulario.addEventListener('input', function (evento) {
+    if (regras[evento.target.name] && evento.target.classList.contains('has-error')) {
+      validarCampo(evento.target);
+    }
+  });
+  formulario.addEventListener('change', function (evento) {
+    if (evento.target.id === 'consentimento') { validarConsentimento(); }
+    if (regras[evento.target.name]) { validarCampo(evento.target); }
+  });
+
+  var mensagem = document.getElementById('mensagem');
+  var contador = document.getElementById('contadorMsg');
+  function contar() { contador.textContent = mensagem.value.length + '/300'; }
+  mensagem.addEventListener('input', contar);
+  contar();
+
+  document.getElementById('novaConsulta').addEventListener('click', function () {
+    formulario.reset();
+    limparErros();
+    contar();
+    sucesso.hidden = true;
+    formulario.hidden = false;
+    formulario.elements.nome.focus();
+  });
+}());
+</script>
+</body>
+</html>
