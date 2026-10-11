@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assessoria de Investimentos | Sua Marca</title>
+  <meta name="description" content="Plano de planejamento financeiro escrito, sem produto de banco empurrado. Simule sua projeção e agende um diagnóstico.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fundo: #004D40;
+      --acento: #C9A227;
+      --apoio: #1565C0;
+      --tinta-clara: #E6F2EF;
+      --claro-bg: #F4F7F6;
+      --tinta-escura: #0D1B1E;
+      --easing-in: cubic-bezier(.22,1,.36,1);
+      --easing-state: cubic-bezier(.4,0,.2,1);
+      --d0: 0ms;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--tinta-clara);
+      background: var(--fundo);
+      overflow-x: hidden;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 600ms var(--easing-in), transform 600ms var(--easing-in);
+    }
+    body.loaded { opacity: 1; transform: none; }
+    img, picture, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    button, input { font: inherit; }
+    .container {
+      width: min(92%, 1100px);
+      margin-inline: auto;
+      padding-block: 1.5rem;
+    }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; border: 0;
+    }
+    .ax { font-family: 'Libre Baskerville', Georgia, serif; }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      background: transparent;
+      color: var(--tinta-clara);
+      border-bottom: 1px solid rgba(228,242,239,.08);
+      transition: background-color 220ms var(--easing-state),
+                  color 220ms var(--easing-state),
+                  border-color 220ms var(--easing-state),
+                  box-shadow 220ms var(--easing-state);
+    }
+    .header.scrolled {
+      background: rgba(244,247,246,.92);
+      color: var(--tinta-escura);
+      border-color: rgba(13,27,30,.12);
+      box-shadow: 0 1px 4px rgba(13,27,30,.08);
+    }
+    .header .logo {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: .03em;
+    }
+    .header.scrolled .logo { color: var(--tinta-escura); }
+
+    .nav { display: flex; align-items: center; }
+    .nav-list {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .nav-list a {
+      color: var(--tinta-clara);
+      font-size: .95rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .header.scrolled .nav-list a { color: var(--tinta-escura); }
+    .nav-list a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 0; height: 2px;
+      background: var(--acento);
+      transition: width 180ms var(--easing-state);
+    }
+    .nav-list a:hover::after,
+    .nav-list a:focus-visible::after { width: 100%; }
+    .nav-list a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 3px; }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 2.2rem; height: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+    }
+    .menu-btn .bar {
+      display: block;
+      width: 100%; height: 2.5px;
+      background: var(--tinta-clara);
+      transition: transform 180ms var(--easing-state), opacity 180ms var(--easing-state);
+    }
+    .header.scrolled .menu-btn .bar { background: var(--tinta-escura); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: calc(100dvh - 3.5rem);
+      padding-top: 3.5rem;
+      display: grid;
+      align-content: center;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(1100px circle at 30% 20%, rgba(201,162,39,.12), transparent 60%),
+                  radial-gradient(900px circle at 75% 70%, rgba(21,101,192,.10), transparent 60%);
+      pointer-events: none;
+    }
+    .parallax-bg {
+      position: absolute;
+      inset: 0;
+      --parallax-speed: .2;
+    }
+    .hero-svg {
+      position: absolute;
+      left: 2rem; bottom: 2rem;
+      width: 220px; height: 100px;
+      opacity: .35;
+    }
+    .hero-svg path {
+      stroke: var(--acento);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 260;
+      stroke-dashoffset: 260;
+      animation: draw 1.6s ease-out 480ms both,
+                 pulse 7s var(--easing-in) infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-svg path { animation: none; stroke-dashoffset: 0; }
+    }
+    .hero-title {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(1.9rem, 5.4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      max-width: 28ch;
+    }
+    .hero-sub {
+      font-size: 1.06rem;
+      line-height: 1.5;
+      max-width: 38ch;
+      opacity: .9;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: .4rem;
+    }
+    .client-count {
+      font-size: .92rem;
+      opacity: .8;
+    }
+
+    /* ===== FLOATING BUBBLES (hero loop >= 8s) ===== */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(201,162,39,.45), var(--acento));
+      opacity: .55;
+      will-change: transform, opacity;
+      animation: float 9s var(--easing-in) ease-in-out infinite;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.6), transparent 60%);
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: .5; }
+      50% { transform: translate(var(--tx, 12px), var(--ty, -20px)) scale(1.05); opacity: .7; }
+    }
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: .35; }
+      50% { opacity: .18; }
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 720ms var(--easing-in), transform 720ms var(--easing-in);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-group > * { --i: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ===== SEÇÕES CLARAS ===== */
+    section { background: var(--claro-bg); color: var(--tinta-escura); }
+    section > .container { padding-block: 3.2rem; }
+    section .ax { color: var(--fundo); }
+    section h2 {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(1.5rem, 3.4vw, 2rem);
+      line-height: 1.2;
+    }
+    section p { line-height: 1.6; }
+
+    /* ===== SIMULADOR ===== */
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 760px) {
+      .sim-grid { grid-template-columns: 280px 1fr; }
+    }
+    .sim-fields { display: flex; flex-direction: column; gap: 1rem; }
+    .field { display: flex; flex-direction: column; gap: .3rem; }
+    .field label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--tinta-escura);
+    }
+    .field input {
+      padding: .8rem .9rem;
+      border: 1.5px solid #CBD5C4;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--tinta-escura);
+      transition: border-color 160ms var(--easing-state);
+    }
+    .field input:focus-visible {
+      outline: 2px solid var(--apoio);
+      outline-offset: 2px;
+      border-color: var(--apoio);
+    }
+    .field input.error-field { border-color: #C0392B; }
+    .field input.error-field:focus-visible { outline-color: #C0392B; }
+    .field .hint { font-size: .8rem; color: #6B7A71; }
+    .field .error-msg {
+      font-size: .8rem; color: #C0392B;
+      min-height: 1.1em; margin-top: .1rem;
+    }
+    .btn {
+      border: none; border-radius: 999px;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer;
+      transition: transform 160ms var(--easing-state),
+                  box-shadow 160ms var(--easing-state),
+                  background-color 160ms var(--easing-state),
+                  color 160ms var(--easing-state);
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px;
+    }
+    .btn-primary {
+      background: var(--acento); color: var(--tinta-escura);
+      padding: .8rem 1.4rem;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,162,39,.35); }
+    .btn-primary:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+    .btn-ghost {
+      background: transparent; color: var(--tinta-escura);
+      border: 2px solid var(--tinta-escura);
+      padding: .7rem 1.3rem;
+    }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--fundo); color: var(--fundo); }
+    .btn-ghost:focus-visible { outline: 2px solid var(--tinta-escura); outline-offset: 3px; border-color: var(--fundo); color: var(--fundo); }
+
+    .sim-result {
+      background: #fff; color: var(--tinta-escura);
+      border-radius: 12px;
+      padding: 1.6rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 2px dashed #E2EAE3;
+    }
+    .sim-result.empty { color: #6B7A71; }
+    .sim-result.error state { color: #C0392B; }
+    .sim-value {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--fundo);
+      line-height: 1.1;
+    }
+    .sim-meta {
+      font-size: .9rem; color: #5A6B64; margin-top: .4rem;
+    }
+    .result-line {
+      width: 100%; height: 6px;
+      background: repeating-linear-gradient(90, var(--acento), var(--acento) 8px, transparent 8px, transparent 16px);
+      border-radius: 3px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+    .result-line span {
+      display: block; height: 100%;
+      width: 0; background: var(--acento);
+      transition: width 1.4s var(--easing-in);
+    }
+    .sim-result.with-result .result-line span { width: 100%; }
+    .disclaimer {
+      font-size: .8rem; color: #6B7A71; margin-top: .8rem; font-style: normal;
+    }
+
+    /* ===== SERVIÇOS (lista) ===== */
+    .service-list { display: flex; flex-direction: column; gap: 1.4rem; }
+    .service-item {
+      display: flex;
+      gap: 1rem; align-items: flex-start;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid #D3DFD9;
+    }
+    .service-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .service-item .num {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--acento);
+      flex-shrink: 0;
+    }
+    .service-item h3 { font-size: 1.05rem; margin: 0 0 .2rem; color: var(--fundo); }
+    .service-item p { margin: 0; color: #4A5A52; }
+
+    /* ===== PARA QUEM ===== */
+    .duo {
+      display: grid;
+      grid-template-columns: 1fr; gap: 1.5rem;
+    }
+    @media (min-width: 760px) {
+      .duo { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    .duo-card {
+      background: #fff; border-radius: 12px; padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(13,27,30,.05);
+      border: 1px solid #E2EAE3;
+    }
+    .duo-card.honest-yes { border-top: 4px solid var(--apoio); }
+    .duo-card.honest-no { border-top: 4px solid var(--acento); }
+    .duo-card h3 { color: var(--fundo); margin-top: 0; }
+    .duo-card ul { padding-left: 1.1rem; }
+    .duo-card li { margin-bottom: .3rem; color: #4A5A52; }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative; padding-left: 2.4rem; margin: 0;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 9px; top: .3rem; bottom: .3rem;
+      width: 3px; background: var(--acento);
+    }
+    .timeline li {
+      list-style: none;
+      position: relative;
+      margin-bottom: 1.8rem;
+      padding-left: .4rem;
+    }
+    .timeline li:last-child { margin-bottom: 0; }
+    .timeline .dot {
+      position: absolute; left: -1.9rem; top: .1rem;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--fundo);
+      border: 3px solid var(--acento);
+      box-shadow: 0 0 0 3px #fff;
+    }
+    .timeline .step-num {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-weight: 700; font-size: .95rem;
+      color: var(--acento);
+    }
+    .timeline .step-title { font-weight: 600; color: var(--fundo); }
+
+    /* ===== FAQ ACCORDION ===== */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: #fff; border-radius: 10px; margin-bottom: .6rem;
+      border: 1px solid #E2EAE3; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(13,27,30,.04);
+    }
+    .faq-question {
+      width: 100%; text-align: left;
+      background: #fafafa; border: none;
+      padding: 1rem 1.1rem;
+      font-size: .98rem; font-weight: 600;
+      color: var(--fundo);
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background-color 160ms var(--easing-state);
+    }
+    .faq-question:hover { background: #f0f3f2; }
+    .faq-question:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+    .faq-question .q-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      transition: transform 260ms var(--easing-state);
+    }
+    .faq-question[aria-expanded="true"] .q-icon { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 320ms var(--easing-state), padding 320ms var(--easing-state);
+      padding: 0 1.1rem;
+    }
+    .faq-answer.open { max-height: 400px; padding: .9rem 1.1rem; }
+    .faq-answer p { margin: 0; color: #4A5A52; line-height: 1.55; }
+
+    /* ===== CONTATO FORM ===== */
+    .contact-wrap {
+      max-width: 640px; margin: 0 auto;
+      background: #fff; border-radius: 12px; padding: 2rem;
+      border: 1px solid #E2EAE3;
+      box-shadow: 0 4px 22px rgba(13,27,30,.06);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr; gap: 1.2rem;
+    }
+    @media (min-width: 640px) {
+      .form-row { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    }
+    .form-field label {
+      font-size: .85rem; font-weight: 600;
+      color: var(--fundo);
+    }
+    .form-field input {
+      width: 100%; padding: .8rem .9rem; margin-top: .3rem;
+      border: 1.5px solid #CBD5C4; border-radius: 8px;
+      font-size: 1rem; background: #fff; color: var(--tinta-escura);
+    }
+    .form-field input:focus-visible,
+    .form-field textarea:focus-visible {
+      outline: 2px solid var(--apoio); outline-offset: 2px;
+      border-color: var(--apoio);
+    }
+    .form-field input.error-field { border-color: #C0392B; }
+    .form-field input.error-field:focus-visible { outline-color: #C0392B; }
+    .form-field .error-msg {
+      font-size: .8rem; color: #C0392B; min-height: 1.1em; margin-top: .1rem;
+    }
+    .form-field textarea {
+      width: 100%; min-height: 110px; padding: .8rem .9rem; margin-top: .3rem;
+      border: 1.5px solid #CBD5C4; border-radius: 8px;
+      font-size: 1rem; resize: vertical;
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .success-panel {
+      display: none;
+      flex-direction: column; align-items: flex-start; gap: .7rem;
+      background: #E8F5E9; border: 1px solid #C8E6C9;
+      border-radius: 10px; padding: 1.2rem;
+    }
+    .success-panel.show { display: flex; }
+    .success-panel .check {
+      width: 22px; height: 22px; flex-shrink: 0;
+      fill: var(--fundo);
+    }
+    .success-panel p { margin: 0; color: var(--fundo); font-weight: 500; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--fundo); color: var(--tinta-clara);
+      padding: 2.4rem 0 1.6rem;
+    }
+    .footer .top {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: 1.05rem;
+    }
+    .footer-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: .88rem; color: var(--tinta-clara);
+      transition: color 160ms var(--easing-state);
+    }
+    .footer-links a:hover { color: var(--acento); }
+    .footer-links a:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 3px; }
+    .foot-note {
+      font-size: .8rem; opacity: .8; margin-top: 1.3rem;
+    }
+    .foot-note a { color: var(--acento); }
+    .foot-note a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .header .nav { position: absolute; }
+      .menu-btn { display: flex; }
+      .nav-list {
+        display: none;
+        position: absolute; top: 100%; right: 0;
+        background: var(--claro-bg); color: var(--tinta-escura);
+        flex-direction: column; gap: .6rem;
+        padding: 1rem; border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(13,27,30,.18);
+        min-width: 200px;
+      }
+      .nav-list.open { display: flex; }
+      .nav-list a { color: var(--tinta-escura) !important; }
+      .hero { padding-top: 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header id="header" class="header" role="banner">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo" aria-label="Sua Marca">Sua Marca</a>
+      <nav id="nav" class="nav" aria-label="Principal">
+        <button id="menu-btn" class="menu-btn" aria-expanded="false" aria-controls="menu-list" aria-label="Abrir menu de navegação">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+        <ul id="menu-list" class="nav-list">
+          <li><a href="#simulador">Simular agora</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#processo">Processo</a></li>
+          <li><a href="#faq">Perguntas</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Introdução">
+      <div class="parallax-bg" aria-hidden="true"></div>
+
+      <svg class="hero-svg" viewBox="0 0 260 100" aria-hidden="true" focusable="false">
+        <path d="M10 50 Q 60 10 110 40 T 200 30 T 250 10"></path>
+      </svg>
+
+      <div class="container">
+        <div class="reveal" style="--i:1">
+          <h1 class="ax hero-title">Plano de planejamento escrito, sem produto de banco empurrado</h1>
+        </div>
+        <div class="reveal" style="--i:2">
+          <p class="hero-sub">Assessoria que organiza sua vida financeira num documento vivo, com reuniões que cabem no seu ritmo. Comece simulando sua projeção.</p>
+        </div>
+        <div class="reveal" style="--i:3">
+          <a href="#simulador" class="hero-cta btn btn-primary">Simular agora</a>
+        </div>
+        <div class="reveal" style="--i:4">
+          <span class="client-count">[+1.200 clientes atendidos]</span>
+        </div>
+      </div>
+
+      <div class="bubble" style="--tx:10px; --ty:-16px; width:54px; height:54px; inset:12% 8% auto auto;"></div>
+      <div class="bubble" style="--tx:-8px; --ty:-26px; width:46px; height:46px; inset:28% 5% auto auto;"></div>
+      <div class="bubble" style="--tx:14px; --ty:-22px; width:60px; height:60px; inset:60% 18% auto auto;"></div>
+    </section>
+
+    <!-- ===== SIMULADOR ===== -->
+    <section id="simulador" class="simulator-section">
+      <div class="container">
+        <header class="reveal">
+          <h2>Simule sua projeção</h2>
+          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Informe seus valores e veja uma projeção de valor acumulado. É apenas uma referência para a conversa, nunca uma promessa.</p>
+        </header>
+
+        <div class="sim-grid reveal" style="--i:1">
+          <form id="sim-form" class="sim-fields" novalidate>
+            <div class="field">
+              <label for="initial">Aporte inicial</label>
+              <input type="text" id="initial" name="initial" inputmode="decimal" placeholder="R$ 0,00" autocomplete="off" aria-describedby="initial-error">
+              <span id="initial-error" class="error-msg" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="monthly">Aporte mensal</label>
+              <input type="text" id="monthly" name="monthly" inputmode="decimal" placeholder="R$ 0,00" autocomplete="off" aria-describedby="monthly-error">
+              <span id="monthly-error" class="error-msg" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="months">Prazo (meses)</label>
+              <input type="text" id="months" name="months" inputmode="numeric" placeholder="0" autocomplete="off" aria-describedby="months-error">
+              <span id="months-error" class="error-msg" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="rate">Taxa ao ano (%)</label>
+              <input type="text" id="rate" name="rate" inputmode="decimal" placeholder="0,0" autocomplete="off" aria-describedby="rate-error">
+              <span id="rate-error" class="error-msg" aria-live="polite"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Simular projeção</button>
+          </form>
+
+          <div id="sim-result" class="sim-result empty" aria-live="polite" aria-atomic="true">
+            <p class="sim-empty-text">Preencha os campos ao lado e veja sua projeção de valor acumulado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section id="servicos">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="ax">O que fazemos</h2>
+          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Trabalhamos quatro pilares, todos documentados. Nenhum produto vendido por comissão.</p>
+        </div>
+
+        <ul class="service-list reveal" style="--i:1">
+          <li class="service-item">
+            <span class="num">01.</span>
+            <div>
+              <h3>Planejamento financeiro integral</h3>
+              <p>Documento vivo com metas, fluxo de caixa e prioridades. Revisão a cada 6 meses.</p>
+            </div>
+          </li>
+          <li class="service-item">
+            <span class="num">02.</span>
+            <div>
+              <h3>Investimentos com baixo custo</h3>
+              <p>Fundo multicontinente em ETFs, alocação por ramo de ativos, sem margem de bilheteria.</p>
+            </div>
+          </li>
+          <li class="service-item">
+            <span class="num">03.</span>
+            <div>
+              <h3>Preparação para a aposentadoria</h3>
+              <p>Projeção regressiva de necessidade de patrimônio e estratégia de contribuição.</p>
+            </div>
+          </li>
+          <li class="service-item">
+            <span class="num">04.</span>
+            <div>
+              <h3>Educação financeira aplicada</h3>
+              <p>Explicamos cada decisão em linguagem acessível, com tudo registrado no seu plano.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== PARA QUEM / NÃO É ===== -->
+    <section class="duo-section">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="ax">Para quem é, para quem não é</h2>
+        </div>
+        <div class="duo reveal" style="--i:1">
+          <div class="duo-card honest-yes">
+            <h3>Para quem é</h3>
+            <ul>
+              <li>Você já tem algum patrimônio aplicado e quer organizar com foco.</li>
+              <li>Prefere um plano escrito a apresentações de produto.</li>
+              <li>Receia errar por falta de informação, não por falta de capital.</li>
+              <li>Concorda em reuniões pontuais, não em app de auto-serviço.</li>
+            </ul>
+          </div>
+          <div class="duo-card honest-no">
+            <h3>Para quem não é</h3>
+            <ul>
+              <li>Quem busca o "investimento certo" que todos copiam.</li>
+              <li>Quem quer só um gestor operacional, sem revisão de plano.</li>
+              <li>Quem precisa de contas de demonstração com selo de "certificado".</li>
+              <li>Quem espera rentabilidade garantida em qualquer cenário.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESSO (timeline) ===== -->
+    <section id="processo">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="ax">Nosso processo</h2>
+          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Quatro etapas. Cada uma entrega algo que você pode conferir.</p>
+        </div>
+        <ol class="timeline reveal" style="--i:1">
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <div>
+              <span class="step-num">Etapa 1 · Diagnóstico</span>
+              <div class="step-title">Reunião de 60 minutos com checklist de documentos.</div>
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <div>
+              <span class="step-num">Etapa 2 · Estruturação</span>
+              <div class="step-title">Montagem do plano com metas reais e alocação inicial.</div>
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <div>
+              <span class="step-num">Etapa 3 · Execução</span>
+              <div class="step-title">Abertura de contas e primeiros aportes, com comprovante.</div>
+            </div>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <div>
+              <span class="step-num">Etapa 4 · Acompanhamento</span>
+              <div class="step-title">Revisões semestrais e ajustes registrados no plano.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="ax">Perguntas frequentes</h2>
+        </div>
+        <div class="faq-list reveal" style="--i:1">
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="a1" id="q1">
+              <span>Qual o valor mínimo para começar?</span>
+              <svg class="q-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 8l4 4 4-4z" fill="currentColor"/></svg>
+            </button>
+            <div id="a1" class="faq-answer" role="region" aria-labelledby="q1">
+              <p>O primeiro planejamento exige R$ 5.000 em patrimônio acumulado. Se você tem menos, a gente indica educação antes.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="a2" id="q2">
+              <span>É assessoria ou gestão?</span>
+              <svg class="q-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 8l4 4 4-4z" fill="currentColor"/></svg>
+            </button>
+            <div id="a2" class="faq-answer" role="region" aria-labelledby="q2">
+              <p>Assessoria: decisões são suas, a gente apenas planeja e acompanha. A gestão fica com você.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="a3" id="q3">
+              <span>Tem conflito de interesse?</span>
+              <svg class="q-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 8l4 4 4-4z" fill="currentColor"/></svg>
+            </button>
+            <div id="a3" class="faq-answer" role="region" aria-labelledby="q3">
+              <p>Trabalhamos só com ETFs de baixo custo e declaramos todas as comissões na primeira reunião.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="a4" id="q4">
+              <span>Encontro é online?</span>
+              <svg class="q-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 8l4 4 4-4z" fill="currentColor"/></svg>
+            </button>
+            <div id="a4" class="faq-answer" role="region" aria-labelledby="q4">
+              <p>Sim, por videochamada com gravação. O plano sai em PDF, mas reuniões são ao vivo.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="a5" id="q5">
+              <span>Quanto tempo dura um ciclo de planejamento?</span>
+              <svg class="q-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 8l4 4 4-4z" fill="currentColor"/></svg>
+            </button>
+            <div id="a5" class="faq-answer" role="region" aria-labelledby="q5">
+              <p>Do diagnóstico ao plano entregue, cerca de duas semanas. As adaptações contam como parte do acompanhamento.</p>
+            </div>
+          </article>
+        </div>
+        <div class="reveal" style="--i:2">
+          <div style="text-align:center; margin-top:1.5rem">
+            <a href="#contato" class="btn btn-ghost">Agendar diagnóstico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato">
+      <div class="container">
+        <div class="reveal">
+          <h2 class="ax">Marque sua conversa</h2>
+          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Dois campos. A gente devolve um e-mail com horários reais. Nada de app de envio automático.</p>
+        </div>
+
+        <div class="contact-wrap reveal" style="--i:1">
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="c-name">Nome</label>
+                <input type="text" id="c-name" name="name" placeholder="Seu nome" aria-describedby="name-error" required>
+                <span id="name-error" class="error-msg" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="c-email">E-mail</label>
+                <input type="email" id="c-email" name="email" placeholder="seu@email.com" aria-describedby="email-error" required>
+                <span id="email-error" class="error-msg" aria-live="polite"></span>
+              </div>
+              <div class="form-field">
+                <label for="c-phone">Telefone (WhatsApp)</label>
+                <input type="tel" id="c-phone" name="phone" placeholder="(00) 00000-0000" aria-describedby="phone-error" required>
+                <span id="phone-error" class="error-msg" aria-live="polite"></span>
+              </div>
+              <div class="form-field full">
+                <label for="c-msg">Como podemos te ajudar?</label>
+                <textarea id="c-msg" name="message" placeholder="Conte em até duas linhas" required></textarea>
+                <span id="msg-error" class="error-msg" aria-live="polite"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:1rem">Agendar diagnóstico</button>
+          </form>
+
+          <div id="success-panel" class="success-panel" aria-live="polite" aria-atomic="true">
+            <svg class="check" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 12l5 5 9-9"/>
+            </svg>
+            <p>Sua mensagem foi recebida. Retornamos em até 1 dia útil por e-mail ou WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="top">
+        <span class="footer-brand">Sua Marca</span>
+        <div class="footer-links">
+          <a href="#simulador">Simular agora</a>
+          <a href="#contato">Falar no WhatsApp</a>
+          <a href="../index.html">Voltar ao hub</a>
+        </div>
+      </div>
+      <p class="foot-note">Modelo de demonstração por Kelvin Oliveira. [<span class="footer-bracket">(00) 00000-0000</span>] [<span class="footer-bracket">seu@email.com</span>] [<span class="footer-bracket">[endereco]</span>]</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      /* ===== BODY ENTRY (escalonado) ===== */
+      window.addEventListener('load', function () {
+        document.body.classList.add('loaded');
+      });
+
+      /* ===== SCROLL REVEAL (IntersectionObserver, stagger --i) ===== */
+      var revealObserver;
+      function initReveal() {
+        if (!('IntersectionObserver' in window) || prefersReduced.matches) {
+          var els = document.querySelectorAll('.reveal');
+          for (var i = 0; i < els.length; i++) els[i].classList.add('is-visible');
+          return;
+        }
+        revealObserver = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        var r = document.querySelectorAll('.reveal');
+        for (var i = 0; i < r.length; i++) revealObserver.observe(r[i]);
+      }
+      initReveal();
+
+      /* ===== HEADER SCROLL REACTION (rAF) ===== */
+      var header = document.getElementById('header');
+      var ticking = false;
+      function updateHeader() {
+        var scrolled = window.scrollY > 70;
+        header.classList.toggle('scrolled', scrolled);
+      }
+      function onScrollHeader() {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateHeader();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScrollHeader);
+      updateHeader();
+
+      /* ===== PARALLAX (rAF, desativa mobile) ===== */
+      var parallax = document.querySelector('.parallax-bg');
+      var isMobile = function () { return window.matchMedia('(max-width: 760px)').matches; };
+      if (parallax && !isMobile()) {
+        var rafPending = false;
+        var scrollYCache = 0;
+        function tickParallax() {
+          if (isMobile()) { parallax.style.transform = 'none'; return; }
+          parallax.style.transform = 'translateY(' + (scrollYCache * 0.12) + 'px)';
+          rafPending = false;
+        }
+        function onScrollParallax() {
+          scrollYCache = window.scrollY;
+          if (!rafPending) {
+            window.requestAnimationFrame(tickParallax);
+            rafPending = true;
+          }
+        }
+        window.addEventListener('scroll', onScrollParallax);
+        window.addEventListener('resize', function () { if (isMobile()) parallax.style.transform = 'none'; });
+        tickParallax();
+      }
+
+      /* ===== MENU MOBILE ===== */
+      var menuBtn = document.getElementById('menu-btn');
+      var menuList = document.getElementById('menu-list');
+      function ismenuOpen() { return menuList.classList.contains('open'); }
+      function closeMenu() {
+        if (!ismenuOpen()) return;
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuList.classList.remove('open');
+      }
+      menuBtn.addEventListener('click', function () {
+        var expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', !expanded);
+        menuList.classList.toggle('open');
+      });
+      menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+      document.addEventListener('click', function (e) {
+        if (ismenuOpen() && !menuList.contains(e.target) && e.target !== menuBtn) closeMenu();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && ismenuOpen()) closeMenu();
+      });
+      // fecha ao clicar em link
+      var navLinks = menuList.querySelectorAll('a');
+      for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', closeMenu);
+      }
+
+      /* ===== SIMULADOR ===== */
+      var simForm = document.getElementById('sim-form');
+      var simResult = document.getElementById('sim-result');
+      var fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 2 });
+
+      function parseBRL(value) {
+        if (value === null || value === undefined) return '';
+        return value.replace(/[^\d,]/g, '').replace('.', '').replace(',', '.');
+      }
+      function toNumber(value) {
+        var n = parseFloat(parseBRL(value));
+        return isNaN(n) ? NaN : n;
+      }
+
+      function showError(inputId, errorId, msg) {
+        var input = document.getElementById(inputId);
+        var error = document.getElementById(errorId);
+        input.classList.add('error-field');
+        error.textContent = msg;
+      }
+      function clearErrors() {
+        var inputs = ['initial', 'monthly', 'months', 'rate'];
+        for (var i = 0; i < inputs.length; i++) {
+          document.getElementById(inputs[i]).classList.remove('error-field');
+          var err = document.getElementById(inputs[i] + '-error');
+          if (err) err.textContent = '';
+        }
+      }
+
+      function renderResultHTML(value, months, rate) {
+        var i = rate / 100 / 12;
+        var overYears = months >= 12;
+        var periodo = overYears ? (months / 12).toFixed(1).replace('.', ',') + ' anos' : months + (months === 1 ? ' mês' : ' meses');
+        return '' +
+          '<div class="sim-result-inner">' +
+            '<div class="sim-value" id="sim-value">R$ 0,00</div>' +
+            '<p class="sim-meta">Projeção de valor acumulado em ' + periodo + ' a ' + rate.toFixed(2).replace('.', ',') + '% ao ano</p>' +
+            '<div class="result-line"><span></span></div>' +
+            '<p class="disclaimer">Valor simulado com juros compostos mensais. Não é promessa de rentabilidade. Consulte um profissional.</p>' +
+          '</div>';
+      }
+
+      function animateCount(el, end, duration) {
+        if (prefersReduced.matches) { el.textContent = fmt(end); return; }
+        var startTs = null;
+        function step(timestamp) {
+          if (!startTs) startTs = timestamp;
+          var progress = Math.min((timestamp - startTs) / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+          var val = end * ease;
+          el.textContent = fmt(val);
+          if (progress < 1) window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      simForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        var initial = toNumber(document.getElementById('initial').value);
+        var monthly = toNumber(document.getElementById('monthly').value);
+        var months = toNumber(document.getElementById('months').value);
+        var rate = toNumber(document.getElementById('rate').value);
+
+        var hasError = false;
+        if (isNaN(initial) || initial < 0) { showError('initial', 'initial-error', 'Informe um valor inicial válido.'); hasError = true; }
+        if (isNaN(monthly) || monthly < 0) { showError('monthly', 'monthly-error', 'Informe um aporte mensal válido.'); hasError = true; }
+        if (isNaN(months) || !Number.isInteger(months) || months <= 0) { showError('months', 'months-error', 'Informe um prazo em meses maior que zero.'); hasError = true; }
+        if (isNaN(rate) || rate < 0 || rate > 100) { showError('rate', 'rate-error', 'Informe uma taxa entre 0 e 100.'); hasError = true; }
+
+        if (hasError) {
+          simResult.className = 'sim-result error';
+          simResult.innerHTML = '<p style="color:#C0392B">Verifique os campos destacados e tente novamente.</p>';
+          return;
+        }
+
+        // cálculo de juros compostos com aporte mensal
+        var i = rate / 100 / 12;
+        var vf;
+        if (i === 0) {
+          vf = initial + monthly * months;
+        } else {
+          vf = initial * Math.pow(1 + i, months) + monthly * (Math.pow(1 + i, months) - 1) / i;
+        }
+        vf = Math.round(vf * 100) / 100;
+
+        simResult.className = 'sim-result with-result';
+        simResult.innerHTML = renderResultHTML(vf, months, rate);
+
+        var valueEl = simResult.querySelector('#sim-value');
+        animateCount(valueEl, vf, prefersReduced.matches ? 0 : 1700);
+
+        // garante o draw da linha após inserção
+        var span = simResult.querySelector('.result-line span');
+        if (span) {
+          // force reflow then inicia a transicao
+          void span.offsetWidth;
+        }
+      });
+
+      // estado vazio inicial já visível por padrão (classe "empty")
+
+      /* ===== FAQ ACCORDION ===== */
+      var questions = document.querySelectorAll('.faq-question');
+      questions.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          // allow multiple open: toggle individual
+          btn.setAttribute('aria-expanded', !expanded);
+          var answer = btn.nextElementSibling;
+          if (answer && answer.classList) answer.classList.toggle('open');
+        });
+      });
+
+      /* ===== CONTACT FORM ===== */
+      var contactForm = document.getElementById('contact-form');
+      var successPanel = document.getElementById('success-panel');
+      var cFields = ['c-name', 'c-email', 'c-phone', 'c-msg'];
+
+      function clearFormErrors() {
+        for (var i = 0; i < cFields.length; i++) {
+          var f = document.getElementById(cFields[i]);
+          f.classList.remove('error-field');
+          var err = document.getElementById(cFields[i].replace('c-', '') + '-error');
+          if (err) err.textContent = '';
+        }
+      }
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+      function isValidPhone(phone) {
+        var digits = phone.replace(/\D/g, '');
+        return digits.length >= 10 && digits.length <= 11;
+      }
+
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearFormErrors();
+        var name = document.getElementById('c-name').value.trim();
+        var email = document.getElementById('c-email').value.trim();
+        var phone = document.getElementById('c-phone').value.trim();
+        var msg = document.getElementById('c-msg').value.trim();
+        var valid = true;
+
+        if (name.length < 2) {
+          document.getElementById('c-name').classList.add('error-field');
+          document.getElementById('name-error').textContent = 'Informe seu nome completo.';
+          valid = false;
+        }
+        if (!isValidEmail(email)) {
+          document.getElementById('c-email').classList.add('error-field');
+          document.getElementById('email-error').textContent = 'Informe um e-mail válido.';
+          valid = false;
+        }
+        if (!isValidPhone(phone)) {
+          document.getElementById('c-phone').classList.add('error-field');
+          document.getElementById('phone-error').textContent = 'Informe um WhatsApp válido.';
+          valid = false;
+        }
+        if (msg.length < 5) {
+          document.getElementById('c-msg').classList.add('error-field');
+          document.getElementById('msg-error').textContent = 'Conte brevemente como podemos ajudar.';
+          valid = false;
+        }
+
+        if (!valid) {
+          successPanel.classList.remove('show');
+          return;
+        }
+
+        // confirma na tela (não envia a lugar nenhum)
+        contactForm.style.display = 'none';
+        successPanel.classList.add('show');
+      });
+
+      /* ===== A11Y: foco visível padrão já tratado via :focus-visible ===== */
+    })();
+  </script>
+</body>
+</html>

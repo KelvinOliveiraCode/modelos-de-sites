@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -1268,7 +1268,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
   var menu = doc.getElementById('mobile-menu');
   var ticking = false;
 
-  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'duvidas', 'matricula'];
+  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'dÃºvidas', 'matrÃ­cula'];
   var sections = sectionIds.map(function (id) { return doc.getElementById(id); });
   var navLinks = Array.prototype.slice.call(doc.querySelectorAll('.nav-desktop .nav-link'));
 
@@ -1464,7 +1464,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
   });
 
   /* ---------- 7. formulário com validação por campo ---------- */
-  var form = doc.getElementById('form-matricula');
+  var form = doc.getElementById('form-matrÃ­cula');
   var success = doc.getElementById('form-sucesso');
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
@@ -1563,7 +1563,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
 
       var objetivo = doc.getElementById('f-objetivo');
       var plano = form.querySelector('input[name="plano"]:checked');
-      var periodos = Array.prototype.slice.call(form.querySelectorAll('input[name="periodo"]:checked'))
+      var periodos = Array.prototype.slice.call(form.querySelectorAll('input[name="perÃ­odo"]:checked'))
         .map(function (i) { return i.value; });
       var obs = doc.getElementById('f-msg').value.trim();
 

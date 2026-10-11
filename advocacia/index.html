@@ -446,7 +446,7 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
 .contato__dados dt{font-size:.875rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(232,234,240,.6)}
 .contato__dados dd{font-size:1.0625rem;color:var(--ink)}
 
-/* formulario */
+/* formulÃ¡rio */
 .form{
   background:var(--navy-2);border:1px solid rgba(232,234,240,.14);border-radius:4px;padding:26px;
   display:grid;gap:18px;
@@ -977,7 +977,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
   var mqReduz = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mqDesktop = window.matchMedia('(min-width: 760px)');
 
-  /* 1. entrada de pagina: classe no body depois do load */
+  /* 1. entrada de pÃ¡gina: classe no body depois do load */
   function entrar() { corpo.classList.add('is-loaded'); }
   if (document.readyState === 'complete') { entrar(); }
   else {
@@ -1168,7 +1168,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
     });
   });
 
-  /* 8. formulario com validacao por campo e estado de sucesso */
+  /* 8. formulÃ¡rio com validacao por campo e estado de sucesso */
   var form = document.getElementById('form-contato');
   var sucesso = document.getElementById('form-sucesso');
   var sucessoTexto = document.getElementById('form-sucesso-texto');

@@ -1,0 +1,992 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua Marca · Corretora de seguros com cobertura explicada em português</title>
+<meta name="description" content="Seguro auto, vida, residência e viagem com coberturas e exclusões explicadas antes da assinatura. Simule seu perfil e fale com o corretor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#FAFAFA;--superficie:#FFFFFF;--marca:#1565C0;--marca-escura:#0D47A1;--acento:#43A047;--acento-escuro:#2E7D32;--tinta:#10243A;--tinta-media:#4A5A6A;--linha:#E3E8EE;--banda:#F2F5F8;--azul-claro:#E8F1FB;--erro:#B3261E;--sombra-leve:0 1px 2px rgba(16,36,58,.06),0 12px 28px -20px rgba(16,36,58,.35);--sombra-forte:0 2px 4px rgba(16,36,58,.06),0 26px 50px -30px rgba(16,36,58,.45);--ease-in:cubic-bezier(.22,1,.36,1);--ease-estado:cubic-bezier(.4,0,.2,1);--raio:16px;--altura-cabecalho:68px;--wrap:1160px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--tinta);font-family:'Figtree','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.62;overflow-x:clip}
+[hidden]{display:none !important}
+img,svg{max-width:100%}
+h1,h2,h3,h4{margin:0 0 .55em;font-family:'Lora',Georgia,serif;line-height:1.16;color:var(--tinta);font-weight:600}
+h1{font-size:clamp(2.05rem,5.2vw,3.25rem);letter-spacing:-.015em}
+h2{font-size:clamp(1.55rem,3.4vw,2.3rem)}
+h3{font-size:1.18rem}
+h4{font-size:1rem}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:var(--marca);text-decoration:none}
+a:hover{color:var(--marca-escura)}
+:focus-visible{outline:3px solid var(--marca);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.mini{font-size:14px;color:var(--tinta-media)}
+.lead{font-size:1.06rem;color:var(--tinta-media);max-width:62ch}
+section[id]{scroll-margin-top:88px}
+.pulo{position:absolute;left:-9999px;top:0;z-index:200;background:var(--superficie);color:var(--tinta);padding:.7rem 1.1rem;border-radius:0 0 12px 0;font-weight:700;box-shadow:var(--sombra-leve)}
+.pulo:focus{left:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.75rem 1.45rem;border-radius:999px;font-family:'Figtree',sans-serif;font-weight:700;font-size:1rem;line-height:1.2;border:2px solid transparent;cursor:pointer;text-align:center;transition:background-color 200ms var(--ease-estado),color 200ms var(--ease-estado),transform 200ms var(--ease-estado),box-shadow 200ms var(--ease-estado),border-color 200ms var(--ease-estado)}
+.btn--verde{background:var(--acento);color:var(--tinta);box-shadow:0 8px 18px -12px rgba(46,125,50,.9)}
+.btn--verde:hover{background:var(--acento-escuro);color:#FFFFFF;transform:translateY(-2px)}
+.btn--azul{background:var(--marca);color:#FFFFFF}
+.btn--azul:hover{background:var(--marca-escura);color:#FFFFFF;transform:translateY(-2px)}
+.btn--contorno{border-color:var(--marca);color:var(--marca);background:transparent}
+.btn--contorno:hover{background:var(--marca);color:#FFFFFF;transform:translateY(-2px)}
+.btn--bloco{width:100%}
+.btn--fantasma{background:transparent;color:var(--marca);padding-left:.4rem;padding-right:.4rem}
+.btn--fantasma:hover{color:var(--marca-escura);text-decoration:underline}
+.cabecalho{position:sticky;top:0;z-index:60;background:transparent;transition:background-color 250ms var(--ease-estado),box-shadow 250ms var(--ease-estado)}
+.cabecalho__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:var(--altura-cabecalho);padding-top:.7rem;padding-bottom:.7rem;transition:padding 250ms var(--ease-estado)}
+.cabecalho.is-scrolled{background:var(--superficie);box-shadow:0 1px 0 var(--linha),0 14px 26px -24px rgba(16,36,58,.75)}
+.cabecalho.is-scrolled .cabecalho__inner{padding-top:.45rem;padding-bottom:.45rem}
+.logo{display:inline-flex;align-items:center;gap:.55rem;color:var(--tinta);font-family:'Lora',serif;font-weight:700;font-size:1.06rem;letter-spacing:-.01em}
+.logo:hover{color:var(--marca)}
+.logo svg{width:30px;height:34px;flex:0 0 auto}
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:2px solid var(--linha);border-radius:12px;background:var(--superficie);color:var(--tinta);cursor:pointer;transition:border-color 200ms var(--ease-estado),background-color 200ms var(--ease-estado)}
+.nav-toggle:hover{border-color:var(--marca);color:var(--marca)}
+.nav-toggle svg{width:24px;height:24px}
+.nav-toggle path{transition:transform 220ms var(--ease-estado),opacity 220ms var(--ease-estado);transform-box:fill-box;transform-origin:center}
+.nav-toggle[aria-expanded="true"] .l1{transform:translateY(5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .l2{opacity:0}
+.nav-toggle[aria-expanded="true"] .l3{transform:translateY(-5px) rotate(-45deg)}
+.nav{position:fixed;left:0;right:0;top:var(--altura-cabecalho);background:var(--superficie);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);box-shadow:var(--sombra-forte);padding:1rem 20px 1.4rem;display:flex;flex-direction:column;gap:.35rem;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity 220ms var(--ease-estado),transform 220ms var(--ease-estado),visibility 220ms var(--ease-estado)}
+.nav.is-open{opacity:1;visibility:visible;transform:none}
+.nav a{padding:.75rem .25rem;color:var(--tinta);font-weight:600;border-radius:10px;transition:color 180ms var(--ease-estado),background-color 180ms var(--ease-estado)}
+.nav a:hover{color:var(--marca);background:var(--banda)}
+.nav__cta{margin-top:.6rem}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 700ms var(--ease-in),transform 700ms var(--ease-in);transition-delay:calc(var(--i,0) * 80ms)}
+.reveal-x{opacity:0;transform:translateX(20px);transition:opacity 650ms var(--ease-in),transform 650ms var(--ease-in);transition-delay:calc(var(--i,0) * 80ms)}
+.reveal.is-visible,.reveal-x.is-visible{opacity:1;transform:none}
+.hero{position:relative;overflow:hidden;padding:clamp(2.2rem,5vw,4rem) 0 clamp(3rem,6vw,5rem)}
+.hero__grade{position:relative;z-index:2;display:grid;gap:clamp(2rem,4vw,3rem);grid-template-columns:1fr}
+.hero__entrada > *{opacity:0;transform:translateY(24px)}
+body.is-loaded .hero__entrada > *{animation:subir 750ms var(--ease-in) both;animation-delay:calc(var(--i,0) * 90ms + 120ms)}
+.hero__lead{font-size:clamp(1.02rem,2.2vw,1.2rem);color:var(--tinta-media);max-width:52ch}
+.hero__acoes{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.5rem 0 1.1rem}
+.hero__nota{font-size:14px;color:var(--tinta-media);max-width:44ch}
+.hero__lateral{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero__medalha{opacity:0;position:relative;z-index:3;margin-bottom:-38px;filter:drop-shadow(0 16px 22px rgba(16,36,58,.16))}
+body.is-loaded .hero__medalha{animation:med 800ms var(--ease-in) 260ms both}
+.hero__cartao{opacity:0;width:100%;max-width:400px}
+body.is-loaded .hero__cartao{animation:subir 820ms var(--ease-in) 460ms both}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;margin:0 0 1rem;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--marca)}
+.eyebrow__ponto{width:9px;height:9px;border-radius:50%;background:var(--acento);box-shadow:0 0 0 4px rgba(67,160,71,.18)}
+.cotacao{background:var(--superficie);border:1px solid var(--linha);border-radius:20px;padding:2.4rem 1.4rem 1.5rem;box-shadow:var(--sombra-forte)}
+.cotacao__titulo{margin-bottom:.35rem;font-size:1.32rem}
+.cotacao__nota{font-size:14px;color:var(--tinta-media);margin-bottom:1.2rem}
+.campo{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.campo label{font-weight:700;font-size:14px;color:var(--tinta)}
+.controle{width:100%;min-height:48px;padding:.7rem .9rem;font-family:inherit;font-size:16px;color:var(--tinta);background:var(--superficie);border:2px solid var(--linha);border-radius:12px;transition:border-color 180ms var(--ease-estado),box-shadow 180ms var(--ease-estado);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310243A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;background-size:18px;padding-right:2.4rem}
+.controle:hover{border-color:#C7D2DD}
+.controle:focus-visible{border-color:var(--marca);box-shadow:0 0 0 4px rgba(21,101,192,.14);outline:none}
+textarea.controle{min-height:130px;resize:vertical;background-image:none;padding-right:.9rem;line-height:1.55}
+.controle[aria-invalid="true"]{border-color:var(--erro)}
+.erro{display:block;min-height:1.15em;font-size:14px;font-weight:600;color:var(--erro)}
+.cotacao__status{margin:.9rem 0 0;font-size:14px;color:var(--tinta-media)}
+.cotacao__status.is-erro{color:var(--erro);font-weight:600}
+.hero__marca{position:absolute;top:-40px;right:-90px;z-index:1;opacity:.5;pointer-events:none;will-change:transform}
+.hero__marca svg{width:min(46vw,420px);height:auto;display:block}
+.hero__bolha{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
+.hero__bolha--1{width:190px;height:190px;left:-70px;top:34%;background:var(--azul-claro);animation:flutuar-a 9s ease-in-out infinite}
+.hero__bolha--2{width:110px;height:110px;right:8%;bottom:2%;border:2px dashed rgba(21,101,192,.32);animation:flutuar-b 11s ease-in-out infinite}
+.escudo__linha{stroke-dasharray:1;stroke-dashoffset:1;will-change:stroke-dashoffset;animation:desenhar 1.7s var(--ease-in) .5s both}
+.escudo__check{stroke-dasharray:1;stroke-dashoffset:1;animation:desenhar .9s var(--ease-in) 1.6s both,pulsar 6s ease-in-out 2.8s infinite}
+.escudo__grupo{transform-box:fill-box;transform-origin:center;animation:respirar 8s ease-in-out 2.4s infinite;will-change:transform}
+.secao{padding:clamp(3rem,6vw,5rem) 0}
+.secao--banda{background:var(--banda)}
+.secao--superficie{background:var(--superficie)}
+.secao__cabeca{max-width:64ch;margin-bottom:clamp(1.8rem,4vw,2.8rem)}
+.acordeao{display:flex;flex-direction:column;gap:.9rem}
+.cob{background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);box-shadow:var(--sombra-leve);transition:box-shadow 250ms var(--ease-estado),border-color 250ms var(--ease-estado)}
+.cob:hover{border-color:#CBD6E1;box-shadow:var(--sombra-forte)}
+.cob.is-open{border-color:rgba(21,101,192,.4)}
+.cob__titulo{margin:0;font-size:1rem}
+.cob__gatilho{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.9rem;width:100%;padding:1.05rem 1.1rem;background:transparent;border:0;border-radius:var(--raio);font-family:inherit;color:var(--tinta);text-align:left;cursor:pointer;min-height:64px;transition:background-color 200ms var(--ease-estado)}
+.cob__gatilho:hover{background:var(--banda)}
+.cob__icone{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:var(--azul-claro);color:var(--marca);flex:0 0 auto;transition:background-color 200ms var(--ease-estado),color 200ms var(--ease-estado)}
+.cob__icone svg{width:24px;height:24px}
+.cob.is-open .cob__icone{background:var(--marca);color:#FFFFFF}
+.cob__nome{display:block;font-family:'Lora',serif;font-weight:600;font-size:1.1rem;line-height:1.25}
+.cob__resumo{display:block;font-size:14px;color:var(--tinta-media);margin-top:.15rem}
+.cob__sinal{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:2px solid var(--linha);color:var(--marca);flex:0 0 auto;transition:transform 300ms var(--ease-estado),border-color 300ms var(--ease-estado),background-color 300ms var(--ease-estado)}
+.cob__sinal svg{width:20px;height:20px}
+.cob.is-open .cob__sinal{transform:rotate(135deg);border-color:var(--marca);background:var(--azul-claro)}
+.cob__painel{height:0;overflow:hidden;opacity:0;transition:height 450ms var(--ease-estado),opacity 320ms var(--ease-estado)}
+.cob.is-open .cob__painel{opacity:1}
+.cob__conteudo{padding:1.2rem 1.1rem 1.4rem;border-top:1px solid var(--linha)}
+.cob__colunas{display:grid;gap:1.4rem;grid-template-columns:1fr}
+.cob__col h4{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta)}
+.cob__col--sim h4{color:var(--acento-escuro)}
+.cob__col--nao h4{color:var(--tinta-media)}
+.cob__lista li{position:relative;padding-left:1.6rem;margin-bottom:.55rem;font-size:15px}
+.cob__lista li:last-child{margin-bottom:0}
+.cob__col--sim li::before{content:"";position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:50%;background:var(--acento)}
+.cob__col--nao{background:var(--banda);border-radius:12px;padding:1rem 1rem .9rem}
+.cob__col--nao li{color:var(--tinta-media)}
+.cob__col--nao li::before{content:"";position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:2px;background:#9AA9B7}
+.cob__nota{font-size:14px;color:var(--tinta-media);margin:1.1rem 0 0;padding-top:1rem;border-top:1px dashed var(--linha)}
+.sim__grade{display:grid;gap:clamp(1.5rem,3vw,2.5rem);grid-template-columns:1fr;align-items:start}
+.sim__form{background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:clamp(1.2rem,3vw,1.8rem);box-shadow:var(--sombra-leve)}
+.sim__campos{display:grid;gap:0 1.2rem;grid-template-columns:1fr}
+.sim__acoes{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.5rem}
+.sim__painel{background:var(--superficie);border:2px dashed var(--linha);border-radius:var(--raio);padding:clamp(1.2rem,3vw,1.8rem);min-height:280px;transition:opacity 400ms var(--ease-estado),transform 400ms var(--ease-estado),border-color 400ms var(--ease-estado)}
+.sim__painel.is-pronto{border-style:solid;border-color:rgba(67,160,71,.55);animation:surgir 500ms var(--ease-in) both}
+.sim__vazio{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;color:var(--tinta-media)}
+.sim__vazio svg{width:44px;height:44px;color:#9AA9B7}
+.sim__vazio strong{color:var(--tinta);font-size:1.05rem}
+.sim__vazio p{margin:0;font-size:15px}
+.sim__rotulo{margin:0 0 .4rem;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acento-escuro)}
+.sim__titulo{font-size:1.3rem;margin-bottom:1rem}
+.sim__lista{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.2rem}
+.sim__lista li{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start}
+.sim__lista .sim__icone{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--azul-claro);color:var(--marca)}
+.sim__lista .sim__icone svg{width:22px;height:22px}
+.sim__lista h4{margin:0 0 .15rem;font-size:1.02rem}
+.sim__lista p{margin:0;font-size:15px;color:var(--tinta-media)}
+.sim__nota{font-size:14px;color:var(--tinta-media);background:var(--banda);border-radius:12px;padding:.85rem 1rem;margin:0 0 1.1rem}
+.passos{position:relative;display:flex;flex-direction:column;gap:1.6rem}
+.passos__linha{position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--linha);border-radius:2px;overflow:hidden}
+.passos__linha::before{content:"";position:absolute;inset:0;background:var(--marca);transform:scaleY(0);transform-origin:top;transition:transform 900ms var(--ease-in) 250ms}
+[data-linha].is-visible .passos__linha::before{transform:scaleY(1)}
+.passo{position:relative;display:grid;grid-template-columns:48px 1fr;gap:1.1rem;align-items:start;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:1.2rem;box-shadow:var(--sombra-leve);transition:box-shadow 250ms var(--ease-estado),transform 250ms var(--ease-estado)}
+.passo:hover{box-shadow:var(--sombra-forte);transform:translateY(-2px)}
+.passo__num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--marca);color:#FFFFFF;font-family:'Lora',serif;font-weight:700;font-size:1.1rem}
+.duvidas{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--linha)}
+.duvida{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding:1.3rem .2rem;border-bottom:1px solid var(--linha)}
+.duvida__icone{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--azul-claro);color:var(--marca)}
+.duvida__icone svg{width:21px;height:21px}
+.duvida h3{margin:0 0 .35rem;font-size:1.08rem}
+.duvida p{margin:0;color:var(--tinta-media);font-size:15.5px}
+.contato__grade{display:grid;gap:clamp(1.6rem,3vw,2.6rem);grid-template-columns:1fr;align-items:start}
+.contato__info{display:flex;flex-direction:column;gap:1rem}
+.contato__dados{display:flex;flex-direction:column;gap:.9rem;margin-top:.4rem}
+.contato__dados li{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:center;font-size:15.5px}
+.contato__dados svg{width:21px;height:21px;color:var(--marca)}
+.contato__dados span{color:var(--tinta-media);font-size:14px;display:block}
+.contato__cartao{background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:clamp(1.2rem,3vw,1.9rem);box-shadow:var(--sombra-forte)}
+.contato__campos{display:grid;gap:0 1.2rem;grid-template-columns:1fr}
+.sucesso{background:var(--superficie);border:2px solid rgba(67,160,71,.6);border-radius:var(--raio);padding:clamp(1.3rem,3vw,2rem);box-shadow:var(--sombra-leve)}
+.sucesso__icone{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:var(--acento);color:var(--tinta);margin-bottom:.9rem}
+.sucesso__icone svg{width:28px;height:28px}
+.sucesso h3{margin-bottom:.4rem}
+.sucesso p{color:var(--tinta-media);font-size:15.5px}
+.rodape{background:var(--tinta);color:#E9EEF4;padding:clamp(2.4rem,5vw,3.4rem) 0 1.6rem}
+.rodape__grade{display:grid;gap:1.8rem;grid-template-columns:1fr}
+.rodape .logo,.rodape h2{color:#FFFFFF}
+.rodape p{color:#B9C6D4;font-size:15px}
+.rodape a{color:#FFFFFF}
+.rodape a:hover{color:#9BD3A0}
+.rodape__links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.rodape__links a{font-size:15px;padding:.3rem 0;transition:color 180ms var(--ease-estado)}
+.rodape__assinatura{border-top:1px solid rgba(255,255,255,.16);margin:1.8rem 0 0;padding-top:1.2rem;font-size:14px;color:#B9C6D4}
+.rodape__assinatura a{color:#9BD3A0;text-decoration:underline;text-underline-offset:3px}
+.rodape__assinatura a:hover{color:#C8EBCB}
+@keyframes subir{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes med{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes surgir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes desenhar{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes respirar{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes pulsar{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes flutuar-a{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
+@keyframes flutuar-b{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(12px,14px,0) scale(1.07)}}
+@media (min-width:761px){.nav-toggle{display:none}.nav{position:static;flex-direction:row;align-items:center;gap:1.5rem;padding:0;background:transparent;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.nav a{padding:.4rem .2rem}.nav a:hover{background:transparent;color:var(--marca)}.nav__cta{margin:0 0 0 .5rem}.hero__grade{grid-template-columns:1.1fr .9fr;align-items:center}.hero__lateral{align-items:flex-end}.hero__marca{right:-60px;top:-30px}.cob__colunas{grid-template-columns:1fr 1fr}.sim__grade{grid-template-columns:.92fr 1.08fr}.sim__campos{grid-template-columns:1fr 1fr}.contato__grade{grid-template-columns:.85fr 1.15fr}.contato__campos{grid-template-columns:1fr 1fr}.rodape__grade{grid-template-columns:1.2fr 1fr;align-items:start}}
+@media (max-width:479px){body{font-size:16.5px}.hero__acoes .btn{width:100%}.cob__gatilho{grid-template-columns:auto 1fr;row-gap:.6rem}.duvida{grid-template-columns:1fr}.duvida__icone{margin-bottom:.3rem}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;transition-delay:0ms !important}.hero__entrada > *,.hero__medalha,.hero__cartao,.reveal,.reveal-x{opacity:1 !important;transform:none !important}.escudo__linha,.escudo__check{stroke-dashoffset:0 !important}[data-linha] .passos__linha::before{transform:scaleY(1)}.hero__marca{transform:none !important}}
+</style>
+</head>
+<body>
+<a class="pulo" href="#conteudo">Ir para o conteúdo</a>
+<header class="cabecalho" id="topo">
+  <div class="wrap cabecalho__inner">
+    <a class="logo" href="#inicio">
+      <svg viewBox="0 0 120 132" aria-hidden="true" focusable="false">
+        <path d="M60 14 L102 30 V66 C102 92 84 110 60 118 C36 110 18 92 18 66 V30 Z" fill="none" stroke="#1565C0" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M42 66 L55 80 L80 50" fill="none" stroke="#43A047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Sua Marca</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <path class="l1" d="M4 7h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 17h16"/>
+      </svg>
+    </button>
+    <nav class="nav" id="menu-principal" aria-label="Menu principal">
+      <a href="#coberturas">Coberturas</a>
+      <a href="#simular">Simular perfil</a>
+      <a href="#sinistro">Acionar sinistro</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a class="btn btn--verde nav__cta" href="#contato">Falar com corretor</a>
+    </nav>
+  </div>
+</header>
+<main id="conteudo">
+<section class="hero" id="inicio" aria-labelledby="titulo-hero">
+  <div class="hero__bolha hero__bolha--1" aria-hidden="true"></div>
+  <div class="hero__bolha hero__bolha--2" aria-hidden="true"></div>
+  <div class="hero__marca" data-parallax="0.16" aria-hidden="true">
+    <svg viewBox="0 0 120 132">
+      <path d="M60 14 L102 30 V66 C102 92 84 110 60 118 C36 110 18 92 18 66 V30 Z" fill="none" stroke="#1565C0" stroke-width="1.6" opacity=".55"/>
+      <path d="M42 66 L55 80 L80 50" fill="none" stroke="#43A047" stroke-width="1.6" opacity=".6"/>
+    </svg>
+  </div>
+  <div class="wrap hero__grade">
+    <div class="hero__texto hero__entrada">
+      <p class="eyebrow" style="--i:0"><span class="eyebrow__ponto" aria-hidden="true"></span> Corretora de seguros</p>
+      <h1 id="titulo-hero" style="--i:1">Seu seguro explicado em português antes de você assinar</h1>
+      <p class="hero__lead" style="--i:2">Auto, vida, residência e viagem com a letra pequena lida em voz alta. Simule seu perfil, compare coberturas lado a lado e fale com um corretor que responde.</p>
+      <div class="hero__acoes" style="--i:3">
+        <a class="btn btn--verde" href="#simular">Simular meu seguro</a>
+        <a class="btn btn--contorno" href="#coberturas">Ver coberturas</a>
+      </div>
+      <p class="hero__nota" style="--i:4">Cotação sem compromisso e sem preço mágico na tela. O valor sai da proposta que o corretor monta para você.</p>
+    </div>
+    <div class="hero__lateral">
+      <div class="hero__medalha">
+        <svg class="escudo" viewBox="0 0 120 132" width="118" height="130" role="img" aria-label="Escudo desenhando sozinho, símbolo da cobertura de seguros">
+          <circle cx="60" cy="66" r="59" fill="#E8F1FB"/>
+          <g class="escudo__grupo">
+            <path class="escudo__linha" pathLength="1" d="M60 14 L102 30 V66 C102 92 84 110 60 118 C36 110 18 92 18 66 V30 Z" fill="none" stroke="#1565C0" stroke-width="4.5" stroke-linejoin="round"/>
+            <path class="escudo__check" pathLength="1" d="M42 66 L55 80 L80 50" fill="none" stroke="#43A047" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero__cartao">
+        <div class="cotacao">
+          <h2 class="cotacao__titulo">Cotação rápida</h2>
+          <p class="cotacao__nota">Duas respostas e a gente já sabe por onde começar.</p>
+          <div class="campo">
+            <label for="cot-protege">O que você quer proteger?</label>
+            <select class="controle" id="cot-protege">
+              <option value="">Escolha uma opção</option>
+              <option value="auto">Um veículo</option>
+              <option value="casa">Minha casa</option>
+              <option value="viagem">Uma viagem</option>
+              <option value="familia">Minha família</option>
+              <option value="naosei">Ainda não sei</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="cot-hoje">Você tem seguro hoje?</label>
+            <select class="controle" id="cot-hoje">
+              <option value="">Escolha uma opção</option>
+              <option value="nao">Não tenho</option>
+              <option value="comparar">Tenho e quero comparar</option>
+              <option value="venceu">Meu seguro venceu</option>
+            </select>
+          </div>
+          <button class="btn btn--verde btn--bloco" id="cot-enviar" type="button">Simular meu seguro</button>
+          <p class="cotacao__status" id="cot-status" role="status" aria-live="polite">Nada é enviado daqui. As respostas só guiam a simulação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="secao secao--superficie" id="coberturas" aria-labelledby="titulo-coberturas">
+  <div class="wrap">
+    <div class="secao__cabeca">
+      <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Coberturas</p>
+      <h2 id="titulo-coberturas" class="reveal" style="--i:1">O que cobre e o que não cobre, aberto na sua frente</h2>
+      <p class="lead reveal" style="--i:2">Abra cada seguro e leia as duas listas antes de assinar. Nenhuma apólice cobre tudo, e o corretor lê a sua com você, linha por linha.</p>
+    </div>
+    <div class="acordeao">
+      <article class="cob reveal" style="--i:0">
+        <h3 class="cob__titulo">
+          <button class="cob__gatilho" type="button" id="cob-botao-auto" aria-expanded="false" aria-controls="cob-painel-auto">
+            <span class="cob__icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-6h14l2 6"/><path d="M3 13h18v5h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3z"/></svg>
+            </span>
+            <span>
+              <span class="cob__nome">Seguro auto</span>
+              <span class="cob__resumo">Colisão, roubo e danos a terceiros, com franquia na sua mão.</span>
+            </span>
+            <span class="cob__sinal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="cob__painel" id="cob-painel-auto" role="region" aria-labelledby="cob-botao-auto">
+          <div class="cob__conteudo">
+            <div class="cob__colunas">
+              <div class="cob__col cob__col--sim">
+                <h4>O que cobre</h4>
+                <ul class="cob__lista">
+                  <li>Colisão, incêndio e roubo do veículo segurado</li>
+                  <li>Danos materiais e corporais causados a terceiros, quando a cobertura de responsabilidade civil está na apólice</li>
+                  <li>Danos a passageiros e a outros motoristas, conforme o plano</li>
+                  <li>Assistência 24h com guincho, chaveiro e troca de pneu, quando contratada</li>
+                  <li>Carro reserva e vidros, quando contratados</li>
+                </ul>
+              </div>
+              <div class="cob__col cob__col--nao">
+                <h4>O que não cobre</h4>
+                <ul class="cob__lista">
+                  <li>Direção após ingestão de álcool ou sem habilitação</li>
+                  <li>Desgaste natural de pneus, freios, correias e peças de uso</li>
+                  <li>Uso do carro como transporte de passageiros pago sem aviso à seguradora</li>
+                  <li>Acidente fora do país, salvo contrato específico</li>
+                  <li>Batida em objeto próprio sem cobertura de colisão</li>
+                </ul>
+              </div>
+            </div>
+            <p class="cob__nota">Franquia é a parte do conserto que fica com você. O corretor mostra o valor da franquia e o limite de cada cobertura antes de você fechar.</p>
+          </div>
+        </div>
+      </article>
+      <article class="cob reveal" style="--i:1">
+        <h3 class="cob__titulo">
+          <button class="cob__gatilho" type="button" id="cob-botao-vida" aria-expanded="false" aria-controls="cob-painel-vida">
+            <span class="cob__icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.3A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19 10.7c0 4.9-7 9.3-7 9.3z"/></svg>
+            </span>
+            <span>
+              <span class="cob__nome">Seguro de vida</span>
+              <span class="cob__resumo">Renda preservada para quem depende de você, com doenças graves na apólice.</span>
+            </span>
+            <span class="cob__sinal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="cob__painel" id="cob-painel-vida" role="region" aria-labelledby="cob-botao-vida">
+          <div class="cob__conteudo">
+            <div class="cob__colunas">
+              <div class="cob__col cob__col--sim">
+                <h4>O que cobre</h4>
+                <ul class="cob__lista">
+                  <li>Morte por qualquer causa descrita como coberta na apólice</li>
+                  <li>Invalidez permanente por acidente</li>
+                  <li>Doenças graves listadas no contrato, como câncer e infarto</li>
+                  <li>Despesas médicas e hospitalares, nos planos que incluem</li>
+                  <li>Cônjuge e filhos como dependentes, quando indicados na proposta</li>
+                </ul>
+              </div>
+              <div class="cob__col cob__col--nao">
+                <h4>O que não cobre</h4>
+                <ul class="cob__lista">
+                  <li>Doenças e ocupações que não foram declaradas na proposta</li>
+                  <li>Esportes radicais fora da lista contratada</li>
+                  <li>Profissões de risco não avisadas à seguradora</li>
+                  <li>Exclusões previstas em contrato para práticas de risco</li>
+                  <li>Danos causados de forma intencional</li>
+                </ul>
+              </div>
+            </div>
+            <p class="cob__nota">O valor segurado é definido com você, com base na renda que precisa ser sustituída. O corretor ajuda a escolher sem inflar o prêmio.</p>
+          </div>
+        </div>
+      </article>
+      <article class="cob reveal" style="--i:2">
+        <h3 class="cob__titulo">
+          <button class="cob__gatilho" type="button" id="cob-botao-residencia" aria-expanded="false" aria-controls="cob-painel-residencia">
+            <span class="cob__icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>
+            </span>
+            <span>
+              <span class="cob__nome">Seguro residência</span>
+              <span class="cob__resumo">Incêndio, danos elétricos e roubo, mais a responsabilidade da família.</span>
+            </span>
+            <span class="cob__sinal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="cob__painel" id="cob-painel-residencia" role="region" aria-labelledby="cob-botao-residencia">
+          <div class="cob__conteudo">
+            <div class="cob__colunas">
+              <div class="cob__col cob__col--sim">
+                <h4>O que cobre</h4>
+                <ul class="cob__lista">
+                  <li>Incêndio, raio e explosão</li>
+                  <li>Danos elétricos em eletrodomésticos e na instalação</li>
+                  <li>Roubo com arrombamento, com prova do fato</li>
+                  <li>Vendaval, granizo e queda de árvore, quando contratados</li>
+                  <li>Responsabilidade civil familiar, para danos a vizinhos</li>
+                </ul>
+              </div>
+              <div class="cob__col cob__col--nao">
+                <h4>O que não cobre</h4>
+                <ul class="cob__lista">
+                  <li>Desgaste de telhado, calhas e infiltração por falta de manutenção</li>
+                  <li>Imóvel desocupado sem aviso à seguradora</li>
+                  <li>Bens de terceiros guardados sem registro na proposta</li>
+                  <li>Obras e reformas não comunicadas</li>
+                  <li>Mofo e umidade como desgaste natural da construção</li>
+                </ul>
+              </div>
+            </div>
+            <p class="cob__nota">Vendaval, quebra de vidros e perda de aluguel costumam ser opcionais. Confirme se estão na sua apólice antes de precisar deles.</p>
+          </div>
+        </div>
+      </article>
+      <article class="cob reveal" style="--i:3">
+        <h3 class="cob__titulo">
+          <button class="cob__gatilho" type="button" id="cob-botao-viagem" aria-expanded="false" aria-controls="cob-painel-viagem">
+            <span class="cob__icone" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-6 3 1-4-3-3 4-.4L9 4l2 4.6 4 .4-3 3 1 4z" transform="translate(2 1)"/><path d="M4 20h16"/></svg>
+            </span>
+            <span>
+              <span class="cob__nome">Seguro viagem</span>
+              <span class="cob__resumo">Saúde fora do país, bagagem e voo atrasado, do embarque à volta.</span>
+            </span>
+            <span class="cob__sinal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+        </h3>
+        <div class="cob__painel" id="cob-painel-viagem" role="region" aria-labelledby="cob-botao-viagem">
+          <div class="cob__conteudo">
+            <div class="cob__colunas">
+              <div class="cob__col cob__col--sim">
+                <h4>O que cobre</h4>
+                <ul class="cob__lista">
+                  <li>Despesas médicas e hospitalares fora do país</li>
+                  <li>Extravio e dano de bagagem pela companhia aérea</li>
+                  <li>Atraso e cancelamento de voo, conforme o plano contratado</li>
+                  <li>Repatriação e traslado médico</li>
+                  <li>Perda ou roubo de documentos</li>
+                </ul>
+              </div>
+              <div class="cob__col cob__col--nao">
+                <h4>O que não cobre</h4>
+                <ul class="cob__lista">
+                  <li>Prática de esporte radical sem cobertura específica</li>
+                  <li>Viagem iniciada contra recomendação médica</li>
+                  <li>Regiões fora da área de cobertura do plano</li>
+                  <li>Bagagem esquecida fora do transporte contratado</li>
+                  <li>Itens pessoais e compras não declarados</li>
+                </ul>
+              </div>
+            </div>
+            <p class="cob__nota">O limite de cada cobertura aparece no plano. O corretor compara dois planos lado a lado e mostra onde um é melhor que o outro.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="secao secao--banda" id="simular" aria-labelledby="titulo-simular">
+  <div class="wrap">
+    <div class="secao__cabeca">
+      <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Decide</p>
+      <h2 id="titulo-simular" class="reveal" style="--i:1">Simule seu perfil em três respostas</h2>
+      <p class="lead reveal" style="--i:2">A simulação indica por qual seguro começar e o que considerar em cada um. Nenhum preço aparece aqui de propósito: valor de seguro depende do que está na apólice e do seu histórico.</p>
+    </div>
+    <div class="sim__grade">
+      <form class="sim__form reveal" id="sim-form" novalidate>
+        <div class="sim__campos">
+          <div class="campo">
+            <label for="sim-protege">O que você quer proteger?</label>
+            <select class="controle" id="sim-protege" aria-describedby="sim-protege-erro">
+              <option value="">Escolha uma opção</option>
+              <option value="auto">Um veículo</option>
+              <option value="casa">Minha casa</option>
+              <option value="viagem">Uma viagem</option>
+              <option value="familia">Minha família</option>
+              <option value="naosei">Ainda não sei</option>
+            </select>
+            <span class="erro" id="sim-protege-erro" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="sim-renda">Quem depende da sua renda?</label>
+            <select class="controle" id="sim-renda" aria-describedby="sim-renda-erro">
+              <option value="">Escolha uma opção</option>
+              <option value="so">Só eu</option>
+              <option value="um">Uma pessoa</option>
+              <option value="mais">Duas ou mais pessoas</option>
+            </select>
+            <span class="erro" id="sim-renda-erro" aria-live="polite"></span>
+          </div>
+          <div class="campo">
+            <label for="sim-dirige">Você dirige hoje?</label>
+            <select class="controle" id="sim-dirige" aria-describedby="sim-dirige-erro">
+              <option value="">Escolha uma opção</option>
+              <option value="carro">Sim, de carro</option>
+              <option value="moto">Sim, de moto</option>
+              <option value="nao">Não dirijo</option>
+            </select>
+            <span class="erro" id="sim-dirige-erro" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="sim__acoes">
+          <button class="btn btn--verde" type="submit" id="sim-enviar">Simular meu seguro</button>
+          <button class="btn btn--fantasma" type="button" id="sim-limpar">Limpar simulação</button>
+        </div>
+      </form>
+      <div class="sim__painel" id="sim-painel" aria-live="polite">
+        <div class="sim__vazio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8l4 4v12H8z"/><path d="M16 4v4h4"/><path d="M11 12h6M11 16h4"/></svg>
+          <strong>Nenhum perfil simulado ainda.</strong>
+          <p>Responda as três opções ao lado e toque em "Simular meu seguro". O resultado aparece aqui, com o motivo de cada indicação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="secao secao--superficie" id="sinistro" aria-labelledby="titulo-sinistro">
+  <div class="wrap">
+    <div class="secao__cabeca">
+      <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Na hora do problema</p>
+      <h2 id="titulo-sinistro" class="reveal" style="--i:1">Como acionar o sinistro em três passos</h2>
+      <p class="lead reveal" style="--i:2">Você não precisa decifrar a seguradora sozinho. O corretor abre o aviso, cobra prazo e fica no meio até a resposta.</p>
+    </div>
+    <ol class="passos reveal" data-linha>
+      <span class="passos__linha" aria-hidden="true"></span>
+      <li class="passo" style="--i:0">
+        <span class="passo__num" aria-hidden="true">1</span>
+        <div><h3>Avise na hora</h3><p>Ligue ou escreva para o corretor com data, horário, local e fotos. Quanto antes o aviso entra, mais rápida é a análise da seguradora.</p></div>
+      </li>
+      <li class="passo" style="--i:1">
+        <span class="passo__num" aria-hidden="true">2</span>
+        <div><h3>Reúna os documentos</h3><p>Boletim de ocorrência, fotos, nota fiscal dos bens e dados do terceiro. O corretor passa a lista exata para o seu caso, sem adivinhação.</p></div>
+      </li>
+      <li class="passo" style="--i:2">
+        <span class="passo__num" aria-hidden="true">3</span>
+        <div><h3>Acompanhe com o corretor</h3><p>Ele fala com a seguradora, cobra cada etapa e te atualiza. Você recebe a proposta de reparo e o valor antes de aprovar qualquer coisa.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="secao secao--banda" id="duvidas" aria-labelledby="titulo-duvidas">
+  <div class="wrap">
+    <div class="secao__cabeca">
+      <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Dúvidas frequentes</p>
+      <h2 id="titulo-duvidas" class="reveal" style="--i:1">O que todo mundo pergunta antes de assinar</h2>
+    </div>
+    <div class="duvidas">
+      <article class="duvida reveal reveal-x" style="--i:0">
+        <span class="duvida__icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-6h14l2 6"/><path d="M3 13h18v5h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3z"/></svg>
+        </span>
+        <div><h3>Seguro cobre terceiro?</h3><p>Cobre quando a cobertura de responsabilidade civil está na apólice, e ela paga danos materiais e corporais causados a outra pessoa. Se a apólice não tiver essa cobertura, o conserto do outro carro sai do seu bolso. O corretor confirma isso antes de você assinar.</p></div>
+      </article>
+      <article class="duvida reveal reveal-x" style="--i:1">
+        <span class="duvida__icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+        </span>
+        <div><h3>Como eu aciono um sinistro?</h3><p>Avise o corretor por telefone ou e-mail com data, local, fotos e boletim de ocorrência. Ele registra o aviso, entrega a documentação à seguradora e acompanha o processo até a resposta final.</p></div>
+      </article>
+      <article class="duvida reveal reveal-x" style="--i:2">
+        <span class="duvida__icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+        </span>
+        <div><h3>Posso parcelar o seguro?</h3><p>Sim, a maior parte dos seguros pode ser paga em parcelas mensais, e algumas formas de pagamento rendem desconto. O corretor mostra as duas opções na cotação, com e sem parcelamento.</p></div>
+      </article>
+      <article class="duvida reveal reveal-x" style="--i:3">
+        <span class="duvida__icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.3 3.1-5.4 7-5.4s7 2.1 7 5.4"/></svg>
+        </span>
+        <div><h3>Quem é o corretor e o que ele faz por mim?</h3><p>O corretor é o profissional que trabalha para você, não para a seguradora. Ele lê o contrato, compara apólices, explica as exclusões e fica do seu lado na hora do sinistro.</p></div>
+      </article>
+      <article class="duvida reveal reveal-x" style="--i:4">
+        <span class="duvida__icone" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+        </span>
+        <div><h3>Quanto tempo demora para o seguro valer?</h3><p>Depende do seguro e da cobertura: alguns começam no dia seguinte ao pagamento, outros têm carência para partes específicas. A data exata fica registrada na proposta que o corretor entrega antes da assinatura.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="secao secao--superficie" id="contato" aria-labelledby="titulo-contato">
+  <div class="wrap">
+    <div class="secao__cabeca">
+      <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Contato</p>
+      <h2 id="titulo-contato" class="reveal" style="--i:1">Falar com corretor</h2>
+      <p class="lead reveal" style="--i:2">Conte o que você quer proteger e o corretor entra em contato pelo canal que você indicar. A mensagem fica registrada nesta tela, nada é enviado para fora daqui.</p>
+    </div>
+    <div class="contato__grade">
+      <div class="contato__info reveal">
+        <h3>Atendimento da corretora</h3>
+        <ul class="contato__dados">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+            <div>Telefone<span>[(00) 00000-0000]</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7.5 12 13l8.5-5.5"/></svg>
+            <div>E-mail<span>[seu@email.com]</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5c4.2-4.6 6.8-8.2 6.8-11.4A6.8 6.8 0 0 0 5.2 10c0 3.2 2.6 6.8 6.8 11.5z"/><path d="M12 12.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2z"/><path d="M9.4 9.2 12 6.6l2.6 2.6"/></svg>
+            <div>Endereço<span>[endereco]</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+            <div>Horário<span>[segunda a sexta, 9h às 18h]</span></div>
+          </li>
+        </ul>
+        <p class="mini">Os dados acima são espaços reservados. Troque pelo contato real da corretoria antes de publicar.</p>
+      </div>
+      <div class="contato__cartao reveal" style="--i:1">
+        <form id="contato-form" novalidate>
+          <div class="contato__campos">
+            <div class="campo">
+              <label for="ct-nome">Seu nome</label>
+              <input class="controle" type="text" id="ct-nome" autocomplete="name" aria-describedby="ct-nome-erro">
+              <span class="erro" id="ct-nome-erro" aria-live="polite"></span>
+            </div>
+            <div class="campo">
+              <label for="ct-email">E-mail</label>
+              <input class="controle" type="email" id="ct-email" autocomplete="email" aria-describedby="ct-email-erro">
+              <span class="erro" id="ct-email-erro" aria-live="polite"></span>
+            </div>
+            <div class="campo">
+              <label for="ct-tel">Telefone ou WhatsApp</label>
+              <input class="controle" type="tel" id="ct-tel" autocomplete="tel" placeholder="(00) 00000-0000" aria-describedby="ct-tel-erro">
+              <span class="erro" id="ct-tel-erro" aria-live="polite"></span>
+            </div>
+            <div class="campo">
+              <label for="ct-assunto">Sobre qual seguro?</label>
+              <select class="controle" id="ct-assunto" aria-describedby="ct-assunto-erro">
+                <option value="">Escolha uma opção</option>
+                <option value="auto">Auto</option>
+                <option value="vida">Vida</option>
+                <option value="residencia">Residência</option>
+                <option value="viagem">Viagem</option>
+                <option value="outro">Outro assunto</option>
+              </select>
+              <span class="erro" id="ct-assunto-erro" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="ct-msg">Sua mensagem</label>
+            <textarea class="controle" id="ct-msg" aria-describedby="ct-msg-erro"></textarea>
+            <span class="erro" id="ct-msg-erro" aria-live="polite"></span>
+          </div>
+          <button class="btn btn--azul btn--bloco" type="submit" id="ct-enviar">Falar com corretor</button>
+          <p class="mini" style="margin-top:.9rem">Formulário de demonstração: os dados ficam apenas nesta tela.</p>
+        </form>
+        <div class="sucesso" id="ct-sucesso" hidden tabindex="-1" role="status">
+          <span class="sucesso__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <h3>Mensagem registrada nesta tela</h3>
+          <p>Seus dados ficaram salvos aqui, no seu navegador. Para falar com o corretor agora, use o telefone [(00) 00000-0000] ou o e-mail [seu@email.com] da corretoria.</p>
+          <button class="btn btn--contorno" type="button" id="ct-reiniciar">Escrever outra mensagem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="rodape">
+  <div class="wrap rodape__grade">
+    <div>
+      <a class="logo" href="#inicio">
+        <svg viewBox="0 0 120 132" aria-hidden="true" focusable="false">
+          <path d="M60 14 L102 30 V66 C102 92 84 110 60 118 C36 110 18 92 18 66 V30 Z" fill="none" stroke="#9BD3A0" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M42 66 L55 80 L80 50" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Sua Marca</span>
+      </a>
+      <p>Corretora de seguros com cobertura explicada em português: auto, vida, residência e viagem.</p>
+    </div>
+    <div>
+      <h2 style="font-size:1rem;letter-spacing:.1em;text-transform:uppercase">Navegar</h2>
+      <nav class="rodape__links" aria-label="Links do rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#coberturas">Coberturas</a>
+        <a href="#simular">Simular perfil</a>
+        <a href="#sinistro">Acionar sinistro</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a href="#contato">Falar com corretor</a>
+      </nav>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="rodape__assinatura">Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a>. Dados de contato, preços e histórias são espaços reservados.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  'use strict';
+  var mqReduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mqLargo = window.matchMedia('(min-width: 761px)');
+  var reduzido = mqReduz.matches;
+
+  function entrar() { document.body.classList.add('is-loaded'); }
+  if (document.readyState === 'complete') { entrar(); } else { window.addEventListener('load', entrar); }
+  setTimeout(entrar, 1500);
+
+  var cabecalho = document.getElementById('topo');
+  var alvosParallax = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  var pendente = false;
+  function quadro() {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    cabecalho.classList.toggle('is-scrolled', y > 12);
+    if (mqLargo.matches && !reduzido) {
+      alvosParallax.forEach(function (el) {
+        var fator = parseFloat(el.getAttribute('data-parallax')) || 0.15;
+        el.style.transform = 'translate3d(0,' + (y * fator).toFixed(1) + 'px,0)';
+      });
+    }
+    pendente = false;
+  }
+  function aoRolar() { if (pendente) { return; } pendente = true; window.requestAnimationFrame(quadro); }
+  window.addEventListener('scroll', aoRolar, { passive: true });
+  window.addEventListener('resize', function () { aoRolar(); });
+  quadro();
+
+  var botaoMenu = document.getElementById('nav-toggle');
+  var nav = document.getElementById('menu-principal');
+  function fecharMenu() {
+    nav.classList.remove('is-open');
+    botaoMenu.setAttribute('aria-expanded', 'false');
+    botaoMenu.setAttribute('aria-label', 'Abrir menu');
+  }
+  function abrirMenu() {
+    nav.classList.add('is-open');
+    botaoMenu.setAttribute('aria-expanded', 'true');
+    botaoMenu.setAttribute('aria-label', 'Fechar menu');
+  }
+  botaoMenu.addEventListener('click', function () {
+    if (nav.classList.contains('is-open')) { fecharMenu(); } else { abrirMenu(); }
+  });
+  nav.addEventListener('click', function (evento) { if (evento.target.closest('a')) { fecharMenu(); } });
+  document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape' && nav.classList.contains('is-open')) { fecharMenu(); botaoMenu.focus(); }
+  });
+  window.addEventListener('resize', function () { if (mqLargo.matches) { fecharMenu(); } });
+
+  var observaveis = document.querySelectorAll('.reveal, .reveal-x, [data-linha]');
+  if ('IntersectionObserver' in window && !reduzido) {
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) { entrada.target.classList.add('is-visible'); io.unobserve(entrada.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(observaveis, function (el) { io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(observaveis, function (el) { el.classList.add('is-visible'); });
+  }
+
+  var itensCob = Array.prototype.slice.call(document.querySelectorAll('.cob'));
+  function abrirCob(item) {
+    var painel = item.querySelector('.cob__painel');
+    item.classList.add('is-open');
+    item.querySelector('.cob__gatilho').setAttribute('aria-expanded', 'true');
+    painel.style.height = painel.scrollHeight + 'px';
+    var aoFim = function (evento) {
+      if (evento.propertyName !== 'height') { return; }
+      painel.style.height = 'auto';
+      painel.removeEventListener('transitionend', aoFim);
+    };
+    painel.addEventListener('transitionend', aoFim);
+  }
+  function fecharCob(item) {
+    var painel = item.querySelector('.cob__painel');
+    painel.style.height = painel.scrollHeight + 'px';
+    window.requestAnimationFrame(function () { painel.style.height = '0px'; });
+    item.classList.remove('is-open');
+    item.querySelector('.cob__gatilho').setAttribute('aria-expanded', 'false');
+  }
+  itensCob.forEach(function (item) {
+    item.querySelector('.cob__gatilho').addEventListener('click', function () {
+      var aberto = item.classList.contains('is-open');
+      itensCob.forEach(function (outro) {
+        if (outro !== item && outro.classList.contains('is-open')) { fecharCob(outro); }
+      });
+      if (aberto) { fecharCob(item); } else { abrirCob(item); }
+    });
+  });
+
+  function mostrarErro(campo, mensagem) {
+    var alvo = document.getElementById(campo.id + '-erro');
+    campo.setAttribute('aria-invalid', 'true');
+    if (alvo) { alvo.textContent = mensagem; }
+  }
+  function limparErro(campo) {
+    var alvo = document.getElementById(campo.id + '-erro');
+    campo.removeAttribute('aria-invalid');
+    if (alvo) { alvo.textContent = ''; }
+  }
+  function rolarPara(id) {
+    var alvo = document.getElementById(id);
+    if (!alvo) { return; }
+    alvo.scrollIntoView({ behavior: reduzido ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  var cotProtege = document.getElementById('cot-protege');
+  var cotHoje = document.getElementById('cot-hoje');
+  var cotStatus = document.getElementById('cot-status');
+  var cotBotao = document.getElementById('cot-enviar');
+  var simProtege = document.getElementById('sim-protege');
+  cotBotao.addEventListener('click', function () {
+    if (!cotProtege.value || !cotHoje.value) {
+      cotStatus.classList.add('is-erro');
+      cotStatus.textContent = 'Escolha as duas opções para simular.';
+      return;
+    }
+    cotStatus.classList.remove('is-erro');
+    var nomes = { auto: 'um veículo', casa: 'a casa', viagem: 'a viagem', familia: 'a família', naosei: 'o perfil' };
+    var situacao = { nao: 'Você ainda não tem seguro.', comparar: 'Você quer comparar o que já tem.', venceu: 'Seu seguro venceu.' };
+    cotStatus.textContent = situacao[cotHoje.value] + ' Perfil iniciado com ' + nomes[cotProtege.value] + '.';
+    simProtege.value = cotProtege.value;
+    limparErro(simProtege);
+    rolarPara('simular');
+    window.setTimeout(function () { document.getElementById('sim-renda').focus(); }, reduzido ? 0 : 600);
+  });
+  [cotProtege, cotHoje].forEach(function (campo) {
+    campo.addEventListener('change', function () {
+      cotStatus.classList.remove('is-erro');
+      cotStatus.textContent = 'Nada é enviado daqui. As respostas só guiam a simulação.';
+    });
+  });
+
+  var simForm = document.getElementById('sim-form');
+  var simRenda = document.getElementById('sim-renda');
+  var simDirige = document.getElementById('sim-dirige');
+  var simPainel = document.getElementById('sim-painel');
+  var simLimpar = document.getElementById('sim-limpar');
+  var MOTIVOS = {
+    autoCarro: 'Você indicou o veículo. Confira se a apólice traz cobertura para terceiros além da do seu carro, é a parte que mais aparece no sinistro.',
+    autoMoto: 'Você indicou o veículo e dirige moto. Moto tem seguro com as mesmas coberturas de um carro, com franquia e avaliação próprias.',
+    vida: 'Existe quem dependa da sua renda. O seguro de vida sustenta essas pessoas e cobre as despesas que ficariam sem você.',
+    residencia: 'Você indicou a casa. Incêndio, danos elétricos e roubo entram na apólice; vendaval e quebra de vidros costumam ser opcionais.',
+    viagem: 'Você indicou a viagem. Saúde fora do país, extravio de bagagem e atraso de voo são as coberturas que mais pesam.',
+    familia: 'Você indicou a família. O seguro de vida cobre morte, invalidez e doenças graves descritas na apólice, e pode incluir cônjuge e filhos como dependentes.'
+  };
+  var ROTULOS = { auto: 'Seguro auto', vida: 'Seguro de vida', residencia: 'Seguro residência', viagem: 'Seguro viagem' };
+  var ICONES = {
+    auto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-6h14l2 6"/><path d="M3 13h18v5h-2a2 2 0 1 1-4 0H9a2 2 0 1 1-4 0H3z"/></svg>',
+    vida: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.3A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19 10.7c0 4.9-7 9.3-7 9.3z"/></svg>',
+    residencia: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg>',
+    viagem: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l-6 3 1-4-3-3 4-.4L9 4l2 4.6 4 .4-3 3 1 4z" transform="translate(2 1)"/><path d="M4 20h16"/></svg>'
+  };
+  function vazioHTML() {
+    return '<div class="sim__vazio">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8l4 4v12H8z"/><path d="M16 4v4h4"/><path d="M11 12h6M11 16h4"/></svg>' +
+      '<strong>Nenhum perfil simulado ainda.</strong>' +
+      '<p>Responda as três opções ao lado e toque em "Simular meu seguro". O resultado aparece aqui, com o motivo de cada indicação.</p>' +
+      '</div>';
+  }
+  function indicar(protege, renda, dirige) {
+    var lista = [];
+    function add(tipo, motivo) {
+      var existe = lista.some(function (item) { return item.tipo === tipo; });
+      if (!existe && lista.length < 3) { lista.push({ tipo: tipo, motivo: motivo }); }
+    }
+    var temDependente = renda === 'um' || renda === 'mais';
+    var dirigeVeiculo = dirige === 'carro' || dirige === 'moto';
+    if (protege === 'auto') {
+      add('auto', dirige === 'moto' ? MOTIVOS.autoMoto : MOTIVOS.autoCarro);
+      if (temDependente) { add('vida', MOTIVOS.vida); }
+    } else if (protege === 'casa') {
+      add('residencia', MOTIVOS.residencia);
+      if (temDependente) { add('vida', MOTIVOS.vida); }
+      if (dirigeVeiculo) { add('auto', dirige === 'moto' ? MOTIVOS.autoMoto : MOTIVOS.autoCarro); }
+    } else if (protege === 'viagem') {
+      add('viagem', MOTIVOS.viagem);
+      if (temDependente) { add('vida', MOTIVOS.vida); }
+    } else if (protege === 'familia') {
+      add('vida', MOTIVOS.familia);
+      if (dirigeVeiculo) { add('auto', dirige === 'moto' ? MOTIVOS.autoMoto : MOTIVOS.autoCarro); }
+    } else {
+      if (temDependente) { add('vida', MOTIVOS.vida); }
+      if (dirigeVeiculo) { add('auto', dirige === 'moto' ? MOTIVOS.autoMoto : MOTIVOS.autoCarro); }
+      if (lista.length === 0) { add('residencia', 'Sem veículo e sem dependentes, a casa costuma ser o bem de maior valor. Comece por ela.'); }
+    }
+    return lista;
+  }
+  simForm.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    var ok = true;
+    if (!simProtege.value) { mostrarErro(simProtege, 'Escolha o que você quer proteger.'); ok = false; } else { limparErro(simProtege); }
+    if (!simRenda.value) { mostrarErro(simRenda, 'Escolha quem depende da sua renda.'); ok = false; } else { limparErro(simRenda); }
+    if (!simDirige.value) { mostrarErro(simDirige, 'Escolha se você dirige hoje.'); ok = false; } else { limparErro(simDirige); }
+    if (!ok) { return; }
+    var lista = indicar(simProtege.value, simRenda.value, simDirige.value);
+    var html = '<p class="sim__rotulo">Perfil indicado</p>' +
+      '<h3 class="sim__titulo">Comece pelo ' + ROTULOS[lista[0].tipo].toLowerCase() + '</h3>' +
+      '<ul class="sim__lista">';
+    lista.forEach(function (item) {
+      html += '<li><span class="sim__icone" aria-hidden="true">' + ICONES[item.tipo] + '</span>' +
+        '<div><h4>' + ROTULOS[item.tipo] + '</h4><p>' + item.motivo + '</p></div></li>';
+    });
+    html += '</ul>' +
+      '<p class="sim__nota">O valor não aparece aqui de propósito. Preço de seguro depende do que está na apólice e do seu histórico, então o corretor cota com cada seguradora e te entrega a comparação por escrito.</p>' +
+      '<button class="btn btn--verde" type="button" data-acao="contato" data-tipo="' + lista[0].tipo + '">Falar com corretor</button>';
+    simPainel.innerHTML = html;
+    simPainel.classList.add('is-pronto');
+  });
+  simLimpar.addEventListener('click', function () {
+    simForm.reset();
+    [simProtege, simRenda, simDirige].forEach(limparErro);
+    simPainel.classList.remove('is-pronto');
+    simPainel.innerHTML = vazioHTML();
+    simProtege.focus();
+  });
+
+  var ctAssunto = document.getElementById('ct-assunto');
+  document.addEventListener('click', function (evento) {
+    var alvo = evento.target.closest('[data-acao="contato"]');
+    if (!alvo) { return; }
+    var tipo = alvo.getAttribute('data-tipo');
+    if (tipo && ctAssunto.querySelector('option[value="' + tipo + '"]')) {
+      ctAssunto.value = tipo;
+      limparErro(ctAssunto);
+    }
+    rolarPara('contato');
+    window.setTimeout(function () { document.getElementById('ct-nome').focus(); }, reduzido ? 0 : 650);
+  });
+
+  var ctForm = document.getElementById('contato-form');
+  var ctSucesso = document.getElementById('ct-sucesso');
+  var ctNome = document.getElementById('ct-nome');
+  var ctEmail = document.getElementById('ct-email');
+  var ctTel = document.getElementById('ct-tel');
+  var ctMsg = document.getElementById('ct-msg');
+  var ctReiniciar = document.getElementById('ct-reiniciar');
+  function validarNome() {
+    if (ctNome.value.trim().length < 3) { mostrarErro(ctNome, 'Escreva seu nome com pelo menos 3 letras.'); return false; }
+    limparErro(ctNome); return true;
+  }
+  function validarEmail() {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ctEmail.value.trim())) { mostrarErro(ctEmail, 'Informe um e-mail válido, como nome@email.com.'); return false; }
+    limparErro(ctEmail); return true;
+  }
+  function validarTel() {
+    if (ctTel.value.replace(/\D/g, '').length < 10) { mostrarErro(ctTel, 'Informe o telefone com DDD, como (00) 00000-0000.'); return false; }
+    limparErro(ctTel); return true;
+  }
+  function validarAssunto() {
+    if (!ctAssunto.value) { mostrarErro(ctAssunto, 'Escolha sobre qual seguro você quer falar.'); return false; }
+    limparErro(ctAssunto); return true;
+  }
+  function validarMsg() {
+    if (ctMsg.value.trim().length < 10) { mostrarErro(ctMsg, 'Conte em uma linha o que você precisa, com pelo menos 10 letras.'); return false; }
+    limparErro(ctMsg); return true;
+  }
+  ctForm.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    var ok = [validarNome(), validarEmail(), validarTel(), validarAssunto(), validarMsg()].every(Boolean);
+    if (!ok) {
+      var primeiroRuim = ctForm.querySelector('[aria-invalid="true"]');
+      if (primeiroRuim) { primeiroRuim.focus(); }
+      return;
+    }
+    ctForm.hidden = true;
+    ctSucesso.hidden = false;
+    ctSucesso.focus();
+  });
+  ctNome.addEventListener('blur', function () { if (ctNome.value.trim()) { validarNome(); } });
+  ctEmail.addEventListener('blur', function () { if (ctEmail.value.trim()) { validarEmail(); } });
+  ctTel.addEventListener('blur', function () { if (ctTel.value.trim()) { validarTel(); } });
+  ctMsg.addEventListener('blur', function () { if (ctMsg.value.trim()) { validarMsg(); } });
+  ctAssunto.addEventListener('change', function () { if (ctAssunto.value) { validarAssunto(); } });
+  ctReiniciar.addEventListener('click', function () {
+    ctForm.reset();
+    [ctNome, ctEmail, ctTel, ctAssunto, ctMsg].forEach(limparErro);
+    ctSucesso.hidden = true;
+    ctForm.hidden = false;
+    ctNome.focus();
+  });
+})();
+</script>
+</body>
+</html>
