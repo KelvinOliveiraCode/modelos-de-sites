@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de operações para times técnicos | Sua Marca</title>
+<meta name="description" content="Plataforma de operações para times técnicos: fila única de trabalho, regras de automação e histórico completo, com integração às ferramentas que o time já usa. Teste grátis.">
+<meta name="theme-color" content="#0F172A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M6 21l5-8 4 5 3-4 8 7' fill='none' stroke='%2322D3EE' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Tecnologia / SaaS, modelo de demonstração
+   Fundo #0F172A, apoio roxo #7C3AED, acento ciano #22D3EE,
+   tinta #F8FAFC. Ciano é o gesto único da página (CTA e
+   linha de destaque). Nada de gradiente decorativo.
+   Glow em no máximo 2 elementos, com razão escrita:
+   (1) halo atrás do painel do hero, identidade do nicho,
+       o produto é a peça central;
+   (2) linha de dado do gráfico, a série que importa.
+   Easing de entrada: cubic-bezier(.22,1,.36,1).
+   Loops só com transform, opacity, filter e stroke, e
+   sempre com 6s ou mais por ciclo.
+   ========================================================= */
+
+:root{
+  --fundo:#0F172A;
+  --fundo-2:#0B1120;
+  --superficie:#151F38;
+  --superficie-2:#1B2642;
+  --campo:#101B33;
+  --linha:rgba(248,250,252,.10);
+  --linha-forte:rgba(248,250,252,.18);
+  --tinta:#F8FAFC;
+  --tinta-2:#C3CFE3;
+  --tinta-3:#9FB0C8;
+  --ciano:#22D3EE;
+  --ciano-claro:#A5F3FC;
+  --ciano-esc:#0E7490;
+  --roxo:#7C3AED;
+  --roxo-esc:#5B21B6;
+  --ok:#6EE7B7;
+  --erro:#FCA5A5;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-estado:cubic-bezier(.4,0,.2,1);
+  --sombra:0 14px 34px rgba(2,6,23,.42);
+  --sombra-forte:0 26px 60px rgba(2,6,23,.55);
+  --raio:16px;
+  --fonte-titulo:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fonte-corpo:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fonte-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --header-h:74px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--header-h) + 18px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--fundo);
+  color:var(--tinta);
+  font-family:var(--fonte-corpo);
+  font-size:17px;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--fonte-titulo);
+  color:var(--tinta);
+  line-height:1.14;
+  margin:0 0 .5em;
+  font-weight:700;
+  letter-spacing:-.018em;
+}
+h1{font-size:clamp(2.2rem,5.6vw,3.55rem);font-weight:700}
+h2{font-size:clamp(1.7rem,4vw,2.45rem)}
+h3{font-size:1.14rem;font-weight:600}
+p{margin:0 0 1em}
+a{color:var(--tinta);text-decoration:none}
+ul,ol{margin:0;padding:0;list-style:none}
+svg{display:block;max-width:100%}
+strong{font-weight:600}
+::selection{background:var(--ciano);color:#0B1120}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--ciano);
+  outline-offset:3px;
+  border-radius:10px;
+}
+
+/* ---------- utilitários ---------- */
+.na-tela{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.na-tela:focus{
+  position:fixed;top:12px;left:12px;z-index:300;width:auto;height:auto;
+  margin:0;padding:12px 18px;clip:auto;background:var(--superficie);
+  color:var(--tinta);border:1px solid var(--linha-forte);
+  border-radius:10px;box-shadow:var(--sombra-forte);font-weight:600;
+}
+
+.envolve{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 22px;
+}
+
+.etiqueta{
+  font-family:var(--fonte-mono);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ciano);
+  margin:0 0 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.etiqueta::before{
+  content:"";
+  width:26px;height:2px;background:var(--ciano);
+  border-radius:2px;flex:none;
+}
+
+section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+.secao{padding:92px 0;position:relative}
+.secao--alt{background:var(--fundo-2)}
+.secao-sub{
+  font-size:1.06rem;
+  color:var(--tinta-2);
+  max-width:60ch;
+  margin:0 0 42px;
+}
+.secao-topo{margin-bottom:44px}
+
+.mono{font-family:var(--fonte-mono)}
+.nota{
+  font-size:14.5px;
+  color:var(--tinta-3);
+  margin:0;
+}
+
+/* ---------- botões ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:13px 24px;
+  border-radius:12px;
+  border:1px solid transparent;
+  font-family:var(--fonte-corpo);
+  font-size:16px;
+  font-weight:600;
+  line-height:1.2;
+  cursor:pointer;
+  transition:transform .2s var(--ease-estado),
+             background-color .2s var(--ease-estado),
+             border-color .2s var(--ease-estado),
+             color .2s var(--ease-estado),
+             box-shadow .2s var(--ease-estado);
+}
+.btn svg{flex:none}
+.btn--ciano{background:var(--ciano);color:#0B1120}
+.btn--ciano:hover{background:var(--ciano-claro);color:#0B1120;transform:translateY(-2px);box-shadow:0 10px 24px rgba(2,6,23,.45)}
+.btn--roxo{background:var(--roxo);color:#FFFFFF}
+.btn--roxo:hover{background:var(--roxo-esc);color:#FFFFFF;transform:translateY(-2px);box-shadow:0 10px 24px rgba(2,6,23,.45)}
+.btn--contorno{border-color:var(--linha-forte);color:var(--tinta);background:transparent}
+.btn--contorno:hover{border-color:var(--ciano);color:var(--ciano);transform:translateY(-2px)}
+.btn--largo{width:100%}
+
+/* ---------- revelar (JS no fim do body adiciona .visivel) ---------- */
+.js .revelar{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .75s var(--ease),transform .75s var(--ease);
+}
+.js .revelar.visivel{opacity:1;transform:none}
+.js .revelar-item{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease);
+  transition-delay:calc(var(--i,0) * 70ms);
+}
+.js .revelar.visivel .revelar-item{opacity:1;transform:none}
+
+/* ---------- entrada de página (escalonada, sem piscar) ---------- */
+.js .entrada{opacity:0;transform:translateY(18px)}
+.js body.pronto .entrada{
+  opacity:1;transform:none;
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+  transition-delay:calc(var(--i,0) * 90ms);
+}
+.js body.pronto .entrada--painel{
+  transition:opacity .8s var(--ease) .18s,transform .8s var(--ease) .18s;
+}
+
+/* ---------- cabeçalho ---------- */
+.cabecalho{
+  position:fixed;top:0;left:0;right:0;z-index:120;
+  border-bottom:1px solid transparent;
+  transition:background-color .25s var(--ease-estado),
+             border-color .25s var(--ease-estado),
+             box-shadow .25s var(--ease-estado);
+}
+.cabecalho.rolou{
+  background:var(--fundo);
+  border-bottom-color:var(--linha);
+  box-shadow:0 8px 26px rgba(2,6,23,.45);
+}
+.barra-topo{
+  min-height:var(--header-h);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  transition:min-height .25s var(--ease-estado);
+}
+.cabecalho.rolou .barra-topo{min-height:64px}
+.marca{display:inline-flex;align-items:center;gap:11px;flex:none}
+.marca__selo{
+  width:36px;height:36px;border-radius:10px;flex:none;
+  background:var(--superficie);border:1px solid var(--linha-forte);
+  display:grid;place-items:center;
+}
+.marca__texto{font-family:var(--fonte-titulo);font-weight:700;font-size:1.05rem;letter-spacing:-.01em;line-height:1.1}
+.marca__texto small{display:block;font-family:var(--fonte-mono);font-weight:400;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-3)}
+
+.nav__lista{display:flex;align-items:center;gap:6px}
+.nav__link{
+  display:inline-flex;align-items:center;min-height:44px;padding:8px 13px;
+  border-radius:9px;font-size:15.5px;font-weight:500;color:var(--tinta-2);
+  position:relative;
+  transition:color .18s var(--ease-estado),background-color .18s var(--ease-estado);
+}
+.nav__link::after{
+  content:"";position:absolute;left:13px;right:13px;bottom:8px;height:2px;
+  background:var(--ciano);border-radius:2px;
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .2s var(--ease-estado);
+}
+.nav__link:hover{color:var(--tinta)}
+.nav__link:hover::after{transform:scaleX(1)}
+.nav__acao{display:flex;align-items:center;gap:10px}
+.nav__acao .btn{min-height:44px;padding:10px 18px;font-size:15px}
+
+.menu-botao{
+  display:none;align-items:center;gap:9px;min-height:44px;
+  padding:10px 15px;border-radius:10px;cursor:pointer;
+  background:var(--superficie);border:1px solid var(--linha-forte);color:var(--tinta);
+  font-family:var(--fonte-corpo);font-size:15px;font-weight:600;
+  transition:border-color .18s var(--ease-estado),color .18s var(--ease-estado);
+}
+.menu-botao:hover{border-color:var(--ciano);color:var(--ciano)}
+.menu-botao__riscos{width:18px;height:12px;position:relative;flex:none}
+.menu-botao__riscos i{
+  position:absolute;left:0;right:0;height:2px;background:currentColor;border-radius:2px;
+  transition:transform .22s var(--ease-estado),opacity .18s var(--ease-estado);
+}
+.menu-botao__riscos i:nth-child(1){top:0}
+.menu-botao__riscos i:nth-child(2){top:5px}
+.menu-botao__riscos i:nth-child(3){top:10px}
+.menu-botao[aria-expanded="true"] .menu-botao__riscos i:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-botao[aria-expanded="true"] .menu-botao__riscos i:nth-child(2){opacity:0}
+.menu-botao[aria-expanded="true"] .menu-botao__riscos i:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+
+.progresso{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:transparent;overflow:hidden}
+.progresso i{
+  display:block;height:100%;background:var(--ciano);
+  transform:scaleX(0);transform-origin:left center;
+}
+
+/* ---------- herói ---------- */
+.hero{padding:calc(var(--header-h) + 58px) 0 96px;position:relative;overflow:hidden}
+.hero__malha{position:absolute;inset:0;pointer-events:none;opacity:.55;will-change:transform}
+.hero__forma{
+  position:absolute;border-radius:50%;pointer-events:none;
+  border:1px solid var(--linha-forte);
+}
+.hero__forma--a{width:430px;height:430px;top:-130px;right:-120px;border-color:rgba(124,58,237,.30);will-change:transform}
+.hero__forma--b{width:300px;height:300px;bottom:-90px;left:-110px;border-color:rgba(34,211,238,.20)}
+.hero__grade{
+  position:relative;
+  display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;
+}
+.hero__titulo{margin:0 0 20px}
+.hero__titulo b{color:var(--ciano);font-weight:700}
+.hero__sub{font-size:1.1rem;color:var(--tinta-2);max-width:52ch;margin:0 0 30px}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 22px}
+.hero__nota{font-size:15px;color:var(--tinta-3);margin:0 0 34px}
+.hero__fatos{display:flex;flex-wrap:wrap;gap:14px 30px}
+.hero__fatos li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--tinta-2)}
+.hero__fatos svg{flex:none;color:var(--ciano)}
+
+/* ---------- painel do produto ---------- */
+.hero__painel{position:relative}
+/* Glow 1 de 2: halo do painel, identidade do nicho */
+.painel-brilho{
+  position:absolute;inset:-26px -18px;border-radius:34px;pointer-events:none;
+  box-shadow:0 0 90px rgba(124,58,237,.30),0 0 150px rgba(34,211,238,.10);
+  opacity:.75;will-change:opacity,transform;
+  animation:brilha 9s var(--ease-estado) infinite alternate;
+}
+@keyframes brilha{from{opacity:.6;transform:scale(.99)}to{opacity:1;transform:scale(1.02)}}
+
+.painel{
+  position:relative;
+  background:var(--superficie);
+  border:1px solid var(--linha-forte);
+  border-radius:18px;
+  box-shadow:var(--sombra-forte);
+  overflow:hidden;
+  animation:flutua 8s var(--ease-estado) infinite alternate;
+  will-change:transform;
+}
+@keyframes flutua{from{transform:translateY(-7px)}to{transform:translateY(7px)}}
+
+.painel__topo{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-bottom:1px solid var(--linha);
+  background:rgba(11,17,32,.55);
+}
+.painel__pontos{display:flex;gap:6px;flex:none}
+.painel__pontos i{width:9px;height:9px;border-radius:50%;background:var(--linha-forte)}
+.painel__url{
+  font-family:var(--fonte-mono);font-size:14px;color:var(--tinta-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.painel__vivo{
+  margin-left:auto;display:inline-flex;align-items:center;gap:7px;flex:none;
+  font-family:var(--fonte-mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ciano);
+}
+.painel__vivo i{
+  width:7px;height:7px;border-radius:50%;background:var(--ciano);position:relative;flex:none;
+}
+.painel__vivo i::after{
+  content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1px solid var(--ciano);opacity:0;
+  animation:pinga 6s var(--ease-estado) infinite;
+}
+@keyframes pinga{0%{opacity:.7;transform:scale(.4)}55%{opacity:0;transform:scale(1.25)}100%{opacity:0;transform:scale(1.25)}}
+
+.painel__abas{
+  display:flex;gap:2px;padding:10px 12px 0;border-bottom:1px solid var(--linha);
+  overflow-x:auto;
+}
+.aba{
+  appearance:none;background:transparent;border:0;cursor:pointer;
+  padding:11px 14px;min-height:44px;
+  font-family:var(--fonte-corpo);font-size:15px;font-weight:500;color:var(--tinta-3);
+  border-radius:9px 9px 0 0;position:relative;white-space:nowrap;
+  transition:color .18s var(--ease-estado),background-color .18s var(--ease-estado);
+}
+.aba:hover{color:var(--tinta-2);background:rgba(248,250,252,.04)}
+.aba[aria-selected="true"]{color:var(--ciano);background:rgba(34,211,238,.07)}
+.aba[aria-selected="true"]::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--ciano);
+}
+
+.painel__corpo{padding:18px 18px 20px;min-height:322px;position:relative}
+.painel__tela{position:relative}
+.js .painel__tela{animation:entraTela .42s var(--ease) both}
+@keyframes entraTela{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.painel__kpis{
+  display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 16px;
+  padding-bottom:16px;border-bottom:1px solid var(--linha);
+}
+.kpi{min-width:96px}
+.kpi b{
+  display:block;font-family:var(--fonte-mono);font-size:1.4rem;font-weight:500;
+  color:var(--tinta);line-height:1.1;
+}
+.kpi span{font-size:14px;color:var(--tinta-3)}
+
+.grafico{position:relative}
+.grafico svg{width:100%;height:auto}
+.js .barra{
+  transform-box:fill-box;transform-origin:50% 100%;
+  transform:scaleY(0);
+  transition:transform .8s var(--ease);
+  transition-delay:calc(var(--i,0) * 80ms + 180ms);
+}
+.js .revelar.visivel .barra{transform:scaleY(1)}
+.js .linha{
+  stroke-dasharray:330;stroke-dashoffset:330;
+  transition:stroke-dashoffset .9s var(--ease) .3s;
+}
+.js .revelar.visivel .linha{stroke-dashoffset:0}
+.js .area{opacity:0;transition:opacity .8s var(--ease) .9s}
+.js .revelar.visivel .area{opacity:1}
+.ponto{cursor:pointer}
+.grafico__eixo{
+  font-family:var(--fonte-mono);font-size:14px;fill:#9FB0C8;
+}
+.grafico__nota{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  margin:12px 0 0;font-size:14px;color:var(--tinta-3);
+}
+.dica{
+  position:absolute;z-index:5;pointer-events:none;
+  transform:translate(-50%,-118%);
+  background:var(--fundo-2);border:1px solid var(--linha-forte);
+  border-radius:9px;padding:8px 11px;box-shadow:var(--sombra);
+  font-size:14px;line-height:1.35;white-space:nowrap;
+  transition:opacity .16s var(--ease-estado);
+}
+.dica b{font-family:var(--fonte-mono);font-weight:500;color:var(--ciano);display:block;font-size:14px}
+.dica[hidden]{display:none}
+
+.entregas{border-top:1px solid var(--linha)}
+.entregas li{
+  display:flex;align-items:center;gap:13px;
+  padding:13px 2px;border-bottom:1px solid var(--linha);
+}
+.entregas li:last-child{border-bottom:0}
+.entregas__cara{
+  width:30px;height:30px;border-radius:8px;flex:none;
+  border:1px solid var(--linha-forte);background:var(--superficie-2);
+  display:grid;place-items:center;
+  font-family:var(--fonte-mono);font-size:14px;color:var(--tinta-2);
+}
+.entregas__nome{font-size:15.5px;flex:1 1 auto;min-width:0}
+.entregas__nome small{display:block;font-size:14px;color:var(--tinta-3)}
+.etiqueta-estado{
+  flex:none;font-family:var(--fonte-mono);font-size:14px;
+  padding:4px 9px;border-radius:99px;border:1px solid var(--linha-forte);color:var(--tinta-2);
+}
+.etiqueta-estado--ciano{border-color:rgba(34,211,238,.45);color:var(--ciano)}
+.etiqueta-estado--roxo{border-color:rgba(124,58,237,.55);color:#C4B5FD}
+
+.vazio{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;text-align:center;padding:44px 18px;min-height:230px;
+  border:1px dashed var(--linha-forte);border-radius:14px;
+}
+.vazio svg{color:var(--tinta-3)}
+.vazio b{font-family:var(--fonte-titulo);font-size:1.05rem;font-weight:600}
+.vazio p{margin:0;font-size:14.5px;color:var(--tinta-3);max-width:34ch}
+.painel__legenda{margin:12px 2px 0;font-size:14px;color:var(--tinta-3)}
+
+
+/* ---------- recursos: grid irregular (1 grande + 2 pequenos, 2 vezes) ---------- */
+.grade{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.grupo{display:contents}
+.cartao{
+  background:var(--superficie);
+  border:1px solid var(--linha);
+  border-radius:var(--raio);
+  padding:28px;
+  transition:transform .22s var(--ease-estado),
+             border-color .22s var(--ease-estado),
+             box-shadow .22s var(--ease-estado);
+}
+.cartao:hover{
+  transform:translateY(-5px);
+  border-color:rgba(34,211,238,.42);
+  box-shadow:0 20px 44px rgba(2,6,23,.5);
+}
+.cartao--grande{grid-column:span 7;display:flex;flex-direction:column}
+.cartao--pequeno{grid-column:span 5;display:flex;flex-direction:column}
+.cartao__icone{
+  width:46px;height:46px;border-radius:12px;flex:none;
+  background:var(--superficie-2);border:1px solid var(--linha-forte);
+  display:grid;place-items:center;color:var(--ciano);
+  margin:0 0 18px;
+  transition:transform .22s var(--ease-estado),color .22s var(--ease-estado);
+}
+.cartao:hover .cartao__icone{transform:translateY(-2px)}
+.cartao h3{margin:0 0 10px}
+.cartao p{color:var(--tinta-2);font-size:16px;margin:0 0 16px}
+.cartao p:last-child{margin-bottom:0}
+.cartao__lista{display:grid;gap:10px;margin:auto 0 0}
+.cartao__lista li{
+  display:flex;gap:11px;align-items:flex-start;
+  font-size:15.5px;color:var(--tinta-2);
+  padding-top:10px;border-top:1px solid var(--linha);
+}
+.cartao__lista li:first-child{border-top:0;padding-top:0}
+.cartao__lista svg{flex:none;color:var(--ciano);margin-top:4px}
+.cartao__mini{
+  margin:auto 0 0;padding-top:16px;border-top:1px solid var(--linha);
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.salinha{
+  font-family:var(--fonte-mono);font-size:14px;color:var(--tinta-2);
+  border:1px solid var(--linha-forte);border-radius:99px;padding:5px 11px;
+}
+.salinha--roxo{border-color:rgba(124,58,237,.55);color:#C4B5FD}
+.salinha--ciano{border-color:rgba(34,211,238,.45);color:var(--ciano)}
+.cartao__barras{
+  margin:auto 0 0;padding-top:18px;border-top:1px solid var(--linha);
+  display:grid;gap:12px;
+}
+.linha-stat{display:grid;gap:6px}
+.linha-stat__topo{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--tinta-3)}
+.linha-stat__topo b{font-family:var(--fonte-mono);font-weight:500;color:var(--tinta-2)}
+.linha-stat__trilha{height:6px;border-radius:99px;background:var(--superficie-2);overflow:hidden}
+.linha-stat__fill{
+  display:block;height:100%;border-radius:99px;background:var(--ciano);
+  transform:scaleX(var(--p,0));transform-origin:left center;
+  transition:transform .9s var(--ease);
+  transition-delay:calc(var(--i,0) * 90ms + 200ms);
+}
+.js .revelar.visivel .linha-stat__fill{transform:scaleX(1)}
+
+/* ---------- integrações em faixa ---------- */
+.faixa{
+  border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  background:var(--fundo-2);
+  padding:56px 0;
+}
+.faixa__topo{
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:18px;margin-bottom:34px;
+}
+.faixa__topo .etiqueta{margin-bottom:10px}
+.faixa__topo h2{margin:0;font-size:clamp(1.5rem,3vw,2rem)}
+.faixa__rolo{display:flex;flex-wrap:wrap;gap:14px}
+.chip{
+  display:inline-flex;align-items:center;gap:11px;
+  padding:12px 17px;border-radius:12px;
+  background:var(--superficie);border:1px solid var(--linha);
+  font-size:15.5px;color:var(--tinta-2);
+  transition:transform .2s var(--ease-estado),
+             border-color .2s var(--ease-estado),
+             color .2s var(--ease-estado);
+}
+.chip svg{flex:none;color:var(--ciano)}
+.chip:hover{transform:translateY(-3px);border-color:rgba(34,211,238,.42);color:var(--tinta)}
+.js .chip{
+  opacity:0;transform:scale(.94);
+  transition:opacity .55s var(--ease),transform .55s var(--ease),
+             border-color .2s var(--ease-estado),color .2s var(--ease-estado);
+}
+.js .revelar.visivel .chip{
+  opacity:1;transform:none;
+  transition-delay:calc(var(--i,0) * 60ms);
+}
+.js .revelar.visivel .chip:hover{transform:translateY(-3px)}
+.faixa__nota{margin:26px 0 0;font-size:14.5px;color:var(--tinta-3);max-width:70ch}
+
+/* ---------- preço: 2 planos ---------- */
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.plano{
+  position:relative;
+  background:var(--superficie);border:1px solid var(--linha);
+  border-radius:var(--raio);padding:30px;
+  transition:transform .22s var(--ease-estado),
+             border-color .22s var(--ease-estado),
+             box-shadow .22s var(--ease-estado);
+}
+.plano:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(2,6,23,.5)}
+.plano--destaque{border-color:rgba(34,211,238,.4)}
+.plano__etiqueta{
+  position:absolute;top:-14px;left:30px;
+  font-family:var(--fonte-mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ciano);color:#0B1120;border-radius:99px;padding:5px 12px;font-weight:500;
+}
+.plano h3{margin:0 0 6px;font-size:1.3rem}
+.plano__para{margin:0 0 20px;color:var(--tinta-3);font-size:15px}
+.plano__preco{display:flex;align-items:baseline;gap:8px;margin:0 0 4px}
+.plano__preco b{font-family:var(--fonte-mono);font-size:2.1rem;font-weight:500;letter-spacing:-.02em}
+.plano__preco span{font-size:14.5px;color:var(--tinta-3)}
+.plano__lista{display:grid;gap:11px;margin:22px 0 26px}
+.plano__lista li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:var(--tinta-2)}
+.plano__lista svg{flex:none;color:var(--ciano);margin-top:4px}
+.plano__acoes{display:grid;gap:12px}
+.plano__acoes .nota{margin:0;text-align:center}
+.precos__nota{
+  margin:26px 0 0;font-size:14.5px;color:var(--tinta-3);max-width:76ch;
+}
+
+/* ---------- migração em 3 linhas ---------- */
+.migracao{border-top:1px solid var(--linha)}
+.migracao__linha{
+  display:grid;grid-template-columns:64px 1fr;gap:22px;
+  padding:30px 0;
+}
+.migracao__linha + .migracao__linha{border-top:1px solid var(--linha)}
+.migracao__num{
+  font-family:var(--fonte-mono);font-size:14px;color:var(--ciano);
+  border:1px solid rgba(34,211,238,.4);border-radius:10px;
+  width:52px;height:52px;display:grid;place-items:center;
+}
+.migracao__conteudo h3{margin:0 0 8px}
+.migracao__conteudo p{margin:0;color:var(--tinta-2);max-width:64ch}
+.migracao__trilha{
+  grid-column:1 / -1;height:2px;background:var(--linha);border-radius:2px;
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .9s var(--ease);
+  transition-delay:calc(var(--i,0) * 110ms);
+}
+.js .revelar.visivel .migracao__trilha{transform:scaleX(1)}
+.js .migracao__linha .migracao__conteudo{
+  opacity:0;transform:translateX(-18px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease);
+  transition-delay:calc(var(--i,0) * 110ms);
+}
+.js .revelar.visivel .migracao__conteudo{opacity:1;transform:none}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:820px}
+.faq__item{border-bottom:1px solid var(--linha)}
+.faq__item:first-child{border-top:1px solid var(--linha)}
+.faq__botao{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:transparent;border:0;cursor:pointer;text-align:left;
+  padding:22px 2px;min-height:60px;
+  font-family:var(--fonte-titulo);font-size:1.06rem;font-weight:600;color:var(--tinta);
+  transition:color .18s var(--ease-estado);
+}
+.faq__botao:hover{color:var(--ciano)}
+.faq__sinal{
+  width:30px;height:30px;flex:none;border-radius:50%;
+  border:1px solid var(--linha-forte);display:grid;place-items:center;
+  color:var(--tinta-2);position:relative;
+  transition:transform .25s var(--ease-estado),border-color .25s var(--ease-estado),color .25s var(--ease-estado);
+}
+.faq__sinal i{position:absolute;background:currentColor;border-radius:2px}
+.faq__sinal i:first-child{width:12px;height:2px}
+.faq__sinal i:last-child{width:2px;height:12px;transition:transform .25s var(--ease-estado)}
+.faq__botao[aria-expanded="true"] .faq__sinal{transform:rotate(90deg);border-color:var(--ciano);color:var(--ciano)}
+.faq__botao[aria-expanded="true"] .faq__sinal i:last-child{transform:scaleY(0)}
+.faq__painel{overflow:hidden;max-height:0;transition:max-height .35s var(--ease-estado)}
+.faq__painel p{padding:0 2px 22px;margin:0;color:var(--tinta-2);max-width:70ch}
+
+/* ---------- teste grátis ---------- */
+.teste__grade{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.teste__passos{display:grid;gap:16px;margin:26px 0 0}
+.teste__passos li{display:flex;gap:13px;align-items:flex-start;font-size:15.5px;color:var(--tinta-2)}
+.teste__passos b{
+  flex:none;font-family:var(--fonte-mono);font-size:14px;color:var(--ciano);
+  border:1px solid rgba(34,211,238,.4);border-radius:8px;
+  width:30px;height:30px;display:grid;place-items:center;
+}
+.cartao-form{
+  background:var(--superficie);border:1px solid var(--linha-forte);
+  border-radius:18px;padding:30px;box-shadow:var(--sombra);
+}
+.campo{margin:0 0 20px}
+.campo__rotulo{
+  display:flex;justify-content:space-between;gap:10px;align-items:baseline;
+  margin:0 0 8px;font-size:14.5px;font-weight:600;color:var(--tinta-2);
+}
+.campo__rotulo span{font-weight:400;font-size:14px;color:var(--tinta-3)}
+.campo input,.campo select,.campo textarea{
+  width:100%;min-height:48px;
+  background:var(--campo);border:1px solid var(--linha-forte);border-radius:10px;
+  padding:12px 14px;color:var(--tinta);
+  font-family:var(--fonte-corpo);font-size:16px;
+  transition:border-color .18s var(--ease-estado),box-shadow .18s var(--ease-estado);
+}
+.campo textarea{min-height:96px;resize:vertical}
+.campo select{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%239FB0C8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:42px;
+}
+.campo input:hover,.campo select:hover,.campo textarea:hover{border-color:rgba(248,250,252,.3)}
+.campo input:focus,.campo select:focus,.campo textarea:focus{
+  outline:3px solid var(--ciano);outline-offset:1px;
+  border-color:var(--ciano);box-shadow:0 0 0 3px rgba(34,211,238,.18);
+}
+.campo__erro{
+  display:flex;align-items:center;gap:8px;
+  min-height:20px;margin:8px 0 0;font-size:14px;color:var(--erro);
+}
+.campo--erro input,.campo--erro select{border-color:#F87171}
+.campo--erro input:focus,.campo--erro select:focus{box-shadow:0 0 0 3px rgba(248,113,113,.2)}
+.campo--ok input,.campo--ok select{border-color:rgba(110,231,183,.55)}
+.campo__estado{
+  display:inline-flex;align-items:center;gap:6px;margin:8px 0 0;
+  font-size:14px;color:var(--ok);
+  opacity:0;transform:scale(.9);
+  transition:opacity .2s var(--ease-estado),transform .2s var(--ease-estado);
+}
+.campo--ok .campo__estado{opacity:1;transform:none}
+.form__nota{margin:16px 0 0;font-size:14px;color:var(--tinta-3)}
+.sucesso{
+  border:1px solid rgba(110,231,183,.4);background:rgba(110,231,183,.07);
+  border-radius:14px;padding:28px;text-align:center;
+}
+.js .sucesso{animation:entraSucesso .5s var(--ease) both}
+@keyframes entraSucesso{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.sucesso__icone{
+  width:52px;height:52px;border-radius:50%;margin:0 auto 16px;
+  border:1px solid rgba(110,231,183,.5);display:grid;place-items:center;color:var(--ok);
+}
+.sucesso h3{margin:0 0 10px}
+.sucesso p{margin:0 auto 20px;color:var(--tinta-2);font-size:15.5px;max-width:42ch}
+
+/* ---------- rodapé ---------- */
+.rodape{border-top:1px solid var(--linha);background:var(--fundo-2);padding:56px 0 30px}
+.rodape__grade{
+  display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;
+  padding-bottom:34px;border-bottom:1px solid var(--linha);
+}
+.rodape p{color:var(--tinta-2);font-size:15.5px;max-width:38ch}
+.rodape h4{
+  font-family:var(--fonte-mono);font-size:14px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-3);
+  margin:0 0 16px;
+}
+.rodape__links{display:grid;gap:12px}
+.rodape__links a{
+  font-size:15.5px;color:var(--tinta-2);min-height:32px;display:inline-flex;align-items:center;
+  transition:color .18s var(--ease-estado);
+}
+.rodape__links a:hover{color:var(--ciano)}
+.rodape__fim{
+  display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:space-between;align-items:center;
+  padding-top:24px;font-size:14.5px;color:var(--tinta-3);
+}
+.rodape__fim a{color:var(--tinta-2);text-decoration:underline;text-underline-offset:4px}
+.rodape__fim a:hover{color:var(--ciano)}
+
+/* ---------- responsivo: 760 e 480 ---------- */
+@media (max-width:760px){
+  body{font-size:16.5px}
+  .secao{padding:64px 0}
+
+  .nav,.nav__acao{display:none}
+  .menu-botao{display:inline-flex}
+  .nav{
+    position:absolute;top:100%;left:0;right:0;
+    display:none;flex-direction:column;align-items:stretch;gap:4px;
+    background:var(--fundo);border-bottom:1px solid var(--linha);
+    padding:14px 22px 20px;box-shadow:0 24px 44px rgba(2,6,23,.55);
+  }
+  .nav.aberto{display:flex}
+  .nav__lista{flex-direction:column;align-items:stretch;gap:2px}
+  .nav__link{min-height:48px;padding:12px 8px;font-size:16px}
+  .nav__link::after{display:none}
+  .nav__acao{display:flex;margin-top:12px}
+  .nav__acao .btn{width:100%;min-height:48px}
+
+  .hero{padding:calc(var(--header-h) + 34px) 0 64px}
+  .hero__grade{grid-template-columns:1fr;gap:44px}
+  .hero__forma--a{top:-160px;right:-170px}
+  .hero__forma--b{display:none}
+  .hero__malha{display:none}
+  .painel-brilho{inset:-14px -8px}
+
+  .grade{grid-template-columns:1fr;gap:18px}
+  .cartao--grande,.cartao--pequeno{grid-column:span 1}
+
+  .planos{grid-template-columns:1fr}
+  .plano--destaque{order:-1}
+
+  .teste__grade{grid-template-columns:1fr;gap:34px}
+  .cartao-form{padding:24px}
+
+  .migracao__linha{grid-template-columns:48px 1fr;gap:16px;padding:24px 0}
+  .migracao__num{width:44px;height:44px}
+
+  .rodape__grade{grid-template-columns:1fr;gap:30px}
+  .rodape p{max-width:none}
+}
+
+@media (max-width:480px){
+  .envolve{padding:0 16px}
+  .btn{width:100%}
+  .hero__ctas{gap:10px}
+  .nav__acao .btn{width:100%}
+  .faixa__topo{flex-direction:column;align-items:flex-start}
+  .plano__etiqueta{left:24px}
+  .painel__corpo{padding:14px 12px 16px;min-height:0}
+  .grafico__nota{font-size:14px}
+}
+
+/* movimento reduzido: desliga tudo que não é essencial */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .entrada,.js .revelar,.js .revelar-item,
+  .js .chip,.js .migracao__conteudo,.js .painel__tela,.js .sucesso{
+    opacity:1!important;transform:none!important;transition:none!important;animation:none!important;
+  }
+  .js .linha{stroke-dashoffset:0!important;transition:none!important}
+  .js .area{opacity:1!important;transition:none!important}
+  .js .barra{transform:scaleY(1)!important;transition:none!important}
+  .js .linha-stat__fill{transform:scaleX(1)!important;transition:none!important}
+  .js .migracao__trilha{transform:scaleX(1)!important;transition:none!important}
+  .painel,.painel-brilho,.painel__vivo i::after{animation:none!important}
+  .btn:hover,.cartao:hover,.chip:hover,.plano:hover,.faq__botao:hover{transform:none!important}
+  .faq__painel{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<a class="na-tela" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="cabecalho" id="topo">
+  <div class="envolve barra-topo">
+    <a class="marca" href="#inicio" aria-label="Sua Marca, página inicial">
+      <span class="marca__selo" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M5 17h5l2-5 3 9 2-5h10" stroke="#22D3EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="marca__texto">Sua Marca<small>Plataforma de operações</small></span>
+    </a>
+
+    <nav class="nav" id="nav-menu" aria-label="Navegação principal">
+      <ul class="nav__lista">
+        <li><a class="nav__link" href="#recursos">Recursos</a></li>
+        <li><a class="nav__link" href="#integracoes">Integrações</a></li>
+        <li><a class="nav__link" href="#precos">Preço</a></li>
+        <li><a class="nav__link" href="#migracao">Migração</a></li>
+        <li><a class="nav__link" href="#duvidas">Dúvidas</a></li>
+      </ul>
+      <div class="nav__acao">
+        <a class="btn btn--ciano" href="#teste">Começar teste grátis</a>
+      </div>
+    </nav>
+
+    <button class="menu-botao" id="menu-botao" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="menu-botao__riscos" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="menu-botao-texto">Menu</span>
+    </button>
+  </div>
+  <div class="progresso" aria-hidden="true"><i id="barra-progresso"></i></div>
+</header>
+
+<main id="conteudo">
+
+<!-- ============ HERÓI: painel de produto mockado em SVG ============ -->
+<section class="hero" id="inicio" aria-labelledby="titulo-hero">
+  <svg class="hero__malha" aria-hidden="true" preserveAspectRatio="none">
+    <defs>
+      <pattern id="malha-hero" width="46" height="46" patternUnits="userSpaceOnUse">
+        <path d="M46 0H0v46" fill="none" stroke="rgba(248,250,252,.05)" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#malha-hero)"></rect>
+  </svg>
+  <span class="hero__forma hero__forma--a" data-parallax="0.16" aria-hidden="true"></span>
+  <span class="hero__forma hero__forma--b" aria-hidden="true"></span>
+
+  <div class="envolve hero__grade">
+    <div>
+      <p class="etiqueta entrada" style="--i:0">Plataforma de operações</p>
+      <h1 class="hero__titulo entrada" id="titulo-hero" style="--i:1">Uma ferramenta que o time usa <b>sem treinamento</b></h1>
+      <p class="hero__sub entrada" style="--i:2">
+        Fila única de trabalho, regras de automação e histórico de cada mudança.
+        Sem planilha paralela e sem reunião para descobrir quem está com o quê.
+      </p>
+      <div class="hero__ctas entrada" style="--i:3">
+        <a class="btn btn--ciano" href="#teste">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h7A2.5 2.5 0 0 1 16 5.5v5A2.5 2.5 0 0 1 13.5 13H8.5L4.8 16c-.5.4-1.3 0-1.3-.7V13a1 1 0 0 1-.5-.9v-6.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          Começar teste grátis
+        </a>
+        <a class="btn btn--contorno" href="#integracoes">Ver integrações</a>
+      </div>
+      <p class="hero__nota entrada" style="--i:4">
+        Teste grátis por [prazo a definir]. Sem cartão de crédito e sem instalação.
+      </p>
+      <ul class="hero__fatos entrada" style="--i:5">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Importação da planilha atual incluída
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Roda no navegador
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__painel entrada entrada--painel" style="--i:3">
+      <span class="painel-brilho" aria-hidden="true"></span>
+      <div class="painel revelar" id="painel">
+        <div class="painel__topo">
+          <span class="painel__pontos" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="painel__url">painel.suamarca.app/operacao</span>
+          <span class="painel__vivo"><i aria-hidden="true"></i>ao vivo</span>
+        </div>
+
+        <div class="painel__abas" role="tablist" aria-label="Painel do produto">
+          <button class="aba" id="aba-visao" role="tab" aria-selected="true" aria-controls="tela-visao" type="button">Visão geral</button>
+          <button class="aba" id="aba-entregas" role="tab" aria-selected="false" aria-controls="tela-entregas" tabindex="-1" type="button">Entregas</button>
+          <button class="aba" id="aba-alertas" role="tab" aria-selected="false" aria-controls="tela-alertas" tabindex="-1" type="button">Alertas</button>
+        </div>
+
+        <div class="painel__corpo">
+          <!-- tela 1: gráfico que desenha -->
+          <div class="painel__tela" id="tela-visao" role="tabpanel" aria-labelledby="aba-visao">
+            <div class="painel__kpis">
+              <div class="kpi"><b>128</b><span>na fila</span></div>
+              <div class="kpi"><b>12</b><span>em revisão</span></div>
+              <div class="kpi"><b>4</b><span>bloqueados</span></div>
+            </div>
+
+            <div class="grafico" id="grafico">
+              <svg viewBox="0 0 500 250" role="img" aria-label="Gráfico de exemplo: itens entregues por dia, de 42 na segunda a 90 no sábado">
+                <g stroke="rgba(248,250,252,.07)" stroke-width="1">
+                  <line x1="40" y1="40" x2="470" y2="40"></line>
+                  <line x1="40" y1="96" x2="470" y2="96"></line>
+                  <line x1="40" y1="152" x2="470" y2="152"></line>
+                  <line x1="40" y1="208" x2="470" y2="208"></line>
+                </g>
+                <g fill="rgba(124,58,237,.28)">
+                  <rect class="barra" x="52" y="166" width="26" height="42" rx="4" style="--i:0"></rect>
+                  <rect class="barra" x="102" y="151" width="26" height="57" rx="4" style="--i:1"></rect>
+                  <rect class="barra" x="152" y="160" width="26" height="48" rx="4" style="--i:2"></rect>
+                  <rect class="barra" x="202" y="136" width="26" height="72" rx="4" style="--i:3"></rect>
+                  <rect class="barra" x="252" y="144" width="26" height="64" rx="4" style="--i:4"></rect>
+                  <rect class="barra" x="302" y="118" width="26" height="90" rx="4" style="--i:5"></rect>
+                  <rect class="barra" x="352" y="129" width="26" height="79" rx="4" style="--i:6"></rect>
+                </g>
+                <path class="area" d="M65 166 L115 151 L165 160 L215 136 L265 144 L315 118 L365 129 L365 208 L65 208 Z" fill="rgba(34,211,238,.10)"></path>
+                <!-- Glow 2 de 2: halo da linha de dado -->
+                <path class="linha" d="M65 166 L115 151 L165 160 L215 136 L265 144 L315 118 L365 129"
+                      fill="none" stroke="#22D3EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                      style="filter:drop-shadow(0 0 5px rgba(34,211,238,.5))"></path>
+                <g fill="#0F172A" stroke="#22D3EE" stroke-width="2.5">
+                  <g class="ponto" tabindex="0" role="img" aria-label="Segunda, 42 itens" data-dia="Segunda" data-valor="42">
+                    <circle cx="65" cy="166" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Terça, 57 itens" data-dia="Terça" data-valor="57">
+                    <circle cx="115" cy="151" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Quarta, 48 itens" data-dia="Quarta" data-valor="48">
+                    <circle cx="165" cy="160" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Quinta, 72 itens" data-dia="Quinta" data-valor="72">
+                    <circle cx="215" cy="136" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Sexta, 64 itens" data-dia="Sexta" data-valor="64">
+                    <circle cx="265" cy="144" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Sábado, 90 itens" data-dia="Sábado" data-valor="90">
+                    <circle cx="315" cy="118" r="4.5"></circle>
+                  </g>
+                  <g class="ponto" tabindex="0" role="img" aria-label="Domingo, 79 itens" data-dia="Domingo" data-valor="79">
+                    <circle cx="365" cy="129" r="4.5"></circle>
+                  </g>
+                </g>
+                <g class="grafico__eixo" text-anchor="middle">
+                  <text x="65" y="232">seg</text>
+                  <text x="115" y="232">ter</text>
+                  <text x="165" y="232">qua</text>
+                  <text x="215" y="232">qui</text>
+                  <text x="265" y="232">sex</text>
+                  <text x="315" y="232">sáb</text>
+                  <text x="365" y="232">dom</text>
+                </g>
+              </svg>
+              <div class="dica" id="dica" hidden></div>
+              <p class="grafico__nota">
+                <span>Itens entregues por dia</span>
+                <span class="mono">dados de exemplo</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- tela 2: lista de entregas -->
+          <div class="painel__tela" id="tela-entregas" role="tabpanel" aria-labelledby="aba-entregas" hidden>
+            <ul class="entregas">
+              <li>
+                <span class="entregas__cara" aria-hidden="true">OP</span>
+                <span class="entregas__nome">Ajuste no fluxo de aprovação<small>responsável: revisor</small></span>
+                <span class="etiqueta-estado etiqueta-estado--ciano">Em revisão</span>
+              </li>
+              <li>
+                <span class="entregas__cara" aria-hidden="true">IM</span>
+                <span class="entregas__nome">Importação da base de clientes<small>responsável: operação</small></span>
+                <span class="etiqueta-estado etiqueta-estado--roxo">Na fila</span>
+              </li>
+              <li>
+                <span class="entregas__cara" aria-hidden="true">RE</span>
+                <span class="entregas__nome">Nova regra de aviso para #operacao<small>responsável: administrador</small></span>
+                <span class="etiqueta-estado etiqueta-estado--ciano">Em revisão</span>
+              </li>
+              <li>
+                <span class="entregas__cara" aria-hidden="true">PE</span>
+                <span class="entregas__nome">Ajuste de permissões do time<small>responsável: administrador</small></span>
+                <span class="etiqueta-estado">Concluído</span>
+              </li>
+            </ul>
+            <p class="painel__legenda">Exemplo de tela do produto.</p>
+          </div>
+
+          <!-- tela 3: estado vazio real -->
+          <div class="painel__tela" id="tela-alertas" role="tabpanel" aria-labelledby="aba-alertas" hidden>
+            <div class="vazio">
+              <svg width="34" height="34" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                <rect x="4.5" y="7.5" width="27" height="21" rx="3" stroke="currentColor" stroke-width="1.8"></rect>
+                <path d="M4.5 13.5h27" stroke="currentColor" stroke-width="1.8"></path>
+                <path d="M11 22.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+              <b>Nenhum alerta ativo</b>
+              <p>Quando uma regra disparar, o aviso aparece aqui com horário e responsável.</p>
+            </div>
+          </div>
+        </div>
+        <p class="painel__legenda" style="padding:0 18px 16px;margin:0">
+          Painel ilustrativo. Os números são dados de exemplo da tela do produto, não resultados de cliente.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ RECURSOS: grid irregular, 1 grande + 2 pequenos, 2 vezes ============ -->
+<section class="secao" id="recursos" aria-labelledby="titulo-recursos">
+  <div class="envolve">
+    <div class="secao-topo revelar">
+      <p class="etiqueta revelar-item" style="--i:0">Recursos</p>
+      <h2 id="titulo-recursos" class="revelar-item" style="--i:1">Feito para o time que já tentou três ferramentas e cansou</h2>
+      <p class="secao-sub revelar-item" style="--i:2">
+        Cada tela resolve uma coisa só. Nada de menu escondido e nada de
+        configuração de duas semanas para o time começar a usar.
+      </p>
+    </div>
+
+    <div class="grade revelar">
+      <div class="grupo">
+        <article class="cartao cartao--grande revelar-item" style="--i:0">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M4 6.5h16M4 12h16M4 17.5h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="18.5" cy="17.5" r="2.2" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </span>
+          <h3>Fila única de trabalho</h3>
+          <p>
+            Tudo que o time precisa em uma lista: estado, responsável e próxima
+            ação. Arrastar para mudar de estado e o histórico registra sozinho.
+          </p>
+          <ul class="cartao__lista">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Estado, responsável e prazo visíveis sem abrir o item</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Filtros salvos por pessoa, não por tela</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Funciona com a planilha que o time já tem</span>
+            </li>
+          </ul>
+          <div class="cartao__mini" aria-hidden="true">
+            <span class="salinha salinha--ciano">Em revisão</span>
+            <span class="salinha salinha--roxo">Na fila</span>
+            <span class="salinha">Bloqueado</span>
+            <span class="salinha">Concluído</span>
+          </div>
+        </article>
+
+        <article class="cartao cartao--pequeno revelar-item" style="--i:1">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="6" width="18" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M7 10h2M11 10h2M15 10h2M7 14h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h3>Atalhos de teclado</h3>
+          <p>Mover, atribuir e comentar sem tirar a mão do teclado. O time aprende em um dia de uso.</p>
+          <div class="cartao__mini" aria-hidden="true">
+            <span class="salinha">J e K: navegar</span>
+            <span class="salinha">Enter: abrir</span>
+          </div>
+        </article>
+
+        <article class="cartao cartao--pequeno revelar-item" style="--i:2">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="6" cy="6" r="2.6" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="18" cy="18" r="2.6" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8.6 6h4.9a3 3 0 0 1 3 3v6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h3>Regras de automação</h3>
+          <p>Quando um item entra em revisão, avisa o canal do time e passa o responsável. A regra é escrita uma vez.</p>
+          <div class="cartao__mini" aria-hidden="true">
+            <span class="salinha salinha--ciano">Entra em Em revisão</span>
+            <span class="salinha">avisa #operacao</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="grupo">
+        <article class="cartao cartao--pequeno revelar-item" style="--i:0">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="9" cy="8.5" r="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3.5 19c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M16 8.5h5M18.5 6v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h3>Permissões por time</h3>
+          <p>Quem vê o quê, definido por grupo. Convidado externo acessa só o projeto dele.</p>
+        </article>
+
+        <article class="cartao cartao--pequeno revelar-item" style="--i:1">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="10.5" cy="10.5" r="6" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M15 15l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h3>Busca que acha</h3>
+          <p>Filtre por estado, responsável ou texto. Os filtros que você usa todo dia ficam salvos.</p>
+        </article>
+
+        <article class="cartao cartao--grande revelar-item" style="--i:2">
+          <span class="cartao__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Histórico que o time confia</h3>
+          <p>
+            Cada mudança guardada com autor, hora e o que mudou. A discussão de
+            semana passada para na tela de histórico, sem perguntar para ninguém.
+          </p>
+          <div class="cartao__barras" aria-hidden="true">
+            <div class="linha-stat">
+              <span class="linha-stat__topo"><span>Itens com histórico completo</span><b>92%</b></span>
+              <span class="linha-stat__trilha"><i class="linha-stat__fill" style="--p:.92;--i:0"></i></span>
+            </div>
+            <div class="linha-stat">
+              <span class="linha-stat__topo"><span>Regras de automação ativas</span><b>8</b></span>
+              <span class="linha-stat__trilha"><i class="linha-stat__fill" style="--p:.64;--i:1"></i></span>
+            </div>
+          </div>
+          <div class="cartao__mini" aria-hidden="true">
+            <span class="salinha">14:02 · mudou estado</span>
+            <span class="salinha">11:15 · criou regra</span>
+            <span class="salinha">10:58 · mudou permissão</span>
+          </div>
+          <p class="nota" style="margin:14px 0 0;font-size:14px">
+            Valores de exemplo de tela, não métrica de cliente.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTEGRAÇÕES EM FAIXA ============ -->
+<section class="faixa" id="integracoes" aria-labelledby="titulo-integracoes">
+  <div class="envolve">
+    <div class="faixa__topo revelar">
+      <div>
+        <p class="etiqueta revelar-item" style="--i:0">Integrações</p>
+        <h2 id="titulo-integracoes" class="revelar-item" style="--i:1">Conecta com o que o time já usa</h2>
+      </div>
+      <a class="btn btn--contorno revelar-item" style="--i:2" href="#teste">Falar com vendas</a>
+    </div>
+
+    <div class="faixa__rolo revelar">
+      <span class="chip revelar-item" style="--i:0">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="10" r="2.2" stroke="currentColor" stroke-width="1.7"/></svg>
+        Repositórios de código
+      </span>
+      <span class="chip revelar-item" style="--i:1">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M7 10h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Canais de conversa
+      </span>
+      <span class="chip revelar-item" style="--i:2">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 16L10 4l6 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Quadros de tarefas
+      </span>
+      <span class="chip revelar-item" style="--i:3">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3l6 3.5v5c0 3.2-2.5 4.8-6 5.5-3.5-.7-6-2.3-6-5.5v-5L10 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Armazenamento de arquivos
+      </span>
+      <span class="chip revelar-item" style="--i:4">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h4l2-4 2 8 2-4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Monitoramento de erros
+      </span>
+      <span class="chip revelar-item" style="--i:5">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.7"/><circle cx="13.5" cy="13" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+        Automação entre apps
+      </span>
+      <span class="chip revelar-item" style="--i:6">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 8.5h13" stroke="currentColor" stroke-width="1.7"/></svg>
+        Calendário do time
+      </span>
+      <span class="chip revelar-item" style="--i:7">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h7A2.5 2.5 0 0 1 16 5.5v5A2.5 2.5 0 0 1 13.5 13H8.5L4.8 16c-.5.4-1.3 0-1.3-.7V13a1 1 0 0 1-.5-.9v-6.6Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Avisos por e-mail
+      </span>
+    </div>
+
+    <p class="faixa__nota revelar">
+      Categorias de exemplo. A lista real de integrações e o nome de cada
+      serviço entram na versão final, com o que o cliente usa de fato.
+    </p>
+  </div>
+</section>
+
+<!-- ============ PREÇO: 2 planos, nunca 3 ============ -->
+<section class="secao" id="precos" aria-labelledby="titulo-precos">
+  <div class="envolve">
+    <div class="secao-topo revelar">
+      <p class="etiqueta revelar-item" style="--i:0">Preço</p>
+      <h2 id="titulo-precos" class="revelar-item" style="--i:1">Dois planos. A escolha é pelo tamanho do time.</h2>
+      <p class="secao-sub revelar-item" style="--i:2">
+        Os dois planos têm as mesmas funções. A diferença está em volume de
+        usuários, tempo de histórico e tipo de suporte.
+      </p>
+    </div>
+
+    <div class="planos revelar">
+      <article class="plano revelar-item" style="--i:0">
+        <h3>Por time</h3>
+        <p class="plano__para">Para times que estão saindo da planilha.</p>
+        <p class="plano__preco"><b>[R$ 00]</b><span>por usuário, por mês</span></p>
+        <p class="nota">Valor a definir na versão final.</p>
+        <ul class="plano__lista">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Fila, automações e busca completas</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Até [10] usuários</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Histórico de [90] dias</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Importação de planilha e CSV</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Suporte por e-mail</span>
+          </li>
+        </ul>
+        <div class="plano__acoes">
+          <a class="btn btn--contorno btn--largo" href="#teste">Começar teste grátis</a>
+          <p class="nota">Sem cartão de crédito no teste.</p>
+        </div>
+      </article>
+
+      <article class="plano plano--destaque revelar-item" style="--i:1">
+        <span class="plano__etiqueta">Para times maiores</span>
+        <h3>Empresa</h3>
+        <p class="plano__para">Para operação com vários times e regras próprias.</p>
+        <p class="plano__preco"><b>[R$ 00]</b><span>a combinar</span></p>
+        <p class="nota">Valor a definir na versão final.</p>
+        <ul class="plano__lista">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Tudo do plano Por time</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Usuários ilimitados [definir]</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Histórico sem limite [definir]</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Permissões por grupo e SSO [definir]</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Suporte com horário marcado</span>
+          </li>
+        </ul>
+        <div class="plano__acoes">
+          <a class="btn btn--ciano btn--largo" href="#teste">Falar com vendas</a>
+          <p class="nota">Ou <a href="#teste" style="color:var(--tinta-2);text-decoration:underline;text-underline-offset:3px">começar teste grátis</a> sem falar com ninguém.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="precos__nota revelar">
+      Valores de exemplo: [R$ 00]. Nenhum preço foi definido ainda. A
+      disponibilidade do serviço é [99,9% de disponibilidade], dado a confirmar
+      pelo cliente antes da publicação.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============ MIGRAÇÃO EM 3 LINHAS ============ -->
+<section class="secao secao--alt" id="migracao" aria-labelledby="titulo-migracao">
+  <div class="envolve">
+    <div class="secao-topo revelar">
+      <p class="etiqueta revelar-item" style="--i:0">Migração</p>
+      <h2 id="titulo-migracao" class="revelar-item" style="--i:1">Sair da ferramenta anterior sem parar o time</h2>
+      <p class="secao-sub revelar-item" style="--i:2">
+        A migração acontece em três passos, com o time, e você decide quando
+        desligar a ferramenta antiga.
+      </p>
+    </div>
+
+    <div class="migracao revelar">
+      <div class="migracao__linha" style="--i:0">
+        <span class="migracao__num mono" aria-hidden="true">01</span>
+        <div class="migracao__conteudo">
+          <h3>A gente puxa os dados</h3>
+          <p>
+            Importador de planilha, CSV ou da ferramenta anterior. O time confere
+            o resultado antes de usar no dia a dia.
+          </p>
+        </div>
+        <span class="migracao__trilha" aria-hidden="true"></span>
+      </div>
+
+      <div class="migracao__linha" style="--i:1">
+        <span class="migracao__num mono" aria-hidden="true">02</span>
+        <div class="migracao__conteudo">
+          <h3>Configuração acompanhada</h3>
+          <p>
+            Uma sessão de setup para criar as regras e as permissões do jeito que
+            o time trabalha hoje, sem reinventar o processo.
+          </p>
+        </div>
+        <span class="migracao__trilha" aria-hidden="true"></span>
+      </div>
+
+      <div class="migracao__linha" style="--i:2">
+        <span class="migracao__num mono" aria-hidden="true">03</span>
+        <div class="migracao__conteudo">
+          <h3>Paralelo até você confiar</h3>
+          <p>
+            As duas ferramentas rodam juntas por [período a definir]. Nada é
+            cancelado antes da hora e a exportação fica disponível.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ: 5 PERGUNTAS ============ -->
+<section class="secao" id="duvidas" aria-labelledby="titulo-duvidas">
+  <div class="envolve">
+    <div class="secao-topo revelar">
+      <p class="etiqueta revelar-item" style="--i:0">Dúvidas</p>
+      <h2 id="titulo-duvidas" class="revelar-item" style="--i:1">O que o time técnico pergunta primeiro</h2>
+    </div>
+
+    <div class="faq revelar">
+      <div class="faq__item">
+        <h3>
+          <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-b1">
+            Integra com o que a gente já usa?
+            <span class="faq__sinal" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="faq-1" role="region" aria-labelledby="faq-b1">
+          <p>
+            Sim, com as categorias mostradas na faixa de integrações, por token de
+            acesso. Se a ferramenta que vocês usam não está na lista, dá para
+            conectar por API e webhook. A disponibilidade real de cada integração
+            é confirmada na versão final.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <h3>
+          <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-b2">
+            Onde ficam os dados do time?
+            <span class="faq__sinal" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="faq-2" role="region" aria-labelledby="faq-b2">
+          <p>
+            Em servidores do cliente final, na região definida em contrato. Neste
+            modelo de demonstração a região e o fornecedor de nuvem são
+            placeholders: [região] e [fornecedor]. As certificações, se houver,
+            entram como [certificações a confirmar].
+          </p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <h3>
+          <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-b3">
+            Tem limite de usuários?
+            <span class="faq__sinal" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="faq-3" role="region" aria-labelledby="faq-b3">
+          <p>
+            O plano Por time tem limite de [10] usuários e o plano Empresa é sem
+            limite [definir]. Nada de cobrança por usuário escondida: o preço é o
+            que está na tabela.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <h3>
+          <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-b4">
+            Como cancela?
+            <span class="faq__sinal" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="faq-4" role="region" aria-labelledby="faq-b4">
+          <p>
+            Pelo painel, sem falar com vendedor. Os dados ficam disponíveis para
+            exportação por [período a definir] depois do cancelamento, e a
+            exportação sai em CSV.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <h3>
+          <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-b5">
+            Precisa instalar algo ou treinar o time?
+            <span class="faq__sinal" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </h3>
+        <div class="faq__painel" id="faq-5" role="region" aria-labelledby="faq-b5">
+          <p>
+            Funciona no navegador, sem instalação. O treinamento é opcional: para
+            a maioria dos times, a sessão de setup já é suficiente para começar a
+            usar no mesmo dia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTE GRÁTIS COM FORMULÁRIO VALIDADO ============ -->
+<section class="secao secao--alt" id="teste" aria-labelledby="titulo-teste">
+  <div class="envolve">
+    <div class="teste__grade">
+      <div class="revelar">
+        <p class="etiqueta revelar-item" style="--i:0">Teste grátis</p>
+        <h2 id="titulo-teste" class="revelar-item" style="--i:1">Teste com os dados do seu time</h2>
+        <p class="secao-sub revelar-item" style="--i:2">
+          O teste começa com a importação da planilha atual. Se não fizer
+          sentido, é só cancelar pelo painel.
+        </p>
+        <ul class="teste__passos revelar-item" style="--i:3">
+          <li>
+            <b aria-hidden="true">1</b>
+            <span>A gente confirma o e-mail e sugere um horário para a sessão de setup.</span>
+          </li>
+          <li>
+            <b aria-hidden="true">2</b>
+            <span>A sessão cria as regras e as permissões junto com o time.</span>
+          </li>
+          <li>
+            <b aria-hidden="true">3</b>
+            <span>O teste roda por [prazo a definir], com a ferramenta anterior em paralelo.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cartao-form revelar">
+        <form id="form-teste" novalidate>
+          <div class="campo" data-campo="nome">
+            <label class="campo__rotulo" for="campo-nome">Nome <span>como podemos te chamar</span></label>
+            <input type="text" id="campo-nome" name="nome" autocomplete="name" placeholder="Nome e sobrenome" aria-describedby="erro-nome estado-nome">
+            <p class="campo__erro" id="erro-nome" aria-live="polite"></p>
+            <span class="campo__estado" id="estado-nome">
+              <svg width="13" height="13" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Nome ok
+            </span>
+          </div>
+
+          <div class="campo" data-campo="email">
+            <label class="campo__rotulo" for="campo-email">E-mail <span>corporativo, de preferência</span></label>
+            <input type="email" id="campo-email" name="email" autocomplete="email" placeholder="voce@empresa.com" aria-describedby="erro-email estado-email">
+            <p class="campo__erro" id="erro-email" aria-live="polite"></p>
+            <span class="campo__estado" id="estado-email">
+              <svg width="13" height="13" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              E-mail ok
+            </span>
+          </div>
+
+          <div class="campo" data-campo="time">
+            <label class="campo__rotulo" for="campo-time">Tamanho do time <span>quem vai usar todo dia</span></label>
+            <select id="campo-time" name="time" aria-describedby="erro-time estado-time">
+              <option value="">Selecione uma faixa</option>
+              <option value="1-5">De 1 a 5 pessoas</option>
+              <option value="6-20">De 6 a 20 pessoas</option>
+              <option value="21-100">De 21 a 100 pessoas</option>
+              <option value="100+">Mais de 100 pessoas</option>
+            </select>
+            <p class="campo__erro" id="erro-time" aria-live="polite"></p>
+            <span class="campo__estado" id="estado-time">
+              <svg width="13" height="13" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l3.5 3.5L15 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tamanho ok
+            </span>
+          </div>
+
+          <div class="campo" data-campo="mensagem">
+            <label class="campo__rotulo" for="campo-mensagem">O que o time faz hoje? <span>opcional</span></label>
+            <textarea id="campo-mensagem" name="mensagem" placeholder="Planilha, outra ferramenta, e-mail e conversa..." aria-describedby="erro-mensagem"></textarea>
+            <p class="campo__erro" id="erro-mensagem" aria-live="polite"></p>
+          </div>
+
+          <button class="btn btn--ciano btn--largo" type="submit">
+            Começar teste grátis
+          </button>
+          <p class="form__nota">
+            Formulário de demonstração: valida de verdade, mas não envia para
+            lugar nenhum. A confirmação aparece na tela.
+          </p>
+        </form>
+
+        <div class="sucesso" id="teste-sucesso" role="status" tabindex="-1" hidden>
+          <span class="sucesso__icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Formulário validado</h3>
+          <p>
+            Os campos passaram na validação. Em um site real, os dados iriam para
+            o cliente. Neste modelo, nada foi enviado e a confirmação é esta tela.
+          </p>
+          <button class="btn btn--contorno" type="button" id="btn-outra-vez">Preencher de novo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="envolve">
+    <div class="rodape__grade">
+      <div>
+        <a class="marca" href="#inicio" aria-label="Sua Marca, voltar ao início">
+          <span class="marca__selo" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M5 17h5l2-5 3 9 2-5h10" stroke="#22D3EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="marca__texto">Sua Marca<small>Plataforma de operações</small></span>
+        </a>
+        <p style="margin-top:16px">
+          Modelo de demonstração de landing page para mostruário de agência.
+          Todos os dados, nomes e contatos são placeholders.
+        </p>
+      </div>
+
+      <nav aria-label="Seções da página">
+        <h4>Seções</h4>
+        <div class="rodape__links">
+          <a href="#recursos">Recursos</a>
+          <a href="#integracoes">Integrações</a>
+          <a href="#precos">Preço</a>
+          <a href="#migracao">Migração</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a href="#teste">Teste grátis</a>
+        </div>
+      </nav>
+
+      <div>
+        <h4>Contato do cliente</h4>
+        <div class="rodape__links">
+          <span style="font-size:15.5px;color:var(--tinta-2)">[seu@email.com]</span>
+          <span style="font-size:15.5px;color:var(--tinta-2)">[(00) 00000-0000]</span>
+          <span style="font-size:15.5px;color:var(--tinta-2)">[endereço]</span>
+        </div>
+        <p style="margin-top:14px;font-size:14px;color:var(--tinta-3)">
+          Dados de contato do cliente entram na versão final.
+        </p>
+      </div>
+    </div>
+
+    <div class="rodape__fim">
+      <p style="margin:0">
+        Modelo de demonstração por
+        <a href="../index.html">Kelvin Oliveira</a>
+      </p>
+      <p style="margin:0">
+        <a href="../index.html">Voltar ao hub</a> ·
+        <a href="#topo">Voltar ao topo</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var doc = document;
+  var corpo = doc.body;
+  var mqReduz = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mqMesa = window.matchMedia('(min-width: 761px)');
+
+  /* ---------- 1. entrada de página, escalonada, sem piscar ---------- */
+  function paginaPronta() {
+    corpo.classList.add('pronto');
+  }
+  if (doc.readyState === 'complete') {
+    paginaPronta();
+  } else {
+    window.addEventListener('load', paginaPronta);
+  }
+  // rede de segurança: se o load demorar, a página entra do mesmo jeito
+  window.setTimeout(paginaPronta, 1200);
+
+  /* ---------- 2. scroll reveal com IntersectionObserver, escalonado por --i ---------- */
+  var observaveis = doc.querySelectorAll('.revelar');
+  function revelarTudo() {
+    observaveis.forEach(function (alvo) { alvo.classList.add('visivel'); });
+  }
+  if ('IntersectionObserver' in window && !mqReduz.matches) {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visivel');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    observaveis.forEach(function (alvo) { observador.observe(alvo); });
+  } else {
+    revelarTudo();
+  }
+
+  /* ---------- 3. cabeçalho que reage ao scroll, barra de progresso e parallax, tudo em rAF ---------- */
+  var cabecalho = doc.querySelector('.cabecalho');
+  var barra = doc.getElementById('barra-progresso');
+  var camadas = Array.prototype.slice.call(doc.querySelectorAll('[data-parallax]'));
+  var agendado = false;
+
+  function desenhaRolagem() {
+    agendado = false;
+    var y = window.pageYOffset || doc.documentElement.scrollTop || 0;
+
+    if (cabecalho) {
+      cabecalho.classList.toggle('rolou', y > 12);
+    }
+    if (barra) {
+      var total = doc.documentElement.scrollHeight - window.innerHeight;
+      var fracao = total > 0 ? Math.min(y / total, 1) : 0;
+      barra.style.transform = 'scaleX(' + fracao.toFixed(4) + ')';
+    }
+    // parallax leve (fator 0.16), só em mesa e sem movimento reduzido
+    if (camadas.length) {
+      if (!mqMesa.matches || mqReduz.matches) {
+        camadas.forEach(function (camada) { camada.style.transform = ''; });
+      } else {
+        camadas.forEach(function (camada) {
+          var fator = parseFloat(camada.getAttribute('data-parallax')) || 0.16;
+          camada.style.transform = 'translate3d(0,' + (y * fator).toFixed(2) + 'px,0)';
+        });
+      }
+    }
+  }
+
+  function naRolagem() {
+    if (!agendado) {
+      agendado = true;
+      window.requestAnimationFrame(desenhaRolagem);
+    }
+  }
+
+  window.addEventListener('scroll', naRolagem, { passive: true });
+  window.addEventListener('resize', naRolagem);
+  desenhaRolagem();
+
+  /* ---------- 4. menu mobile: abre, fecha com Escape, fecha ao clicar em link ---------- */
+  var botaoMenu = doc.getElementById('menu-botao');
+  var menu = doc.getElementById('nav-menu');
+  var textoMenu = doc.getElementById('menu-botao-texto');
+
+  function fechaMenu() {
+    if (!menu) { return; }
+    menu.classList.remove('aberto');
+    if (botaoMenu) { botaoMenu.setAttribute('aria-expanded', 'false'); }
+    if (textoMenu) { textoMenu.textContent = 'Menu'; }
+  }
+  function abreMenu() {
+    if (!menu) { return; }
+    menu.classList.add('aberto');
+    if (botaoMenu) { botaoMenu.setAttribute('aria-expanded', 'true'); }
+    if (textoMenu) { textoMenu.textContent = 'Fechar'; }
+  }
+
+  if (botaoMenu && menu) {
+    botaoMenu.addEventListener('click', function () {
+      if (menu.classList.contains('aberto')) {
+        fechaMenu();
+      } else {
+        abreMenu();
+      }
+    });
+    doc.addEventListener('keydown', function (evento) {
+      if (evento.key === 'Escape' && menu.classList.contains('aberto')) {
+        fechaMenu();
+        botaoMenu.focus();
+      }
+    });
+    menu.addEventListener('click', function (evento) {
+      if (evento.target.closest('a')) {
+        fechaMenu();
+      }
+    });
+    // ao voltar para o desktop, o menu não pode ficar aberto
+    var observaMesa = function (evento) {
+      if (evento.matches) { fechaMenu(); }
+    };
+    if (mqMesa.addEventListener) {
+      mqMesa.addEventListener('change', observaMesa);
+    } else if (mqMesa.addListener) {
+      mqMesa.addListener(observaMesa);
+    }
+  }
+
+  /* ---------- 5. painel do produto: abas de verdade + tooltip real no gráfico ---------- */
+  var abas = Array.prototype.slice.call(doc.querySelectorAll('[role="tab"]'));
+
+  function ativaAba(aba) {
+    abas.forEach(function (outra) {
+      var selecionada = outra === aba;
+      outra.setAttribute('aria-selected', selecionada ? 'true' : 'false');
+      outra.setAttribute('tabindex', selecionada ? '0' : '-1');
+      var tela = doc.getElementById(outra.getAttribute('aria-controls'));
+      if (tela) {
+        if (selecionada) {
+          tela.removeAttribute('hidden');
+          // reinicia a animação de entrada da tela
+          tela.style.animation = 'none';
+          void tela.offsetWidth;
+          tela.style.animation = '';
+        } else {
+          tela.setAttribute('hidden', '');
+        }
+      }
+    });
+  }
+
+  abas.forEach(function (aba, indice) {
+    aba.addEventListener('click', function () { ativaAba(aba); });
+    aba.addEventListener('keydown', function (evento) {
+      var alvo = null;
+      if (evento.key === 'ArrowRight') { alvo = abas[(indice + 1) % abas.length]; }
+      if (evento.key === 'ArrowLeft') { alvo = abas[(indice - 1 + abas.length) % abas.length]; }
+      if (evento.key === 'Home') { alvo = abas[0]; }
+      if (evento.key === 'End') { alvo = abas[abas.length - 1]; }
+      if (alvo) {
+        evento.preventDefault();
+        ativaAba(alvo);
+        alvo.focus();
+      }
+    });
+  });
+
+  // tooltip real: mostra dia e valor do ponto do gráfico
+  var areaGrafico = doc.getElementById('grafico');
+  var dica = doc.getElementById('dica');
+
+  function escondeDica() {
+    if (dica) { dica.hidden = true; }
+  }
+
+  if (areaGrafico && dica) {
+    var pontos = areaGrafico.querySelectorAll('.ponto');
+    Array.prototype.forEach.call(pontos, function (ponto) {
+      function mostra() {
+        var caixa = areaGrafico.getBoundingClientRect();
+        var alvo = ponto.getBoundingClientRect();
+        dica.innerHTML = '';
+        var forte = doc.createElement('b');
+        forte.textContent = ponto.getAttribute('data-dia');
+        var texto = doc.createElement('span');
+        texto.textContent = ponto.getAttribute('data-valor') + ' itens';
+        dica.appendChild(forte);
+        dica.appendChild(texto);
+        dica.hidden = false;
+        dica.style.left = Math.round(alvo.left - caixa.left + alvo.width / 2) + 'px';
+        dica.style.top = Math.round(alvo.top - caixa.top) + 'px';
+      }
+      ponto.addEventListener('mouseenter', mostra);
+      ponto.addEventListener('mouseleave', escondeDica);
+      ponto.addEventListener('focus', mostra);
+      ponto.addEventListener('blur', escondeDica);
+    });
+    areaGrafico.addEventListener('mouseleave', escondeDica);
+  }
+
+  /* ---------- 6. FAQ: acordeão com transição de altura real ---------- */
+  var botoesFaq = Array.prototype.slice.call(doc.querySelectorAll('.faq__botao'));
+
+  function fechaItem(botao) {
+    var painel = doc.getElementById(botao.getAttribute('aria-controls'));
+    botao.setAttribute('aria-expanded', 'false');
+    if (!painel) { return; }
+    painel.style.maxHeight = painel.scrollHeight + 'px';
+    void painel.offsetWidth;
+    painel.style.maxHeight = '0px';
+  }
+
+  function abreItem(botao) {
+    var painel = doc.getElementById(botao.getAttribute('aria-controls'));
+    botao.setAttribute('aria-expanded', 'true');
+    if (!painel) { return; }
+    painel.style.maxHeight = painel.scrollHeight + 'px';
+  }
+
+  botoesFaq.forEach(function (botao) {
+    var painel = doc.getElementById(botao.getAttribute('aria-controls'));
+    if (painel) {
+      painel.style.maxHeight = '0px';
+      // depois da transição, altura automática para o texto refluir
+      painel.addEventListener('transitionend', function (evento) {
+        if (evento.propertyName !== 'max-height') { return; }
+        if (botao.getAttribute('aria-expanded') === 'true') {
+          painel.style.maxHeight = 'none';
+        }
+      });
+    }
+    botao.addEventListener('click', function () {
+      var aberto = botao.getAttribute('aria-expanded') === 'true';
+      botoesFaq.forEach(function (outro) {
+        if (outro !== botao && outro.getAttribute('aria-expanded') === 'true') {
+          fechaItem(outro);
+        }
+      });
+      if (aberto) {
+        fechaItem(botao);
+      } else {
+        abreItem(botao);
+      }
+    });
+  });
+
+  /* ---------- 7. formulário: validação por campo e estado de sucesso ---------- */
+  var formulario = doc.getElementById('form-teste');
+  var sucesso = doc.getElementById('teste-sucesso');
+  var botaoOutraVez = doc.getElementById('btn-outra-vez');
+
+  var iconeErro = '<svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7.2" stroke="currentColor" stroke-width="1.7"/><path d="M9 5.5v.5M9 8v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+  function caixaDoCampo(nome) {
+    return formulario.querySelector('[data-campo="' + nome + '"]');
+  }
+  function marcaErro(nome, mensagem) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.remove('campo--ok');
+    caixa.classList.add('campo--erro');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.innerHTML = iconeErro + '<span>' + mensagem + '</span>'; }
+    var controle = caixa.querySelector('input, select, textarea');
+    if (controle) { controle.setAttribute('aria-invalid', 'true'); }
+  }
+  function marcaOk(nome) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.remove('campo--erro');
+    caixa.classList.add('campo--ok');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.textContent = ''; }
+    var controle = caixa.querySelector('input, select, textarea');
+    if (controle) { controle.removeAttribute('aria-invalid'); }
+  }
+  function limpaCampo(nome) {
+    var caixa = caixaDoCampo(nome);
+    if (!caixa) { return; }
+    caixa.classList.remove('campo--erro', 'campo--ok');
+    var alvo = caixa.querySelector('.campo__erro');
+    if (alvo) { alvo.textContent = ''; }
+    var controle = caixa.querySelector('input, select, textarea');
+    if (controle) { controle.removeAttribute('aria-invalid'); }
+  }
+
+  var regras = {
+    nome: function (valor) {
+      var nome = valor.trim();
+      if (!nome) { return 'Informe o seu nome.'; }
+      if (nome.length < 3) { return 'Escreva o nome completo, com nome e sobrenome.'; }
+      if (nome.indexOf(' ') < 0) { return 'Inclua também o sobrenome.'; }
+      return '';
+    },
+    email: function (valor) {
+      var email = valor.trim();
+      if (!email) { return 'Informe um e-mail para contato.'; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { return 'E-mail inválido. Confira o endereço.'; }
+      return '';
+    },
+    time: function (valor) {
+      if (!valor) { return 'Escolha a faixa de tamanho do time.'; }
+      return '';
+    },
+    mensagem: function () { return ''; }
+  };
+
+  function validaCampo(nome) {
+    var controle = doc.getElementById('campo-' + nome);
+    if (!controle) { return true; }
+    var mensagem = regras[nome](controle.value);
+    if (mensagem) {
+      marcaErro(nome, mensagem);
+      return false;
+    }
+    marcaOk(nome);
+    return true;
+  }
+
+  if (formulario && sucesso) {
+    Object.keys(regras).forEach(function (nome) {
+      var controle = doc.getElementById('campo-' + nome);
+      if (!controle) { return; }
+      controle.addEventListener('blur', function () { validaCampo(nome); });
+      controle.addEventListener('input', function () {
+        var caixa = caixaDoCampo(nome);
+        if (caixa && caixa.classList.contains('campo--erro')) { validaCampo(nome); }
+      });
+      controle.addEventListener('change', function () {
+        var caixa = caixaDoCampo(nome);
+        if (caixa && caixa.classList.contains('campo--erro')) { validaCampo(nome); }
+      });
+    });
+
+    formulario.addEventListener('submit', function (evento) {
+      evento.preventDefault();
+      var nomes = Object.keys(regras);
+      var valido = true;
+      var primeiroRuim = null;
+
+      nomes.forEach(function (nome) {
+        var ok = validaCampo(nome);
+        if (!ok) {
+          valido = false;
+          if (!primeiroRuim) { primeiroRuim = doc.getElementById('campo-' + nome); }
+        }
+      });
+
+      if (!valido) {
+        if (primeiroRuim) { primeiroRuim.focus(); }
+        return;
+      }
+
+      // não envia para lugar nenhum: confirma na tela
+      formulario.hidden = true;
+      sucesso.hidden = false;
+      sucesso.focus();
+    });
+
+    if (botaoOutraVez) {
+      botaoOutraVez.addEventListener('click', function () {
+        formulario.reset();
+        Object.keys(regras).forEach(function (nome) { limpaCampo(nome); });
+        sucesso.hidden = true;
+        formulario.hidden = false;
+        var nome = doc.getElementById('campo-nome');
+        if (nome) { nome.focus(); }
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

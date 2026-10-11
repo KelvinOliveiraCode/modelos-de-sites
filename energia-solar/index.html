@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energia solar para reduzir a conta de luz | Sua Marca</title>
+<meta name="description" content="Simulação online de energia solar: informe seu consumo médio mensal e o valor da conta para estimar economia e payback antes de fechar o projeto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7FAF7;
+  --surface:#FFFFFF;
+  --ink:#12261A;
+  --green:#2E7D32;
+  --green-d:#1B5E20;
+  --yellow:#FFD600;
+  --blue:#0277BD;
+  --blue-d:#01579B;
+  --line:#DCE8DD;
+  --muted:#3E5544;
+  --ease-in:cubic-bezier(.22,1,.36,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+  --wrap:1080px;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:400 16px/1.6 Inter,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+h1,h2,h3{font-family:"Barlow Condensed",Inter,sans-serif;font-weight:700;line-height:1.05;margin:0;letter-spacing:.01em}
+h1{font-size:clamp(2.3rem,8.4vw,4.1rem);text-transform:uppercase}
+h2{font-size:clamp(1.85rem,6vw,2.7rem);text-transform:uppercase}
+h3{font-size:1.15rem;font-weight:600;letter-spacing:.02em}
+p{margin:0}
+a{color:var(--blue-d)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+/* header */
+.hdr{
+  position:fixed;inset:0 0 auto;z-index:60;
+  transition:background-color .25s var(--ease-state),box-shadow .25s var(--ease-state),padding .25s var(--ease-state);
+  background:rgba(247,250,247,0);
+  padding:12px 0;
+}
+.hdr--down{background:rgba(247,250,247,.94);box-shadow:0 1px 0 var(--line),0 10px 24px rgba(18,38,26,.08);padding:6px 0}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.35rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+.brand svg{flex:0 0 auto}
+.nav ul{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
+.nav a{
+  display:inline-block;padding:10px 12px;min-height:44px;
+  color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;
+  border-radius:8px;
+  transition:color .18s var(--ease-state),background-color .18s var(--ease-state);
+}
+.nav a:hover{color:var(--green-d);background:rgba(46,125,50,.09)}
+.hdr__cta{display:none}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:12px 22px;border:0;border-radius:10px;cursor:pointer;
+  font:600 1rem Inter,sans-serif;text-decoration:none;text-align:center;
+  transition:background-color .2s var(--ease-state),color .2s var(--ease-state),transform .2s var(--ease-state),box-shadow .2s var(--ease-state);
+}
+.btn--green{background:var(--green);color:#FFFFFF}
+.btn--green:hover{background:var(--green-d);transform:translateY(-1px);box-shadow:0 10px 22px rgba(27,94,32,.28)}
+.btn--ink{background:var(--ink);color:#FFFFFF}
+.btn--ink:hover{background:#000000;transform:translateY(-1px)}
+.btn--sm{min-height:44px;padding:10px 18px;font-size:.9rem}
+.btn--ghost{background:transparent;color:var(--green-d);border:2px solid var(--green)}
+.btn--ghost:hover{background:rgba(46,125,50,.1)}
+.btn--full{width:100%}
+.navbtn{
+  display:none;width:48px;height:48px;border:2px solid var(--ink);border-radius:10px;
+  background:var(--surface);cursor:pointer;padding:0;
+}
+.navbtn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;transition:transform .25s var(--ease-state),opacity .25s var(--ease-state)}
+.navbtn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.navbtn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.navbtn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:112px 0 56px}
+.band{
+  background:var(--yellow);color:var(--ink);
+  padding:10px 0;font-weight:600;font-size:.95rem;letter-spacing:.04em;
+}
+.band p{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.hero__grid{display:grid;gap:36px;align-items:center}
+.hero__kicker{
+  font:600 .95rem/1.4 Inter,sans-serif;color:var(--green-d);
+  text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;
+}
+.hero__lead{max-width:52ch;margin-top:18px;color:var(--muted);font-size:1.05rem}
+.hero__acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero__note{margin-top:16px;font-size:.92rem;color:var(--muted)}
+.hero__art{position:relative;min-height:260px;display:grid;place-items:center}
+.sun{width:min(300px,76vw);height:auto;will-change:transform}
+.sun__rays{transform-box:fill-box;transform-origin:center;animation:raios 22s linear infinite;will-change:transform}
+@keyframes raios{to{transform:rotate(360deg)}}
+.hills{position:absolute;inset:auto 0 0;width:100%;height:auto;pointer-events:none}
+.telha{position:absolute;right:6%;bottom:18%;width:min(120px,30vw);height:auto;opacity:.95}
+
+/* faixa de dados do hero */
+.flux{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+  display:grid;grid-template-columns:repeat(3,1fr);margin-top:26px;overflow:hidden;
+}
+.flux div{padding:14px 16px;border-left:1px solid var(--line)}
+.flux div:first-child{border-left:0}
+.flux b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:1.5rem;color:var(--green-d);line-height:1.1}
+.flux span{font-size:.9rem;color:var(--muted)}
+
+/* secao base */
+.section{padding:72px 0}
+.section--surface{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section__head{max-width:62ch;margin-bottom:34px}
+.section__lead{color:var(--muted);margin-top:10px;font-size:1.02rem}
+
+/* calculadora */
+.calc{display:grid;gap:24px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.calc__form{display:grid;gap:18px}
+.field{display:grid;gap:6px}
+.field label{font-weight:600;font-size:.95rem}
+.field input,.field select,.field textarea{
+  font:400 1rem Inter,sans-serif;color:var(--ink);
+  padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#FFFFFF;
+  min-height:48px;width:100%;
+  transition:border-color .2s var(--ease-state),box-shadow .2s var(--ease-state);
+}
+.field textarea{min-height:96px;resize:vertical}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:#B9CDBB}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(46,125,50,.18)}
+.field input[aria-invalid="true"]{border-color:#B3261E;box-shadow:0 0 0 3px rgba(179,38,30,.12)}
+.hint{font-size:.9rem;color:var(--muted)}
+.err{font-size:.9rem;color:#8C1D18;font-weight:500;display:none}
+.err.is-on{display:block}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{
+  min-height:44px;padding:10px 14px;border:1px solid var(--line);background:#FFFFFF;color:var(--ink);
+  border-radius:999px;cursor:pointer;font:600 .95rem Inter,sans-serif;
+  transition:background-color .2s var(--ease-state),color .2s var(--ease-state),border-color .2s var(--ease-state);
+}
+.seg button:hover{border-color:var(--green);color:var(--green-d)}
+.seg button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#FFFFFF}
+.calc__status{font-size:.95rem;color:var(--muted);min-height:22px}
+.calc__status.is-err{color:#8C1D18;font-weight:600}
+.result{display:grid;gap:14px}
+.result__top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.result__grid{display:grid;gap:12px;grid-template-columns:1fr}
+.result__cell{border:1px dashed var(--line);border-radius:12px;padding:16px;background:#FBFDFB}
+.result__cell b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:1.9rem;line-height:1.05;color:var(--green-d);font-weight:700}
+.result__cell span{display:block;font-size:.92rem;color:var(--muted);margin-top:4px}
+.curve{width:100%;height:auto;margin-top:6px}
+.curve .flow{stroke-dasharray:320;stroke-dashoffset:320}
+.reveal.is-in .curve .flow{animation:flowdraw 7s var(--ease-state) infinite}
+@keyframes flowdraw{
+  from{stroke-dashoffset:320}
+  to{stroke-dashoffset:-320}
+}
+.note{font-size:.9rem;color:var(--muted)}
+.payflag{display:none;background:rgba(2,119,189,.08);border:1px solid rgba(2,119,189,.35);color:var(--blue-d);padding:10px 12px;border-radius:10px;font-size:.92rem}
+.payflag.is-on{display:block}
+
+/* como funciona */
+.steps{list-style:none;margin:0;padding:0;position:relative}
+.steps::before{content:"";position:absolute;left:23px;top:14px;bottom:14px;width:2px;background:var(--line)}
+.steps li{position:relative;padding:0 0 26px 64px}
+.steps li:last-child{padding-bottom:0}
+.steps li b{
+  position:absolute;left:0;top:0;width:48px;height:48px;border-radius:50%;
+  background:var(--green);color:#FFFFFF;display:grid;place-items:center;
+  font-family:"Barlow Condensed",sans-serif;font-size:1.4rem;font-weight:700;
+}
+.steps h3{margin-bottom:6px}
+.steps p{color:var(--muted)}
+
+/* produtos */
+.ltab{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.ltab caption{text-align:left;font-size:.92rem;color:var(--muted);padding:0 0 10px}
+.ltab th,.ltab td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.ltab thead th{font:600 .85rem/1.3 Inter,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);background:#F4F8F4}
+.ltab tbody tr:last-child td{border-bottom:0}
+.ltab tbody tr{transition:background-color .2s var(--ease-state)}
+.ltab tbody tr:hover{background:#F4F8F4}
+.ltab td b{font-weight:600}
+.ltab .c-price{white-space:nowrap;font-weight:600;color:var(--green-d)}
+
+/* instalados */
+.gal{display:grid;gap:16px;grid-template-columns:1fr}
+.ph{
+  position:relative;border:1px solid var(--line);border-radius:var(--radius);
+  background:#EDF4ED;display:grid;place-items:center;text-align:center;
+  min-height:150px;padding:18px;color:var(--muted);
+  transition:transform .25s var(--ease-state),box-shadow .25s var(--ease-state);
+}
+.ph:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(18,38,26,.10)}
+.ph .meta{font-size:.95rem;font-weight:600;color:var(--ink);margin-top:10px}
+.ph .where{font-size:.88rem}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:820px}
+.faq__item{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.faq__q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:none;border:0;cursor:pointer;text-align:left;
+  padding:18px 20px;min-height:56px;
+  font:600 1.05rem Inter,sans-serif;color:var(--ink);
+  transition:background-color .2s var(--ease-state),color .2s var(--ease-state);
+}
+.faq__q:hover{background:#F4F8F4;color:var(--green-d)}
+.faq__q svg{flex:0 0 auto;transition:transform .3s var(--ease-state)}
+.faq__item.is-open .faq__q{color:var(--green-d)}
+.faq__item.is-open .faq__q svg{transform:rotate(180deg)}
+.faq__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s var(--ease-state)}
+.faq__item.is-open .faq__panel{grid-template-rows:1fr}
+.faq__panel>div{overflow:hidden}
+.faq__panel p{padding:0 20px 20px;color:var(--muted)}
+
+/* orcamento */
+.orc{display:grid;gap:24px;align-items:start}
+.form{display:grid;gap:18px}
+.form__row{display:grid;gap:18px;grid-template-columns:1fr}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--muted)}
+.check input{width:20px;height:20px;min-height:20px;flex:0 0 auto;margin-top:2px}
+.done{display:none;border:1px solid var(--green);background:rgba(46,125,50,.07);border-radius:var(--radius);padding:22px}
+.done.is-on{display:block;animation:pop .5s var(--ease-in) both}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.done h3{color:var(--green-d);margin-bottom:8px}
+.done p{color:var(--muted);font-size:.98rem}
+.rail{display:grid;gap:12px;align-content:start}
+.rail .line{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--surface)}
+.rail .line b{display:block;font-size:.95rem}
+.rail .line span{color:var(--muted);font-size:.95rem}
+
+/* footer */
+.foot{background:var(--ink);color:#E7F1E8;padding:48px 0 24px}
+.foot__grid{display:grid;gap:28px}
+.foot h2{font-size:1.2rem;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em}
+.foot ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.foot a{color:#E7F1E8;text-decoration:none;transition:color .18s var(--ease-state)}
+.foot a:hover{color:var(--yellow)}
+.foot__bottom{margin-top:28px;border-top:1px solid rgba(231,241,232,.2);padding-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:.92rem;color:#C6D8C9}
+.foot__bottom a{color:var(--yellow)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease-in),transform .6s var(--ease-in);transition-delay:calc(var(--i,0)*70ms)}
+.reveal.is-in{opacity:1;transform:none}
+/* entrada de pagina */
+.rg{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-in),transform .7s var(--ease-in);transition-delay:calc(var(--i,0)*80ms)}
+body.is-ready .rg{opacity:1;transform:none}
+
+@media (min-width:760px){
+  .section{padding:96px 0}
+  .hero{padding:128px 0 80px}
+  .hero__grid{grid-template-columns:1.05fr .95fr}
+  .hero__art{min-height:360px}
+  .calc{grid-template-columns:1fr 1fr}
+  .result__grid{grid-template-columns:1fr 1fr}
+  .gal{grid-template-columns:repeat(3,1fr);grid-auto-rows:170px}
+  .ph--a{grid-row:span 2}
+  .ph--c{grid-column:span 2}
+  .gal .ph:nth-child(n+4){margin-top:-30px}
+  .form__row{grid-template-columns:1fr 1fr}
+  .orc{grid-template-columns:1.1fr .9fr}
+  .foot__grid{grid-template-columns:2fr 1fr 1fr}
+  .hdr__cta{display:inline-flex}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal,.rg{opacity:1;transform:none}
+  .curve .flow{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="header">
+  <div class="wrap hdr__in">
+    <a class="brand" href="#top" aria-label="Sua Marca, página inicial">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="7" fill="#FFD600"/>
+        <g stroke="#2E7D32" stroke-width="2" stroke-linecap="round">
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="16" y1="26" x2="16" y2="30"/>
+          <line x1="2" y1="16" x2="6" y2="16"/>
+          <line x1="26" y1="16" x2="30" y2="16"/>
+          <line x1="6" y1="6" x2="9" y2="9"/>
+          <line x1="23" y1="23" x2="26" y2="26"/>
+          <line x1="6" y1="26" x2="9" y2="23"/>
+          <line x1="23" y1="9" x2="26" y2="6"/>
+        </g>
+      </svg>
+      Sua Marca
+    </a>
+    <nav class="nav" id="nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#calculadora">Calculadora</a></li>
+        <li><a href="#como">Como funciona</a></li>
+        <li><a href="#produtos">Sistemas</a></li>
+        <li><a href="#orcamento">Orçamento</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--green btn--sm hdr__cta" href="#orcamento">Pedir orçamento</a>
+    <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="band"><p>Energia solar com projeto, homologação e acompanhamento de geração.</p></div>
+    <div class="wrap hero__grid">
+      <div class="rg" style="--i:0">
+        <p class="hero__kicker">Energia solar</p>
+        <h1 id="hero-title">Energia solar para baixar a sua conta de luz</h1>
+        <p class="hero__lead">Você informa quanto consome e o valor da conta. A gente estima a economia mensal, o tamanho do sistema e o tempo de payback antes de você fechar qualquer contrato.</p>
+        <div class="hero__acts">
+          <a class="btn btn--green" href="#calculadora">Calcular economia</a>
+          <a class="btn btn--ghost" href="#orcamento">Pedir orçamento</a>
+        </div>
+        <p class="hero__note">Dúvidas antes? <a href="#contato">Falar no WhatsApp</a></p>
+        <div class="flux">
+          <div><b>Simulação</b><span>pelo seu consumo real</span></div>
+          <div><b>Projeto</b><span>e homologação inclusos</span></div>
+          <div><b>Monitor</b><span>acompanhe a geração</span></div>
+        </div>
+      </div>
+      <div class="hero__art rg" style="--i:1">
+        <svg class="sun" viewBox="0 0 240 240" role="img" aria-label="Sol desenhado com raios que giram devagar">
+          <g class="sun__rays" stroke="#FFD600" stroke-width="7" stroke-linecap="round">
+            <line x1="120" y1="18" x2="120" y2="46"/>
+            <line x1="120" y1="194" x2="120" y2="222"/>
+            <line x1="18" y1="120" x2="46" y2="120"/>
+            <line x1="194" y1="120" x2="222" y2="120"/>
+            <line x1="48" y1="48" x2="68" y2="68"/>
+            <line x1="172" y1="172" x2="192" y2="192"/>
+            <line x1="48" y1="192" x2="68" y2="172"/>
+            <line x1="172" y1="68" x2="192" y2="48"/>
+            <line x1="120" y1="6" x2="120" y2="16" stroke-width="5"/>
+            <line x1="120" y1="224" x2="120" y2="234" stroke-width="5"/>
+            <line x1="6" y1="120" x2="16" y2="120" stroke-width="5"/>
+            <line x1="224" y1="120" x2="234" y2="120" stroke-width="5"/>
+          </g>
+          <circle cx="120" cy="120" r="54" fill="#FFD600"/>
+          <circle cx="120" cy="120" r="34" fill="#F0C400"/>
+          <circle cx="120" cy="120" r="14" fill="#FFD600"/>
+        </svg>
+        <svg class="hills" viewBox="0 0 480 120" data-para="0.12" aria-hidden="true" focusable="false">
+          <path d="M0 74 C 90 40, 150 96, 240 70 C 330 44, 400 92, 480 62 L480 120 L0 120 Z" fill="#DCE8DD"/>
+        </svg>
+        <svg class="telha" viewBox="0 0 160 90" data-para="0.2" aria-hidden="true" focusable="false">
+          <path d="M14 76 L80 24 L146 76" fill="none" stroke="#2E7D32" stroke-width="4" stroke-linejoin="round"/>
+          <rect x="34" y="76" width="92" height="8" fill="#2E7D32"/>
+          <g fill="#0277BD">
+            <rect x="44" y="44" width="16" height="24" rx="2"/>
+            <rect x="72" y="44" width="16" height="24" rx="2"/>
+            <rect x="100" y="44" width="16" height="24" rx="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="calculadora" aria-labelledby="calc-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="calc-title">Calcule sua economia</h2>
+        <p class="section__lead">Cálculo estimado. Informe o consumo médio mensal em kWh e o valor da conta para ver economia, tamanho do sistema e payback.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="card">
+          <form class="calc__form" id="formcalc" novalidate>
+            <div class="field">
+              <label for="conta">Valor médio da conta de luz (R$)</label>
+              <input id="conta" name="conta" type="text" inputmode="decimal" placeholder="480" autocomplete="off" aria-describedby="conta-err">
+              <p class="err" id="conta-err" role="alert">Informe o valor médio da conta, acima de zero.</p>
+            </div>
+            <div class="field">
+              <label for="consumo">Consumo médio mensal (kWh)</label>
+              <input id="consumo" name="consumo" type="text" inputmode="decimal" placeholder="600" autocomplete="off" aria-describedby="consumo-err">
+              <p class="err" id="consumo-err" role="alert">Informe o consumo médio mensal em kWh.</p>
+            </div>
+            <div class="field">
+              <span id="prazo-label">Prazo da análise</span>
+              <div class="seg" role="group" aria-labelledby="prazo-label">
+                <button type="button" data-prazo="5" aria-pressed="false">5 anos</button>
+                <button type="button" data-prazo="10" aria-pressed="false">10 anos</button>
+                <button type="button" data-prazo="15" aria-pressed="true">15 anos</button>
+                <button type="button" data-prazo="25" aria-pressed="false">25 anos</button>
+              </div>
+              <p class="hint">Prazo usado para somar a economia acumulada no período escolhido.</p>
+            </div>
+            <button class="btn btn--green btn--full" type="submit" id="calcbtn">Calcular economia</button>
+            <p class="calc__status" id="calcstatus" role="status" aria-live="polite">Estado vazio: preencha os campos para ver a estimativa.</p>
+          </form>
+        </div>
+        <div class="card result" id="resultcard" aria-live="polite">
+          <div class="result__top">
+            <h3>Resultado estimado</h3>
+            <span class="note" id="prazo-view">prazo de 15 anos</span>
+          </div>
+          <div class="result__grid">
+            <div class="result__cell"><b id="r-kwp">--</b><span>Sistema estimado</span></div>
+            <div class="result__cell"><b id="r-mes">--</b><span>Economia mensal estimada</span></div>
+            <div class="result__cell"><b id="r-total">--</b><span>Economia acumulada no prazo</span></div>
+            <div class="result__cell"><b id="r-pay">--</b><span>Payback estimado</span></div>
+          </div>
+          <p class="payflag" id="payflag">Payback acima do prazo escolhido nessa estimativa. Reveja o valor da conta e o consumo informados.</p>
+          <svg class="curve" viewBox="0 0 420 60" aria-hidden="true" focusable="false">
+            <path d="M6 40 C 60 10, 92 50, 140 30 S 220 6, 268 34 S 350 52, 414 12" fill="none" stroke="#2E7D32" stroke-width="3" stroke-linecap="round" class="flow"/>
+          </svg>
+          <p class="note">Estimativa com referência de R$ 5.200 por kWp e compensação de 90% do consumo. Os valores finais dependem da visita técnica, do telhado e da regra da concessionária.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como" aria-labelledby="como-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="como-title">Como funciona em 4 passos</h2>
+        <p class="section__lead">Do primeiro cálculo até a geração acompanhada, sempre com aprovação da concessionária.</p>
+      </div>
+      <ol class="steps">
+        <li class="reveal" style="--i:0">
+          <b>1</b>
+          <h3>Você informa a conta</h3>
+          <p>Consumo médio mensal e o valor da conta bastam para a primeira estimativa. A visita técnica confirma os números no local.</p>
+        </li>
+        <li class="reveal" style="--i:1">
+          <b>2</b>
+          <h3>Visita técnica</h3>
+          <p>Análise do telhado, da estrutura e da rede da concessionária. Aqui definimos o tamanho correto do sistema para o seu consumo.</p>
+        </li>
+        <li class="reveal" style="--i:2">
+          <b>3</b>
+          <h3>Projeto e homologação</h3>
+          <p>Montagem do projeto fotovoltaico e pedido de acesso junto à distribuidora, com documentação no seu nome.</p>
+        </li>
+        <li class="reveal" style="--i:3">
+          <b>4</b>
+          <h3>Instalação e monitoramento</h3>
+          <p>Instalação da equipe própria, ativação do sistema e acompanhamento da geração pelo aplicativo de monitoramento.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="produtos" aria-labelledby="prod-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="prod-title">Sistemas e equipamentos</h2>
+        <p class="section__lead">Lista técnica por porte de sistema. Os valores são definidos depois da visita técnica.</p>
+      </div>
+      <table class="ltab reveal">
+        <caption>Tabela técnica dos sistemas oferecidos, com escopo resumido.</caption>
+        <thead>
+          <tr><th scope="col">Sistema</th><th scope="col">O que inclui</th><th scope="col">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Residencial 5 kWp</b></td><td>Módulos fotovoltaicos, inversor, estrutura de fixação, projeto e instalação.</td><td class="c-price">R$ 00 (definir)</td></tr>
+          <tr><td><b>Residencial 8 kWp</b></td><td>Kit completo para consumo maior, com monitoramento de geração incluso.</td><td class="c-price">R$ 00 (definir)</td></tr>
+          <tr><td><b>Comercial 20 kWp</b></td><td>Dimensionado para horário comercial, com projeto elétrico e homologação.</td><td class="c-price">R$ 00 (definir)</td></tr>
+          <tr><td><b>Comercial 50 kWp</b></td><td>Geração maior para demanda contínua, com acompanhamento técnico mensal.</td><td class="c-price">R$ 00 (definir)</td></tr>
+          <tr><td><b>Rural 75 kWp</b></td><td>Para bombeamento e cerca elétrica, com sistema de proteção incluso.</td><td class="c-price">R$ 00 (definir)</td></tr>
+          <tr><td><b>Backup com bateria</b></td><td>Armazenamento para quedas de energia, dimensionado conforme carga crítica.</td><td class="c-price">R$ 00 (definir)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="instalados" aria-labelledby="inst-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="inst-title">Quem já instalou</h2>
+        <p class="section__lead">Espaço reservado para as instalações reais da sua empresa, com foto e local de cada obra.</p>
+      </div>
+      <div class="gal">
+        <div class="ph ph--a reveal" style="--i:0" role="img" aria-label="Espaço para foto: instalação residencial em telhado cerâmico">
+          <div><span class="meta">[nome do cliente]</span><br><span class="where">[cidade] · sistema de [x] kWp</span></div>
+        </div>
+        <div class="ph ph--c reveal" style="--i:1" role="img" aria-label="Espaço para foto: instalação comercial em telhado metálico">
+          <div><span class="meta">[nome do cliente]</span><br><span class="where">[cidade] · sistema de [x] kWp</span></div>
+        </div>
+        <div class="ph reveal" style="--i:2" role="img" aria-label="Espaço para foto: instalação rural com bombas solares">
+          <div><span class="meta">[nome do cliente]</span><br><span class="where">[cidade] · sistema de [x] kWp</span></div>
+        </div>
+        <div class="ph reveal" style="--i:3" role="img" aria-label="Espaço para foto: usina em solo com estrutura metálica">
+          <div><span class="meta">[nome do cliente]</span><br><span class="where">[cidade] · sistema de [x] kWp</span></div>
+        </div>
+        <div class="ph ph--c reveal" style="--i:4" role="img" aria-label="Espaço para foto: instalação em prédio comercial">
+          <div><span class="meta">[nome do cliente]</span><br><span class="where">[cidade] · sistema de [x] kWp</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="faq-title">Perguntas frequentes</h2>
+      </div>
+      <div class="faq" id="faqlist">
+        <div class="faq__item reveal" style="--i:0">
+          <button class="faq__q" type="button" aria-expanded="false">
+            Funciona em apartamento?
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M2 2 L9 10 L16 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel"><div><p>Sim, pela geração compartilhada. O sistema pode ficar em área comum do condomínio ou em outro imóvel do mesmo titular, e a energia gerada entra como crédito na conta do apartamento, desde que o condomínio aprove a instalação.</p></div></div>
+        </div>
+        <div class="faq__item reveal" style="--i:1">
+          <button class="faq__q" type="button" aria-expanded="false">
+            Quanto tempo dura a instalação?
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M2 2 L9 10 L16 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel"><div><p>A instalação em si leva [prazo: 1 a 3 dias], dependendo do porte do sistema. O caminho completo inclui projeto e homologação da concessionária, etapas que dependem do prazo da distribuidora da sua região.</p></div></div>
+        </div>
+        <div class="faq__item reveal" style="--i:2">
+          <button class="faq__q" type="button" aria-expanded="false">
+            Precisa de manutenção?
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M2 2 L9 10 L16 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel"><div><p>A manutenção é simples: limpeza periódica dos módulos e conferência do inversor pelo monitoramento. O sistema não tem peças móveis, e a limpeza pode ser feita pela nossa equipe quando você preferir.</p></div></div>
+        </div>
+        <div class="faq__item reveal" style="--i:3">
+          <button class="faq__q" type="button" aria-expanded="false">
+            E se chover?
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M2 2 L9 10 L16 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </button>
+          <div class="faq__panel"><div><p>Em dia nublado ou de chuva a geração cai, mas não para. A rede da concessionária continua fornecendo energia, e a geração sobrando de dias de sol vira crédito que compensa esses períodos.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="orcamento" aria-labelledby="orc-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2 id="orc-title">Pedir orçamento</h2>
+        <p class="section__lead">Preencha os campos abaixo. O modelo não envia dados para lugar nenhum: ao enviar, o resumo aparece na tela.</p>
+      </div>
+      <div class="orc">
+        <div class="card reveal">
+          <form class="form" id="formorc" novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" autocomplete="name" aria-describedby="nome-err">
+                <p class="err" id="nome-err" role="alert">Informe seu nome completo.</p>
+              </div>
+              <div class="field">
+                <label for="fone">Telefone ou WhatsApp</label>
+                <input id="fone" name="fone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" aria-describedby="fone-err">
+                <p class="err" id="fone-err" role="alert">Informe DDD e número, com pelo menos 10 dígitos.</p>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="field">
+                <label for="cidade">Cidade e estado</label>
+                <input id="cidade" name="cidade" type="text" placeholder="São Paulo, SP" autocomplete="address-level2" aria-describedby="cidade-err">
+                <p class="err" id="cidade-err" role="alert">Informe a cidade onde fica a instalação.</p>
+              </div>
+              <div class="field">
+                <label for="consumo-orc">Consumo médio mensal (kWh)</label>
+                <input id="consumo-orc" name="consumo-orc" type="text" inputmode="decimal" placeholder="600" aria-describedby="consumo-orc-err">
+                <p class="err" id="consumo-orc-err" role="alert">Informe o consumo médio mensal, acima de zero.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="tipo">Tipo de instalação</label>
+              <select id="tipo" name="tipo" aria-describedby="tipo-err">
+                <option value="">Selecione</option>
+                <option value="residencial">Residencial</option>
+                <option value="comercial">Comercial</option>
+                <option value="rural">Rural</option>
+                <option value="industrial">Industrial</option>
+              </select>
+              <p class="err" id="tipo-err" role="alert">Selecione o tipo de instalação.</p>
+            </div>
+            <div class="field">
+              <label for="msg">Mensagem (opcional)</label>
+              <textarea id="msg" name="msg" placeholder="Conte o que precisa: prazo, dúvidas, tipo de telhado."></textarea>
+            </div>
+            <label class="check">
+              <input type="checkbox" id="aceite" aria-describedby="aceite-err">
+              <span>Autorizo o contato da equipe sobre este pedido de orçamento.</span>
+            </label>
+            <p class="err" id="aceite-err" role="alert">Marque a autorização para continuar.</p>
+            <button class="btn btn--green btn--full" type="submit">Pedir orçamento</button>
+            <p class="calc__status" id="orcstatus" role="status" aria-live="polite">Nada enviado. A confirmação aparece aqui no fim do formulário.</p>
+          </form>
+        </div>
+        <div class="rail reveal" style="--i:1" id="contato">
+          <div class="line"><b>WhatsApp</b><span>[(00) 00000-0000]</span></div>
+          <div class="line"><b>E-mail</b><span>[seu@email.com]</span></div>
+          <div class="line"><b>Endereço</b><span>[endereco]</span></div>
+          <div class="line"><b>Horário</b><span>[horário de atendimento]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h2>Sua Marca</h2>
+        <p style="margin-top:12px;color:#C6D8C9;font-size:.95rem;max-width:44ch">Projeto, instalação e acompanhamento de energia solar para imóveis residenciais, comerciais e rurais.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2>Navegação</h2>
+        <ul>
+          <li><a href="#calculadora">Calculadora</a></li>
+          <li><a href="#como">Como funciona</a></li>
+          <li><a href="#produtos">Sistemas</a></li>
+          <li><a href="#orcamento">Orçamento</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>Contato</h2>
+        <ul>
+          <li><span>WhatsApp: [(00) 00000-0000]</span></li>
+          <li><span>E-mail: [seu@email.com]</span></li>
+          <li><span>[endereco]</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>Direitos reservados, Sua Marca.</span>
+      <span>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a>.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var narrow = window.matchMedia("(max-width: 480px)").matches;
+
+/* Entrada de página: classe no body depois do load, escalonada por --i */
+function ready(){ requestAnimationFrame(function(){ document.body.classList.add("is-ready"); }); }
+if(document.readyState === "complete"){ ready(); }
+else{ window.addEventListener("load", ready); }
+
+/* Menu mobile: abre e fecha de verdade, Escape fecha, clique em link fecha */
+var nav = document.getElementById("nav");
+var navbtn = document.getElementById("navbtn");
+function closeNav(){
+  nav.classList.remove("is-open");
+  navbtn.setAttribute("aria-expanded","false");
+  navbtn.setAttribute("aria-label","Abrir menu");
+}
+navbtn.addEventListener("click", function(){
+  var open = nav.classList.toggle("is-open");
+  navbtn.setAttribute("aria-expanded", open ? "true" : "false");
+  navbtn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+});
+nav.addEventListener("click", function(e){
+  if(e.target.closest("a")){ closeNav(); }
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && nav.classList.contains("is-open")){
+    closeNav();
+    navbtn.focus();
+  }
+});
+/* em telas estreitas o nav vira coluna que abre e fecha */
+var navStyle = document.createElement("style");
+navStyle.textContent = "@media (max-width:480px){"+
+  ".nav{position:absolute;left:16px;right:16px;top:64px;background:#FFFFFF;border:1px solid var(--line);border-radius:12px;padding:8px;display:none;box-shadow:0 18px 34px rgba(18,38,26,.14)}"+
+  ".nav.is-open{display:block;animation:navin .3s cubic-bezier(.22,1,.36,1) both}"+
+  "@keyframes navin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}"+
+  ".nav ul{flex-direction:column;align-items:stretch;gap:2px}}";
+document.head.appendChild(navStyle);
+
+/* Header que reage ao scroll e parallax leve, tudo dentro de um requestAnimationFrame */
+var header = document.getElementById("header");
+var layers = Array.prototype.slice.call(document.querySelectorAll("[data-para]"));
+var ticking = false;
+function onFrame(){
+  var y = window.pageYOffset || document.documentElement.scrollTop;
+  header.classList.toggle("hdr--down", y > 24);
+  if(!reduced && !narrow){
+    for(var i = 0; i < layers.length; i++){
+      var el = layers[i];
+      var s = parseFloat(el.getAttribute("data-para")) || 0.12;
+      el.style.transform = "translate3d(0," + (-(y * s)).toFixed(1) + "px,0)";
+    }
+  }
+  ticking = false;
+}
+function onScroll(){
+  if(ticking){ return; }
+  ticking = true;
+  requestAnimationFrame(onFrame);
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+onFrame();
+
+/* Scroll reveal com IntersectionObserver, atraso por --i no CSS */
+var revealEls = document.querySelectorAll(".reveal");
+if("IntersectionObserver" in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        en.target.classList.add("is-in");   /* mesmo nome da classe do CSS */
+        io.unobserve(en.target);
+      }
+    });
+  }, {threshold:0.14, rootMargin:"0px 0px -6% 0px"});
+  for(var i = 0; i < revealEls.length; i++){ io.observe(revealEls[i]); }
+}else{
+  for(var j = 0; j < revealEls.length; j++){ revealEls[j].classList.add("is-in"); }
+}
+
+/* Acordeão FAQ: um aberto por vez, transição de altura */
+var faqBtns = document.querySelectorAll(".faq__q");
+function closeFaq(){
+  faqBtns.forEach(function(b){
+    b.closest(".faq__item").classList.remove("is-open");
+    b.setAttribute("aria-expanded","false");
+  });
+}
+faqBtns.forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var item = btn.closest(".faq__item");
+    var open = item.classList.contains("is-open");
+    closeFaq();
+    if(!open){
+      item.classList.add("is-open");
+      btn.setAttribute("aria-expanded","true");
+    }
+  });
+});
+
+/* Contador que sobe: resultado da calculadora contando */
+function countTo(el, to, decimals){
+  if(reduced){
+    el.textContent = to.toLocaleString("pt-BR",{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+    return;
+  }
+  var dur = 900;
+  var start = null;
+  function step(ts){
+    if(start === null){ start = ts; }
+    var p = Math.min((ts - start) / dur, 1);
+    var e = 1 - Math.pow(1 - p, 3);
+    el.textContent = (to * e).toLocaleString("pt-BR",{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+    if(p < 1){ requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+}
+
+/* Calculadora: recalcula, com estado vazio e estado de erro */
+var form = document.getElementById("formcalc");
+var elConta = document.getElementById("conta");
+var elConsumo = document.getElementById("consumo");
+var errConta = document.getElementById("conta-err");
+var errConsumo = document.getElementById("consumo-err");
+var status = document.getElementById("calcstatus");
+var rKw = document.getElementById("r-kwp");
+var rMes = document.getElementById("r-mes");
+var rTot = document.getElementById("r-total");
+var rPay = document.getElementById("r-pay");
+var payflag = document.getElementById("payflag");
+var prazoView = document.getElementById("prazo-view");
+var prazoBtns = document.querySelectorAll("[data-prazo]");
+var prazo = 15;
+
+function num(v){
+  if(typeof v !== "string"){ return NaN; }
+  var clean = v.replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", ".");
+  return parseFloat(clean);
+}
+function setErr(input, err, on){
+  if(on){ input.setAttribute("aria-invalid","true"); err.classList.add("is-on"); }
+  else{ input.removeAttribute("aria-invalid"); err.classList.remove("is-on"); }
+}
+function resetEmpty(){
+  var list = [rKw,rMes,rTot,rPay];
+  list.forEach(function(el){ el.textContent = "--"; });
+  payflag.classList.remove("is-on");
+}
+prazoBtns.forEach(function(b){
+  b.addEventListener("click", function(){
+    prazoBtns.forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+    b.setAttribute("aria-pressed","true");
+    prazo = parseInt(b.getAttribute("data-prazo"), 10);
+    prazoView.textContent = "prazo de " + prazo + " anos";
+  });
+});
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  setErr(elConta, errConta, false);
+  setErr(elConsumo, errConsumo, false);
+  status.classList.remove("is-err");
+  var vConta = num(elConta.value);
+  var vCons = num(elConsumo.value);
+  if(elConta.value.trim() === "" && elConsumo.value.trim() === ""){
+    resetEmpty();
+    status.textContent = "Estado vazio: preencha os campos para ver a estimativa.";
+    return;
+  }
+  if(elConta.value.trim() === "" || isNaN(vConta) || vConta <= 0){
+    setErr(elConta, errConta, true);
+    status.textContent = "Revise o valor da conta para calcular.";
+    status.classList.add("is-err");
+    return;
+  }
+  if(elConsumo.value.trim() === "" || isNaN(vCons) || vCons <= 0){
+    setErr(elConsumo, errConsumo, true);
+    status.textContent = "Revise o consumo médio mensal para calcular.";
+    status.classList.add("is-err");
+    return;
+  }
+  var tarifa = vConta / vCons;
+  if(tarifa < 0.3 || tarifa > 3){
+    status.textContent = "Conta e consumo não combinam. Confira os dois valores e tente de novo.";
+    status.classList.add("is-err");
+    return;
+  }
+  var kwp = vCons / 135;
+  var economiaMes = Math.round(vConta * 0.9);
+  var investimento = kwp * 5200;
+  var payAnos = investimento / economiaMes / 12;
+  var total = economiaMes * 12 * prazo;
+  countTo(rKw, kwp, 1);
+  countTo(rMes, economiaMes, 0);
+  countTo(rTot, total, 0);
+  countTo(rPay, payAnos, 1);
+  status.textContent = "Estimativa atualizada para o consumo informado.";
+  payflag.classList.toggle("is-on", payAnos > prazo);
+});
+
+/* Formulário de orçamento com validação por campo e estado de sucesso */
+var formOrc = document.getElementById("formorc");
+var fields = {
+  nome: {el:document.getElementById("nome"), err:document.getElementById("nome-err"),
+    test:function(v){ return v.trim().length >= 3; }},
+  fone: {el:document.getElementById("fone"), err:document.getElementById("fone-err"),
+    test:function(v){ return v.replace(/\D/g,"").length >= 10; }},
+  cidade: {el:document.getElementById("cidade"), err:document.getElementById("cidade-err"),
+    test:function(v){ return v.trim().length >= 2; }},
+  consumoOrc: {el:document.getElementById("consumo-orc"), err:document.getElementById("consumo-orc-err"),
+    test:function(v){ var n = num(v); return !isNaN(n) && n > 0; }},
+  tipo: {el:document.getElementById("tipo"), err:document.getElementById("tipo-err"),
+    test:function(v){ return v !== ""; }}
+};
+Object.keys(fields).forEach(function(k){
+  var f = fields[k];
+  f.el.addEventListener("blur", function(){
+    if(f.el.value.trim() === ""){ return; }
+    var ok = f.test(f.el.value);
+    if(ok){ f.el.removeAttribute("aria-invalid"); f.err.classList.remove("is-on"); }
+    else{ f.el.setAttribute("aria-invalid","true"); f.err.classList.add("is-on"); }
+  });
+});
+var aceite = document.getElementById("aceite");
+var errAceite = document.getElementById("aceite-err");
+formOrc.addEventListener("submit", function(e){
+  e.preventDefault();
+  var firstBad = null;
+  Object.keys(fields).forEach(function(k){
+    var f = fields[k];
+    var ok = f.test(f.el.value);
+    if(!ok){
+      f.el.setAttribute("aria-invalid","true");
+      f.err.classList.add("is-on");
+      if(!firstBad){ firstBad = f.el; }
+    }else{
+      f.el.removeAttribute("aria-invalid");
+      f.err.classList.remove("is-on");
+    }
+  });
+  if(!aceite.checked){
+    errAceite.classList.add("is-on");
+    if(!firstBad){ firstBad = aceite; }
+  }else{
+    errAceite.classList.remove("is-on");
+  }
+  if(firstBad){
+    document.getElementById("orcstatus").textContent = "Falta corrigir algum campo acima.";
+    firstBad.focus();
+    return;
+  }
+  var done = document.createElement("div");
+  done.className = "done is-on";
+  done.setAttribute("role","status");
+  done.setAttribute("tabindex","-1");
+  var resumo = "Nome: " + fields.nome.el.value +
+    " · Telefone: " + fields.fone.el.value +
+    " · Cidade: " + fields.cidade.el.value +
+    " · Consumo: " + fields.consumoOrc.el.value + " kWh" +
+    " · Tipo: " + fields.tipo.el.options[fields.tipo.el.selectedIndex].text;
+  done.innerHTML = "<h3>Pedido registrado</h3>" +
+    "<p>" + resumo + "</p>" +
+    "<p style=\"margin-top:8px\">Este é um modelo de demonstração: nenhum dado foi enviado. A equipe comercial entra em contato no telefone informado.</p>";
+  formOrc.parentNode.insertBefore(done, formOrc.nextSibling);
+  formOrc.style.display = "none";
+  done.scrollIntoView({behavior: reduced ? "auto" : "smooth", block:"center"});
+  done.focus();
+});
+})();
+</script>
+</body>
+</html>
