@@ -29,7 +29,7 @@
   --erro:#F2A9A9;
   --ease-out:cubic-bezier(.22,1,.36,1);
   --ease-state:cubic-bezier(.4,0,.2,1);
-  --wrap:1180px;
+  --wrap: min(94vw, 1560px);
   --header-h:74px;
 }
 
@@ -76,7 +76,7 @@ button{font:inherit;color:inherit}
 /* ============================================================
    LAYOUT
    ============================================================ */
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 .section{padding:76px 0}
 .section--light{background:var(--paper);color:var(--gray)}
 .section--dark{background:var(--navy);color:var(--ink-dim)}

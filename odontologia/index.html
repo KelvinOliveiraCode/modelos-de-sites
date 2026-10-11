@@ -20,7 +20,7 @@
   --line:rgba(10,58,66,.14);
   --ease-out:cubic-bezier(.22,1,.36,1);
   --ease-state:cubic-bezier(.4,0,.2,1);
-  --maxw:1140px;
+  --maxw: min(94vw, 1560px);
   --pad:20px;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -49,7 +49,7 @@ p{margin:0 0 1em}
 ul,ol{margin:0;padding:0;list-style:none}
 a{color:var(--ink);text-decoration:none}
 strong{font-weight:700}
-.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
 

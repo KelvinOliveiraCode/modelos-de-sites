@@ -29,7 +29,7 @@
   --line-strong:rgba(245,243,255,.28);
   --ease-out:cubic-bezier(.22,1,.36,1);
   --ease-state:cubic-bezier(.4,0,.2,1);
-  --wrap:1120px;
+  --wrap: min(94vw, 1560px);
   --pad:20px;
 }
 
@@ -54,7 +54,7 @@ input,select,textarea{font:inherit;color:inherit}
 
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 .skip{
   position:absolute;left:12px;top:-60px;z-index:100;
   background:var(--accent);color:var(--accent-ink);

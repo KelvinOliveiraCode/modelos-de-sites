@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--fundo:#FAFAFA;--superficie:#FFFFFF;--marca:#1565C0;--marca-escura:#0D47A1;--acento:#43A047;--acento-escuro:#2E7D32;--tinta:#10243A;--tinta-media:#4A5A6A;--linha:#E3E8EE;--banda:#F2F5F8;--azul-claro:#E8F1FB;--erro:#B3261E;--sombra-leve:0 1px 2px rgba(16,36,58,.06),0 12px 28px -20px rgba(16,36,58,.35);--sombra-forte:0 2px 4px rgba(16,36,58,.06),0 26px 50px -30px rgba(16,36,58,.45);--ease-in:cubic-bezier(.22,1,.36,1);--ease-estado:cubic-bezier(.4,0,.2,1);--raio:16px;--altura-cabecalho:68px;--wrap:1160px}
+:root{--fundo:#FAFAFA;--superficie:#FFFFFF;--marca:#1565C0;--marca-escura:#0D47A1;--acento:#43A047;--acento-escuro:#2E7D32;--tinta:#10243A;--tinta-media:#4A5A6A;--linha:#E3E8EE;--banda:#F2F5F8;--azul-claro:#E8F1FB;--erro:#B3261E;--sombra-leve:0 1px 2px rgba(16,36,58,.06),0 12px 28px -20px rgba(16,36,58,.35);--sombra-forte:0 2px 4px rgba(16,36,58,.06),0 26px 50px -30px rgba(16,36,58,.45);--ease-in:cubic-bezier(.22,1,.36,1);--ease-estado:cubic-bezier(.4,0,.2,1);--raio:16px;--altura-cabecalho:68px;--wrap: min(94vw, 1560px)}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--fundo);color:var(--tinta);font-family:'Figtree','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.62;overflow-x:clip}
@@ -25,7 +25,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 a{color:var(--marca);text-decoration:none}
 a:hover{color:var(--marca-escura)}
 :focus-visible{outline:3px solid var(--marca);outline-offset:3px;border-radius:6px}
-.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 .mini{font-size:14px;color:var(--tinta-media)}
 .lead{font-size:1.06rem;color:var(--tinta-media);max-width:62ch}
 section[id]{scroll-margin-top:88px}
