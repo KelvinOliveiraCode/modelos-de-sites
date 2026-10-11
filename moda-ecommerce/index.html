@@ -101,7 +101,7 @@
   /* ---------- hero ---------- */
   .hero{position:relative;display:flex;align-items:flex-end;overflow:hidden;
     min-height:94vh;min-height:94dvh;padding:150px 0 78px;}
-  .hero-inner{position:relative;width:100%;}
+  .hero-inner{width:100%;}
   .hero .eyebrow{display:block;margin-bottom:20px;}
   .hero h1{font-size:clamp(2.9rem,9.5vw,6.6rem);font-weight:400;max-width:15ch;}
   .hero h1 em{font-style:italic;color:var(--accent);}
@@ -134,7 +134,7 @@
   .reveal.rv-s{transform:scale(.95);}
   .reveal.in{opacity:1;transform:none;}
 
-  /* entrada de pÃ¡gina */
+  /* entrada de página */
   .rise{opacity:0;transform:translateY(28px);
     transition:opacity .85s var(--ease-in),transform .85s var(--ease-in);
     transition-delay:calc(var(--i,0)*130ms);}
@@ -172,7 +172,7 @@
   .prod:hover .prod-media{transform:scale(1.023);border-color:rgba(217,187,168,.42);}
 
   /* ---------- como comprar ---------- */
-  .como-list{position:relative;max-width:960px;}
+  .como-list{position:relative;max-width:1140px;}
   .rail{position:absolute;left:23px;top:30px;bottom:30px;width:4px;z-index:0;}
   .rail-line{stroke:var(--accent);stroke-width:2;stroke-dasharray:300;stroke-dashoffset:300;
     transition:stroke-dashoffset 1s var(--ease-in) .15s;}
@@ -193,7 +193,7 @@
   .look-block .tag{color:var(--tag);font-size:.875rem;letter-spacing:.12em;text-transform:uppercase;}
   .look-frame{position:absolute;inset:12px;border:1px solid rgba(217,187,168,.32);
     pointer-events:none;will-change:transform;}
-  .look-cap{margin-top:14px;display:flex;gap:12px;align-items:baseline;}
+  .look-cap{margin-top:14px;}
   .look-cap h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.2rem;}
   .look-a .look-media{min-height:420px;}
   .look-b .look-media,.look-c .look-media{min-height:260px;}
@@ -280,7 +280,7 @@
     .look-b .look-media,.look-c .look-media{min-height:300px;}
     .foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
 
-    /* revelacao de preÃ§o so onde existe hover real */
+    /* revelacao de preço so onde existe hover real */
     .prod-price{opacity:0;transform:translateY(10px);
       transition:opacity .22s var(--ease-state),transform .22s var(--ease-state);}
     .prod:hover .prod-price,.prod:focus-within .prod-price{opacity:1;transform:none;}
@@ -662,7 +662,7 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var body = document.body;
 
-  /* 1) Entrada de pÃ¡gina: revela o hero depois do primeiro paint */
+  /* 1) Entrada de página: revela o hero depois do primeiro paint */
   requestAnimationFrame(function(){ body.classList.add("loaded"); });
 
   /* 2) Escalonamento: numera os filhos de cada container para o --i */
@@ -707,7 +707,7 @@
   /* 6) Header que reage ao scroll + link ativo no menu */
   var header = document.querySelector(".site-header");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
-  var sections = ["inÃ­cio","colecao","como-comprar","lookbook","novidades"]
+  var sections = ["início","colecao","como-comprar","lookbook","novidades"]
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
 

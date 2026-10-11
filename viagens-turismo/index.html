@@ -70,7 +70,7 @@ will-change:opacity,transform;
 }
 [data-reveal].is-revealed{opacity:1;transform:none;will-change:auto}
 
-/* Entrada de pÃ¡gina: escalonada, so depois do load. */
+/* Entrada de página: escalonada, so depois do load. */
 .hero-copy>*{opacity:0;transform:translateY(16px);transition:opacity 620ms var(--ease-out),transform 620ms var(--ease-out)}
 body.is-ready .hero-copy>*{opacity:1;transform:none}
 body.is-ready .hero-copy>*:nth-child(1){transition-delay:60ms}
@@ -124,31 +124,19 @@ transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state
 .hero-note{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem;color:#3C5B64}
 .hero-note span{display:inline-flex;align-items:center;gap:7px}
 .hero-note svg{width:15px;height:15px;color:var(--turq);flex:none}
-.hero-shapes{position:relative;min-height:280px}
-.blob{position:absolute;border-radius:50%;will-change:transform}
-.blob-a{width:190px;height:190px;background:var(--turq);opacity:.16;top:-10px;left:4%}
-.blob-b{width:130px;height:130px;background:var(--yellow);opacity:.3;bottom:2%;right:0}
-.blob-c{width:88px;height:88px;border:14px solid var(--coral);opacity:.18;top:44%;left:44%}
-.blob{animation:floaty 8s var(--ease-out) infinite alternate}
-.blob-b{animation-duration:9.5s;animation-delay:-2s}
-.blob-c{animation-duration:11s;animation-delay:-4s}
-@keyframes floaty{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-22px,0) rotate(6deg)}}
-.map-card{position:absolute;inset:0;display:grid;place-items:center;padding:4px}
+.hero-shapes{position:relative;display:flex;flex-direction:column;gap:22px;align-items:center}
+.map-card{width:100%;display:grid;place-items:center;will-change:transform}
 .map-card svg{width:100%;height:auto}
 .route-path{stroke-dasharray:260;stroke-dashoffset:260;animation:draw 8.5s var(--ease-out) infinite}
 @keyframes draw{0%{stroke-dashoffset:260}52%{stroke-dashoffset:0}56%{stroke-dashoffset:0}100%{stroke-dashoffset:-260}}
 .route-ring{transform-origin:center;animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.dest-chips{position:absolute;inset:auto 0 0 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.dest-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .chip{
 display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
 border-radius:999px;padding:8px 14px;font:500 13px/1 var(--font);color:var(--ink);
-box-shadow:0 6px 16px rgba(10,46,56,.08);animation:floaty 7s var(--ease-out) infinite alternate;
+box-shadow:0 6px 16px rgba(10,46,56,.08);
 }
-.chip:nth-child(2){animation-delay:-1.4s}
-.chip:nth-child(3){animation-delay:-2.8s}
-.chip:nth-child(4){animation-delay:-4.2s}
-.chip:nth-child(5){animation-delay:-5.6s}
 .chip i{width:8px;height:8px;border-radius:50%;background:var(--coral);flex:none}
 
 .sec-head{max-width:70ch;margin-bottom:38px}
@@ -391,31 +379,26 @@ Montar meu roteiro
 <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Atendimento com uma pessoa só, do início ao fim</span>
 </p>
 </div>
-<div class="hero-shapes" aria-hidden="true">
-<span class="blob blob-a" data-depth="0.16"></span>
-<span class="blob blob-b" data-depth="0.26"></span>
-<span class="blob blob-c" data-depth="0.1"></span>
-<div class="map-card">
-<svg viewBox="0 0 380 210" role="img" aria-label="Mapa estilizado com uma rota de voo ligando quatro cidades">
-<path d="M28 150c46-34 84 6 128-16s84-30 196-24" fill="none" stroke="#0A2E38" stroke-width="2" stroke-opacity=".28" stroke-linecap="round" stroke-dasharray="5 7"/>
+<div class="hero-shapes">
+<div class="map-card" data-depth="0.12">
+<svg viewBox="0 0 380 210" role="img" aria-label="Rota de viagem ligando Fernando de Noronha, Foz do Iguaçu e Chapada dos Veadeiros, terminando em Jalapão">
+<path d="M28 150c46-34 84 6 128-16s84-30 196-24" fill="none" stroke="#0A2E38" stroke-width="2" stroke-opacity=".22" stroke-linecap="round" stroke-dasharray="5 7"/>
 <path class="route-path" d="M28 150c46-34 84 6 128-16s84-30 196-24" fill="none" stroke="#FF7043" stroke-width="3.4" stroke-linecap="round"/>
 <circle cx="28" cy="150" r="7" fill="#00ACC1"/>
 <circle cx="156" cy="134" r="7" fill="#00ACC1"/>
 <circle cx="324" cy="110" r="7" fill="#00ACC1"/>
 <g transform="translate(324 110)">
-<circle class="route-ring" r="17" fill="none" stroke="#0A2E38" stroke-opacity=".35" stroke-width="2" stroke-dasharray="4 8"/>
+<circle class="route-ring" r="17" fill="none" stroke="#0A2E38" stroke-opacity=".3" stroke-width="2" stroke-dasharray="4 8"/>
 <circle r="6.5" fill="#FF7043"/>
 </g>
-<path d="M336 96l16 9-16 9z" fill="#0A2E38"/>
 </svg>
 </div>
-<div class="dest-chips">
-<span class="chip"><i></i>Fernando de Noronha</span>
-<span class="chip"><i></i>Chapada dos Veadeiros</span>
-<span class="chip"><i></i>Jalapão</span>
-<span class="chip"><i></i>Foz do Iguaçu</span>
-<span class="chip"><i></i>Ushuaia</span>
-</div>
+<ul class="dest-chips">
+<li class="chip"><i></i>Fernando de Noronha</li>
+<li class="chip"><i></i>Foz do Iguaçu</li>
+<li class="chip"><i></i>Chapada dos Veadeiros</li>
+<li class="chip"><i></i>Jalapão</li>
+</ul>
 </div>
 </div>
 </section>
@@ -723,7 +706,7 @@ Posso cancelar depois de fechado?
 <ul class="side-list">
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>WhatsApp: [(00) 00000-0000]</span></li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>E-mail: [seu@email.com]</span></li>
-<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a7 7 0 1 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg><span>Endereço: [endereÃ§o da agência]</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-7-10a7 7 0 1 1 14 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.6"/></svg><span>Endereço: [endereço da agência]</span></li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>Atendimento: [dias e horário de atendimento]</span></li>
 </ul>
 <p class="wa-line">Respondemos no mesmo dia útil, com o nome de quem te atendeu.</p>
@@ -770,7 +753,7 @@ var doc=document;
 var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
 var desktop=window.matchMedia("(min-width: 760px)");
 
-/* Entrada de pÃ¡gina: classe no body depois do load, nada de piscar. */
+/* Entrada de página: classe no body depois do load, nada de piscar. */
 function boot(){doc.body.classList.add("is-ready");}
 if(doc.readyState==="complete"){boot();}
 else{window.addEventListener("load",boot);}
@@ -819,7 +802,7 @@ reveals.forEach(function(el){el.classList.add("is-revealed");});
 }
 
 /* Header e parallax no mesmo ciclo de requestAnimationFrame. */
-var header=doc.getElementById("siteHeader");
+var header=doc.getElementById("topo");
 var shapes=[].slice.call(doc.querySelectorAll("[data-depth]"));
 var ticking=false;
 function frame(){
@@ -853,7 +836,7 @@ var actions=doc.getElementById("tripActions");
 var sumDest=doc.getElementById("sum-dest");
 var sumDays=doc.getElementById("sum-days");
 var sumStyle=doc.getElementById("sum-style");
-var sumFocus=doc.getElementById("sumFocus")||doc.getElementById("sum-focus");
+var sumFocus=doc.getElementById("sum-focus");
 function fieldError(input,on){
 var field=input.closest(".field");
 if(field){field.classList.toggle("is-invalid",on);}

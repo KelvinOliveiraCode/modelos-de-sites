@@ -103,7 +103,7 @@ a{color:inherit}
   text-align:center;
   padding:.5rem;
 }
-/* entrada de pÃ¡gina: classe no body depois do load */
+/* entrada de página: classe no body depois do load */
 .stagger{transition:opacity .8s var(--ease-entrada),transform .8s var(--ease-entrada);transition-delay:calc(var(--i,0)*90ms + 120ms)}
 body.preload .stagger{opacity:0;transform:translateY(16px)}
 body.is-ready .stagger{opacity:1;transform:none}
@@ -285,7 +285,7 @@ body.is-ready .stagger{opacity:1;transform:none}
 .pacote:hover{transform:translateY(-4px);box-shadow:var(--sombra);border-color:var(--borda-forte)}
 .pacote-destaque{border-color:var(--ouro);background:linear-gradient(180deg,rgba(232,180,184,.14),rgba(255,252,250,0) 55%)}
 .pacote h3{font-size:1.7rem}
-.pacote-preÃ§o{font-family:"Cormorant Garamond",serif;font-size:2.4rem;margin:.8rem 0 .2rem}
+.pacote-preço{font-family:"Cormorant Garamond",serif;font-size:2.4rem;margin:.8rem 0 .2rem}
 .pacote-obs{color:var(--tinta-media);font-size:.9375rem}
 .pacote-lista{margin:1.4rem 0 1.8rem;display:grid;gap:.75rem}
 .pacote-lista li{display:flex;gap:.65rem;align-items:flex-start;color:var(--tinta)}
@@ -947,7 +947,7 @@ body.is-ready .stagger{opacity:1;transform:none}
   "use strict";
   var body = document.body;
 
-  /* Entrada de pÃ¡gina: a classe sai do body depois do load. */
+  /* Entrada de página: a classe sai do body depois do load. */
   function pronto(){
     body.classList.remove("preload");
     body.classList.add("is-ready");

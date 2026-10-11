@@ -166,17 +166,14 @@ section{padding:clamp(56px,8vw,104px) 0}
 @keyframes plan-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.14);opacity:.55}}
 
 /* ---------- serviços: lista tecnica ---------- */
-.serviÃ§os{background:var(--bg)}
+.serviços{background:var(--bg)}
 .srv-list{border-top:2px solid var(--ink)}
 .srv{
   display:grid;grid-template-columns:64px minmax(0,1.35fr) minmax(0,1fr) auto;
   gap:clamp(16px,3vw,34px);align-items:start;
   padding:26px 0;border-bottom:1px solid var(--line);
 }
-.srv-num{
-  font-family:"Oswald",sans-serif;font-size:1.05rem;font-weight:700;color:var(--gray);
-  letter-spacing:.08em;padding-top:2px;
-}
+
 .srv h3{margin-bottom:8px}
 .srv-scope{color:var(--gray);font-size:1rem;max-width:52ch}
 .srv-meta{display:flex;flex-direction:column;gap:6px}
@@ -221,7 +218,7 @@ section{padding:clamp(56px,8vw,104px) 0}
 .obra-cap strong{font-family:"Oswald",sans-serif;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}
 .obra-cap span{font-size:.85rem;color:rgba(255,255,255,.72)}
 
-/* ---------- orÃ§amento ---------- */
+/* ---------- orçamento ---------- */
 .orc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
 .orc-form{border:2px solid var(--ink);background:var(--paper);padding:clamp(20px,3vw,30px)}
 .field{margin-bottom:20px}
@@ -445,15 +442,15 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     </a>
     <nav aria-label="Navegacao principal">
       <ul class="nav-list" id="nav-list">
-        <li><a href="#servicos">serviÃ§os</a></li>
+        <li><a href="#servicos">serviços</a></li>
         <li><a href="#obras">Obras</a></li>
-        <li><a href="#orcamento">orÃ§amento</a></li>
+        <li><a href="#orcamento">orçamento</a></li>
         <li><a href="#como">Como trabalhamos</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
     <div class="hdr-cta" id="hdr-cta">
-      <a class="btn btn-accent btn-sm" href="#orcamento">Pedir orÃ§amento</a>
+      <a class="btn btn-accent btn-sm" href="#orcamento">Pedir orçamento</a>
       <a class="btn btn-ghost btn-sm" href="#contato">Falar no WhatsApp</a>
     </div>
     <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Abrir menu">
@@ -468,14 +465,14 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
   <section class="hero" aria-labelledby="hero-titulo">
     <div class="wrap hero-grid">
       <div>
-        <span class="tag hero-enter" style="--i:0">Obra e reforma com preÃ§o fechado</span>
-        <h1 id="hero-titulo" class="hero-enter" style="--i:1">orÃ§amento por escrito antes do primeiro tijolo</h1>
-        <p class="hero-p hero-enter" style="--i:2">vocÃª recebe escopo, prazo e valor analisados em visita tecnica. Nada comeca sem a sua assinura no documento.</p>
+        <span class="tag hero-enter" style="--i:0">Obra e reforma com preço fechado</span>
+        <h1 id="hero-titulo" class="hero-enter" style="--i:1">orçamento por escrito antes do primeiro tijolo</h1>
+        <p class="hero-p hero-enter" style="--i:2">você recebe escopo, prazo e valor analisados em visita técnica. Nada comeca sem a sua assinura no documento.</p>
         <div class="hero-actions hero-enter" style="--i:3">
-          <a class="btn btn-accent" href="#orcamento">Pedir orÃ§amento</a>
-          <a class="btn btn-ghost" href="#servicos">Ver serviÃ§os</a>
+          <a class="btn btn-accent" href="#orcamento">Pedir orçamento</a>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
         </div>
-        <p class="hero-note hero-enter" style="--i:4"><b>Como funciona o valor:</b> cada obra recebe uma faixa estimada aqui no site e um preÃ§o fechado depois da visita tecnica, sem custo escondido no meio da obra.</p>
+        <p class="hero-note hero-enter" style="--i:4"><b>Como funciona o valor:</b> cada obra recebe uma faixa estimada aqui no site e um preço fechado depois da visita técnica, sem custo escondido no meio da obra.</p>
       </div>
       <div class="hero-plan hero-enter" style="--i:3">
         <div class="plan-frame">
@@ -522,12 +519,11 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="tag">Lista tecnica</span>
-        <h2 id="servicos-titulo">Seis frentes de serviÃ§o, cada uma com escopo e prazo</h2>
-        <p class="lead">O que entra e o que nÃ£o entra em cada serviÃ§o esta descrito antes de vocÃª fechar. Prazo e valor sao confirmados na visita tecnica.</p>
+        <h2 id="servicos-titulo">Seis frentes de serviço, cada uma com escopo e prazo</h2>
+        <p class="lead">O que entra e o que não entra em cada serviço esta descrito antes de você fechar. Prazo e valor são confirmados na visita técnica.</p>
       </div>
       <ol class="srv-list">
         <li class="srv reveal" style="--i:0">
-          <span class="srv-num">01</span>
           <div>
             <h3>Obra residencial do zero</h3>
             <p class="srv-scope">Fundacao, alvenaria, laje, telhado e acabamento em um cronograma so, do terreno vazio a entrega das chaves.</p>
@@ -541,10 +537,9 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
           <a class="srv-link" href="#orcamento">Calcular faixa</a>
         </li>
         <li class="srv reveal" style="--i:1">
-          <span class="srv-num">02</span>
           <div>
             <h3>Reforma e ampliacao</h3>
-            <p class="srv-scope">Ampliar ou reorganizar o que ja existe, com proteÃ§Ã£o do que fica e plano de obra por ambiente.</p>
+            <p class="srv-scope">Ampliar ou reorganizar o que ja existe, com proteção do que fica e plano de obra por ambiente.</p>
           </div>
           <dl class="srv-meta">
             <dt>Escopo</dt>
@@ -555,10 +550,9 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
           <a class="srv-link" href="#orcamento">Calcular faixa</a>
         </li>
         <li class="srv reveal" style="--i:2">
-          <span class="srv-num">03</span>
           <div>
             <h3>Estrutura e concretagem</h3>
-            <p class="srv-scope">Fundacoes, sapatas, vigas, pilares e lajes executadas com responsavel tÃ©cnico pela concretagem.</p>
+            <p class="srv-scope">Fundacoes, sapatas, vigas, pilares e lajes executadas com responsavel técnico pela concretagem.</p>
           </div>
           <dl class="srv-meta">
             <dt>Escopo</dt>
@@ -569,7 +563,6 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
           <a class="srv-link" href="#orcamento">Calcular faixa</a>
         </li>
         <li class="srv reveal" style="--i:3">
-          <span class="srv-num">04</span>
           <div>
             <h3>Alvenaria e vedacao</h3>
             <p class="srv-scope">Paredes de blocos ceramicos ou de concreto, com esquadrias e vao de porta no prumo certo.</p>
@@ -583,10 +576,9 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
           <a class="srv-link" href="#orcamento">Calcular faixa</a>
         </li>
         <li class="srv reveal" style="--i:4">
-          <span class="srv-num">05</span>
           <div>
             <h3>Cobertura e telhado</h3>
-            <p class="srv-scope">Estrutura de madeira, telhas, calhas e rufos, com atencao a queda de agua e a ventilacao do telhado.</p>
+            <p class="srv-scope">Estrutura de madeira, telhas, calhas e rufos, com atenção a queda de agua e a ventilacao do telhado.</p>
           </div>
           <dl class="srv-meta">
             <dt>Escopo</dt>
@@ -597,10 +589,9 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
           <a class="srv-link" href="#orcamento">Calcular faixa</a>
         </li>
         <li class="srv reveal" style="--i:5">
-          <span class="srv-num">06</span>
           <div>
             <h3>Acabamento e pintura</h3>
-            <p class="srv-scope">Revestimento, piso, forro e pintura por ambiente, no padrao que vocÃª escolher no orÃ§amento.</p>
+            <p class="srv-scope">Revestimento, piso, forro e pintura por ambiente, no padrao que você escolher no orçamento.</p>
           </div>
           <dl class="srv-meta">
             <dt>Escopo</dt>
@@ -619,7 +610,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="tag">Obras entregues</span>
-        <h2 id="obras-titulo">serviÃ§os concluidos com relato de cada etapa</h2>
+        <h2 id="obras-titulo">serviços concluidos com relato de cada etapa</h2>
         <p class="lead">Em cada bloco entram fotos antes e depois, a metragem executada e o que foi resolvido no caminho. [Substitua pelos seus proprios registros.]</p>
       </div>
       <div class="obras-grid">
@@ -669,14 +660,14 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
   <section class="orcamento" id="orcamento" aria-labelledby="orc-titulo">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="tag">orÃ§amento</span>
+        <span class="tag">orçamento</span>
         <h2 id="orc-titulo">Calcule uma faixa antes da visita tecnica</h2>
-        <p class="lead">Escolha o serviÃ§o, informe a metragem e o padrao de acabamento. O resultado e uma faixa de referÃªncia, nÃ£o uma proposta fechada.</p>
+        <p class="lead">Escolha o serviço, informe a metragem e o padrao de acabamento. O resultado e uma faixa de referência, não uma proposta fechada.</p>
       </div>
       <div class="orc-grid">
         <form class="orc-form reveal" id="orc-form" novalidate>
           <div class="field">
-            <label for="orc-tipo">Tipo de serviÃ§o</label>
+            <label for="orc-tipo">Tipo de serviço</label>
             <select id="orc-tipo" name="tipo">
               <option value="">Selecione uma frente de obra</option>
               <option value="residencial">Obra residencial do zero</option>
@@ -692,18 +683,18 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             <label for="orc-metragem">Metragem da area (m2)</label>
             <input id="orc-metragem" name="metragem" type="number" inputmode="decimal" min="1" max="2000" step="1" placeholder="ex.: 120" aria-describedby="orc-metragem-hint orc-metragem-err">
             <p class="field-err" id="orc-metragem-err">Informe uma metragem entre 1 e 2000 m2.</p>
-            <p class="hint" id="orc-metragem-hint">Area aproximada ja serve. Na visita tecnica a medida e conferida no local.</p>
+            <p class="hint" id="orc-metragem-hint">Area aproximada ja serve. Na visita técnica a medida e conferida no local.</p>
           </div>
           <fieldset class="field" style="border:0;padding:0;margin:0 0 20px">
             <legend class="fs-legend">Padrao de acabamento</legend>
             <div class="radio-row">
-              <label><input type="radio" name="padrao" value="simples"> Simples <span class="radio-hint">Material bÃ¡sico</span></label>
+              <label><input type="radio" name="padrao" value="simples"> Simples <span class="radio-hint">Material básico</span></label>
               <label><input type="radio" name="padrao" value="medio" checked> Medio <span class="radio-hint">Custo beneficio</span></label>
               <label><input type="radio" name="padrao" value="alto"> Alto <span class="radio-hint">Acabamento premium</span></label>
             </div>
           </fieldset>
           <button class="btn btn-accent" type="submit" style="width:100%">Calcular faixa</button>
-          <p class="hint" style="margin-top:14px">Estimativa para planejamento. O valor fechado so sai depois da visita tecnica e do levantamento de materiais.</p>
+          <p class="hint" style="margin-top:14px">Estimativa para planejamento. O valor fechado so sai depois da visita técnica e do levantamento de materiais.</p>
         </form>
 
         <div class="reveal" style="--i:1">
@@ -715,23 +706,23 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             <div class="orc-body">
               <div id="orc-empty" class="orc-empty">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V6a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 4v5h5M9 13h6M9 17h4"/></svg>
-                Preencha o tipo de serviÃ§o e a metragem para ver a faixa estimada.
+                Preencha o tipo de serviço e a metragem para ver a faixa estimada.
               </div>
               <div id="orc-result" hidden>
                 <div class="orc-kpi">
                   <b id="orc-min">R$ 0</b>
-                  <span>atÃ©</span>
+                  <span>até</span>
                   <b id="orc-max">R$ 0</b>
                 </div>
                 <div class="orc-band" aria-hidden="true"><i id="orc-bar"></i></div>
-                <p class="orc-state" id="orc-detalhe">Faixa de referÃªncia para o padrao medio.</p>
+                <p class="orc-state" id="orc-detalhe">Faixa de referência para o padrao medio.</p>
               </div>
               <div id="orc-erro" class="orc-empty" hidden style="border-color:#B3261E;color:#B3261E;font-weight:600">
-                nÃ£o foi possivel calcular. Informe uma metragem entre 1 e 2000 m2 e escolha uma frente de obra.
+                não foi possível calcular. Informe uma metragem entre 1 e 2000 m2 e escolha uma frente de obra.
               </div>
             </div>
             <div class="orc-foot">
-              Valores de referÃªncia por m2, sujeitos a confirmacao em visita tecnica. nÃ£o inclui projetos, taxas ou itens nÃ£o listados no escopo.
+              Valores de referência por m2, sujeitos a confirmacao em visita técnica. não inclui projetos, taxas ou itens não listados no escopo.
             </div>
           </div>
           <div class="hazard" style="margin-top:26px" aria-hidden="true"></div>
@@ -745,38 +736,38 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="tag">Como trabalhamos</span>
-        <h2 id="como-titulo">Quatro passos, nenhum comeco no escuro</h2>
-        <p class="lead">A obra comeca no papel, com medicao, cronograma e preÃ§o por escrito. Se algo mudar no caminho, vocÃª ve o que mudou e porque.</p>
+        <h2 id="como-titulo">Quatro passos, nenhum começo no escuro</h2>
+        <p class="lead">A obra comeca no papel, com medicao, cronograma e preço por escrito. Se algo mudar no caminho, você ve o que mudou e porque.</p>
       </div>
       <ol class="steps">
         <li class="step reveal" style="--i:0">
           <span class="step-line" aria-hidden="true"></span>
           <span class="step-n">1</span>
           <h3>Visita tecnica</h3>
-          <p>Medimos o local, olhamos acesso, energia e agua, e anotamos as restriÃ§Ãµes que a obra tem.</p>
+          <p>Medimos o local, olhamos acesso, energia e agua, e anotamos as restrições que a obra tem.</p>
         </li>
         <li class="step reveal" style="--i:1">
           <span class="step-line" aria-hidden="true"></span>
           <span class="step-n">2</span>
           <h3>Proposta por escrito</h3>
-          <p>vocÃª recebe escopo detalhado, cronograma por etapa e preÃ§o fechado. So depois dessa aprovaÃ§Ã£o a obra comeca.</p>
+          <p>você recebe escopo detalhado, cronograma por etapa e preço fechado. So depois dessa aprovação a obra comeca.</p>
         </li>
         <li class="step reveal" style="--i:2">
           <span class="step-line" aria-hidden="true"></span>
           <span class="step-n">3</span>
           <h3>Execucao com diario de obra</h3>
-          <p>Cada etapa e registrada com foto e data. vocÃª acompanha o que foi feito e o que vem na semana seguinte.</p>
+          <p>Cada etapa e registrada com foto e data. você acompanha o que foi feito e o que vem na semana seguinte.</p>
         </li>
         <li class="step reveal" style="--i:3">
           <span class="step-line" aria-hidden="true"></span>
           <span class="step-n">4</span>
           <h3>Entrega com vistoria</h3>
-          <p>Vistoria junto com vocÃª, lista de ajustes e termo de entrega. So encerra quando a lista estiver zerada.</p>
+          <p>Vistoria junto com você, lista de ajustes e termo de entrega. So encerra quando a lista estiver zerada.</p>
         </li>
       </ol>
       <div class="passos-foot reveal" style="--i:4">
-        <a class="btn btn-accent" href="#orcamento">Pedir orÃ§amento</a>
-        <p>Prazo total da obra e informado na proposta, por etapa, e nÃ£o por promessa de vendedor.</p>
+        <a class="btn btn-accent" href="#orcamento">Pedir orçamento</a>
+        <p>Prazo total da obra e informado na proposta, por etapa, e não por promessa de vendedor.</p>
       </div>
     </div>
   </section>
@@ -785,20 +776,20 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
   <section class="faq" id="faq" aria-labelledby="faq-titulo">
     <div class="wrap faq-grid">
       <div class="reveal">
-        <span class="tag">dÃºvidas frequentes</span>
+        <span class="tag">dúvidas frequentes</span>
         <h2 id="faq-titulo">O que perguntam antes de assinar</h2>
-        <p class="lead">Se a sua dÃºvida nÃ£o estiver aqui, mande no WhatsApp que respondemos sem enrolacao.</p>
+        <p class="lead">Se a sua dúvida não estiver aqui, mande no WhatsApp que respondemos sem enrolacao.</p>
       </div>
       <div class="faq-list reveal" style="--i:1">
         <div class="faq-item">
           <h3>
             <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
-              A visita tecnica e paga?
+              A visita técnica e paga?
               <i aria-hidden="true"></i>
             </button>
           </h3>
           <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
-            <p>A visita e cobrada por deslocamento e tempo da equipe tecnica, e o valor e abatido do serviÃ§o se vocÃª fechar a obra com a gente. Se decidir nÃ£o seguir, nÃ£o existe multa nem pressionamento.</p>
+            <p>A visita e cobrada por deslocamento e tempo da equipe técnica, e o valor e abatido do serviço se você fechar a obra com a gente. Se decidir não seguir, não existe multa nem pressionamento.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -809,7 +800,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             </button>
           </h3>
           <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
-            <p>Nos dois modelos funcionam. Podemos comprar junto com uma lista aprovada por vocÃª, ou vocÃª compra direto e nos executamos. O que nÃ£o combinamos e trocar de fornecedor no meio da obra sem revisÃ£o de preÃ§o e de prazo.</p>
+            <p>Nos dois modelos funcionam. Podemos comprar junto com uma lista aprovada por você, ou você compra direto e nos executamos. O que não combinamos e trocar de fornecedor no meio da obra sem revisão de preço e de prazo.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -820,7 +811,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             </button>
           </h3>
           <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
-            <p>O prazo vem quebrado por etapa, com data de inÃ­cio e fim de cada uma, e nÃ£o como um nÃºmero Ãºnico no final. Atrasos causados por chuva, falta de material ou alteracao de escopo entram como aditivo, combinado com vocÃª antes.</p>
+            <p>O prazo vem quebrado por etapa, com data de início e fim de cada uma, e não como um número único no final. Atrasos causados por chuva, falta de material ou alteracao de escopo entram como aditivo, combinado com você antes.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -831,7 +822,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             </button>
           </h3>
           <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">
-            <p>Sim. Todo serviÃ§o e faturado com nota, com CNPJ e responsavel tÃ©cnico informados no documento. Quando o escopo exige, emitimos tambÃ©m aAnotacao de Responsabilidade Tecnica ART.</p>
+            <p>Sim. Todo serviço e faturado com nota, com CNPJ e responsavel técnico informados no documento. Quando o escopo exige, emitimos também aAnotacao de Responsabilidade Tecnica ART.</p>
           </div>
         </div>
       </div>
@@ -843,8 +834,8 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     <div class="wrap ct-grid">
       <div class="reveal">
         <span class="tag">Contato</span>
-        <h2 id="contato-titulo">Conte a obra que vocÃª tem em maos</h2>
-        <p class="lead">Descreva o serviÃ§o, a metragem aproximada e a regiao. A gente volta com as proximas etapas e o que precisa ser medido no local.</p>
+        <h2 id="contato-titulo">Conte a obra que você tem em maos</h2>
+        <p class="lead">Descreva o serviço, a metragem aproximada e a regiao. A gente volta com as proximas etapas e o que precisa ser medido no local.</p>
         <dl class="ct-lines">
           <div class="ct-line">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
@@ -898,7 +889,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
             </div>
           </div>
           <div class="field">
-            <label for="ct-servico">serviÃ§o de interesse</label>
+            <label for="ct-servico">serviço de interesse</label>
             <select id="ct-servico" name="servico" aria-describedby="ct-servico-err">
               <option value="">Selecione uma frente de obra</option>
               <option value="residencial">Obra residencial do zero</option>
@@ -907,24 +898,24 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
               <option value="alvenaria">Alvenaria e vedacao</option>
               <option value="cobertura">Cobertura e telhado</option>
               <option value="acabamento">Acabamento e pintura</option>
-              <option value="outro">Ainda nÃ£o sei, quero orientacao</option>
+              <option value="outro">Ainda não sei, quero orientacao</option>
             </select>
-            <p class="field-err" id="ct-servico-err">Escolha uma frente de obra ou a opcao de orientacao.</p>
+            <p class="field-err" id="ct-servico-err">Escolha uma frente de obra ou a opção de orientacao.</p>
           </div>
           <div class="field">
             <label for="ct-msg">Sobre a obra</label>
             <textarea id="ct-msg" name="mensagem" placeholder="Metragem aproximada, regiao, se ja tem projeto e o prazo que voce tem em mente." aria-describedby="ct-msg-err"></textarea>
             <p class="field-err" id="ct-msg-err">Escreva pelo menos 20 caracteres sobre a obra.</p>
           </div>
-          <button class="btn btn-accent" type="submit" style="width:100%">Pedir orÃ§amento</button>
-          <p class="hint" style="margin-top:14px">formulÃ¡rio de demonstraÃ§Ã£o: os dados ficam no seu navegador e nada e enviado.</p>
+          <button class="btn btn-accent" type="submit" style="width:100%">Pedir orçamento</button>
+          <p class="hint" style="margin-top:14px">formulário de demonstração: os dados ficam no seu navegador e nada e enviado.</p>
         </form>
         <div class="ok-panel" id="ct-ok" hidden tabindex="-1" role="status">
           <div class="ok-mark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
           </div>
           <h3>Recebemos os dados da sua obra</h3>
-          <p>Este e um modelo de demonstraÃ§Ã£o, entÃ£o nada foi enviado para um servidor. Em uma pÃ¡gina real, este texto confirmaria o contato da equipe.</p>
+          <p>Este e um modelo de demonstração, então nada foi enviado para um servidor. Em uma página real, este texto confirmaria o contato da equipe.</p>
           <button class="btn btn-ghost btn-sm" type="button" id="ct-ok-voltar">Preencher de novo</button>
         </div>
       </div>
@@ -950,9 +941,9 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
       <div>
         <h4>Navegar</h4>
         <ul class="ft-links">
-          <li><a href="#servicos">serviÃ§os</a></li>
+          <li><a href="#servicos">serviços</a></li>
           <li><a href="#obras">Obras entregues</a></li>
-          <li><a href="#orcamento">orÃ§amento</a></li>
+          <li><a href="#orcamento">orçamento</a></li>
           <li><a href="#como">Como trabalhamos</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -968,7 +959,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
       </div>
     </div>
     <div class="ft-bottom">
-      <p>Modelo de demonstraÃ§Ã£o por <a href="../index.html">Kelvin Oliveira</a></p>
+      <p>Modelo de demonstração por <a href="../index.html">Kelvin Oliveira</a></p>
       <p>[Ano] Sua Marca. Todos os direitos reservados.</p>
     </div>
   </div>
@@ -980,7 +971,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var doc = document;
 
-  /* entrada da pÃ¡gina: classe no body depois do load */
+  /* entrada da página: classe no body depois do load */
   function pageEnter() { doc.body.classList.add("is-loaded"); }
   if (doc.readyState === "complete") { pageEnter(); }
   else { window.addEventListener("load", pageEnter); }
@@ -1065,7 +1056,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     if (openPanel) { openPanel.style.height = openPanel.scrollHeight + "px"; }
   });
 
-  /* ---- orÃ§amento funcional: calcula faixa, estado vazio e erro ---- */
+  /* ---- orçamento funcional: calcula faixa, estado vazio e erro ---- */
   var orcForm = doc.getElementById("orc-form");
   var orcTipo = doc.getElementById("orc-tipo");
   var orcMetragem = doc.getElementById("orc-metragem");
@@ -1131,8 +1122,8 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
 
     if (errTipo || errMet) {
       var msg = errMet
-        ? "nÃ£o foi possivel calcular. Informe uma metragem entre 1 e 2000 m2."
-        : "nÃ£o foi possivel calcular. Escolha uma frente de obra.";
+        ? "não foi possivel calcular. Informe uma metragem entre 1 e 2000 m2."
+        : "não foi possivel calcular. Escolha uma frente de obra.";
       showError(msg);
       return;
     }
@@ -1148,7 +1139,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
     orcStatusTag.textContent = ref.nome + " · padrao " + padroes[padrao].nome;
     orcMin.textContent = brl(min);
     orcMax.textContent = brl(max);
-    orcDetalhe.textContent = "Faixa de referÃªncia para " + metragem + " m2 no padrao " + padroes[padrao].nome + ", com material e mao de obra inclusos.";
+    orcDetalhe.textContent = "Faixa de referência para " + metragem + " m2 no padrao " + padroes[padrao].nome + ", com material e mao de obra inclusos.";
     window.requestAnimationFrame(function () {
       orcBar.style.width = Math.min(100, Math.round(metragem / 20) + 40) + "%";
     });
@@ -1159,7 +1150,7 @@ body.is-loaded .hero-enter{opacity:1;transform:none}
   });
   showEmpty();
 
-  /* ---- formulÃ¡rio de contato validado com painel de sucesso ---- */
+  /* ---- formulário de contato validado com painel de sucesso ---- */
   var ctForm = doc.getElementById("ct-form");
   var ctOk = doc.getElementById("ct-ok");
   var ctOkVoltar = doc.getElementById("ct-ok-voltar");

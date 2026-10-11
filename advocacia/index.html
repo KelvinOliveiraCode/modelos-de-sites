@@ -418,7 +418,7 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
 .contato__dados dt{font-size:.875rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(232,234,240,.6)}
 .contato__dados dd{font-size:1.0625rem;color:var(--ink)}
 
-/* formulÃ¡rio */
+/* formulário */
 .form{
   background:var(--navy-2);border:1px solid rgba(232,234,240,.14);border-radius:4px;padding:26px;
   display:grid;gap:18px;
@@ -575,7 +575,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <div class="hero__aside-inner">
           <div class="credenciais enter" style="--i:3">
             <div class="credenciais__deco" aria-hidden="true">
-              <svg viewBox="0 0 132 132">
+              <svg viewBox="0 0 132 132" aria-hidden="true" focusable="false">
                 <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M66 26v72"/>
                   <path d="M34 44h64"/>
@@ -927,7 +927,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
   var mqReduz = window.matchMedia('(prefers-reduced-motion: reduce)');
   var mqDesktop = window.matchMedia('(min-width: 760px)');
 
-  /* 1. entrada de pÃ¡gina: classe no body depois do load */
+  /* 1. entrada de página: classe no body depois do load */
   function entrar() { corpo.classList.add('is-loaded'); }
   if (document.readyState === 'complete') { entrar(); }
   else {
@@ -1095,7 +1095,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
     });
   });
 
-  /* 8. formulÃ¡rio com validacao por campo e estado de sucesso */
+  /* 8. formulário com validacao por campo e estado de sucesso */
   var form = document.getElementById('form-contato');
   var sucesso = document.getElementById('form-sucesso');
   var sucessoTexto = document.getElementById('form-sucesso-texto');

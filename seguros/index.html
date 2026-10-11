@@ -77,7 +77,7 @@ body.is-loaded .hero__medalha{animation:med 800ms var(--ease-in) 260ms both}
 body.is-loaded .hero__cartao{animation:subir 820ms var(--ease-in) 460ms both}
 .eyebrow{display:inline-flex;align-items:center;gap:.5rem;margin:0 0 1rem;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--marca)}
 .eyebrow__ponto{width:9px;height:9px;border-radius:50%;background:var(--acento);box-shadow:0 0 0 4px rgba(67,160,71,.18)}
-.cotaÃ§Ã£o{background:var(--superficie);border:1px solid var(--linha);border-radius:20px;padding:2.4rem 1.4rem 1.5rem;box-shadow:var(--sombra-forte)}
+.cotação{background:var(--superficie);border:1px solid var(--linha);border-radius:20px;padding:2.4rem 1.4rem 1.5rem;box-shadow:var(--sombra-forte)}
 .cotacao__titulo{margin-bottom:.35rem;font-size:1.32rem}
 .cotacao__nota{font-size:14px;color:var(--tinta-media);margin-bottom:1.2rem}
 .campo{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
@@ -123,13 +123,13 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 .cob__colunas{display:grid;gap:1.4rem;grid-template-columns:1fr}
 .cob__col h4{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta)}
 .cob__col--sim h4{color:var(--acento-escuro)}
-.cob__col--nÃ£o h4{color:var(--tinta-media)}
+.cob__col--não h4{color:var(--tinta-media)}
 .cob__lista li{position:relative;padding-left:1.6rem;margin-bottom:.55rem;font-size:15px}
 .cob__lista li:last-child{margin-bottom:0}
 .cob__col--sim li::before{content:"";position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:50%;background:var(--acento)}
-.cob__col--nÃ£o{background:var(--banda);border-radius:12px;padding:1rem 1rem .9rem}
-.cob__col--nÃ£o li{color:var(--tinta-media)}
-.cob__col--nÃ£o li::before{content:"";position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:2px;background:#9AA9B7}
+.cob__col--não{background:var(--banda);border-radius:12px;padding:1rem 1rem .9rem}
+.cob__col--não li{color:var(--tinta-media)}
+.cob__col--não li::before{content:"";position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:2px;background:#9AA9B7}
 .cob__nota{font-size:14px;color:var(--tinta-media);margin:1.1rem 0 0;padding-top:1rem;border-top:1px dashed var(--linha)}
 .sim__grade{display:grid;gap:clamp(1.5rem,3vw,2.5rem);grid-template-columns:1fr;align-items:start}
 .sim__form{background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:clamp(1.2rem,3vw,1.8rem);box-shadow:var(--sombra-leve)}
@@ -157,12 +157,12 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 .passo{position:relative;display:grid;grid-template-columns:48px 1fr;gap:1.1rem;align-items:start;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:1.2rem;box-shadow:var(--sombra-leve);transition:box-shadow 250ms var(--ease-estado),transform 250ms var(--ease-estado)}
 .passo:hover{box-shadow:var(--sombra-forte);transform:translateY(-2px)}
 .passo__num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--marca);color:#FFFFFF;font-family:'Lora',serif;font-weight:700;font-size:1.1rem}
-.dÃºvidas{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--linha)}
-.dÃºvida{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding:1.3rem .2rem;border-bottom:1px solid var(--linha)}
+.dúvidas{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--linha)}
+.dúvida{display:grid;grid-template-columns:auto 1fr;gap:.9rem;padding:1.3rem .2rem;border-bottom:1px solid var(--linha)}
 .duvida__icone{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--azul-claro);color:var(--marca)}
 .duvida__icone svg{width:21px;height:21px}
-.dÃºvida h3{margin:0 0 .35rem;font-size:1.08rem}
-.dÃºvida p{margin:0;color:var(--tinta-media);font-size:15.5px}
+.dúvida h3{margin:0 0 .35rem;font-size:1.08rem}
+.dúvida p{margin:0;color:var(--tinta-media);font-size:15.5px}
 .contato__grade{display:grid;gap:clamp(1.6rem,3vw,2.6rem);grid-template-columns:1fr;align-items:start}
 .contato__info{display:flex;flex-direction:column;gap:1rem}
 .contato__dados{display:flex;flex-direction:column;gap:.9rem;margin-top:.4rem}
@@ -196,7 +196,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 @keyframes flutuar-a{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
 @keyframes flutuar-b{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(12px,14px,0) scale(1.07)}}
 @media (min-width:761px){.nav-toggle{display:none}.nav{position:static;flex-direction:row;align-items:center;gap:1.5rem;padding:0;background:transparent;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.nav a{padding:.4rem .2rem}.nav a:hover{background:transparent;color:var(--marca)}.nav__cta{margin:0 0 0 .5rem}.hero__grade{grid-template-columns:1.1fr .9fr;align-items:center}.hero__lateral{align-items:flex-end}.hero__marca{right:-60px;top:-30px}.cob__colunas{grid-template-columns:1fr 1fr}.sim__grade{grid-template-columns:.92fr 1.08fr}.sim__campos{grid-template-columns:1fr 1fr}.contato__grade{grid-template-columns:.85fr 1.15fr}.contato__campos{grid-template-columns:1fr 1fr}.rodape__grade{grid-template-columns:1.2fr 1fr;align-items:start}}
-@media (max-width:479px){body{font-size:16.5px}.hero__acoes .btn{width:100%}.cob__gatilho{grid-template-columns:auto 1fr;row-gap:.6rem}.dÃºvida{grid-template-columns:1fr}.duvida__icone{margin-bottom:.3rem}}
+@media (max-width:479px){body{font-size:16.5px}.hero__acoes .btn{width:100%}.cob__gatilho{grid-template-columns:auto 1fr;row-gap:.6rem}.dúvida{grid-template-columns:1fr}.duvida__icone{margin-bottom:.3rem}}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;transition-delay:0ms !important}.hero__entrada > *,.hero__medalha,.hero__cartao,.reveal,.reveal-x{opacity:1 !important;transform:none !important}.escudo__linha,.escudo__check{stroke-dashoffset:0 !important}[data-linha] .passos__linha::before{transform:scaleY(1)}.hero__marca{transform:none !important}}
 </style>
 </head>
@@ -475,7 +475,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
     <div class="secao__cabeca">
       <p class="eyebrow reveal"><span class="eyebrow__ponto" aria-hidden="true"></span> Decide</p>
       <h2 id="titulo-simular" class="reveal" style="--i:1">Simule seu perfil em três respostas</h2>
-      <p class="lead reveal" style="--i:2">A simulação indica por qual seguro começar e o que considerar em cada um. Nenhum preço aparece aqui de proposito: valor de seguro depende do que está na apólice e do seu histórico.</p>
+      <p class="lead reveal" style="--i:2">A simulação indica por qual seguro começar e o que considerar em cada um. Nenhum preço aparece aqui de propósito: valor de seguro depende do que está na apólice e do seu histórico.</p>
     </div>
     <div class="sim__grade">
       <form class="sim__form reveal" id="sim-form" novalidate>
@@ -613,7 +613,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5c4.2-4.6 6.8-8.2 6.8-11.4A6.8 6.8 0 0 0 5.2 10c0 3.2 2.6 6.8 6.8 11.5z"/><path d="M12 12.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2z"/><path d="M9.4 9.2 12 6.6l2.6 2.6"/></svg>
-            <div>Endereço<span>[endereÃ§o]</span></div>
+            <div>Endereço<span>[endereço]</span></div>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
@@ -684,7 +684,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
         </svg>
         <span>Sua Marca</span>
       </a>
-      <p>Corretora de seguros com cobertura explicada em portugues: auto, vida, residência e viagem.</p>
+      <p>Corretora de seguros com cobertura explicada em português: auto, vida, residência e viagem.</p>
     </div>
     <div>
       <h2 style="font-size:1rem;letter-spacing:.1em;text-transform:uppercase">Navegar</h2>

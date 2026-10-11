@@ -343,13 +343,7 @@ section{scroll-margin-top:88px}
 /* ---------- como funciona ---------- */
 .passos{margin-top:36px;border-top:1px solid var(--linha)}
 .passo{
-  display:grid;grid-template-columns:64px 1fr;gap:20px;
   padding:26px 4px;border-bottom:1px solid var(--linha);
-  position:relative;
-}
-.passo-num{
-  font-family:'Spectral',serif;font-size:1.5rem;font-weight:600;
-  color:var(--verde-escuro);
 }
 .passo h3{font-size:1.22rem}
 .passo p{color:var(--texto-suave);margin-top:6px;max-width:62ch}
@@ -460,7 +454,6 @@ section{scroll-margin-top:88px}
   .grade{grid-template-columns:1fr}
   .rodape-grade{grid-template-columns:1fr}
   .form-linha{grid-template-columns:1fr}
-  .passo{grid-template-columns:44px 1fr;gap:14px}
 }
 @media (max-width:380px){
   .buscador-campos{grid-template-columns:1fr}
@@ -784,21 +777,18 @@ section{scroll-margin-top:88px}
     <h2 id="titulo-como" class="titulo-secao rev-sobe" data-reveal style="--i:1">Três passos, do filtro à visita</h2>
     <ol class="passos">
       <li class="passo rev-lado" data-reveal style="--i:0">
-        <span class="passo-num" aria-hidden="true">01</span>
         <div>
           <h3>Você filtra e encurta a lista</h3>
           <p>Tipo, bairro, quartos e faixa de preço. O que não serve sai da tela, e o que sobra já dá para comparar.</p>
         </div>
       </li>
       <li class="passo rev-lado" data-reveal style="--i:1">
-        <span class="passo-num" aria-hidden="true">02</span>
         <div>
           <h3>Você simula antes de visitar</h3>
           <p>Com entrada, parcela e prazo dá para saber qual imóvel cabe no orçamento e descartar os que não cabem.</p>
         </div>
       </li>
       <li class="passo rev-lado" data-reveal style="--i:2">
-        <span class="passo-num" aria-hidden="true">03</span>
         <div>
           <h3>Você chama o corretor com contexto</h3>
           <p>Ao enviar a mensagem, diga quais imóveis sobraram no filtro. A conversa começa pelo que você já viu.</p>

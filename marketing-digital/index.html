@@ -87,7 +87,7 @@ input,select,textarea{font:inherit;color:inherit}
 }
 .reveal.is-visible{opacity:1;transform:none}
 
-/* Entrada de pÃ¡gina: classe no body depois do load. */
+/* Entrada de página: classe no body depois do load. */
 .enter{
   opacity:0;
   transform:translateY(24px);
@@ -229,7 +229,7 @@ body.is-loaded .enter{opacity:1;transform:none}
 @keyframes funilCresce{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 /* ============================================================
-   serviÃ§os: grid irregular (1 grande + 2 pequenos)
+   serviços: grid irregular (1 grande + 2 pequenos)
    ============================================================ */
 .svc-grid{display:grid;gap:16px}
 @media (min-width:761px){
@@ -246,11 +246,7 @@ body.is-loaded .enter{opacity:1;transform:none}
 }
 .svc-card:hover{background:var(--surface-2);border-color:var(--line-strong);transform:translateY(-4px)}
 .svc-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.svc-num{
-  font-family:"Archivo Black",sans-serif;font-size:2.4rem;line-height:1;
-  color:var(--brand-soft);
-}
-.svc-card.large .svc-num{font-size:3.4rem}
+
 .svc-icon{width:40px;height:40px;flex:0 0 auto}
 .svc-card h3{font-size:1.22rem}
 .svc-card.large h3{font-size:1.6rem}
@@ -325,12 +321,7 @@ body.is-loaded .enter{opacity:1;transform:none}
 .process-rail{left:21px;top:6px;bottom:6px;width:2px;transform:scaleY(0)}
 .process.is-visible .process-rail{transform:scaleY(1)}
 .step{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
-.step-num{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--accent);color:var(--accent-ink);
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Archivo Black",sans-serif;font-size:1rem;
-}
+
 .step h3{font-size:1.12rem;margin-bottom:8px}
 .step p{color:var(--ink-dim);font-size:.98rem}
 @media (min-width:761px){
@@ -579,7 +570,6 @@ body.is-loaded .enter{opacity:1;transform:none}
       <div class="svc-grid">
         <article class="svc-card large reveal" style="--i:0">
           <div class="svc-top">
-            <span class="svc-num" aria-hidden="true">01</span>
             <svg class="svc-icon" viewBox="0 0 40 40" aria-hidden="true">
               <rect x="3" y="6" width="34" height="26" rx="6" fill="none" stroke="#A78BFA" stroke-width="2"/>
               <path d="M9 26 L15 18 L21 23 L31 12" fill="none" stroke="#F97316" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -597,7 +587,6 @@ body.is-loaded .enter{opacity:1;transform:none}
 
         <article class="svc-card reveal" style="--i:1">
           <div class="svc-top">
-            <span class="svc-num" aria-hidden="true">02</span>
             <svg class="svc-icon" viewBox="0 0 40 40" aria-hidden="true">
               <rect x="5" y="8" width="30" height="22" rx="5" fill="none" stroke="#A78BFA" stroke-width="2"/>
               <path d="M17 15l9 4-9 4z" fill="#F97316"/>
@@ -610,7 +599,6 @@ body.is-loaded .enter{opacity:1;transform:none}
 
         <article class="svc-card reveal" style="--i:2">
           <div class="svc-top">
-            <span class="svc-num" aria-hidden="true">03</span>
             <svg class="svc-icon" viewBox="0 0 40 40" aria-hidden="true">
               <path d="M8 32V14l12-6 12 6v18" fill="none" stroke="#A78BFA" stroke-width="2" stroke-linejoin="round"/>
               <path d="M16 32v-9h8v9" fill="none" stroke="#F97316" stroke-width="2" stroke-linejoin="round"/>
@@ -688,7 +676,6 @@ body.is-loaded .enter{opacity:1;transform:none}
         <div class="process-rail" aria-hidden="true"></div>
 
         <article class="step reveal" style="--i:0">
-          <span class="step-num" aria-hidden="true">01</span>
           <div>
             <h3>Diagnóstico</h3>
             <p>Conversa de 40 minutos sobre o que você já tentou e o que travou. A gente olha a conta de anúncio e a página antes de opinar.</p>
@@ -696,7 +683,6 @@ body.is-loaded .enter{opacity:1;transform:none}
         </article>
 
         <article class="step reveal" style="--i:1">
-          <span class="step-num" aria-hidden="true">02</span>
           <div>
             <h3>Estratégia e verba</h3>
             <p>Plano escrito: o que testar primeiro, com quanto, e o que conta como resultado. Você aprova antes de a gente publicar.</p>
@@ -704,7 +690,6 @@ body.is-loaded .enter{opacity:1;transform:none}
         </article>
 
         <article class="step reveal" style="--i:2">
-          <span class="step-num" aria-hidden="true">03</span>
           <div>
             <h3>Publicação e otimização</h3>
             <p>Ciclos semanais de ajuste em público, criativo e verba. O que não funciona sai, o que funciona recebe mais.</p>
@@ -712,7 +697,6 @@ body.is-loaded .enter{opacity:1;transform:none}
         </article>
 
         <article class="step reveal" style="--i:3">
-          <span class="step-num" aria-hidden="true">04</span>
           <div>
             <h3>Relatório e decisão</h3>
             <p>Toda segunda, o que mudou, o que aprendemos e o que fazer com o dinheiro na semana. Você decide com dado na mão.</p>
@@ -946,7 +930,7 @@ body.is-loaded .enter{opacity:1;transform:none}
         <ul>
           <li>[seu@email.com]</li>
           <li>[(00) 00000-0000]</li>
-          <li>[endereÃ§o]</li>
+          <li>[endereço]</li>
           <li>Segunda a sexta, [00]h às [00]h</li>
         </ul>
         <p style="margin-top:14px;font-size:14px;color:var(--ink-dim)">Você deixa o contato no diagnóstico e a gente chama no WhatsApp.</p>
@@ -966,7 +950,7 @@ body.is-loaded .enter{opacity:1;transform:none}
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- 1. Entrada de pÃ¡gina ---------- */
+  /* ---------- 1. Entrada de página ---------- */
   function startPage() { document.body.classList.add("is-loaded"); }
   if (document.readyState === "complete") { startPage(); }
   else { window.addEventListener("load", startPage); }
@@ -1111,7 +1095,7 @@ body.is-loaded .enter{opacity:1;transform:none}
   var resultBody = document.getElementById("result-body");
 
   var VERBA = {
-    "atÃ©-1000": "até R$ 1.000 por mês",
+    "até-1000": "até R$ 1.000 por mês",
     "1000-a-5000": "entre R$ 1.000 e R$ 5.000 por mês",
     "acima-5000": "acima de R$ 5.000 por mês",
     "indefinida": "verba ainda em definição"

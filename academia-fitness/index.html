@@ -85,7 +85,6 @@ section{scroll-margin-top:calc(var(--header-h) + 16px)}
 .section-head{max-width:640px;margin-bottom:clamp(36px,5vw,60px)}
 .section-head h2{font-size:clamp(2.1rem,5.4vw,3.4rem);margin-bottom:16px}
 .section-head p{color:var(--ink-dim);font-size:clamp(17px,1.6vw,19px)}
-.rule{height:1px;background:var(--line-soft);border:0;margin:0}
 
 /* ============================================================
    BUTTONS  (alvo de toque 44px)
@@ -179,12 +178,6 @@ section{scroll-margin-top:calc(var(--header-h) + 16px)}
   padding-top:calc(var(--header-h) + 40px);padding-bottom:clamp(40px,7vw,84px);
   background:var(--bg);overflow:hidden;
 }
-/* fundo com textura de linhas verticais (SVG inline), sem cor decorativa extra */
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='8'%3E%3Cpath d='M0 0v8' stroke='%23f5f5f5' stroke-opacity='.045' stroke-width='1'/%3E%3C/svg%3E");
-  pointer-events:none;
-}
 .hero-inner{position:relative;z-index:2;width:100%}
 .hero-eyebrow{margin-bottom:22px}
 .hero-eyebrow span{color:var(--ink-dim)}
@@ -196,7 +189,7 @@ body.is-loaded .hero-line .w{transform:translateY(0);opacity:1}
   transition:transform 820ms var(--ease-in),opacity 820ms var(--ease-in);
   transition-delay:calc(var(--i,0) * 95ms + 140ms);
 }
-.hero-sub{max-width:46ch;font-size:clamp(18px,2vw,21px);color:var(--ink-dim);margin-bottom:32px}
+.hero-sub{max-width:52ch;font-size:clamp(18px,2vw,21px);color:var(--ink-dim);margin-bottom:32px}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .hero-note{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:15px;color:var(--ink-dim);letter-spacing:.04em}
 .hero-note b{color:var(--ink);font-weight:600}
@@ -208,10 +201,6 @@ body.is-loaded .hero-line .w{transform:translateY(0);opacity:1}
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-9px)}
 }
-.hero-underline{position:absolute;left:var(--pad-x);bottom:clamp(18px,3vw,34px);width:min(320px,62vw);height:16px;z-index:2}
-.hero-underline--inline{position:relative;left:auto;bottom:auto;width:min(300px,58vw);height:14px;margin-bottom:26px}
-.hero-underline path{stroke:var(--accent);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 900ms var(--ease-in) 950ms}
-body.is-loaded .hero-underline path{stroke-dashoffset:0}
 /* link inline dentro de texto: sobe o acento sem virar seta */
 .link-u{color:var(--accent);border-bottom:1px solid rgba(255,107,0,.45);transition:color var(--dur-hover) var(--ease-state),border-color var(--dur-hover) var(--ease-state)}
 .link-u:hover{color:#FF8226;border-color:#FF8226}
@@ -255,7 +244,7 @@ body.is-loaded .hero-underline path{stroke-dashoffset:0}
 .tick--no{color:#6E6E6E}
 .compare .val{display:flex;align-items:center;gap:10px}
 .plans-foot{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;margin-top:30px}
-.plans-foot p{font-size:15px;color:var(--ink-dim);max-width:48ch}
+.plans-foot p{font-size:15px;color:var(--ink-dim);max-width:52ch}
 
 .split-box{
   margin-top:clamp(40px,6vw,64px);background:var(--surface);border:1px solid var(--line-soft);
@@ -324,24 +313,14 @@ body.is-loaded .hero-underline path{stroke-dashoffset:0}
 @keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* ============================================================
-   MODALIDADES: lista numerada vertical
+   MODALIDADES: lista vertical
    ============================================================ */
 .mod-list{display:grid;gap:0;border-top:1px solid var(--line-soft)}
 .mod-item{
-  display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,44px);align-items:start;
   padding:clamp(24px,3.4vw,38px) 0;border-bottom:1px solid var(--line-soft);
   transition:background-color var(--dur-hover) var(--ease-state);
 }
 .mod-item:hover{background:rgba(255,107,0,.06)}
-.mod-num{
-  font-family:"Anton",Impact,sans-serif;font-size:clamp(2.6rem,7vw,4.6rem);line-height:.86;
-  color:transparent;-webkit-text-stroke:2px var(--accent);
-  /* gesto da seção: o número entra com escala, como carimbo */
-  transition:transform 540ms var(--ease-in),opacity 420ms var(--ease-in),color var(--dur-hover) var(--ease-state);
-}
-.js .mod-num{opacity:0;transform:scale(1.4)}
-.mod-item.is-in .mod-num{opacity:1;transform:scale(1)}
-.mod-item:hover .mod-num{color:var(--accent)}
 .mod-body{display:grid;grid-template-columns:1fr auto;gap:14px 26px;align-items:start}
 .mod-body h3{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.35rem,3.2vw,1.9rem);letter-spacing:.02em;margin-bottom:8px}
 .mod-body p{color:var(--ink-dim);font-size:17px;max-width:56ch}
@@ -445,7 +424,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
 .success .recap b{color:var(--ink);font-weight:600}
 .contact-side .eyebrow{margin-bottom:16px}
 .contact-side h2{font-size:clamp(2rem,5vw,3.1rem);margin-bottom:18px}
-.contact-side p{color:var(--ink-dim);font-size:18px;margin-bottom:24px;max-width:42ch}
+.contact-side p{color:var(--ink-dim);font-size:18px;margin-bottom:24px;max-width:52ch}
 .contact-list{display:grid;gap:14px;margin-top:26px}
 .contact-list li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
 .contact-list svg{color:var(--accent);flex:none;margin-top:4px}
@@ -526,10 +505,9 @@ fieldset{border:0;padding:0;margin:0 0 20px}
     transition-duration:.001ms !important;
     transition-delay:0ms !important;
   }
-  .js [data-reveal],.hero-line .w,.row,.js .mod-num{opacity:1 !important;transform:none !important}
+  .js [data-reveal],.hero-line .w,.row{opacity:1 !important;transform:none !important}
   .mod-icon svg [data-stroke]{stroke-dashoffset:0 !important}
   .hero-pulse g{animation:none !important;transform:none !important}
-  .hero-underline path{stroke-dashoffset:0 !important}
   .faq-a p{opacity:1 !important}
 }
 </style>
@@ -593,9 +571,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
         <span class="hero-line"><span class="w" style="--i:2">cabe</span> <span class="w" style="--i:3">na</span> <span class="w" style="--i:4">sua</span></span>
         <span class="hero-line"><span class="w accent-text" style="--i:5">semana</span></span>
       </h1>
-      <svg class="hero-underline hero-underline--inline" viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M4 12C60 4 120 4 150 10S240 16 296 6" pathLength="1"/>
-      </svg>
       <p class="hero-sub">Treino acompanhado por professor, grade de aulas coletivas que respeita o seu horário e aula experimental antes de fechar plano. Sem promessa de resultado, com rotina que dá para manter.</p>
       <div class="hero-ctas">
         <a class="btn btn--primary btn--lg" href="#matricula">Quero me matricular</a>
@@ -877,9 +852,8 @@ fieldset{border:0;padding:0;margin:0 0 20px}
         <p>Todas as aulas coletivas entram no plano Completo e podem ser misturadas com a musculação: três dias de peso e dois de aula, por exemplo.</p>
       </div>
 
-      <ol class="mod-list">
+      <ul class="mod-list">
         <li class="mod-item" data-reveal="fade" style="--i:0">
-          <span class="mod-num" aria-hidden="true">01</span>
           <div class="mod-body">
             <div>
               <h3>Musculação</h3>
@@ -893,7 +867,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
           </div>
         </li>
         <li class="mod-item" data-reveal="fade" style="--i:1">
-          <span class="mod-num" aria-hidden="true">02</span>
           <div class="mod-body">
             <div>
               <h3>Treino funcional</h3>
@@ -909,7 +882,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
           </div>
         </li>
         <li class="mod-item" data-reveal="fade" style="--i:2">
-          <span class="mod-num" aria-hidden="true">03</span>
           <div class="mod-body">
             <div>
               <h3>Bike Indoor</h3>
@@ -925,7 +897,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
           </div>
         </li>
         <li class="mod-item" data-reveal="fade" style="--i:3">
-          <span class="mod-num" aria-hidden="true">04</span>
           <div class="mod-body">
             <div>
               <h3>Muay Thai</h3>
@@ -941,7 +912,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
           </div>
         </li>
         <li class="mod-item" data-reveal="fade" style="--i:4">
-          <span class="mod-num" aria-hidden="true">05</span>
           <div class="mod-body">
             <div>
               <h3>Pilates</h3>
@@ -956,7 +926,6 @@ fieldset{border:0;padding:0;margin:0 0 20px}
           </div>
         </li>
         <li class="mod-item" data-reveal="fade" style="--i:5">
-          <span class="mod-num" aria-hidden="true">06</span>
           <div class="mod-body">
             <div>
               <h3>Yoga e mobilidade</h3>
@@ -971,7 +940,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
             </span>
           </div>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
@@ -1261,7 +1230,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
   var menu = doc.getElementById('mobile-menu');
   var ticking = false;
 
-  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'dÃºvidas', 'matrÃ­cula'];
+  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'dúvidas', 'matrícula'];
   var sections = sectionIds.map(function (id) { return doc.getElementById(id); });
   var navLinks = Array.prototype.slice.call(doc.querySelectorAll('.nav-desktop .nav-link'));
 
@@ -1457,7 +1426,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
   });
 
   /* ---------- 7. formulário com validação por campo ---------- */
-  var form = doc.getElementById('form-matrÃ­cula');
+  var form = doc.getElementById('form-matricula');
   var success = doc.getElementById('form-sucesso');
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
@@ -1556,7 +1525,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
 
       var objetivo = doc.getElementById('f-objetivo');
       var plano = form.querySelector('input[name="plano"]:checked');
-      var periodos = Array.prototype.slice.call(form.querySelectorAll('input[name="perÃ­odo"]:checked'))
+      var periodos = Array.prototype.slice.call(form.querySelectorAll('input[name="periodo"]:checked'))
         .map(function (i) { return i.value; });
       var obs = doc.getElementById('f-msg').value.trim();
 
