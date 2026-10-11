@@ -288,13 +288,6 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 
 /* ---------- herói ---------- */
 .hero{padding:calc(var(--header-h) + 58px) 0 96px;position:relative;overflow:hidden}
-.hero__malha{position:absolute;inset:0;pointer-events:none;opacity:.55;will-change:transform}
-.hero__forma{
-  position:absolute;border-radius:50%;pointer-events:none;
-  border:1px solid var(--linha-forte);
-}
-.hero__forma--a{width:430px;height:430px;top:-130px;right:-120px;border-color:rgba(124,58,237,.30);will-change:transform}
-.hero__forma--b{width:300px;height:300px;bottom:-90px;left:-110px;border-color:rgba(34,211,238,.20)}
 .hero__grade{
   position:relative;
   display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;
@@ -755,9 +748,6 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 
   .hero{padding:calc(var(--header-h) + 34px) 0 64px}
   .hero__grade{grid-template-columns:1fr;gap:44px}
-  .hero__forma--a{top:-160px;right:-170px}
-  .hero__forma--b{display:none}
-  .hero__malha{display:none}
   .painel-brilho{inset:-14px -8px}
 
   .grade{grid-template-columns:1fr;gap:18px}
@@ -845,17 +835,6 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
 
 <!-- ============ HERÓI: painel de produto mockado em SVG ============ -->
 <section class="hero" id="inicio" aria-labelledby="titulo-hero">
-  <svg class="hero__malha" aria-hidden="true" preserveAspectRatio="none">
-    <defs>
-      <pattern id="malha-hero" width="46" height="46" patternUnits="userSpaceOnUse">
-        <path d="M46 0H0v46" fill="none" stroke="rgba(248,250,252,.05)" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#malha-hero)"></rect>
-  </svg>
-  <span class="hero__forma hero__forma--a" data-parallax="0.16" aria-hidden="true"></span>
-  <span class="hero__forma hero__forma--b" aria-hidden="true"></span>
-
   <div class="envolve hero__grade">
     <div>
       <p class="etiqueta entrada" style="--i:0">Plataforma de operações</p>

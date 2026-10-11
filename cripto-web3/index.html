@@ -106,9 +106,8 @@ button{font:inherit;cursór:pointer;color:inherit}
 .hero-interno{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .eyebrow{
   font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--ciano);display:flex;align-items:center;gap:12px;
-}
-.eyebrow::after{content:"";height:1px;width:60px;background:var(--ciano);opacity:.45}
+  color:var(--ciano);}
+
 .hero h1{
   font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.02;
   font-size:clamp(2.4rem,5.4vw,4.2rem);margin:20px 0 22px;
@@ -122,7 +121,8 @@ button{font:inherit;cursór:pointer;color:inherit}
 .orbita .anel{fill:none;stroke:var(--linha);stroke-width:1}
 .orbita .nut{fill:var(--ciano)}
 .orbita .linha{fill:none;stroke:var(--ciano);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:5 7;animation:corre 18s linear infinite}
-.orbita .núcleo{fill:rgba(0,229,255,.1);stroke:var(--ciano);stroke-width:1.2}
+.orbita .núcleo{fill:rgba(0,229,255,.1);stroke:var(--ciano);stroke-width:1.4}
+.orbita .nucleo-detalhe{fill:none;stroke:var(--ciano);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 @keyframes corre{to{stroke-dashoffset:-240}}
 @keyframes deriva{to{background-position:58px 58px}}
 @keyframes traca{to{stroke-dashoffset:0}}
@@ -305,8 +305,8 @@ section{padding:104px 0}
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58"/>
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58" transform="rotate(62 200 160)"/>
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58" transform="rotate(-62 200 160)"/>
-        <circle class="núcleo" cx="200" cy="160" r="44"/>
-        <path class="linha" d="M200 116v88M156 160h88"/>
+        <rect class="núcleo" x="166" y="132" width="68" height="56" rx="8"/>
+        <path class="nucleo-detalhe" d="M166 148h44M234 160a9 9 0 1 0 0 .1z"/>
         <g class="nut"><circle cx="350" cy="160" r="7"/><circle cx="74" cy="120" r="7"/><circle cx="128" cy="238" r="7"/></g>
       </svg>
     </div>

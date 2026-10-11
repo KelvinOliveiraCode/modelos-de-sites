@@ -252,8 +252,7 @@ body.is-loaded .enter{opacity:1;transform:none}
 
 /* ---------- primeira consulta ---------- */
 .steps-wrap{position:relative;padding-left:34px}
-.line-draw.steps-line{position:absolute;left:11px;top:6px;bottom:6px;width:2px;height:auto}
-.steps{display:grid;gap:26px}
+.line-draw.steps-line{position:absolute;left:11px;top:6px;bottom:6px;width:2px;height:auto}.steps{display:grid;gap:26px}
 .step{position:relative}
 .step-num{
   display:inline-flex;align-items:center;justify-content:center;
@@ -302,8 +301,6 @@ body.is-loaded .enter{opacity:1;transform:none}
   font-weight:700;font-size:15px;
 }
 .band-note{max-width:46em;position:relative;z-index:1;margin:0}
-.band-arc{position:absolute;right:-10px;top:0;width:min(320px,55%);height:auto;opacity:.35;pointer-events:none}
-.band-arc path{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
 
 /* ---------- FAQ ---------- */
 .faq{display:grid;gap:10px;max-width:60em}
@@ -670,9 +667,6 @@ body.is-loaded .enter{opacity:1;transform:none}
   </section>
 
   <section class="band" id="convenios" aria-labelledby="convenios-title">
-    <svg class="band-arc line-draw reveal" viewBox="0 0 200 60" aria-hidden="true">
-      <path pathLength="100" d="M2 56 C40 6, 160 6, 198 56"/>
-    </svg>
     <div class="container">
       <h2 id="convenios-title" class="reveal" style="--i:0">Convênios atendidos</h2>
       <ul class="chips-list">

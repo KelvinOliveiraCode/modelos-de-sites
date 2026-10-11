@@ -384,47 +384,6 @@ body.pronto .entrada-painel{
   padding:calc(var(--header-h) + 46px) 0 78px;
   overflow:hidden;
 }
-.hero-fundo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-/* wrapper do parallax: recebe o transform, a flutuação fica no filho */
-.parallax{position:absolute;inset:0}
-.forma{position:absolute;display:block}
-/* flutuação lenta: 12s por ciclo, só transform */
-.forma-a{
-  width:min(46vw,380px);
-  aspect-ratio:1;
-  top:-70px;right:-90px;
-  border-radius:44% 56% 61% 39% / 48% 42% 58% 52%;
-  background:var(--surface-3);
-  animation:flutua-a 12s var(--ease-estado) infinite;
-  will-change:transform;
-}
-.forma-b{
-  width:min(34vw,240px);
-  aspect-ratio:1;
-  bottom:-60px;left:-70px;
-  border-radius:58% 42% 37% 63% / 55% 61% 39% 45%;
-  background:var(--azul-claro);
-  animation:flutua-b 14s var(--ease-estado) infinite;
-  will-change:transform;
-}
-@keyframes flutua-a{
-  0%,100%{transform:translate3d(0,0,0) scale(1)}
-  50%{transform:translate3d(-18px,26px,0) scale(1.05)}
-}
-@keyframes flutua-b{
-  0%,100%{transform:translate3d(0,0,0)}
-  50%{transform:translate3d(22px,-18px,0)}
-}
-/* anel tracejado girando devagar: 16s, elemento decorativo */
-.anel{
-  position:absolute;
-  width:230px;height:230px;
-  top:38%;right:6%;
-  animation:gira 16s var(--ease-estado) infinite;
-  will-change:transform;
-}
-@keyframes gira{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
 .hero-grade{
   display:grid;
   grid-template-columns:1.05fr .95fr;
@@ -612,48 +571,8 @@ body.pronto .entrada-painel{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:18px;
-  position:relative;
   margin-top:42px;
 }
-/* linha da trilha que cresce no reveal (só transform) */
-.trilha-linha{
-  position:absolute;
-  left:22px;right:22px;top:21px;
-  height:4px;
-  background:var(--roxo-linha);
-  border-radius:99px;
-  overflow:hidden;
-}
-.trilha-linha::after{
-  content:"";
-  display:block;
-  height:100%;
-  background:var(--roxo);
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition:transform 1.1s var(--ease) .15s;
-}
-.ativo .trilha-linha::after{transform:scaleX(1)}
-
-.passo{position:relative;padding-top:62px}
-.passo-num{
-  position:absolute;
-  top:0;left:0;
-  width:46px;height:46px;
-  border-radius:50%;
-  background:var(--surface);
-  border:2px solid var(--roxo);
-  color:var(--roxo);
-  display:grid;
-  place-items:center;
-  font-family:var(--fonte-titulo);
-  font-weight:700;
-  font-size:15px;
-  transition:transform .45s var(--ease),
-             background-color .25s var(--ease-estado),
-             color .25s var(--ease-estado);
-}
-.passo:hover .passo-num{background:var(--roxo);color:#fff;transform:scale(1.08)}
 .passo h3{margin-bottom:.35em}
 .passo p{font-size:15px;color:var(--ink-2);margin:0 0 12px}
 .passo-aulas{
@@ -694,7 +613,7 @@ body.pronto .entrada-painel{
 .proj-lista.filtragem{opacity:.35}
 .proj{
   display:grid;
-  grid-template-columns:58px 1fr 290px;
+  grid-template-columns:1fr 290px;
   gap:24px;
   align-items:center;
   padding:24px 4px;
@@ -702,12 +621,6 @@ body.pronto .entrada-painel{
   transition:background-color .25s var(--ease-estado);
 }
 .proj:hover{background:rgba(106,13,173,.045)}
-.proj-num{
-  font-family:var(--fonte-mono);
-  font-size:14px;
-  color:var(--roxo);
-  font-weight:500;
-}
 .proj h3{margin:0 0 4px}
 .proj p{margin:0;font-size:15px;color:var(--ink-2)}
 .proj-tag{
@@ -838,7 +751,7 @@ body.pronto .entrada-painel{
   padding:6px 12px;
 }
 .plano h3{font-size:1.4rem;margin:0}
-.plano-preÃ§o{
+.plano-preco{
   font-family:var(--fonte-titulo);
   font-size:2.3rem;
   font-weight:800;
@@ -846,7 +759,7 @@ body.pronto .entrada-painel{
   line-height:1;
   margin:0;
 }
-.plano-preÃ§o span{
+.plano-preco span{
   display:block;
   font-family:var(--fonte-corpo);
   font-size:14px;
@@ -918,28 +831,15 @@ body.pronto .entrada-painel{
 .faq-painel p{padding:0 22px 22px;margin:0;color:var(--ink-2)}
 
 /* ---------- matrícula ---------- */
-.matrÃ­cula-grade{
+.matricula-grade{
   display:grid;
   grid-template-columns:.92fr 1.08fr;
   gap:52px;
   align-items:start;
 }
-.passos-matrÃ­cula{display:grid;gap:20px;margin-top:26px}
-.passo-matrÃ­cula{display:flex;gap:16px;align-items:flex-start}
-.passo-matrÃ­cula .num{
-  width:38px;height:38px;
-  border-radius:50%;
-  background:var(--roxo);
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-family:var(--fonte-titulo);
-  font-weight:700;
-  font-size:15px;
-  flex:none;
-}
-.passo-matrÃ­cula p{margin:0;color:var(--ink-2);font-size:15.5px}
-.passo-matrÃ­cula strong{display:block;color:var(--ink);font-weight:600}
+.passos-matricula{display:grid;gap:20px;margin-top:26px}
+.passo-matricula p{margin:0;color:var(--ink-2);font-size:15.5px}
+.passo-matricula strong{display:block;color:var(--ink);font-weight:600}
 
 .cartao-form{
   background:var(--surface);
@@ -1071,25 +971,12 @@ body.pronto .entrada-painel{
 
   .hero{padding:calc(var(--header-h) + 30px) 0 56px}
   .hero-grade{grid-template-columns:1fr;gap:44px}
-  .forma-a{top:-110px;right:-120px}
-  .forma-b{display:none}
-  .anel{display:none}
   .hero-fatos{gap:16px 26px}
 
   .trilha-grade{grid-template-columns:1fr;gap:26px;margin-top:30px}
-  .trilha-linha{display:none}
-  .passo{padding:0 0 0 62px}
-  .passo::before{
-    content:"";
-    position:absolute;
-    left:22px;top:52px;bottom:-30px;
-    width:2px;
-    background:var(--roxo-linha);
-  }
-  .passo:last-child::before{display:none}
 
-  .proj{grid-template-columns:40px 1fr;gap:16px;padding:22px 2px}
-  .proj-img{grid-column:2;max-width:440px}
+  .proj{grid-template-columns:1fr;gap:16px;padding:22px 2px}
+  .proj-img{max-width:440px}
 
   .instrutor-grade{grid-template-columns:1fr;gap:34px}
   .instrutor-foto{max-width:300px}
@@ -1100,7 +987,7 @@ body.pronto .entrada-painel{
   .planos{grid-template-columns:1fr}
   .plano{padding:26px}
 
-  .matrÃ­cula-grade{grid-template-columns:1fr;gap:38px}
+  .matricula-grade{grid-template-columns:1fr;gap:38px}
   .cartao-form{padding:24px}
 
   .rodape-grade{grid-template-columns:1fr;gap:30px}
@@ -1117,7 +1004,7 @@ body.pronto .entrada-painel{
   .faq-botao{font-size:16px;padding:18px 16px}
   .faq-painel p{padding:0 16px 18px}
   .play{width:52px;height:52px}
-  .plano-preÃ§o{font-size:2rem}
+  .plano-preco{font-size:2rem}
 }
 
 /* movimento reduzido: desliga tudo que não é essencial */
@@ -1126,9 +1013,8 @@ body.pronto .entrada-painel{
   .js .entrada-item,.js .revelar{opacity:1!important;transform:none!important}
   body.pronto .entrada-item,
   body.pronto .entrada-painel{animation:none!important}
-  .forma-a,.forma-b,.anel,.onda-linha{animation:none!important}
+  .onda-linha{animation:none!important}
   .onda-linha{stroke-dashoffset:0}
-  .trilha-linha::after{transform:scaleX(1)!important;transition:none!important}
   .barra-fill{transition:none!important}
   .assinatura path{stroke-dashoffset:0!important;transition:none!important}
   .btn:hover,.chip:hover,.bloco:hover,.plano:hover,.proj-img,.instrutor-foto{transform:none!important}
@@ -1176,14 +1062,6 @@ body.pronto .entrada-painel{
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="inicio" aria-labelledby="titulo-hero">
-    <div class="hero-fundo" aria-hidden="true">
-      <div class="parallax" data-parallax="0.14"><span class="forma forma-a"></span></div>
-      <span class="forma forma-b"></span>
-      <svg class="anel" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="94" fill="none" stroke="#DCC6F0" stroke-width="2" stroke-dasharray="7 12"/>
-      </svg>
-    </div>
-
     <div class="envolve hero-grade">
       <div class="hero-texto">
         <p class="etiqueta entrada-item" style="--i:0">Curso online de análise de dados</p>
@@ -1217,7 +1095,7 @@ body.pronto .entrada-painel{
 
           <div class="painel-corpo" id="painel-corpo">
             <div class="painel-video">
-              <svg class="onda" viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
+              <svg class="onda" viewBox="0 0 320 60" preserveAspectRatio="none" role="img" aria-label="Prévia visual em onda da aula em andamento">
                 <path class="onda-linha" d="M4 34 L18 34 L26 12 L34 50 L44 22 L58 34 L78 34 L86 8 L96 52 L108 18 L124 34 L150 34 L158 14 L168 46 L180 24 L196 34 L216 34 L224 10 L236 50 L248 20 L264 34 L316 34" pathLength="100" fill="none" stroke="#D9C2F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path class="onda-linha onda-2" d="M4 30 L20 30 L30 18 L40 44 L52 26 L70 30 L92 30 L100 16 L110 42 L122 24 L140 30 L164 30 L172 20 L182 40 L194 28 L212 30 L234 30 L242 18 L252 42 L264 26 L282 30 L316 30" pathLength="100" fill="none" stroke="#9B7BD0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -1277,10 +1155,7 @@ body.pronto .entrada-painel{
       <p class="secao-sub revelar sobe" style="--i:2">A ordem importa: primeiro a pergunta, depois a ferramenta. Ao todo, 30 aulas e 5 projetos entregues.</p>
 
       <div class="trilha-grade">
-        <div class="trilha-linha" aria-hidden="true"></div>
-
         <article class="passo revelar sobe" style="--i:3">
-          <span class="passo-num" aria-hidden="true">01</span>
           <h3>Fundamentos: planilha, SQL e a pergunta certa</h3>
           <p>Você aprende a escrever a pergunta e a ler dado com planilha e SQL de leitura.</p>
           <p class="passo-aulas">8 aulas de 30</p>
@@ -1288,7 +1163,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="passo revelar sobe" style="--i:4">
-          <span class="passo-num" aria-hidden="true">02</span>
           <h3>Coleta e limpeza: do dado cru ao dado usável</h3>
           <p>Do arquivo cru ao dado pronto, com rotina que não depende de copiar e colar.</p>
           <p class="passo-aulas">6 aulas de 30</p>
@@ -1296,7 +1170,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="passo revelar sobe" style="--i:5">
-          <span class="passo-num" aria-hidden="true">03</span>
           <h3>Painéis que respondem pergunta</h3>
           <p>Escolher o gráfico pela pergunta e montar painel que cabe em uma tela.</p>
           <p class="passo-aulas">7 aulas de 30</p>
@@ -1304,7 +1177,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="passo revelar sobe" style="--i:6">
-          <span class="passo-num" aria-hidden="true">04</span>
           <h3>Estatística aplicada, sem decoreba</h3>
           <p>Média, variação e amostra do tamanho que você tem, com leitura honesta.</p>
           <p class="passo-aulas">5 aulas de 30</p>
@@ -1312,7 +1184,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="passo revelar sobe" style="--i:7">
-          <span class="passo-num" aria-hidden="true">05</span>
           <h3>Projeto final com dado público</h3>
           <p>Painel publicado com dado aberto e a leitura dele escrita em três parágrafos.</p>
           <p class="passo-aulas">4 aulas de 30</p>
@@ -1339,7 +1210,6 @@ body.pronto .entrada-painel{
 
       <div class="proj-lista" id="proj-lista">
         <article class="proj revelar sobe" style="--i:4" data-cat="interface">
-          <span class="proj-num" aria-hidden="true">01</span>
           <div>
             <h3>Painel de acompanhamento mensal</h3>
             <p>Um painel que responde se o mês fechou melhor ou pior que o anterior, e por quê.</p>
@@ -1352,7 +1222,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="proj revelar sobe" style="--i:5" data-cat="automacao">
-          <span class="proj-num" aria-hidden="true">02</span>
           <div>
             <h3>Rotina de limpeza de planilha</h3>
             <p>Um script que arruma a planilha crua e devolve o dado pronto para analisar.</p>
@@ -1365,7 +1234,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="proj revelar sobe" style="--i:6" data-cat="dados">
-          <span class="proj-num" aria-hidden="true">03</span>
           <div>
             <h3>Relatório de pergunta de negócio</h3>
             <p>Três páginas que respondem uma pergunta de negócio com dado, não com opinião.</p>
@@ -1378,7 +1246,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="proj revelar sobe" style="--i:7" data-cat="interface">
-          <span class="proj-num" aria-hidden="true">04</span>
           <div>
             <h3>Dashboard com dado público</h3>
             <p>Painel publicado com dado aberto, do jeito que aparece em portfólio.</p>
@@ -1391,7 +1258,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="proj revelar sobe" style="--i:8" data-cat="automacao">
-          <span class="proj-num" aria-hidden="true">05</span>
           <div>
             <h3>Rotina que junta duas planilhas</h3>
             <p>Duas bases diferentes viram uma tabela só, sem copiar e colar.</p>
@@ -1404,7 +1270,6 @@ body.pronto .entrada-painel{
         </article>
 
         <article class="proj revelar sobe" style="--i:9" data-cat="dados">
-          <span class="proj-num" aria-hidden="true">06</span>
           <div>
             <h3>Estudo de caso com teste simples</h3>
             <p>Leitura honesta de um teste: o que o dado mostra e o que ele não mostra.</p>
@@ -1599,15 +1464,12 @@ body.pronto .entrada-painel{
         <p class="secao-sub revelar sobe" style="--i:2">Preencha seus dados e a gente confirma a turma e os valores por e-mail. Nada de pagamento nesta etapa.</p>
         <ul class="passos-matricula">
           <li class="passo-matricula revelar sobe" style="--i:3">
-            <span class="num" aria-hidden="true">1</span>
             <p><strong>Você envia seus dados</strong>Leva menos de dois minutos e não pede cartão.</p>
           </li>
           <li class="passo-matricula revelar sobe" style="--i:4">
-            <span class="num" aria-hidden="true">2</span>
             <p><strong>Confirmamos a turma</strong>Respondemos por e-mail em até [X] dias úteis com valores e datas.</p>
           </li>
           <li class="passo-matricula revelar sobe" style="--i:5">
-            <span class="num" aria-hidden="true">3</span>
             <p><strong>Acesso liberado</strong>No primeiro dia de aula você entra na comunidade e pega os materiais.</p>
           </li>
         </ul>
@@ -1942,7 +1804,7 @@ window.addEventListener("resize",function(){
 });
 
 /* ---------- 8. formulário de matrícula validado ---------- */
-var form=document.getElementById("form-matrÃ­cula");
+var form=document.getElementById("form-matricula");
 var cartao=document.getElementById("cartao-form");
 var regras=[
   {id:"nome",teste:function(v){var t=v.trim();return t.length>=3&&t.indexOf(" ")>-1;},msg:"Escreva seu nome e sobrenome."},
@@ -2042,7 +1904,7 @@ document.getElementById("baixar-programa").addEventListener("click",function(){
   var url=URL.createObjectURL(blob);
   var a=document.createElement("a");
   a.href=url;
-  a.download="programa-formacao-anÃ¡lise-de-dados.txt";
+  a.download="programa-formacao-analise-de-dados.txt";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

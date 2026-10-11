@@ -50,7 +50,6 @@ body{
   font-family:'Inter','Segoe UI',Arial,sans-serif;
   font-size:1rem;
   line-height:1.65;
-  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 svg{display:block}
@@ -202,9 +201,6 @@ button{font:inherit;color:inherit}
    HERO
    ============================================================ */
 .hero{position:relative;background:var(--navy)}
-.hero__tex{
-  position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none;
-}
 .hero__inner{
   position:relative;max-width:var(--wrap);margin:0 auto;
   padding:calc(var(--header-h) + 52px) 24px 68px;
@@ -219,22 +215,7 @@ button{font:inherit;color:inherit}
   font-size:clamp(2.5rem,6vw,4rem);line-height:1.06;letter-spacing:-.015em;
   color:var(--ink);max-width:16ch;
 }
-.hero__rule{position:relative;height:14px;max-width:430px;margin:24px 0 26px}
-.hero-rule__svg{width:100%;height:14px;overflow:visible}
-.hero-rule__line{
-  fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:butt;
-  stroke-dasharray:100;stroke-dashoffset:100;vector-effect:non-scaling-stroke;
-}
-.hero-rule.desenhando .hero-rule__line{
-  transition:stroke-dashoffset .9s var(--ease-out);will-change:stroke-dashoffset;
-}
-.hero-rule__tip{
-  position:absolute;left:0;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
-  background:var(--gold);transform:translate3d(var(--x,0px),0,0) rotate(45deg);
-  will-change:transform;
-}
-.hero-rule.desenhando .hero-rule__tip{transition:transform .9s var(--ease-out)}
-.hero__lead{font-size:1.0625rem;line-height:1.72;color:var(--ink-dim);max-width:50ch}
+.hero__lead{margin-top:26px;font-size:1.0625rem;line-height:1.72;color:var(--ink-dim);max-width:50ch}
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .hero__note{margin-top:18px;font-size:.9375rem;color:rgba(232,234,240,.7)}
 
@@ -246,7 +227,7 @@ button{font:inherit;color:inherit}
   position:relative;background:var(--navy-2);border:1px solid rgba(201,162,39,.3);
   border-radius:4px;padding:28px;
 }
-.credenciais__deco{position:absolute;top:-20px;right:-20px;width:132px;height:132px;color:var(--gold);opacity:.55}
+.credenciais__deco{position:absolute;top:0;right:0;width:132px;height:132px;color:var(--gold);opacity:.5}
 .credenciais__deco svg{width:100%;height:100%;animation:girar 46s cubic-bezier(.45,.05,.55,.95) infinite}
 @keyframes girar{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .credenciais__label{
@@ -292,16 +273,12 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
 .acordeao__item.is-open{box-shadow:inset 0 1px 0 var(--gold)}
 .acordeao__h{margin:0}
 .acordeao__btn{
-  width:100%;display:grid;grid-template-columns:auto auto 1fr auto;
+  width:100%;display:grid;grid-template-columns:auto 1fr auto;
   align-items:center;gap:16px;padding:22px 4px;background:transparent;border:0;
   cursor:pointer;text-align:left;min-height:44px;
   transition:background-color .2s var(--ease-state);
 }
 .acordeao__btn:hover{background:rgba(10,31,68,.035)}
-.acordeao__num{
-  font-size:.875rem;font-weight:600;letter-spacing:.1em;color:var(--gold-deep);
-  font-variant-numeric:tabular-nums;
-}
 .acordeao__ico{color:rgba(10,31,68,.55);transition:color .2s var(--ease-state),transform .35s var(--ease-out)}
 .acordeao__ico .ico{width:26px;height:26px}
 .acordeao__btn:hover .acordeao__ico{color:var(--gold-deep);transform:translateY(-2px)}
@@ -324,11 +301,11 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
              visibility .45s var(--ease-state);
 }
 .acordeao__item.is-open .acordeao__painel{opacity:1;visibility:visible}
-.acordeao__conteudo{padding:0 4px 24px;--recuo:64px}
+.acordeao__conteudo{padding:0 4px 24px;--recuo:42px}
 .acordeao__conteudo p{max-width:68ch}
 .acordeao__conteudo p + p{margin-top:10px}
 @media (min-width:760px){.acordeao__conteudo{padding-left:var(--recuo)}}
-@media (max-width:759px){.acordeao__conteudo{padding-left:56px}}
+@media (max-width:759px){.acordeao__conteudo{padding-left:42px}}
 
 /* ============================================================
    TIMELINE
@@ -351,13 +328,9 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
   transition-delay:calc(var(--i,0) * 80ms + 180ms);
 }
 .timeline__item.is-in .timeline__dot{transform:scale(1);background:var(--gold)}
-.timeline__num{
-  font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;color:var(--gold);
-  line-height:1;margin-bottom:8px;
-}
 .timeline__tit{
   font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:1.375rem;
-  color:var(--ink);margin-bottom:10px;
+  color:var(--ink);margin-top:10px;margin-bottom:10px;
 }
 .timeline__txt{max-width:58ch}
 .timeline__item:hover .timeline__tit{color:var(--gold-hi)}
@@ -403,7 +376,6 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
   display:flex;flex-wrap:wrap;align-items:center;gap:12px;
   font-size:.875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;
 }
-.artigo__num{font-variant-numeric:tabular-nums}
 .artigo__tit{
   font-family:'Playfair Display',Georgia,serif;font-weight:600;color:var(--navy);
   font-size:1.375rem;line-height:1.25;margin-top:12px;
@@ -531,7 +503,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
   }
   body:not(.is-loaded) .enter{opacity:1 !important;transform:none !important}
   .reveal{opacity:1 !important;transform:none !important}
-  .hero-rule__line{stroke-dashoffset:0 !important}
   .timeline__linha path{stroke-dashoffset:0 !important}
   .timeline__item .timeline__dot{transform:scale(1) !important}
 }
@@ -585,26 +556,10 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
 <main id="conteudo">
 
   <section class="hero" aria-labelledby="hero-title">
-    <svg class="hero__tex" aria-hidden="true" preserveAspectRatio="none">
-      <defs>
-        <pattern id="tex-linhas" width="34" height="34" patternUnits="userSpaceOnUse">
-          <path d="M0 33.5 H34" stroke="#E8EAF0" stroke-width="1" opacity="0.07"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#tex-linhas)"/>
-    </svg>
-
     <div class="hero__inner">
       <div class="hero__main">
         <p class="hero__eyebrow enter" style="--i:0">Escritório de advocacia · [cidade]</p>
         <h1 class="hero__title enter" id="hero-title" style="--i:1">O seu caso, explicado em linguagem simples.</h1>
-
-        <div class="hero-rule enter" style="--i:2" aria-hidden="true">
-          <svg class="hero-rule__svg" viewBox="0 0 600 12" preserveAspectRatio="none">
-            <path class="hero-rule__line" pathLength="100" d="M0 6 H 600"/>
-          </svg>
-          <span class="hero-rule__tip"></span>
-        </div>
 
         <p class="hero__lead enter" style="--i:3">Você traz o problema, a gente diz o que dá para fazer, o que não dá e qual o próximo passo. Atendimento para pessoas e empresas, online e presencial, em [cidade].</p>
 
@@ -621,8 +576,12 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
           <div class="credenciais enter" style="--i:3">
             <div class="credenciais__deco" aria-hidden="true">
               <svg viewBox="0 0 132 132">
-                <circle cx="66" cy="66" r="64" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 9" opacity=".9"/>
-                <circle cx="66" cy="66" r="50" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
+                <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M66 26v72"/>
+                  <path d="M34 44h64"/>
+                  <path d="M46 44 34 66h24zM86 44 74 66h24z"/>
+                  <path d="M48 98h36"/>
+                </g>
               </svg>
             </div>
 
@@ -659,7 +618,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <li class="acordeao__item reveal" style="--i:0">
           <h3 class="acordeao__h">
             <button class="acordeao__btn" type="button" aria-expanded="false" aria-controls="area-1" id="area-btn-1">
-              <span class="acordeao__num">01</span>
               <span class="acordeao__ico"><svg class="ico" aria-hidden="true"><use href="#i-casa"/></svg></span>
               <span class="acordeao__tit">Direito de Família e Sucessões</span>
               <span class="acordeao__sinal" aria-hidden="true"></span>
@@ -676,7 +634,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <li class="acordeao__item reveal" style="--i:1">
           <h3 class="acordeao__h">
             <button class="acordeao__btn" type="button" aria-expanded="false" aria-controls="area-2" id="area-btn-2">
-              <span class="acordeao__num">02</span>
               <span class="acordeao__ico"><svg class="ico" aria-hidden="true"><use href="#i-mala"/></svg></span>
               <span class="acordeao__tit">Direito do Trabalho</span>
               <span class="acordeao__sinal" aria-hidden="true"></span>
@@ -693,7 +650,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <li class="acordeao__item reveal" style="--i:2">
           <h3 class="acordeao__h">
             <button class="acordeao__btn" type="button" aria-expanded="false" aria-controls="area-3" id="area-btn-3">
-              <span class="acordeao__num">03</span>
               <span class="acordeao__ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
               <span class="acordeao__tit">Direito Civil e Contratos</span>
               <span class="acordeao__sinal" aria-hidden="true"></span>
@@ -710,7 +666,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <li class="acordeao__item reveal" style="--i:3">
           <h3 class="acordeao__h">
             <button class="acordeao__btn" type="button" aria-expanded="false" aria-controls="area-4" id="area-btn-4">
-              <span class="acordeao__num">04</span>
               <span class="acordeao__ico"><svg class="ico" aria-hidden="true"><use href="#i-saco"/></svg></span>
               <span class="acordeao__tit">Direito do Consumidor</span>
               <span class="acordeao__sinal" aria-hidden="true"></span>
@@ -727,7 +682,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <li class="acordeao__item reveal" style="--i:4">
           <h3 class="acordeao__h">
             <button class="acordeao__btn" type="button" aria-expanded="false" aria-controls="area-5" id="area-btn-5">
-              <span class="acordeao__num">05</span>
               <span class="acordeao__ico"><svg class="ico" aria-hidden="true"><use href="#i-predio"/></svg></span>
               <span class="acordeao__tit">Direito Empresarial</span>
               <span class="acordeao__sinal" aria-hidden="true"></span>
@@ -759,25 +713,21 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
         <ol class="timeline">
           <li class="timeline__item reveal" style="--i:0">
             <span class="timeline__dot" aria-hidden="true"></span>
-            <p class="timeline__num">01</p>
             <h3 class="timeline__tit">A primeira conversa</h3>
             <p class="timeline__txt">Você conta o problema com as suas palavras. A gente ouve, faz as perguntas que faltam e diz se assume o caso.</p>
           </li>
           <li class="timeline__item reveal" style="--i:1">
             <span class="timeline__dot" aria-hidden="true"></span>
-            <p class="timeline__num">02</p>
             <h3 class="timeline__tit">A análise</h3>
             <p class="timeline__txt">Leitura dos documentos, levantamento de prazos e provas. Você recebe um resumo escrito do que é possível fazer.</p>
           </li>
           <li class="timeline__item reveal" style="--i:2">
             <span class="timeline__dot" aria-hidden="true"></span>
-            <p class="timeline__num">03</p>
             <h3 class="timeline__tit">A estratégia</h3>
             <p class="timeline__txt">Proposta por escrito: o caminho, os riscos e o que depende de decisão sua. Nada é movimentado no escuro.</p>
           </li>
           <li class="timeline__item reveal" style="--i:3">
             <span class="timeline__dot" aria-hidden="true"></span>
-            <p class="timeline__num">04</p>
             <h3 class="timeline__tit">A condução</h3>
             <p class="timeline__txt">Acompanhamento a cada etapa, com atualização em linguagem simples. Você sabe em que ponto o processo está.</p>
           </li>
@@ -814,7 +764,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
               <span>Imagem do artigo</span>
             </div>
             <div class="artigo__corpo">
-              <p class="artigo__meta"><span class="artigo__num">01</span><span>[tema: família]</span><span>[data]</span></p>
+              <p class="artigo__meta"><span>[tema: família]</span><span>[data]</span></p>
               <h3 class="artigo__tit">O que levar para a primeira conversa sobre divórcio</h3>
               <p class="artigo__res">Documentos, datas e decisões já tomadas. Uma lista curta para você não esquecer nada na hora da conversa.</p>
               <p class="artigo__acoes"><a class="artigo__link" href="#contato">Pedir o texto completo <svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></a></p>
@@ -824,7 +774,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
 
         <li class="artigo artigo--linha reveal" data-tema="trabalho" style="--i:1">
           <div class="artigo__grid">
-            <p class="artigo__meta"><span class="artigo__num">02</span><span>[tema: trabalho]</span><span>[data]</span></p>
+            <p class="artigo__meta"><span>[tema: trabalho]</span><span>[data]</span></p>
             <div>
               <h3 class="artigo__tit">Como conferir o prazo de uma reclamação trabalhista</h3>
               <p class="artigo__res">A conta parte da data de saída do emprego. Mostramos quais recibos ajudam nessa verificação.</p>
@@ -835,7 +785,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
 
         <li class="artigo artigo--linha reveal" data-tema="contratos" style="--i:2">
           <div class="artigo__grid">
-            <p class="artigo__meta"><span class="artigo__num">03</span><span>[tema: contratos]</span><span>[data]</span></p>
+            <p class="artigo__meta"><span>[tema: contratos]</span><span>[data]</span></p>
             <div>
               <h3 class="artigo__tit">Cláusulas que mais geram briga entre sócios</h3>
               <p class="artigo__res">As partes do contrato que costumam ficar vagas e o que escrever no lugar antes de assinar.</p>
@@ -1046,50 +996,27 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
     alvos.forEach(function (alvo) { alvo.classList.add('is-in'); });
   }
 
-  /* 5. linha dourada do hero (assinatura) + parallax leve */
+  /* 5. parallax leve do painel de credenciais, so no desktop */
   var hero = document.querySelector('.hero');
-  var regua = document.querySelector('.hero-rule');
-  var linha = document.querySelector('.hero-rule__line');
-  var ponta = document.querySelector('.hero-rule__tip');
   var deco = document.querySelector('.hero__aside');
-  var semLinha = !linha || !regua || !ponta || !hero;
 
   function limite(valor, min, max) { return Math.min(max, Math.max(min, valor)); }
 
   function desenhar() {
-    if (semLinha) { return; }
-    if (mqReduz.matches) {
-      linha.style.strokeDashoffset = '0';
-      return;
-    }
-    var altura = hero.offsetHeight;
-    var progresso = limite(0.12 + (window.scrollY / (altura * 0.85)) * 0.88, 0, 1);
-    linha.style.strokeDashoffset = String(100 - progresso * 100);
-    ponta.style.setProperty('--x', (progresso * regua.clientWidth) + 'px');
-    if (deco && mqDesktop.matches) {
-      var topo = hero.getBoundingClientRect().top;
-      deco.style.setProperty('--py', limite(-topo * 0.09, 0, 120));
-    }
+    if (!hero || !deco || !mqDesktop.matches) { return; }
+    var topo = hero.getBoundingClientRect().top;
+    deco.style.setProperty('--py', limite(-topo * 0.09, 0, 120));
   }
-  if (!semLinha && mqReduz.matches) { linha.style.strokeDashoffset = '0'; }
-  if (!semLinha && !mqReduz.matches) {
-    regua.classList.add('desenhando');
-    desenhar();
-    window.setTimeout(function () { regua.classList.remove('desenhando'); }, 1000);
-  }
-  window.addEventListener('resize', function () {
-    if (ocupado) { return; }
-    ocupado = true;
-    window.requestAnimationFrame(function () { desenhar(); ocupado = false; });
-  });
 
-  var rolando = false;
+  var flutuando = false;
   function naRolagem() {
-    if (rolando) { return; }
-    rolando = true;
-    window.requestAnimationFrame(function () { desenhar(); rolando = false; });
+    if (flutuando) { return; }
+    flutuando = true;
+    window.requestAnimationFrame(function () { desenhar(); flutuando = false; });
   }
   window.addEventListener('scroll', naRolagem, { passive: true });
+  window.addEventListener('resize', naRolagem, { passive: true });
+  desenhar();
 
   /* 6. acordeao com transicao de altura real */
   var listas = document.querySelectorAll('[data-acordeao]');

@@ -27,7 +27,6 @@
       font-family: 'Inter', system-ui, sans-serif;
       color: var(--tinta-clara);
       background: var(--fundo);
-      overflow-x: hidden;
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 600ms var(--easing-in), transform 600ms var(--easing-in);
@@ -80,6 +79,15 @@
       letter-spacing: .03em;
     }
     .header.scrolled .logo { color: var(--tinta-escura); }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0;
+      width: min(92%, 1100px);
+    }
 
     .nav { display: flex; align-items: center; }
     .nav-list {
@@ -134,7 +142,10 @@
       gap: 1.5rem;
       position: relative;
       overflow: hidden;
+      background: var(--fundo);
+      color: var(--tinta-clara);
     }
+    .hero .ax, .hero .hero-title { color: var(--tinta-clara); }
     .hero::before {
       content: "";
       position: absolute;
@@ -159,13 +170,17 @@
       stroke-width: 2;
       fill: none;
       stroke-linecap: round;
-      stroke-dasharray: 260;
-      stroke-dashoffset: 260;
-      animation: draw 1.6s ease-out 480ms both,
-                 pulse 7s var(--easing-in) infinite;
+      stroke-linejoin: round;
+      stroke-dasharray: 340;
+      stroke-dashoffset: 340;
+      animation: draw 1.6s ease-out 480ms both;
+    }
+    .hero-svg circle { fill: var(--acento); opacity: 0; animation: surgir 0.4s ease-out 2s both; }
+    @keyframes surgir {
+      to { opacity: 1; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-svg path { animation: none; stroke-dashoffset: 0; }
+      .hero-svg path, .hero-svg circle { animation: none; stroke-dashoffset: 0; opacity: 1; }
     }
     .hero-title {
       font-family: 'Libre Baskerville', Georgia, serif;
@@ -191,32 +206,8 @@
       opacity: .8;
     }
 
-    /* ===== FLOATING BUBBLES (hero loop >= 8s) ===== */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(201,162,39,.45), var(--acento));
-      opacity: .55;
-      will-change: transform, opacity;
-      animation: float 9s var(--easing-in) ease-in-out infinite;
-    }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.6), transparent 60%);
-    }
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: .5; }
-      50% { transform: translate(var(--tx, 12px), var(--ty, -20px)) scale(1.05); opacity: .7; }
-    }
     @keyframes draw {
       to { stroke-dashoffset: 0; }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: .35; }
-      50% { opacity: .18; }
     }
 
     /* ===== REVEAL ===== */
@@ -229,13 +220,13 @@
       opacity: 1;
       transform: none;
     }
-    .reveal-group > * { --i: 1; }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
     }
 
     /* ===== SEÇÕES CLARAS ===== */
     section { background: var(--claro-bg); color: var(--tinta-escura); }
+    section[id] { scroll-margin-top: 4.5rem; }
     section > .container { padding-block: 3.2rem; }
     section .ax { color: var(--fundo); }
     section h2 {
@@ -244,6 +235,11 @@
       line-height: 1.2;
     }
     section p { line-height: 1.6; }
+    .section-intro {
+      max-width: 62ch;
+      margin: .6rem 0 0;
+      color: #4A5A52;
+    }
 
     /* ===== SIMULADOR ===== */
     .sim-grid {
@@ -320,7 +316,7 @@
       border: 2px dashed #E2EAE3;
     }
     .sim-result.empty { color: #6B7A71; }
-    .sim-result.error state { color: #C0392B; }
+    .sim-result.error { color: #C0392B; }
     .sim-value {
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: clamp(1.6rem, 4vw, 2.2rem);
@@ -357,12 +353,6 @@
       border-bottom: 1px solid #D3DFD9;
     }
     .service-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .service-item .num {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--acento);
-      flex-shrink: 0;
-    }
     .service-item h3 { font-size: 1.05rem; margin: 0 0 .2rem; color: var(--fundo); }
     .service-item p { margin: 0; color: #4A5A52; }
 
@@ -526,11 +516,10 @@
     .foot-note a:hover { text-decoration: underline; }
 
     @media (max-width: 600px) {
-      .header .nav { position: absolute; }
       .menu-btn { display: flex; }
       .nav-list {
         display: none;
-        position: absolute; top: 100%; right: 0;
+        position: absolute; top: calc(100% + .5rem); right: 0;
         background: var(--claro-bg); color: var(--tinta-escura);
         flex-direction: column; gap: .6rem;
         padding: 1rem; border-radius: 8px;
@@ -567,8 +556,9 @@
     <section class="hero" aria-label="Introdução">
       <div class="parallax-bg" aria-hidden="true"></div>
 
-      <svg class="hero-svg" viewBox="0 0 260 100" aria-hidden="true" focusable="false">
-        <path d="M10 50 Q 60 10 110 40 T 200 30 T 250 10"></path>
+      <svg class="hero-svg" viewBox="0 0 260 100" aria-hidden="true" focusable="false" role="img" aria-label="Linha de valor subindo ao longo do tempo">
+        <path d="M10 78 L52 70 L92 72 L134 56 L176 44 L216 32 L252 18"></path>
+        <circle cx="252" cy="18" r="3.5" fill="#C9A227"/>
       </svg>
 
       <div class="container">
@@ -585,10 +575,6 @@
           <span class="client-count">[+1.200 clientes atendidos]</span>
         </div>
       </div>
-
-      <div class="bubble" style="--tx:10px; --ty:-16px; width:54px; height:54px; inset:12% 8% auto auto;"></div>
-      <div class="bubble" style="--tx:-8px; --ty:-26px; width:46px; height:46px; inset:28% 5% auto auto;"></div>
-      <div class="bubble" style="--tx:14px; --ty:-22px; width:60px; height:60px; inset:60% 18% auto auto;"></div>
     </section>
 
     <!-- ===== SIMULADOR ===== -->
@@ -596,7 +582,7 @@
       <div class="container">
         <header class="reveal">
           <h2>Simule sua projeção</h2>
-          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Informe seus valores e veja uma projeção de valor acumulado. É apenas uma referência para a conversa, nunca uma promessa.</p>
+          <p class="section-intro">Informe seus valores e veja uma projeção de valor acumulado. É apenas uma referência para a conversa, nunca uma promessa.</p>
         </header>
 
         <div class="sim-grid reveal" style="--i:1">
@@ -636,33 +622,29 @@
       <div class="container">
         <div class="reveal">
           <h2 class="ax">O que fazemos</h2>
-          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Trabalhamos quatro pilares, todos documentados. Nenhum produto vendido por comissão.</p>
+          <p class="section-intro">Trabalhamos quatro pilares, todos documentados. Nenhum produto vendido por comissão.</p>
         </div>
 
         <ul class="service-list reveal" style="--i:1">
           <li class="service-item">
-            <span class="num">01.</span>
             <div>
               <h3>Planejamento financeiro integral</h3>
               <p>Documento vivo com metas, fluxo de caixa e prioridades. Revisão a cada 6 meses.</p>
             </div>
           </li>
           <li class="service-item">
-            <span class="num">02.</span>
             <div>
               <h3>Investimentos com baixo custo</h3>
               <p>Fundo multicontinente em ETFs, alocação por ramo de ativos, sem margem de bilheteria.</p>
             </div>
           </li>
           <li class="service-item">
-            <span class="num">03.</span>
             <div>
               <h3>Preparação para a aposentadoria</h3>
               <p>Projeção regressiva de necessidade de patrimônio e estratégia de contribuição.</p>
             </div>
           </li>
           <li class="service-item">
-            <span class="num">04.</span>
             <div>
               <h3>Educação financeira aplicada</h3>
               <p>Explicamos cada decisão em linguagem acessível, com tudo registrado no seu plano.</p>
@@ -706,7 +688,7 @@
       <div class="container">
         <div class="reveal">
           <h2 class="ax">Nosso processo</h2>
-          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Quatro etapas. Cada uma entrega algo que você pode conferir.</p>
+          <p class="section-intro">Quatro etapas. Cada uma entrega algo que você pode conferir.</p>
         </div>
         <ol class="timeline reveal" style="--i:1">
           <li>
@@ -807,7 +789,7 @@
       <div class="container">
         <div class="reveal">
           <h2 class="ax">Marque sua conversa</h2>
-          <p class="hero-sub" style="color:#4A5A52; max-width:640px">Dois campos. A gente devolve um e-mail com horários reais. Nada de app de envio automático.</p>
+          <p class="section-intro">Dois campos. A gente devolve um e-mail com horários reais. Nada de app de envio automático.</p>
         </div>
 
         <div class="contact-wrap reveal" style="--i:1">
@@ -858,7 +840,7 @@
           <a href="../index.html">Voltar ao hub</a>
         </div>
       </div>
-      <p class="foot-note">Modelo de demonstração por Kelvin Oliveira. [<span class="footer-bracket">(00) 00000-0000</span>] [<span class="footer-bracket">seu@email.com</span>] [<span class="footer-bracket">[endereÃ§o]</span>]</p>
+      <p class="foot-note">Modelo de demonstração por Kelvin Oliveira. [<span class="footer-bracket">(00) 00000-0000</span>] [<span class="footer-bracket">seu@email.com</span>] [<span class="footer-bracket">[endereço]</span>]</p>
     </div>
   </footer>
 
@@ -995,13 +977,12 @@
       }
 
       function renderResultHTML(value, months, rate) {
-        var i = rate / 100 / 12;
         var overYears = months >= 12;
-        var periodoodo = overYears ? (months / 12).toFixed(1).replace('.', ',') + ' anos' : months + (months === 1 ? ' mês' : ' meses');
+        var periodo = overYears ? (months / 12).toFixed(1).replace('.', ',') + ' anos' : months + (months === 1 ? ' mês' : ' meses');
         return '' +
           '<div class="sim-result-inner">' +
             '<div class="sim-value" id="sim-value">R$ 0,00</div>' +
-            '<p class="sim-meta">Projeção de valor acumulado em ' + perÃodo + ' a ' + rate.toFixed(2).replace('.', ',') + '% ao ano</p>' +
+            '<p class="sim-meta">Projeção de valor acumulado em ' + periodo + ' a ' + rate.toFixed(2).replace('.', ',') + '% ao ano</p>' +
             '<div class="result-line"><span></span></div>' +
             '<p class="disclaimer">Valor simulado com juros compostos mensais. Não é promessa de rentabilidade. Consulte um profissional.</p>' +
           '</div>';

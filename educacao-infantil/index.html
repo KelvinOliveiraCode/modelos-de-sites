@@ -268,27 +268,9 @@
   }
   body.carregado .hero .anim{opacity:1;transform:translateY(0)}
 
-  /* formas flutuando: assinatura do nicho, poucas e lentas */
-  .hero-formas{
-    position:absolute;
-    inset:0;
-    z-index:1;
-    pointer-events:none;
-    transform:translate3d(0,calc(var(--py,0) * 1px),0);
-  }
-  .forma{position:absolute;width:44px;height:44px;will-change:transform}
-  .forma--1{left:5%;top:16%;width:46px;height:46px;animation:flutua-a 9s var(--ease) infinite alternate}
-  .forma--2{right:6%;top:12%;width:36px;height:36px;animation:flutua-b 11s var(--ease) infinite alternate}
-  .forma--3{left:2%;bottom:16%;width:40px;height:40px;animation:flutua-b 13s var(--ease) infinite alternate}
-  .forma--4{right:3%;bottom:22%;width:52px;height:52px;animation:flutua-c 12s var(--ease) infinite alternate}
-  .forma--5{left:44%;top:6%;width:26px;height:26px;animation:flutua-a 10s var(--ease) infinite alternate}
-
-  @keyframes flutua-a{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(8px,-20px,0) rotate(12deg)}}
-  @keyframes flutua-b{from{transform:translate3d(0,0,0) rotate(-8deg)}to{transform:translate3d(-12px,16px,0) rotate(6deg)}}
-  @keyframes flutua-c{from{transform:translate3d(0,0,0) rotate(6deg)}to{transform:translate3d(10px,18px,0) rotate(-10deg)}}
-
   .raios{transform-box:fill-box;transform-origin:50% 50%;animation:brilha 14s var(--ease) infinite alternate}
   @keyframes brilha{from{transform:rotate(-11deg)}to{transform:rotate(11deg)}}
+  @media (prefers-reduced-motion: reduce){.raios{animation:none}}
 
   /* ---------- timeline: um dia na escola ---------- */
   .timeline{position:relative;max-width:760px}
@@ -372,7 +354,7 @@
   .est-lista{display:grid;gap:14px}
   .est-item{
     display:grid;
-    grid-template-columns:auto 1fr;
+    grid-template-columns:1fr;
     gap:14px 18px;
     align-items:start;
     background:#FFFFFF;
@@ -382,23 +364,9 @@
     transition:transform 220ms var(--ease-estado),box-shadow 220ms var(--ease-estado);
   }
   .est-item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(38,34,26,.10)}
-  .est-num{
-    font-family:"Fredoka",sans-serif;
-    font-weight:600;
-    width:46px;height:46px;
-    display:grid;place-items:center;
-    border-radius:14px;
-    background:var(--pastel,var(--p1));
-    font-size:1rem;
-  }
-  .est-item:nth-child(4n+1){--pastel:var(--p1)}
-  .est-item:nth-child(4n+2){--pastel:var(--p2)}
-  .est-item:nth-child(4n+3){--pastel:var(--p3)}
-  .est-item:nth-child(4n+4){--pastel:var(--p4)}
   .est-item h3{font-size:1.14rem;margin-bottom:4px}
   .est-item p{margin:0;color:var(--muted)}
   .est-tag{
-    grid-column:1 / -1;
     justify-self:start;
     font-size:.86rem;
     font-weight:800;
@@ -410,8 +378,7 @@
     padding:4px 12px;
   }
   @media (min-width:700px){
-    .est-item{grid-template-columns:auto 1fr auto;align-items:center}
-    .est-tag{grid-column:auto}
+    .est-item{grid-template-columns:1fr auto;align-items:center;gap:18px}
   }
 
   /* ---------- calendário de matrículas ---------- */
@@ -618,7 +585,6 @@
       transition-duration:.001ms !important;
     }
     .revelar,.hero .anim{opacity:1 !important;transform:none !important}
-    .hero-formas{transform:none}
     .timeline-linha path{stroke-dashoffset:0}
   }
 </style>
@@ -662,15 +628,8 @@
 
 <main id="conteudo">
 
-  <!-- HERO: formas geométricas flutuando devagar, poucas e lentas -->
+  <!-- HERO: ilustração da escola -->
   <section class="hero" id="inicio" aria-labelledby="hero-titulo">
-    <div class="hero-formas" aria-hidden="true">
-      <svg class="forma forma--1" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#FFF59D"/></svg>
-      <svg class="forma forma--2" viewBox="0 0 40 40"><rect x="3" y="3" width="34" height="34" rx="8" fill="#90CAF9"/></svg>
-      <svg class="forma forma--3" viewBox="0 0 40 40"><path d="M20 4 36 34 4 34Z" fill="#F8BBD0"/></svg>
-      <svg class="forma forma--4" viewBox="0 0 40 40"><path d="M5 33a15 15 0 0 1 30 0" fill="none" stroke="#A5D6A7" stroke-width="5" stroke-linecap="round"/></svg>
-      <svg class="forma forma--5" viewBox="0 0 40 40"><path d="M20 5v30M5 20h30" stroke="#26221A" stroke-width="5" stroke-linecap="round" opacity=".45"/></svg>
-    </div>
     <div class="container hero-grade">
       <div class="hero-texto">
         <p class="eyebrow anim" style="--i:0">Berçário, Maternal e Jardim</p>
@@ -683,7 +642,7 @@
         <p class="hero-nota anim" style="--i:4">Visita guiada com a coordenação, [40 min], e você pode trazer a criança.</p>
       </div>
       <div class="hero-arte anim" style="--i:2">
-        <svg viewBox="0 0 420 330" role="img" aria-label="Desenho de escola feita de formas geométricas, com sol, árvore e canteiros" style="width:100%;height:auto">
+        <svg viewBox="0 0 420 330" role="img" aria-label="Desenho de uma escola ao sol, com duas árvores e canteiros na frente" style="width:100%;height:auto">
           <rect x="96" y="118" width="212" height="146" rx="18" fill="#90CAF9"/>
           <path d="M104 122 216 44 328 122Z" fill="#F8BBD0"/>
           <rect x="192" y="206" width="44" height="58" rx="10" fill="#26221A"/>
@@ -701,7 +660,6 @@
           <circle cx="356" cy="220" r="20" fill="#A5D6A7"/>
           <rect x="120" y="238" width="60" height="26" rx="13" fill="#F8BBD0"/>
           <rect x="196" y="242" width="44" height="22" rx="11" fill="#FFF59D"/>
-          <path d="M266 264h44M288 242v44" stroke="#26221A" stroke-width="4" stroke-linecap="round" opacity=".4"/>
         </svg>
       </div>
     </div>
@@ -844,32 +802,26 @@
       </div>
       <ul class="est-lista">
         <li class="est-item revelar revelar--lado" style="--i:0">
-          <span class="est-num" aria-hidden="true">01</span>
           <div><h3>Salas de aula</h3><p>Luz natural, paredes com registro do trabalho da turma e material organizado à altura de quem usa.</p></div>
           <span class="est-tag">Berçário ao Jardim</span>
         </li>
         <li class="est-item revelar revelar--lado" style="--i:1">
-          <span class="est-num" aria-hidden="true">02</span>
           <div><h3>Biblioteca</h3><p>Acervo de consulta livre, prateleiras baixas e almofadas no chão para ler de qualquer jeito.</p></div>
           <span class="est-tag">Livros</span>
         </li>
         <li class="est-item revelar revelar--lado" style="--i:2">
-          <span class="est-num" aria-hidden="true">03</span>
           <div><h3>Ateliê de arte</h3><p>Pia azulejada, cavaletes e bancada grande, com espaço para sujar sem brigar por espaço.</p></div>
           <span class="est-tag">Arte</span>
         </li>
         <li class="est-item revelar revelar--lado" style="--i:3">
-          <span class="est-num" aria-hidden="true">04</span>
           <div><h3>Refeitório</h3><p>Cardápio semanal preparado na escola e servido em grupo. A alimentação está inclusa na mensalidade.</p></div>
           <span class="est-tag">Alimentação</span>
         </li>
         <li class="est-item revelar revelar--lado" style="--i:4">
-          <span class="est-num" aria-hidden="true">05</span>
           <div><h3>Área externa e horta</h3><p>Jardim, areia, canteiros e árvores. Sol pela manhã e sombra garantida no fim da manhã.</p></div>
           <span class="est-tag">Natureza</span>
         </li>
         <li class="est-item revelar revelar--lado" style="--i:5">
-          <span class="est-num" aria-hidden="true">06</span>
           <div><h3>Sala do berçário</h3><p>Berçário com solário, trocador e espaço de sono separado da área de brincar.</p></div>
           <span class="est-tag">Berçário</span>
         </li>
@@ -1122,28 +1074,22 @@
   'use strict';
 
   var doc = document;
-  var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var amplo = window.matchMedia('(min-width: 760px)');
   var corpo = doc.body;
   var header = doc.querySelector('.site-header');
   var alternar = doc.querySelector('.menu-toggle');
   var menu = doc.getElementById('menu-principal');
-  var formas = doc.querySelector('.hero-formas');
 
   /* entrada da página: classe no body depois do load, escalonada por --i */
   function iniciarEntrada() { corpo.classList.add('carregado'); }
   if (doc.readyState === 'complete') { iniciarEntrada(); }
   else { window.addEventListener('load', iniciarEntrada); }
 
-  /* header que reage ao scroll + parallax leve, tudo dentro de um rAF */
+  /* header que reage ao scroll, tudo dentro de um rAF */
   var agendado = false;
   function quadro() {
     agendado = false;
     var y = window.pageYOffset || doc.documentElement.scrollTop;
     header.classList.toggle('rolou', y > 10);
-    if (formas && !reduzido && amplo.matches) {
-      formas.style.setProperty('--py', (y * 0.16).toFixed(1));
-    }
   }
   function aoRolar() {
     if (!agendado) { agendado = true; window.requestAnimationFrame(quadro); }

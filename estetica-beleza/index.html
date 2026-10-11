@@ -87,8 +87,8 @@ svg{display:block}
 /* secoes */
 main{display:block}
 section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
-.eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.eyebrow{display:block;margin:0 0 16px;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+
 .lead{font-size:1.06rem;color:var(--ink-2);max-width:56ch}
 .section-head{max-width:62ch;margin-bottom:44px}
 
@@ -96,7 +96,7 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
 .hero{position:relative;padding:clamp(120px,17vw,170px) 0 clamp(70px,9vw,110px);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
 .hero h1{margin-bottom:22px}
-.hero-lead{font-size:1.08rem;color:var(--ink-2);max-width:44ch;margin-bottom:30px}
+.hero-lead{font-size:1.08rem;color:var(--ink-2);max-width:50ch;margin-bottom:30px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
 .welcome-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:26px 28px;box-shadow:var(--shadow)}
 .welcome-card h3{margin-bottom:8px}
@@ -104,7 +104,7 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
 .hero-visual{position:relative}
 .photo-frame{position:relative;aspect-ratio:4/5;border-radius:180px 180px 26px 26px;background:linear-gradient(160deg,var(--pink-soft),var(--pink));border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden}
 .photo-frame .ph-label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.hero-flower{position:absolute;right:-14px;bottom:-18px;width:132px;height:132px;opacity:.9}
+.hero-flower{position:absolute;right:2rem;bottom:2rem;width:min(200px,24vw);height:auto;opacity:.85;z-index:1;pointer-events:none}
 .float-slow{animation:floaty 9s var(--ease-state) infinite alternate}
 @keyframes floaty{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-16px,0)}}
 /* petalas: poucas, discretas, lentas */
@@ -131,14 +131,13 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
 .acc-item{border-bottom:1px solid var(--line)}
 .acc-btn{display:flex;align-items:center;gap:18px;width:100%;padding:22px 4px;background:none;border:0;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);transition:background-color .25s var(--ease-state)}
 .acc-btn:hover{background:rgba(255,255,255,.6)}
-.acc-num{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold-ink);width:26px;flex:none}
 .acc-title{flex:1;font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;transition:transform .3s var(--ease-state)}
 .acc-btn:hover .acc-title{transform:translateX(4px)}
 .acc-price{font-size:15px;font-weight:500;color:var(--ink-2);white-space:nowrap}
 .acc-icon{width:34px;height:34px;flex:none;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;transition:transform .4s var(--ease),background-color .3s var(--ease-state),border-color .3s var(--ease-state)}
 .acc-btn[aria-expanded="true"] .acc-icon{transform:rotate(45deg);background:var(--gold);border-color:var(--gold)}
 .acc-panel{height:0;overflow:hidden;transition:height .5s var(--ease-state)}
-.acc-panel-inner{padding:2px 4px 26px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+.acc-panel-inner{padding:2px 4px 26px 4px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
 .acc-desc{color:var(--ink-2);margin:0 0 14px}
 .acc-list li{position:relative;padding-left:20px;margin-bottom:8px;font-size:15px;color:var(--ink-2)}
 .acc-list li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--pink)}
@@ -164,7 +163,7 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
 .packages{display:grid;grid-template-columns:1.25fr .95fr;gap:24px;align-items:stretch}
 .pkg{border-radius:24px;padding:34px 32px;border:1px solid var(--line);background:var(--white);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .pkg:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.pkg-main{background:linear-gradient(150deg,var(--pink-soft),#fff);display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center}
+.pkg-main{background:var(--pink-soft);display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center}
 .pkg-side{background:var(--ink);color:#FFF8F0}
 .pkg-side h3,.pkg-side .pkg-price{color:#FFF8F0}
 .pkg-side .pkg-desc{color:rgba(255,248,240,.78)}
@@ -211,7 +210,7 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
 .faq-panel p{padding:0 44px 24px 4px;margin:0;color:var(--ink-2)}
 
 /* agendamento */
-.booking{background:linear-gradient(180deg,var(--white),var(--pink-soft))}
+.booking{background:var(--pink-soft)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .field{display:flex;flex-direction:column;gap:7px}
 .field-full{grid-column:1/-1}
@@ -305,17 +304,16 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
       </div>
       <div class="hero-visual reveal-r" data-parallax="0.16">
         <div class="photo-frame" role="img" aria-label="espaco para foto: ambiente da clínica com maca e iluminação suave">
-          <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-            <circle cx="36" cy="36" r="30" fill="none" stroke="#D4AF37" stroke-width="1.4" stroke-dasharray="5 7"/>
-            <path d="M36 20c5 4.6 7.4 9.2 7.4 13.6 0 4.4-3.3 7.6-7.4 7.6s-7.4-3.2-7.4-7.6C28.6 29.2 31 24.6 36 20Z" fill="#4A2B33" opacity=".55"/>
-          </svg>
           <span class="ph-label">Sua foto aqui</span>
         </div>
         <svg class="hero-flower float-slow" viewBox="0 0 120 120" aria-hidden="true">
-          <g fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round">
-            <path d="M60 18v84M22 60h76M33 33l54 54M87 33 33 87"/>
+          <g fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M42 34h36v12l-7 8v44a11 11 0 0 1-22 0V54l-7-8z"/>
+            <path d="M35 100h50"/>
+            <path d="M48 26h24v8H48z"/>
+            <path d="M48 60h24M48 74h24" stroke-width="1.3" opacity=".75"/>
           </g>
-          <circle cx="60" cy="60" r="9" fill="#F8BBD0"/>
+          <circle cx="60" cy="46" r="3.4" fill="#F8BBD0"/>
         </svg>
       </div>
     </div>
@@ -332,7 +330,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
       <div class="acc" id="acc-servicos">
         <div class="acc-item reveal" style="--i:1">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s1" id="btn-s1">
-            <span class="acc-num">01</span>
             <span class="acc-title">Avaliação facial</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">
@@ -359,7 +356,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
         </div>
         <div class="acc-item reveal" style="--i:2">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s2" id="btn-s2">
-            <span class="acc-num">02</span>
             <span class="acc-title">Limpeza de pele</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">
@@ -386,7 +382,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
         </div>
         <div class="acc-item reveal" style="--i:3">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s3" id="btn-s3">
-            <span class="acc-num">03</span>
             <span class="acc-title">Drenagem linfática</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">
@@ -413,7 +408,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
         </div>
         <div class="acc-item reveal" style="--i:4">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s4" id="btn-s4">
-            <span class="acc-num">04</span>
             <span class="acc-title">Peeling facial</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">
@@ -440,7 +434,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
         </div>
         <div class="acc-item reveal" style="--i:5">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s5" id="btn-s5">
-            <span class="acc-num">05</span>
             <span class="acc-title">Massagem relaxante</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">
@@ -467,7 +460,6 @@ section{padding:clamp(64px,9vw,104px) 0;scroll-margin-top:80px}
         </div>
         <div class="acc-item reveal" style="--i:6">
           <button class="acc-btn" type="button" aria-expanded="false" aria-controls="painel-s6" id="btn-s6">
-            <span class="acc-num">06</span>
             <span class="acc-title">Design de sobrancelhas</span>
             <span class="acc-price">[R$ 00]</span>
             <span class="acc-icon" aria-hidden="true">

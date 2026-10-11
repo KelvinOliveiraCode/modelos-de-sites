@@ -31,7 +31,7 @@
   body{
     margin:0;background:var(--bg);color:var(--ink);
     font-family:'Jost',system-ui,-apple-system,Segoe UI,sans-serif;
-    font-size:1rem;line-height:1.6;overflow-x:hidden;
+    font-size:1rem;line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   img,svg{display:block;max-width:100%;}
@@ -101,27 +101,13 @@
   /* ---------- hero ---------- */
   .hero{position:relative;display:flex;align-items:flex-end;overflow:hidden;
     min-height:94vh;min-height:94dvh;padding:150px 0 78px;}
-  .hero-inner{position:relative;z-index:2;width:100%;}
+  .hero-inner{position:relative;width:100%;}
   .hero .eyebrow{display:block;margin-bottom:20px;}
   .hero h1{font-size:clamp(2.9rem,9.5vw,6.6rem);font-weight:400;max-width:15ch;}
   .hero h1 em{font-style:italic;color:var(--accent);}
   .hero-sub{color:var(--muted);max-width:46ch;margin:24px 0 34px;font-size:1.08rem;}
   .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:22px;}
   .hero-note{color:var(--muted);font-size:.9rem;letter-spacing:.03em;}
-
-  .hero-ornament{position:absolute;top:14%;right:-34px;z-index:1;
-    width:min(58vw,360px);opacity:.55;will-change:transform;}
-  .hero-ornament svg{width:100%;height:auto;animation:spin 26s linear infinite;}
-  .orn-line{stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;
-    stroke-dasharray:1;stroke-dashoffset:1;
-    transition:stroke-dashoffset 1.5s var(--ease-in) .45s;}
-  body.loaded .orn-line{stroke-dashoffset:0;}
-
-  .scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
-    z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
-  .cue-line{width:1px;height:46px;background:rgba(217,187,168,.45);}
-  .cue-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
-    animation:floaty 2.8s ease-in-out infinite;}
 
   /* ---------- marquee ---------- */
   .marquee{background:#000;border-block:1px solid var(--line-soft);overflow:hidden;}
@@ -186,7 +172,7 @@
   .prod:hover .prod-media{transform:scale(1.023);border-color:rgba(217,187,168,.42);}
 
   /* ---------- como comprar ---------- */
-  .como-list{position:relative;max-width:780px;}
+  .como-list{position:relative;max-width:960px;}
   .rail{position:absolute;left:23px;top:30px;bottom:30px;width:4px;z-index:0;}
   .rail-line{stroke:var(--accent);stroke-width:2;stroke-dasharray:300;stroke-dashoffset:300;
     transition:stroke-dashoffset 1s var(--ease-in) .15s;}
@@ -208,7 +194,6 @@
   .look-frame{position:absolute;inset:12px;border:1px solid rgba(217,187,168,.32);
     pointer-events:none;will-change:transform;}
   .look-cap{margin-top:14px;display:flex;gap:12px;align-items:baseline;}
-  .look-cap .idx{color:var(--accent);font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;}
   .look-cap h3{font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.2rem;}
   .look-a .look-media{min-height:420px;}
   .look-b .look-media,.look-c .look-media{min-height:260px;}
@@ -232,7 +217,6 @@
     border:1px solid var(--line);background:#0a0a0a;padding:18px 20px;border-radius:2px;
     animation:popIn .5s var(--ease-in) both;}
   .news-ok .chk{color:var(--accent);width:24px;height:24px;flex:0 0 24px;margin-top:2px;}
-  .news-ok p{margin:0;}
   .news-ok strong{display:block;font-weight:500;margin-bottom:4px;}
   .news-ok span{color:var(--muted);}
   .news-ok button{margin-top:12px;background:transparent;border:1px solid rgba(255,255,255,.28);
@@ -261,9 +245,7 @@
   .foot-bottom a.demo:hover{color:var(--accent);}
 
   /* ---------- keyframes ---------- */
-  @keyframes spin{to{transform:rotate(360deg);}}
   @keyframes drift{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @keyframes floaty{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(-16px);opacity:1;}}
   @keyframes popIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
   /* ---------- responsivo ---------- */
@@ -281,7 +263,6 @@
       border:1px solid var(--line);border-radius:2px;cursor:pointer;
       transition:border-color .2s var(--ease-state),color .2s var(--ease-state);}
     .nav-toggle:hover{border-color:var(--accent);color:var(--accent);}
-    .hero-ornament{top:9%;right:-30px;width:66vw;opacity:.4;}
   }
 
   @media (min-width:760px){
@@ -312,7 +293,7 @@
       transition-duration:.001ms !important;}
     .marquee-track{animation:none !important;flex-wrap:wrap;white-space:normal;}
     .rise,.reveal{opacity:1 !important;transform:none !important;}
-    .orn-line,.rail-line{stroke-dashoffset:0 !important;}
+    .rail-line{stroke-dashoffset:0 !important;}
     .prod-price{opacity:1 !important;transform:none !important;}
   }
 </style>
@@ -353,17 +334,6 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio" aria-label="Apresentação da marca">
-    <div class="hero-ornament" data-parallax="0.15" aria-hidden="true">
-      <svg viewBox="-50 -50 100 100">
-        <g>
-          <line class="orn-line" x1="0" y1="-44" x2="0" y2="44" pathLength="1"/>
-          <line class="orn-line" x1="-44" y1="0" x2="44" y2="0" pathLength="1"/>
-          <line class="orn-line" x1="-31" y1="-31" x2="31" y2="31" pathLength="1"/>
-          <line class="orn-line" x1="-31" y1="31" x2="31" y2="-31" pathLength="1"/>
-        </g>
-      </svg>
-    </div>
-
     <div class="container hero-inner">
       <span class="eyebrow rise" style="--i:0">Nova coleção</span>
       <h1 class="rise" style="--i:1">Peças que atravessam o <em>tempo</em>.</h1>
@@ -372,11 +342,6 @@
         <a class="btn btn-primary" href="#colecao">Ver a coleção</a>
         <span class="hero-note">Curadoria pequena, feita para durar.</span>
       </div>
-    </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span class="cue-line"></span>
-      <span class="cue-dot"></span>
     </div>
   </section>
 
@@ -577,7 +542,6 @@
             <span class="tag">Sua foto aqui</span>
           </div>
           <figcaption class="look-cap">
-            <span class="idx">Sessão 01</span>
             <h3>Linho, do escritório ao fim de semana</h3>
           </figcaption>
         </figure>
@@ -587,7 +551,6 @@
             <span class="tag">Sua foto aqui</span>
           </div>
           <figcaption class="look-cap">
-            <span class="idx">Sessão 02</span>
             <h3>Alfaiataria que veste o corpo, não o contrário</h3>
           </figcaption>
         </figure>
@@ -597,8 +560,7 @@
             <span class="tag">Sua foto aqui</span>
           </div>
           <figcaption class="look-cap">
-            <span class="idx">Sessão 03</span>
-            <h3>Sobreposições para dias de temperatura <span class="idx">[a definir]</span></h3>
+            <h3>Sobreposições para dias de temperatura [a definir]</h3>
           </figcaption>
         </figure>
       </div>

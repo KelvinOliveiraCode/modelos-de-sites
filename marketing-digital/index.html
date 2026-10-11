@@ -204,44 +204,29 @@ body.is-loaded .enter{opacity:1;transform:none}
 
 /* Visual: orbitas. Loop lento (>= 6s) so em transform e stroke. */
 .hero-visual{will-change:transform}
-.orbit-svg{width:100%;max-width:380px;margin:0 auto;height:auto}
-.ring{fill:none;stroke:rgba(245,243,255,.16);stroke-width:1.5}
-.ring-solid{fill:none;stroke:var(--brand);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:0}
-.orbit-spin{
-  transform-box:fill-box;transform-origin:center;
-  animation:orbitSpin 18s var(--ease-state) infinite;
-  will-change:transform;
+.funil-svg{width:100%;max-width:400px;margin:0 auto;height:auto;overflow:visible}
+.funil-linha{
+  opacity:0;transform:translateY(12px);
+  animation:funilEntra 1s var(--ease-state) both;
+  animation-delay:calc(240ms + var(--k) * 160ms);
 }
-.orbit-dot{fill:var(--accent)}
-.draw-arc{
-  fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;
-  stroke-dasharray:1;stroke-dashoffset:1;
-  animation:drawLine 12s var(--ease-state) infinite;
-  will-change:stroke-dashoffset;
+.funil-rot{
+  fill:#F5F3FF;font-family:"Space Grotesk",system-ui,sans-serif;font-size:16px;
+  letter-spacing:.01em;
 }
-.float-a,.float-b{transform-box:fill-box;transform-origin:center;will-change:transform}
-.float-a{animation:floatA 9s var(--ease-out) infinite alternate}
-.float-b{animation:floatB 11s var(--ease-out) infinite alternate}
-.chip{
-  fill:var(--surface-2);stroke:rgba(245,243,255,.22);stroke-width:1;
+.funil-valor{
+  fill:var(--accent);font-family:"Space Grotesk",system-ui,sans-serif;
+  font-size:16px;font-weight:700;text-anchor:end;
 }
-.chip-dot{fill:var(--brand-soft)}
-
-@keyframes orbitSpin{to{transform:rotate(360deg)}}
-@keyframes drawLine{
-  0%{stroke-dashoffset:1}
-  45%{stroke-dashoffset:0}
-  75%{stroke-dashoffset:0}
-  100%{stroke-dashoffset:-1}
+.funil-barra{
+  fill:var(--brand);transform-box:fill-box;transform-origin:left center;
+  animation:funilCresce 1.2s var(--ease-state) both;
+  animation-delay:calc(320ms + var(--k) * 160ms);
 }
-@keyframes floatA{
-  from{transform:translateY(-10px)}
-  to{transform:translateY(10px)}
-}
-@keyframes floatB{
-  from{transform:translateY(8px) rotate(-4deg)}
-  to{transform:translateY(-8px) rotate(4deg)}
-}
+.funil-barra--fim{fill:var(--accent)}
+.funil-valor--fim{fill:var(--accent)}
+@keyframes funilEntra{to{opacity:1;transform:none}}
+@keyframes funilCresce{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 /* ============================================================
    serviÃ§os: grid irregular (1 grande + 2 pequenos)
@@ -495,6 +480,8 @@ body.is-loaded .enter{opacity:1;transform:none}
   .reveal,.enter{opacity:1 !important;transform:none !important}
   .case-meter-fill{transform:scaleX(1) !important}
   .process-rail{transform:scale(1) !important}
+  .funil-linha{opacity:1 !important;transform:none !important}
+  .funil-barra{transform:scaleX(1) !important}
 }
 </style>
 <noscript><style>.reveal,.enter{opacity:1;transform:none}.case-meter-fill{transform:scaleX(1)}.process-rail{transform:scale(1)}</style></noscript>
@@ -554,22 +541,26 @@ body.is-loaded .enter{opacity:1;transform:none}
       </div>
 
       <div class="hero-visual enter" style="--i:2">
-        <svg class="orbit-svg" viewBox="0 0 360 360" role="img" aria-label="Desenho abstrato de três órbitas concêntricas com um ponto laranja girando devagar e um arco que se desenha. Elemento gráfico, sem dados.">
-          <circle class="ring" cx="180" cy="180" r="152"/>
-          <circle class="ring" cx="180" cy="180" r="114"/>
-          <circle class="ring" cx="180" cy="180" r="76"/>
-          <circle class="ring-solid" cx="180" cy="180" r="152" pathLength="1" stroke-dasharray="0.18 0.82"/>
-          <g class="orbit-spin">
-            <circle class="orbit-dot" cx="180" cy="28" r="9"/>
+        <svg class="funil-svg" viewBox="0 0 360 324" role="img" aria-label="Funil de conversão de uma campanha fictícia: 12 mil visitas, 900 leads, 180 propostas e 36 vendas. Números de demonstração.">
+          <g class="funil-linha" style="--k:0">
+            <text class="funil-rot" x="0" y="46">Visitas ao site</text>
+            <rect class="funil-barra" x="0" y="58" width="300" height="14" rx="7"/>
+            <text class="funil-valor" x="330" y="46">12.000</text>
           </g>
-          <path class="draw-arc" d="M64 246 C 118 148, 196 128, 296 100" pathLength="1"/>
-          <g class="float-a">
-            <rect class="chip" x="24" y="176" width="34" height="24" rx="7"/>
-            <circle class="chip-dot" cx="41" cy="188" r="4"/>
+          <g class="funil-linha" style="--k:1">
+            <text class="funil-rot" x="0" y="126">Leads qualificados</text>
+            <rect class="funil-barra" x="0" y="138" width="225" height="14" rx="7"/>
+            <text class="funil-valor" x="330" y="126">900</text>
           </g>
-          <g class="float-b">
-            <rect class="chip" x="304" y="212" width="34" height="24" rx="7"/>
-            <circle class="chip-dot" cx="321" cy="224" r="4"/>
+          <g class="funil-linha" style="--k:2">
+            <text class="funil-rot" x="0" y="206">Propostas enviadas</text>
+            <rect class="funil-barra" x="0" y="218" width="150" height="14" rx="7"/>
+            <text class="funil-valor" x="330" y="206">180</text>
+          </g>
+          <g class="funil-linha" style="--k:3">
+            <text class="funil-rot" x="0" y="286">Vendas fechadas</text>
+            <rect class="funil-barra funil-barra--fim" x="0" y="298" width="82" height="14" rx="7"/>
+            <text class="funil-valor funil-valor--fim" x="330" y="286">36</text>
           </g>
         </svg>
       </div>

@@ -363,28 +363,6 @@ body.page-ready .p-item{
 }
 .hero__acoes{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
 
-/* formas decorativas de fundo: so transform/opacity, loop lento */
-.forma{
-  position:absolute;border-radius:50%;pointer-events:none;z-index:1;
-  background:var(--mint);opacity:.5;
-  will-change:transform;
-}
-.forma--a{width:300px;height:300px;top:-90px;right:12%;filter:blur(2px);opacity:.34;animation:flutuaA 13s var(--ease-state) infinite}
-.forma--b{width:180px;height:180px;bottom:6%;left:-60px;opacity:.4;animation:flutuaB 16s var(--ease-state) infinite}
-.forma--c{
-  width:520px;height:520px;top:24%;left:38%;
-  background:radial-gradient(circle,rgba(165,214,167,.34),rgba(165,214,167,0) 68%);
-  border-radius:50%;opacity:.7;
-}
-@keyframes flutuaA{
-  0%,100%{transform:translate3d(0,0,0) scale(1)}
-  50%{transform:translate3d(0,26px,0) scale(1.05)}
-}
-@keyframes flutuaB{
-  0%,100%{transform:translate3d(0,0,0)}
-  50%{transform:translate3d(22px,-18px,0)}
-}
-
 /* ---------- assinatura do nicho: linha de ECG em SVG ---------- */
 .ecg{
   position:relative;
@@ -573,7 +551,7 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
 .lista-especialidades{border-top:1px solid var(--line)}
 .linha{
   display:grid;
-  grid-template-columns:64px 1fr auto;
+  grid-template-columns:1fr auto;
   gap:26px;
   align-items:center;
   padding:26px 18px;
@@ -584,20 +562,6 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
 .linha:nth-child(even){background:rgba(165,214,167,.16)}
 .linha:nth-child(odd){background:var(--surface)}
 .linha:hover{background:var(--mint-soft)}
-/* regra que se desenha da esquerda: gesto proprio desta secao */
-.linha__regra{
-  position:absolute;left:0;bottom:-1px;height:2px;width:100%;
-  background:var(--mint);
-  transform:scaleX(0);transform-origin:0 50%;
-}
-.js .rev.in-view .linha__regra{
-  transform:scaleX(1);
-  transition:transform .8s var(--ease) calc(var(--i,0) * 75ms + 120ms);
-}
-.linha__num{
-  font-family:var(--fonte-titulo);font-size:1.5rem;font-weight:700;
-  color:var(--ink);opacity:.42;
-}
 .linha__corpo h3{margin-bottom:6px;font-size:1.3rem}
 .linha__corpo p{margin:0;color:var(--ink-2);font-size:15.5px;max-width:60ch}
 .linha__meta{
@@ -644,10 +608,6 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
 .passo--1{
   background:var(--mint-soft);
   border-color:var(--mint-line);
-}
-.passo__num{
-  font-family:var(--fonte-titulo);font-size:3rem;font-weight:700;
-  line-height:1;color:var(--ink);opacity:.28;margin-bottom:10px;
 }
 .passo h3{font-size:1.35rem;margin-bottom:10px}
 .passo p{color:var(--ink-2);margin-bottom:16px}
@@ -988,7 +948,6 @@ section[id],div[id]{scroll-margin-top:96px}
   .ecg{margin:26px 0 18px}
 
   .linha{grid-template-columns:1fr;gap:12px;padding:22px 14px}
-  .linha__num{font-size:1.15rem}
   .linha__meta{align-items:flex-start;text-align:left}
   .linha__etiquetas{justify-content:flex-start}
 
@@ -1026,9 +985,8 @@ section[id],div[id]{scroll-margin-top:96px}
     clip-path:none !important;
   }
   .ecg__linha{animation:none !important;stroke-dashoffset:0 !important}
-  .ecg__brilho,.ecg__pulso,.forma,.correia__trilha{animation:none !important}
+  .ecg__brilho,.ecg__pulso,.correia__trilha{animation:none !important}
   .ecg__brilho,.ecg__pulso{opacity:0 !important}
-  .js .in-view .linha__regra{transform:scaleX(1) !important;transition:none !important}
   .mapa__pino-anel{animation:none !important}
 }
 </style>
@@ -1073,10 +1031,6 @@ section[id],div[id]{scroll-margin-top:96px}
 
 <!-- ============ HERO: split assimétrico (texto 7 colunas, cartão 5) ============ -->
 <section class="hero" id="inicio" aria-labelledby="titulo-hero">
-  <span class="forma forma--a" data-parallax="0.16" aria-hidden="true"></span>
-  <span class="forma forma--b" data-parallax="0.24" aria-hidden="true"></span>
-  <span class="forma forma--c" aria-hidden="true"></span>
-
   <div class="envolve hero__grade">
     <div class="hero__texto">
       <p class="etiqueta p-item" style="--atraso:60ms">Clínica médica em [Sua Cidade]</p>
@@ -1268,8 +1222,6 @@ section[id],div[id]{scroll-margin-top:96px}
 
     <div class="lista-especialidades stagger" id="lista-especialidades">
       <article class="linha rev" data-busca="clinica geral check-up rotina encaminhamento exame">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">01</span>
         <div class="linha__corpo">
           <h3>Clínica geral</h3>
           <p>Consulta de rotina, check-up e encaminhamento para especialistas. É a porta de entrada para quem ainda não sabe o que tem.</p>
@@ -1287,8 +1239,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="linha rev" data-busca="cardiologia coração pressão hipertensão colesterol">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">02</span>
         <div class="linha__corpo">
           <h3>Cardiologia</h3>
           <p>Avaliação do coração, controle de pressão alta e colesterol, e acompanhamento de quem já tem diagnóstico de doença cardíaca.</p>
@@ -1306,8 +1256,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="linha rev" data-busca="dermatologia pele cabelo unha mancha acne">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">03</span>
         <div class="linha__corpo">
           <h3>Dermatologia</h3>
           <p>Consulta de pele, cabelo e unhas, com procedimentos ambulatoriais simples feitos no mesmo dia quando há necessidade.</p>
@@ -1325,8 +1273,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="linha rev" data-busca="ginecologia obstetrícia pré-natal preventivo mulher gestação">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">04</span>
         <div class="linha__corpo">
           <h3>Ginecologia e obstetrícia</h3>
           <p>Pré-natal, exame preventivo e planejamento familiar, com acompanhamento em todas as fases da gestação.</p>
@@ -1344,8 +1290,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="linha rev" data-busca="pediatria criança bebê vacina crescimento">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">05</span>
         <div class="linha__corpo">
           <h3>Pediatria</h3>
           <p>Consulta de rotina, vacina e acompanhamento do crescimento, com orientação para pais de primeira viagem.</p>
@@ -1363,8 +1307,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="linha rev" data-busca="ortopedia junta joelho coluna ombro dor reabilitação fisioterapia">
-        <span class="linha__regra" aria-hidden="true"></span>
-        <span class="linha__num" aria-hidden="true">06</span>
         <div class="linha__corpo">
           <h3>Ortopedia</h3>
           <p>Avaliação de dor nas juntas, lesão por esporte e reabilitação depois de cirurgia, com encaminhamento para fisioterapia quando necessário.</p>
@@ -1402,7 +1344,6 @@ section[id],div[id]{scroll-margin-top:96px}
 
     <div class="passos stagger">
       <article class="passo passo--1 rev">
-        <p class="passo__num" aria-hidden="true">1</p>
         <h3>Você escolhe o horário no cartão acima</h3>
         <p>
           Especialidade, data e horário. Se você não souber qual profissional
@@ -1419,7 +1360,6 @@ section[id],div[id]{scroll-margin-top:96px}
       </article>
 
       <article class="passo passo--2 rev">
-        <p class="passo__num" aria-hidden="true">2</p>
         <h3>A recepção confirma pelo WhatsApp</h3>
         <p>
           Você recebe a confirmação com o nome do profissional, o endereço e o
@@ -1832,7 +1772,6 @@ section[id],div[id]{scroll-margin-top:96px}
       var fracao = total > 0 ? Math.min(y / total, 1) : 0;
       barra.style.transform = 'scaleX(' + fracao.toFixed(4) + ')';
     }
-    aplicaParallax(y);
   }
 
   function naRolagem() {
@@ -1845,19 +1784,7 @@ section[id],div[id]{scroll-margin-top:96px}
   window.addEventListener('scroll', naRolagem, { passive: true });
   window.addEventListener('resize', naRolagem);
 
-  /* ---------- 4. parallax leve (so em mesa, nunca no mobile) ---------- */
-  var camadas = Array.prototype.slice.call(doc.querySelectorAll('[data-parallax]'));
-  function aplicaParallax(y) {
-    if (!camadas.length) { return; }
-    if (!mqMesa.matches || mqReduz.matches) {
-      camadas.forEach(function (camada) { camada.style.transform = ''; });
-      return;
-    }
-    camadas.forEach(function (camada) {
-      var fator = parseFloat(camada.getAttribute('data-parallax')) || 0.15;
-      camada.style.transform = 'translate3d(0,' + (y * fator).toFixed(2) + 'px,0)';
-    });
-  }
+  /* ---------- 4. sem camadas decorativas: nada a mover ---------- */
   desenhaRolagem();
 
   /* ---------- 5. menu mobile: abre, fecha com Escape, fecha no link ---------- */
