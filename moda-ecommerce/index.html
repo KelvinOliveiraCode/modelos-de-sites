@@ -148,7 +148,7 @@
   .reveal.rv-s{transform:scale(.95);}
   .reveal.in{opacity:1;transform:none;}
 
-  /* entrada de pagina */
+  /* entrada de pÃ¡gina */
   .rise{opacity:0;transform:translateY(28px);
     transition:opacity .85s var(--ease-in),transform .85s var(--ease-in);
     transition-delay:calc(var(--i,0)*130ms);}
@@ -299,7 +299,7 @@
     .look-b .look-media,.look-c .look-media{min-height:300px;}
     .foot-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
 
-    /* revelacao de preco so onde existe hover real */
+    /* revelacao de preÃ§o so onde existe hover real */
     .prod-price{opacity:0;transform:translateY(10px);
       transition:opacity .22s var(--ease-state),transform .22s var(--ease-state);}
     .prod:hover .prod-price,.prod:focus-within .prod-price{opacity:1;transform:none;}
@@ -700,7 +700,7 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var body = document.body;
 
-  /* 1) Entrada de pagina: revela o hero depois do primeiro paint */
+  /* 1) Entrada de pÃ¡gina: revela o hero depois do primeiro paint */
   requestAnimationFrame(function(){ body.classList.add("loaded"); });
 
   /* 2) Escalonamento: numera os filhos de cada container para o --i */
@@ -745,7 +745,7 @@
   /* 6) Header que reage ao scroll + link ativo no menu */
   var header = document.querySelector(".site-header");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
-  var sections = ["inicio","colecao","como-comprar","lookbook","novidades"]
+  var sections = ["inÃ­cio","colecao","como-comprar","lookbook","novidades"]
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
 

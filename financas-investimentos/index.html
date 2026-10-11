@@ -858,7 +858,7 @@
           <a href="../index.html">Voltar ao hub</a>
         </div>
       </div>
-      <p class="foot-note">Modelo de demonstração por Kelvin Oliveira. [<span class="footer-bracket">(00) 00000-0000</span>] [<span class="footer-bracket">seu@email.com</span>] [<span class="footer-bracket">[endereco]</span>]</p>
+      <p class="foot-note">Modelo de demonstração por Kelvin Oliveira. [<span class="footer-bracket">(00) 00000-0000</span>] [<span class="footer-bracket">seu@email.com</span>] [<span class="footer-bracket">[endereÃ§o]</span>]</p>
     </div>
   </footer>
 
@@ -997,11 +997,11 @@
       function renderResultHTML(value, months, rate) {
         var i = rate / 100 / 12;
         var overYears = months >= 12;
-        var periodo = overYears ? (months / 12).toFixed(1).replace('.', ',') + ' anos' : months + (months === 1 ? ' mês' : ' meses');
+        var periodoodo = overYears ? (months / 12).toFixed(1).replace('.', ',') + ' anos' : months + (months === 1 ? ' mês' : ' meses');
         return '' +
           '<div class="sim-result-inner">' +
             '<div class="sim-value" id="sim-value">R$ 0,00</div>' +
-            '<p class="sim-meta">Projeção de valor acumulado em ' + periodo + ' a ' + rate.toFixed(2).replace('.', ',') + '% ao ano</p>' +
+            '<p class="sim-meta">Projeção de valor acumulado em ' + perÃodo + ' a ' + rate.toFixed(2).replace('.', ',') + '% ao ano</p>' +
             '<div class="result-line"><span></span></div>' +
             '<p class="disclaimer">Valor simulado com juros compostos mensais. Não é promessa de rentabilidade. Consulte um profissional.</p>' +
           '</div>';

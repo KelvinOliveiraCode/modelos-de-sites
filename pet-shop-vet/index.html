@@ -165,7 +165,7 @@ body.carregado .rabisco path{animation:desenhaRabisco 1.1s var(--entrada) .55s f
   100%{stroke-dashoffset:0;opacity:.15}
 }
 
-/* entrada de pagina (escalonada) */
+/* entrada de pÃ¡gina (escalonada) */
 .entrada{opacity:0;transform:translateY(24px);will-change:opacity,transform}
 body.carregado .entrada{
   opacity:1;transform:none;
@@ -181,8 +181,8 @@ body.carregado .entrada{
 [data-reveal="girar"]{transform:translateY(18px) rotate(-2.2deg)}
 [data-reveal].visivel{opacity:1;transform:none;will-change:auto}
 
-.servicos{background:linear-gradient(#FFFFFF 0%,#F7FCF7 100%)}
-.servicos-grade{display:grid;grid-template-columns:1fr;gap:18px}
+.serviÃ§os{background:linear-gradient(#FFFFFF 0%,#F7FCF7 100%)}
+.serviÃ§os-grade{display:grid;grid-template-columns:1fr;gap:18px}
 .svc{
   display:flex;gap:16px;align-items:flex-start;background:#fff;border:2px solid var(--linha);
   border-radius:var(--raio-g);padding:22px 20px;
@@ -219,8 +219,8 @@ body.carregado .entrada{
 .plano.destaque{border-color:var(--marca);box-shadow:var(--sombra)}
 .plano-selo{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;font-size:.875rem;font-weight:800;color:var(--marca-texto);letter-spacing:.04em;text-transform:uppercase}
 .plano-selo .ponto{position:static;width:10px;height:10px;flex:0 0 auto}
-.preco{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.5rem;line-height:1;color:var(--tinta);margin:0 0 4px}
-.preco span{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;color:var(--tinta-suave);margin-left:6px}
+.preÃ§o{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.5rem;line-height:1;color:var(--tinta);margin:0 0 4px}
+.preÃ§o span{font-family:'Nunito',sans-serif;font-weight:700;font-size:1rem;color:var(--tinta-suave);margin-left:6px}
 .plano-nota{color:var(--tinta-suave);font-size:1rem;margin:0 0 18px}
 .plano-lista{display:grid;gap:11px;margin-bottom:22px}
 .plano-lista li{display:flex;gap:10px;align-items:flex-start;font-size:1rem}
@@ -354,7 +354,7 @@ form{display:grid;gap:16px}
 @media (min-width:761px){
   .hero-conta{grid-template-columns:1.08fr .92fr}
   .hero{padding-bottom:96px}
-  .servicos-grade{grid-template-columns:repeat(12,1fr);gap:20px}
+  .serviÃ§os-grade{grid-template-columns:repeat(12,1fr);gap:20px}
   .svc:nth-child(odd){grid-column:span 5}
   .svc:nth-child(even){grid-column:span 7;margin-top:22px}
   .passos-grade{grid-template-columns:repeat(4,1fr);gap:22px}
@@ -857,7 +857,7 @@ form{display:grid;gap:16px}
           <p class="contato-dados">
             <span>Telefone: [(00) 00000-0000]</span>
             <span>E-mail: [seu@email.com]</span>
-            <span>Endereço: [endereco]</span>
+            <span>Endereço: [endereÃ§o]</span>
           </p>
           <button class="btn btn-secundario" type="button" id="botaoWhats" aria-expanded="false" aria-controls="infoWhats">
             <svg aria-hidden="true"><use href="#i-chat"/></svg>
@@ -889,7 +889,7 @@ form{display:grid;gap:16px}
       <ul class="rodape-links">
         <li>[(00) 00000-0000]</li>
         <li>[seu@email.com]</li>
-        <li>[endereco]</li>
+        <li>[endereÃ§o]</li>
       </ul>
     </div>
     <div>
@@ -924,7 +924,7 @@ form{display:grid;gap:16px}
   var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
   var desktop = window.matchMedia('(min-width: 761px)');
 
-  /* entrada de pagina, escalonada por --i */
+  /* entrada de pÃ¡gina, escalonada por --i */
   function marcarCarregado(){ doc.body.classList.add('carregado'); }
   if (doc.readyState === 'complete') { marcarCarregado(); }
   else { window.addEventListener('load', marcarCarregado); }
@@ -1038,18 +1038,18 @@ form{display:grid;gap:16px}
     });
   });
 
-  /* resumo do servico, com estado vazio */
+  /* resumo do serviÃ§o, com estado vazio */
   var dadosServico = {
-    consulta: { titulo: 'Consulta e check-up', itens: ['Avaliacao completa do pet', 'Revisao da carteira de vacinacao', 'Orientacao de peso, dieta e vermifugos'] },
-    vacina: { titulo: 'Vacinacao', itens: ['Aplicacao com registro na carteira', 'Reforco conforme o calendario do pet', 'Observacao depois da aplicacao'] },
-    cirurgia: { titulo: 'Cirurgia', itens: ['Avaliacao pre-anestesica', 'Anestesia monitorada', 'Orcamento por escrito antes de marcar'] },
+    consulta: { titulo: 'Consulta e check-up', itens: ['avaliaÃ§Ã£o completa do pet', 'revisÃ£o da carteira de vacinacao', 'Orientacao de peso, dieta e vermifugos'] },
+    vacina: { titulo: 'Vacinacao', itens: ['aplicaÃ§Ã£o com registro na carteira', 'Reforco conforme o calendario do pet', 'Observacao depois da aplicaÃ§Ã£o'] },
+    cirurgia: { titulo: 'cirurgia', itens: ['avaliaÃ§Ã£o pre-anestesica', 'Anestesia monitorada', 'orÃ§amento por escrito antes de marcar'] },
     banho: { titulo: 'Banho e tosa', itens: ['Produto adequado a pele do pet', 'Tosa higienica ou tosa completa', 'Checagem de unhas, orelhas e pelo'] },
-    exames: { titulo: 'Exames', itens: ['Coleta feita na clinica', 'Resultado explicado pela equipe', 'Encaminhamento para laboratorio parceiro'] },
-    internacao: { titulo: 'Internacao', itens: ['Leito com horario de visita definido', 'Equipe presente no periodo', 'Emergencia no horario definido pela clinica'] }
+    exames: { titulo: 'Exames', itens: ['Coleta feita na clÃ­nica', 'Resultado explicado pela equipe', 'Encaminhamento para laboratÃ³rio parceiro'] },
+    internacao: { titulo: 'Internacao', itens: ['Leito com horario de visita definido', 'Equipe presente no perÃ­odo', 'emergÃªncia no horario definido pela clÃ­nica'] }
   };
-  var selectServico = doc.getElementById('servico');
+  var selectServico = doc.getElementById('serviÃ§o');
   var resumo = doc.getElementById('resumoConteudo');
-  var resumoVazio = '<svg aria-hidden="true"><use href="#i-consulta"/></svg><p>Escolha um servico no formulario para ver o que ele inclui.</p>';
+  var resumoVazio = '<svg aria-hidden="true"><use href="#i-consulta"/></svg><p>Escolha um serviÃ§o no formulÃ¡rio para ver o que ele inclui.</p>';
   function atualizarResumo(){
     var d = dadosServico[selectServico.value];
     resumo.classList.add('sumindo');
@@ -1079,8 +1079,8 @@ form{display:grid;gap:16px}
     infoWhats.classList.toggle('mostrar', abrir);
   });
 
-  /* validacao do formulario com estado de sucesso */
-  var form = doc.getElementById('formulario');
+  /* validacao do formulÃ¡rio com estado de sucesso */
+  var form = doc.getElementById('formulÃ¡rio');
   var sucesso = doc.getElementById('sucesso');
   var aviso = doc.getElementById('aviso');
   var inputData = doc.getElementById('data');
@@ -1105,15 +1105,15 @@ form{display:grid;gap:16px}
     { el: doc.getElementById('pet'), erro: doc.getElementById('erroPet'),
       ok: function(el, v){ return v.trim().length >= 2; },
       msg: 'Informe o nome do pet.' },
-    { el: doc.getElementById('servico'), erro: doc.getElementById('erroServico'),
+    { el: doc.getElementById('serviÃ§o'), erro: doc.getElementById('erroServico'),
       ok: function(el, v){ return v !== ''; },
-      msg: 'Escolha o servico.' },
+      msg: 'Escolha o serviÃ§o.' },
     { el: inputData, erro: doc.getElementById('erroData'),
       ok: function(el, v){ return v !== '' && new Date(v + 'T00:00:00') >= new Date(hojeLocal() + 'T00:00:00'); },
       msg: 'Escolha uma data de hoje em diante.' },
     { el: doc.getElementById('autoriza'), erro: doc.getElementById('erroAutoriza'),
       ok: function(el){ return el.checked; },
-      msg: 'Marque a autorizacao de contato.' }
+      msg: 'Marque a autorizaÃ§Ã£o de contato.' }
   ];
 
   function marcarErro(r){
