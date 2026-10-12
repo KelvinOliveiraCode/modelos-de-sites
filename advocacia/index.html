@@ -120,7 +120,7 @@ button{font:inherit;color:inherit}
 .btn--ghost-ink{background:transparent;color:var(--navy);border-color:rgba(10,31,68,.28)}
 .btn--ghost-ink:hover{border-color:var(--navy);background:rgba(10,31,68,.06)}
 .btn--sm{min-height:42px;padding:0 1.15rem;font-size:.875rem}
-.btn--full{width:100%}
+.btn--full{width:100%;max-width:min(420px,100%)}
 
 /* ============================================================
    HEADER
@@ -311,7 +311,10 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
    TIMELINE
    ============================================================ */
 .timeline-wrap{position:relative;padding-left:46px}
-.timeline__linha{position:absolute;left:5px;top:8px;bottom:8px;width:2px}
+/* SVG substituido: height:auto usava a proporcao intrinseca do viewBox
+   (2x100 -> 100px) e ignorava o bottom. height em % do .timeline-wrap,
+   do centro do primeiro marcador (top:14px) ao meio do ultimo. */
+.timeline__linha{position:absolute;left:5px;top:14px;height:calc(100% - 28px);width:2px}
 .timeline__linha path{
   fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;
   stroke-dasharray:100;stroke-dashoffset:100;vector-effect:non-scaling-stroke;

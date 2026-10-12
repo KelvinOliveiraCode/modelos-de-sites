@@ -28,13 +28,13 @@ html{scroll-behavior:smooth}
 body{
 margin:0;background:var(--bg);color:var(--ink);
 font-family:var(--font);font-size:16px;line-height:1.6;
--webkit-font-smoothing:antialiased;overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,h4{font-family:var(--display);line-height:1.12;margin:0;letter-spacing:-.01em}
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-ul{margin:0;padding:0 clamp(20px, 3.6vw, 60px);list-style:none}
+ul{margin:0;padding:0;list-style:none}
 :focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px}
 .wrap{width:100%;max-width:min(94vw, 1560px);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px) 20px}
 .sr{position:absolute;width:1px;height:1px;padding:0 clamp(20px, 3.6vw, 60px);margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -131,7 +131,7 @@ transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state
 @keyframes draw{0%{stroke-dashoffset:260}52%{stroke-dashoffset:0}56%{stroke-dashoffset:0}100%{stroke-dashoffset:-260}}
 .route-ring{transform-origin:center;animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.dest-chips{list-style:none;margin:0;padding:0 clamp(20px, 3.6vw, 60px);display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.dest-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .chip{
 display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
 border-radius:999px;padding:8px 14px;font:500 13px/1 var(--font);color:var(--ink);
@@ -149,7 +149,7 @@ transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state),bo
 .dest-card:hover,.dest-card:focus-visible{transform:translateY(-6px);box-shadow:0 18px 36px rgba(10,46,56,.16);border-color:rgba(0,172,193,.5)}
 .dest-media{position:absolute;inset:0;display:grid;place-items:center;background:var(--turq);opacity:.14}
 .dest-media svg{width:62%;height:auto;color:var(--turq);opacity:.85}
-.dest-top{position:relative;padding:20px 20px 0}
+.dest-top{display:block;position:relative;padding:20px 20px 0}
 .dest-top h3{font-size:1.28rem;font-weight:700}
 .dest-top p{margin-top:6px;font:600 12px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;color:#00727F}
 .dest-detail{
@@ -226,7 +226,7 @@ transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state);
 .pack ul{margin-top:18px;display:grid;gap:11px}
 .pack li{display:flex;gap:10px;font-size:.95rem;color:#2E4E57}
 .pack li svg{width:18px;height:18px;flex:none;color:var(--turq);margin-top:2px}
-.pack .btn{margin-top:22px;width:100%}
+.pack .btn{margin-top:22px;width:min(420px,100%)}
 
 .crew-grid{display:grid;gap:18px}
 .crew-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-state)}
@@ -257,7 +257,7 @@ transition:background-color 200ms var(--ease-state),color 200ms var(--ease-state
 .faq-item.is-open .faq-q .chev{transform:rotate(180deg)}
 .faq-a{max-height:0;overflow:hidden;opacity:0;visibility:hidden;transition:max-height 380ms var(--ease-state),opacity 280ms var(--ease-state),visibility 380ms}
 .faq-item.is-open .faq-a{opacity:1;visibility:visible}
-.faq-a p{padding:0 clamp(20px, 3.6vw, 60px) 18px 18px;font-size:.95rem;color:#2E4E57}
+.faq-a p{padding:18px;font-size:.95rem;color:#2E4E57}
 
 .contact{background:var(--paper)}
 .contact-grid{display:grid;gap:24px}
@@ -475,7 +475,7 @@ Montar meu roteiro
 <p class="hint" id="trip-days-hint">Entre 3 e 20 dias. Contamos os dias de ida e volta inclusos.</p>
 <p class="err" id="trip-days-err">Escreva um número entre 3 e 20 dias.</p>
 </div>
-<fieldset style="border:0;padding:0 clamp(20px, 3.6vw, 60px);margin:0 0 18px">
+<fieldset style="border:0;padding:0;margin:0 0 18px">
 <legend class="legend">Estilo da viagem</legend>
 <div class="opts">
 <label class="opt"><input type="radio" name="estilo" value="Econômico" checked><span>Econômico</span></label>
@@ -483,7 +483,7 @@ Montar meu roteiro
 <label class="opt"><input type="radio" name="estilo" value="Aventura"><span>Aventura</span></label>
 </div>
 </fieldset>
-<fieldset style="border:0;padding:0 clamp(20px, 3.6vw, 60px);margin:0 0 6px">
+<fieldset style="border:0;padding:0;margin:0 0 6px">
 <legend class="legend">O que não pode faltar (opcional)</legend>
 <div class="checks">
 <label class="check"><input type="checkbox" name="foco" value="Trilhas e natureza" data-label="trilhas e natureza">Trilhas e natureza</label>
@@ -493,7 +493,7 @@ Montar meu roteiro
 <label class="check"><input type="checkbox" name="foco" value="Estradas e paisagem" data-label="estradas e paisagem">Estradas e paisagem</label>
 </div>
 </fieldset>
-<button class="btn btn-coral" type="submit" id="tripBtn" style="width:100%;margin-top:16px">Montar meu roteiro</button>
+<button class="btn btn-coral" type="submit" id="tripBtn" style="width:min(420px,100%);margin-top:16px">Montar meu roteiro</button>
 </form>
 <div class="summary" id="tripSummary" aria-live="polite">
 <h3>Seu resumo</h3>
@@ -690,7 +690,7 @@ Posso cancelar depois de fechado?
 <p class="hint" id="c-msg-hint">Datas previstas, quem vai junto e o que não pode faltar.</p>
 <p class="err" id="c-msg-err">Escreva pelo menos 10 caracteres para a gente entender o pedido.</p>
 </div>
-<button class="btn btn-coral" type="submit" style="width:100%">Enviar meu pedido</button>
+<button class="btn btn-coral" type="submit" style="width:min(420px,100%)">Enviar meu pedido</button>
 <p class="hint" style="margin-top:12px">Este formulário é uma demonstração e não envia dados para nenhum servidor.</p>
 </form>
 <div class="success is-hidden" id="contactSuccess" role="status">
@@ -812,7 +812,7 @@ if(desktop.matches&&!reduce.matches){
 var y=window.scrollY;
 shapes.forEach(function(el){
 var d=parseFloat(el.getAttribute("data-depth"))||0.1;
-el.style.transform="translate3d(0,"+(y*d).toFixed(2)+"px,0)";
+el.style.transform="translate3d(0,"+(-y*d).toFixed(2)+"px,0)";
 });
 }
 }

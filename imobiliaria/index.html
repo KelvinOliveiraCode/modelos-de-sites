@@ -143,11 +143,11 @@ section{scroll-margin-top:88px}
 .hero-texto{color:var(--texto-suave);margin-top:18px;max-width:52ch;font-size:1.05rem}
 .hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .hero-nota{margin-top:22px;font-size:14px;color:var(--texto-suave)}
-.hero-arte{position:relative;padding-bottom:104px}
-.planta{width:100%;height:auto}
+.hero-arte{position:relative;padding-bottom:132px}
+.planta{width:100%;height:auto;max-height:100%}
 .planta-linha{
   fill:none;stroke:#1E3A5F;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:640;stroke-dashoffset:640;
+  stroke-dasharray:1;stroke-dashoffset:1;
   opacity:0;
   animation:desenha 9s var(--estado) infinite;
 }
@@ -156,8 +156,10 @@ section{scroll-margin-top:88px}
 .planta-linha:nth-child(4){animation-delay:1.05s}
 .planta-linha:nth-child(5){animation-delay:1.4s}
 .planta-linha:nth-child(6){animation-delay:1.75s}
+.planta-linha:nth-child(7){animation-delay:2.1s}
+.planta-linha:nth-child(8){animation-delay:2.45s}
 @keyframes desenha{
-  0%{stroke-dashoffset:640;opacity:0}
+  0%{stroke-dashoffset:1;opacity:0}
   12%{opacity:1}
   55%{stroke-dashoffset:0;opacity:1}
   86%{stroke-dashoffset:0;opacity:1}
@@ -165,7 +167,6 @@ section{scroll-margin-top:88px}
 }
 .pino{opacity:.55;animation:flutua 8s ease-in-out infinite}
 .pino-b{animation-delay:1.3s}
-.pino-c{animation-delay:2.6s}
 @keyframes flutua{
   0%,100%{transform:translateY(0);opacity:.35}
   50%{transform:translateY(-11px);opacity:.9}
@@ -217,7 +218,7 @@ section{scroll-margin-top:88px}
 .campo select:focus,.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(46,125,50,.20)}
 .campo textarea{min-height:120px;resize:vertical}
 .buscador-acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
-.buscador-acoes .btn{flex:1 1 220px}
+.buscador-acoes .btn{flex:0 1 auto}
 .dica{font-size:14px;color:var(--texto-suave)}
 
 /* ---------- resultados ---------- */
@@ -429,7 +430,7 @@ section{scroll-margin-top:88px}
 /* ---------- responsivo ---------- */
 @media (max-width:1020px){
   .hero-grade{grid-template-columns:1fr}
-  .hero-arte{order:-1;max-width:520px}
+  .hero-arte{order:-1;max-width:520px;padding-bottom:0}
   .hero-faixa{position:static;width:100%;max-width:none;margin-top:18px;right:auto;bottom:auto}
   .sim-grade,.contato-grade{grid-template-columns:1fr}
   .grade{grid-template-columns:repeat(2,1fr)}
@@ -500,19 +501,23 @@ section{scroll-margin-top:88px}
         <p class="hero-nota rev-sobe" data-reveal style="--i:4">Atendemos [00] bairros da região. Dados de contato e portfólio são preenchidos pela imobiliária.</p>
       </div>
       <div class="hero-arte rev-sobe" data-reveal style="--i:2">
-        <svg class="planta" viewBox="0 0 340 262" role="img" aria-label="Planta baixa de um imóvel desenhada em linha">
+        <svg class="planta" viewBox="0 0 340 262" role="img" aria-label="Planta baixa de um imóvel de dois quartos, com sala, cozinha e banheiro delimitados por paredes e dois marcadores de imóvel">
           <g>
-            <path class="planta-linha" d="M26 34 H314 V230 H26 Z"/>
-            <path class="planta-linha" d="M26 132 H150"/>
-            <path class="planta-linha" d="M150 34 V230"/>
-            <path class="planta-linha" d="M212 132 V230"/>
-            <path class="planta-linha" d="M212 182 H314"/>
-            <path class="planta-linha" d="M26 96 H96"/>
+            <path class="planta-linha" pathLength="1" d="M26 30 H314 V232 H26 Z"/>
+            <path class="planta-linha" pathLength="1" d="M26 132 H88"/>
+            <path class="planta-linha" pathLength="1" d="M116 132 H212"/>
+            <path class="planta-linha" pathLength="1" d="M212 30 V60"/>
+            <path class="planta-linha" pathLength="1" d="M212 88 V150"/>
+            <path class="planta-linha" pathLength="1" d="M212 178 V232"/>
+            <path class="planta-linha" pathLength="1" d="M212 150 H314"/>
+            <path class="planta-linha" pathLength="1" d="M150 132 V232"/>
+            <path class="planta-linha" pathLength="1" d="M88 132 A28 28 0 0 1 116 132"/>
           </g>
           <g fill="#2E7D32">
-            <circle class="pino" cx="88" cy="164" r="7"/>
-            <circle class="pino pino-b" cx="256" cy="80" r="6"/>
-            <circle class="pino pino-c" cx="256" cy="206" r="6"/>
+            <path class="pino" d="M70 66 C63.5 76 61 81 61 86 A9 9 0 0 0 79 86 C79 81 76.5 76 70 66 Z"/>
+            <circle class="pino" cx="70" cy="86" r="3.2" fill="#FFFFFF"/>
+            <path class="pino pino-b" d="M262 66 C255.5 76 253 81 253 86 A9 9 0 0 0 271 86 C271 81 268.5 76 262 66 Z"/>
+            <circle class="pino pino-b" cx="262" cy="86" r="3.2" fill="#FFFFFF"/>
           </g>
         </svg>
         <div class="hero-faixa">
@@ -996,8 +1001,6 @@ section{scroll-margin-top:88px}
 
   /* ---------- cabecalho reage ao scroll (requestAnimationFrame) ---------- */
   var topo = document.querySelector(".topo");
-  var arte = document.querySelector(".hero-faixa");
-  var mqDesktop = window.matchMedia("(min-width: 761px)");
   var ultimoY = -1;
   var agendado = false;
 
@@ -1005,15 +1008,6 @@ section{scroll-margin-top:88px}
     agendado = false;
     var y = window.pageYOffset || document.documentElement.scrollTop;
     if (y > 12) { topo.classList.add("rolou"); } else { topo.classList.remove("rolou"); }
-
-    /* parallax leve, so no desktop */
-    if (arte && mqDesktop.matches && !reduz) {
-      var fator = 0.18;
-      var desloc = Math.max(-90, Math.min(90, y * fator));
-      arte.style.transform = "translate3d(0," + desloc.toFixed(1) + "px,0)";
-    } else if (arte) {
-      arte.style.transform = "";
-    }
     ultimoY = y;
   }
   function noScroll(){

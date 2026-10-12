@@ -78,7 +78,7 @@ a{color:var(--blue-d)}
 .btn--sm{min-height:44px;padding:10px 18px;font-size:.9rem}
 .btn--ghost{background:transparent;color:var(--green-d);border:2px solid var(--green)}
 .btn--ghost:hover{background:rgba(46,125,50,.1)}
-.btn--full{width:100%}
+.btn--full{width:min(420px,100%)}
 .navbtn{
   display:none;width:48px;height:48px;border:2px solid var(--ink);border-radius:10px;
   background:var(--surface);cursor:pointer;padding:0;
@@ -92,9 +92,10 @@ a{color:var(--blue-d)}
 .hero{position:relative;overflow:hidden;padding:112px 0 56px}
 .band{
   background:var(--yellow);color:var(--ink);
-  padding:10px 0;font-weight:600;font-size:.95rem;letter-spacing:.04em;
+  padding:14px 0;margin-bottom:34px;
+  font-weight:600;font-size:.95rem;letter-spacing:.04em;
 }
-.band p{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.band p{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 .hero__grid{display:grid;gap:36px;align-items:center}
 .hero__kicker{
   font:600 .95rem/1.4 Inter,sans-serif;color:var(--green-d);
@@ -108,14 +109,13 @@ a{color:var(--blue-d)}
 .sun__rays{transform-box:fill-box;transform-origin:center;animation:raios 22s linear infinite;will-change:transform}
 @keyframes raios{to{transform:rotate(360deg)}}
 .hills{position:absolute;inset:auto 0 0;width:100%;height:auto;pointer-events:none}
-.telha{position:absolute;right:6%;bottom:18%;width:min(120px,30vw);height:auto;opacity:.95}
 
 /* faixa de dados do hero */
 .flux{
   border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
   display:grid;grid-template-columns:repeat(3,1fr);margin-top:26px;overflow:hidden;
 }
-.flux div{padding:14px 16px;border-left:1px solid var(--line)}
+.flux div{padding:14px 16px;border-left:1px solid var(--line);min-width:0}
 .flux div:first-child{border-left:0}
 .flux b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:1.5rem;color:var(--green-d);line-height:1.1}
 .flux span{font-size:.9rem;color:var(--muted)}
@@ -263,11 +263,13 @@ body.is-ready .rg{opacity:1;transform:none}
   .gal{grid-template-columns:repeat(3,1fr);grid-auto-rows:170px}
   .ph--a{grid-row:span 2}
   .ph--c{grid-column:span 2}
-  .gal .ph:nth-child(n+4){margin-top:-30px}
   .form__row{grid-template-columns:1fr 1fr}
   .orc{grid-template-columns:1.1fr .9fr}
   .foot__grid{grid-template-columns:2fr 1fr 1fr}
   .hdr__cta{display:inline-flex}
+}
+@media (max-width:759px){
+  .ltab{display:block;overflow-x:auto}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -314,10 +316,10 @@ body.is-ready .rg{opacity:1;transform:none}
 <main id="top">
 
   <section class="hero" aria-labelledby="hero-title">
-    <div class="band"><p>Energia solar com projeto, homologação e acompanhamento de geração.</p></div>
+    <div class="band"><p>Projeto, homologação e acompanhamento de geração, do primeiro cálculo ao pós-venda.</p></div>
     <div class="wrap hero__grid">
       <div class="rg" style="--i:0">
-        <p class="hero__kicker">Energia solar</p>
+        <p class="hero__kicker">Do telhado ao crédito na conta</p>
         <h1 id="hero-title">Energia solar para baixar a sua conta de luz</h1>
         <p class="hero__lead">Você informa quanto consome e o valor da conta. A gente estima a economia mensal, o tamanho do sistema e o tempo de payback antes de você fechar qualquer contrato.</p>
         <div class="hero__acts">
@@ -353,15 +355,6 @@ body.is-ready .rg{opacity:1;transform:none}
         </svg>
         <svg class="hills" viewBox="0 0 480 120" data-para="0.12" aria-hidden="true" focusable="false">
           <path d="M0 74 C 90 40, 150 96, 240 70 C 330 44, 400 92, 480 62 L480 120 L0 120 Z" fill="#DCE8DD"/>
-        </svg>
-        <svg class="telha" viewBox="0 0 160 90" data-para="0.2" aria-hidden="true" focusable="false">
-          <path d="M14 76 L80 24 L146 76" fill="none" stroke="#2E7D32" stroke-width="4" stroke-linejoin="round"/>
-          <rect x="34" y="76" width="92" height="8" fill="#2E7D32"/>
-          <g fill="#0277BD">
-            <rect x="44" y="44" width="16" height="24" rx="2"/>
-            <rect x="72" y="44" width="16" height="24" rx="2"/>
-            <rect x="100" y="44" width="16" height="24" rx="2"/>
-          </g>
         </svg>
       </div>
     </div>
@@ -611,7 +604,7 @@ body.is-ready .rg{opacity:1;transform:none}
     <div class="foot__grid">
       <div>
         <h2>Sua Marca</h2>
-        <p style="margin-top:12px;color:#C6D8C9;font-size:.95rem;max-width:44ch">Projeto, instalação e acompanhamento de energia solar para imóveis residenciais, comerciais e rurais.</p>
+        <p style="margin-top:12px;color:#C6D8C9;font-size:.95rem;max-width:44ch">Projeto, instalação e acompanhamento de geração para imóveis residenciais, comerciais e rurais.</p>
       </div>
       <nav aria-label="Rodapé">
         <h2>Navegação</h2>

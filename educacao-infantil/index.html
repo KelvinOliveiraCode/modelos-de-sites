@@ -35,7 +35,6 @@
     font-family:"Nunito",system-ui,sans-serif;
     font-size:1.0625rem;
     line-height:1.65;
-    overflow-x:hidden;
   }
 
   h1,h2,h3,h4,.font-titulo{
@@ -254,7 +253,7 @@
     .hero-grade{grid-template-columns:1.05fr .95fr;gap:48px}
   }
   .hero h1{font-size:clamp(2.1rem,6.2vw,3.3rem)}
-  .hero-sub{font-size:1.14rem;color:var(--muted);max-width:34ch}
+  .hero-sub{font-size:1.14rem;color:var(--muted);max-width:48ch}
   .hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}
   .hero-nota{font-size:.95rem;color:var(--muted);margin:0}
   .hero-arte{max-width:460px;width:100%}
@@ -274,20 +273,16 @@
 
   /* ---------- timeline: um dia na escola ---------- */
   .timeline{position:relative;max-width:760px}
-  .timeline-linha{
+  .tl-item::after{
+    content:"";
     position:absolute;
-    left:23px;top:10px;bottom:14px;
-    width:8px;height:auto;
-  }
-  .timeline-linha path{
-    stroke:var(--ink);
-    stroke-width:2;
-    stroke-dasharray:1;
-    stroke-dashoffset:1;
+    left:23px;top:17px;bottom:-17px;
+    width:8px;
+    background:var(--ink);
+    border-radius:4px;
     opacity:.28;
-    transition:stroke-dashoffset 900ms var(--ease);
   }
-  .traco.visivel .timeline-linha path{stroke-dashoffset:0}
+  .tl-item:last-child::after{display:none}
   .tl-item{position:relative;padding:0 0 30px 62px}
   .tl-item:last-child{padding-bottom:0}
   .tl-item::before{
@@ -585,12 +580,10 @@
       transition-duration:.001ms !important;
     }
     .revelar,.hero .anim{opacity:1 !important;transform:none !important}
-    .timeline-linha path{stroke-dashoffset:0}
   }
 </style>
 <noscript><style>
   .revelar,.hero .anim{opacity:1;transform:none}
-  .timeline-linha path{stroke-dashoffset:0}
   @media (max-width:759px){
     .nav-list{opacity:1;visibility:visible;transform:none;position:static;box-shadow:none;border:0}
   }
@@ -642,24 +635,24 @@
         <p class="hero-nota anim" style="--i:4">Visita guiada com a coordenação, [40 min], e você pode trazer a criança.</p>
       </div>
       <div class="hero-arte anim" style="--i:2">
-        <svg viewBox="0 0 420 330" role="img" aria-label="Desenho de uma escola ao sol, com duas árvores e canteiros na frente" style="width:100%;height:auto">
-          <rect x="96" y="118" width="212" height="146" rx="18" fill="#90CAF9"/>
-          <path d="M104 122 216 44 328 122Z" fill="#F8BBD0"/>
-          <rect x="192" y="206" width="44" height="58" rx="10" fill="#26221A"/>
-          <rect x="120" y="150" width="52" height="46" rx="10" fill="#FFF59D"/>
-          <rect x="256" y="150" width="52" height="46" rx="10" fill="#FFF59D"/>
-          <path d="M146 150v46M168 150v46M120 173h52M256 173h52M282 150v46" stroke="#26221A" stroke-width="2" opacity=".35"/>
+        <svg viewBox="0 0 420 330" role="img" aria-label="Desenho de uma escola ao sol, com uma porta e duas janelas iguais, duas árvores e dois canteiros na frente" style="width:100%;height:auto">
+          <rect x="98" y="122" width="224" height="142" rx="18" fill="#90CAF9"/>
+          <path d="M88 126 210 46 332 126Z" fill="#F8BBD0"/>
+          <rect x="188" y="204" width="44" height="60" rx="10" fill="#26221A"/>
+          <rect x="126" y="152" width="52" height="46" rx="10" fill="#FFF59D"/>
+          <rect x="242" y="152" width="52" height="46" rx="10" fill="#FFF59D"/>
+          <path d="M152 152v46M126 175h52M268 152v46M242 175h52" fill="none" stroke="#26221A" stroke-width="2" opacity=".35"/>
           <rect x="24" y="252" width="372" height="12" rx="6" fill="#A5D6A7"/>
           <g class="raios">
             <circle cx="356" cy="62" r="26" fill="#FFF59D"/>
             <path d="M356 24v-12M356 112v-12M394 62h12M306 62h12M384 34l9-9M319 98l9-9M384 90l9 9M319 26l9 9" stroke="#26221A" stroke-width="4" stroke-linecap="round" opacity=".55"/>
           </g>
-          <rect x="46" y="222" width="10" height="30" rx="5" fill="#26221A"/>
-          <circle cx="51" cy="212" r="24" fill="#A5D6A7"/>
-          <rect x="352" y="230" width="9" height="34" rx="4" fill="#26221A"/>
-          <circle cx="356" cy="220" r="20" fill="#A5D6A7"/>
-          <rect x="120" y="238" width="60" height="26" rx="13" fill="#F8BBD0"/>
-          <rect x="196" y="242" width="44" height="22" rx="11" fill="#FFF59D"/>
+          <rect x="57" y="222" width="10" height="32" rx="5" fill="#26221A"/>
+          <circle cx="62" cy="210" r="24" fill="#A5D6A7"/>
+          <rect x="353" y="226" width="10" height="28" rx="5" fill="#26221A"/>
+          <circle cx="358" cy="214" r="24" fill="#A5D6A7"/>
+          <rect x="130" y="240" width="48" height="24" rx="12" fill="#F8BBD0"/>
+          <rect x="242" y="240" width="48" height="24" rx="12" fill="#FFF59D"/>
         </svg>
       </div>
     </div>
@@ -673,10 +666,7 @@
         <h2 id="dia-titulo">Um dia na escola</h2>
         <p>Horários de referência do turno da manhã. A rotina segue a mesma ordem todos os dias, porque previsibilidade dá segurança para a criança.</p>
       </div>
-      <div class="timeline traco">
-        <svg class="timeline-linha" viewBox="0 0 8 100" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M4 0 V100" pathLength="1" vector-effect="non-scaling-stroke"/>
-        </svg>
+      <div class="timeline">
         <ol class="timeline-lista">
           <li class="tl-item revelar" style="--i:0">
             <div class="tl-topo"><span class="tl-hora">7h30</span><h3>Entrada e acolhida</h3></div>
@@ -1119,7 +1109,7 @@
   });
 
   /* scroll reveal escalonado por --i */
-  var alvos = doc.querySelectorAll('.revelar, .traco');
+  var alvos = doc.querySelectorAll('.revelar');
   if ('IntersectionObserver' in window) {
     var observador = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (entrada) {

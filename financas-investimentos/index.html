@@ -89,7 +89,7 @@
       width: min(94vw, 1560px);
     }
 
-    .nav { display: flex; align-items: center; }
+    .nav { display: flex; align-items: center; position: relative; }
     .nav-list {
       display: flex;
       gap: 1.25rem;
@@ -120,7 +120,6 @@
       border: none;
       cursor: pointer;
       width: 2.2rem; height: 1.8rem;
-      display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 0;
@@ -135,8 +134,9 @@
 
     /* ===== HERO ===== */
     .hero {
-      min-height: calc(100dvh - 3.5rem);
-      padding-top: 3.5rem;
+      min-height: 0;
+      padding-top: clamp(5rem, 11vh, 8rem);
+      padding-bottom: clamp(4rem, 8vh, 6rem);
       display: grid;
       align-content: center;
       gap: 1.5rem;
@@ -159,29 +159,6 @@
       inset: 0;
       --parallax-speed: .2;
     }
-    .hero-svg {
-      position: absolute;
-      left: 2rem; bottom: 2rem;
-      width: 220px; height: 100px;
-      opacity: .35;
-    }
-    .hero-svg path {
-      stroke: var(--acento);
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 340;
-      stroke-dashoffset: 340;
-      animation: draw 1.6s ease-out 480ms both;
-    }
-    .hero-svg circle { fill: var(--acento); opacity: 0; animation: surgir 0.4s ease-out 2s both; }
-    @keyframes surgir {
-      to { opacity: 1; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-svg path, .hero-svg circle { animation: none; stroke-dashoffset: 0; opacity: 1; }
-    }
     .hero-title {
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: clamp(1.9rem, 5.4vw, 3.2rem);
@@ -192,7 +169,7 @@
     .hero-sub {
       font-size: 1.06rem;
       line-height: 1.5;
-      max-width: 38ch;
+      max-width: 46ch;
       opacity: .9;
     }
     .hero-cta {
@@ -204,10 +181,6 @@
     .client-count {
       font-size: .92rem;
       opacity: .8;
-    }
-
-    @keyframes draw {
-      to { stroke-dashoffset: 0; }
     }
 
     /* ===== REVEAL ===== */
@@ -379,12 +352,6 @@
     .timeline {
       position: relative; padding-left: 2.4rem; margin: 0;
     }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 9px; top: .3rem; bottom: .3rem;
-      width: 3px; background: var(--acento);
-    }
     .timeline li {
       list-style: none;
       position: relative;
@@ -392,6 +359,16 @@
       padding-left: .4rem;
     }
     .timeline li:last-child { margin-bottom: 0; }
+    .timeline li::after {
+      content: "";
+      position: absolute;
+      left: -22.9px;
+      top: 10.6px;
+      bottom: -39.4px;
+      width: 3px;
+      background: var(--acento);
+    }
+    .timeline li:last-child::after { display: none; }
     .timeline .dot {
       position: absolute; left: -1.9rem; top: .1rem;
       width: 18px; height: 18px; border-radius: 50%;
@@ -486,7 +463,11 @@
     .success-panel.show { display: flex; }
     .success-panel .check {
       width: 22px; height: 22px; flex-shrink: 0;
-      fill: var(--fundo);
+      fill: none;
+      stroke: var(--fundo);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .success-panel p { margin: 0; color: var(--fundo); font-weight: 500; }
 
@@ -555,11 +536,6 @@
     <!-- ===== HERO ===== -->
     <section class="hero" aria-label="Introdução">
       <div class="parallax-bg" aria-hidden="true"></div>
-
-      <svg class="hero-svg" viewBox="0 0 260 100" aria-hidden="true" focusable="false" role="img" aria-label="Linha de valor subindo ao longo do tempo">
-        <path d="M10 78 L52 70 L92 72 L134 56 L176 44 L216 32 L252 18"></path>
-        <circle cx="252" cy="18" r="3.5" fill="#C9A227"/>
-      </svg>
 
       <div class="container">
         <div class="reveal" style="--i:1">

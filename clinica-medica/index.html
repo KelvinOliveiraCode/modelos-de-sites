@@ -205,7 +205,7 @@ summary:focus-visible,
   border-color:var(--ink);
   background:var(--surface);
 }
-.btn--bloco{width:100%}
+.btn--bloco{width:100%;max-width:min(420px,100%)}
 .btn--pequeno{min-height:44px;padding:10px 18px;font-size:15px}
 
 .link-simples{
@@ -776,6 +776,7 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
 .faq__conteudo p{
   padding:0 20px 18px;margin:0;
   color:var(--ink-2);font-size:15.5px;
+  max-width:70ch;
 }
 
 /* =========================================================
@@ -817,7 +818,7 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
   padding:18px;
 }
 .mapa__palco{position:relative;border-radius:var(--raio);overflow:hidden;background:#F3F9FD}
-.mapa svg{width:100%;height:auto;display:block}
+.mapa__palco svg{width:100%;height:auto;display:block}
 .mapa__rua{fill:none;stroke:var(--mint-line);stroke-width:2;stroke-linecap:round}
 .mapa__avenida{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;opacity:.5}
 .js .in-view .mapa__avenida{
@@ -829,15 +830,20 @@ body.page-ready .ecg__pulso{animation:pulsaAnel 2.6s var(--ease-state) infinite}
   to{stroke-dashoffset:0;opacity:.5}
 }
 .mapa__pino{fill:var(--ink)}
-.mapa__pino-anel{fill:none;stroke:var(--mint);stroke-width:3}
+/* o anel pulsa em volta do pino: sem fill-box o origin center
+   cai no centro do viewBox e o circulo foge do mapa */
+.mapa__pino-anel{fill:none;stroke:var(--mint);stroke-width:3;transform-box:fill-box;transform-origin:center}
 body.page-ready .mapa__pino-anel{animation:pulsaAnel 2.8s var(--ease-state) infinite;transform-origin:center}
 .mapa__legenda{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
   margin-top:14px;flex-wrap:wrap;
 }
+/* nota de apoio no canto do mapa: antes era inset:0 + place-items:center
+   e cobria o rotulo do endereco desenhado no proprio SVG */
 .mapa__furo{
-  position:absolute;inset:0;display:grid;place-items:center;
-  text-align:center;padding:20px;
+  position:absolute;left:14px;bottom:12px;
+  display:flex;align-items:flex-end;
+  text-align:left;padding:0;
 }
 .mapa__furo span{
   font-family:var(--fonte-mono);font-size:14px;font-weight:700;color:var(--ink-2);

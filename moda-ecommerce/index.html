@@ -152,8 +152,10 @@
   .filters button.active{background:var(--accent);color:#000;border-color:var(--accent);}
   .filter-count{color:var(--muted);font-size:.9rem;margin:0 0 30px;letter-spacing:.03em;}
 
+  /* card em coluna: a midia ocupa o que sobra, o texto nunca sai do card */
+  .prod{display:flex;flex-direction:column;}
   .prod-grid{display:grid;grid-template-columns:1fr;gap:20px;}
-  .prod-media{position:relative;width:100%;height:100%;min-height:264px;overflow:hidden;
+  .prod-media{position:relative;width:100%;flex:1 1 auto;min-height:264px;overflow:hidden;
     display:grid;place-items:center;border:1px solid rgba(217,187,168,.12);
     transition:transform .25s var(--ease-state),border-color .25s var(--ease-state);}
   .prod:nth-child(1) .prod-media{background:#151515;}
@@ -228,7 +230,7 @@
   .site-footer{background:#000;border-top:1px solid var(--line-soft);padding:70px 0 30px;}
   .foot-grid{display:grid;gap:44px;grid-template-columns:1fr;}
   .foot-brand .brand-name{font-size:1.7rem;}
-  .foot-brand p{color:var(--muted);margin-top:14px;max-width:34ch;}
+  .foot-brand p{color:var(--muted);margin-top:14px;max-width:45ch;}
   .foot-col h3{font-family:'Jost',sans-serif;font-weight:500;font-size:.875rem;
     text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:18px;}
   .foot-col ul{display:flex;flex-direction:column;gap:12px;}
@@ -707,7 +709,7 @@
   /* 6) Header que reage ao scroll + link ativo no menu */
   var header = document.querySelector(".site-header");
   var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
-  var sections = ["início","colecao","como-comprar","lookbook","novidades"]
+  var sections = ["inicio","colecao","como-comprar","lookbook","novidades"]
     .map(function(id){ return document.getElementById(id); })
     .filter(Boolean);
 
