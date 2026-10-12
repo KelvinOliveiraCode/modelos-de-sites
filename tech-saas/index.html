@@ -762,6 +762,25 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 16px)}
   .rodape p{max-width:none}
 }
 
+/* faixa de 761 a 1099px: a linha única do header (marca + 5 links + CTA)
+   não cabe sem estourar a largura, então o menu compacto assume aqui antes */
+@media (min-width:761px) and (max-width:1099px){
+  .nav,.nav__acao{display:none}
+  .menu-botao{display:inline-flex}
+  .nav{
+    position:absolute;top:100%;left:0;right:0;
+    display:none;flex-direction:column;align-items:stretch;gap:4px;
+    background:var(--fundo);border-bottom:1px solid var(--linha);
+    padding:14px 22px 20px;box-shadow:0 24px 44px rgba(2,6,23,.55);
+  }
+  .nav.aberto{display:flex}
+  .nav__lista{flex-direction:column;align-items:stretch;gap:2px}
+  .nav__link{min-height:48px;padding:12px 8px;font-size:16px}
+  .nav__link::after{display:none}
+  .nav__acao{display:flex;margin-top:12px}
+  .nav__acao .btn{width:100%;min-height:48px}
+}
+
 @media (max-width:480px){
   .envolve{padding:0 16px}
   .btn{width:100%}

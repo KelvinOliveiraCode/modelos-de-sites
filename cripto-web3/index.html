@@ -43,10 +43,6 @@ button{font:inherit;cursór:pointer;color:inherit}
 
 /* ---------- reveal ---------- */
 .js .rv{opacity:0;transform:translateY(30px)}
-.js .rv.sóbe-leve{transform:translateY(14px)}
-.js .rv.esc{xl:1}
-.js .rv.esc{transform:scale(.96)}
-.js .rv.lado{transform:translateX(-26px)}
 .js .rv{
   transition:opacity .75s var(--entrada),transform .75s var(--entrada);
   transition-delay:calc(var(--i,0)*80ms);
@@ -56,25 +52,27 @@ button{font:inherit;cursór:pointer;color:inherit}
 /* ---------- header ---------- */
 .topo{
   position:fixed;top:0;left:0;right:0;z-index:60;
-  border-bottom:1px sólid transparent;
+  border-bottom:1px solid transparent;
   transition:background .5s var(--estádo),border-color .5s var(--estádo);
 }
 .topo.rolou{background:rgba(13,13,13,.88);border-bottom-color:var(--linha)}
-.topo .in{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:18px}
+/* mesmo container do .wrap: antes o header vivia numa coluna de 1180px e
+   ficava desalinhado do conteudo, que vai ate 1560px. */
+.topo .in{max-width:min(94vw, 1560px);margin:0 auto;padding:16px clamp(20px, 3.6vw, 60px);display:flex;align-items:center;gap:18px}
 .marca{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em}
 .marca .g{width:26px;height:26px;flex:none;color:var(--ciano)}
 .marca .g path{stroke-dasharray:120;stroke-dashoffset:120;animation:traca 2.6s var(--estádo) .3s forwards}
 .topo nav{margin-left:auto;display:flex;align-items:center;gap:6px}
 .topo nav a{
   font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--tinta-dim);padding:10px 12px;border-radius:3px;
+  color:var(--tinta-dim);padding:10px 12px;border-radius:3px;min-height:44px;display:flex;align-items:center;
   transition:color .3s var(--estádo),background .3s var(--estádo);
 }
 .topo nav a:hover{color:var(--ciano);background:rgba(0,229,255,.07)}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   font-family:'Syne',sans-serif;font-weight:700;font-size:13.5px;
-  padding:14px 22px;border-radius:4px;border:1px sólid transparent;min-height:44px;
+  padding:14px 22px;border-radius:4px;border:1px solid transparent;min-height:44px;
   transition:transform .3s var(--entrada),background .3s var(--estádo),border-color .3s var(--estádo),color .3s var(--estádo);
 }
 .btn:hover{transform:translateY(-2px)}
@@ -108,8 +106,10 @@ button{font:inherit;cursór:pointer;color:inherit}
   font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ciano);}
 
+/* titulo sem compressao: sem font-stretch, sem scaleX e sem letter-spacing
+   negativo. O peso vem de font-weight, a largura e a natural. */
 .hero h1{
-  font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.02;
+  font-family:'Syne',sans-serif;font-weight:800;letter-spacing:normal;line-height:1.02;
   font-size:clamp(2.4rem,5.4vw,4.2rem);margin:20px 0 22px;
 }
 .hero h1 em{font-style:normal;color:var(--ciano)}
@@ -120,10 +120,8 @@ button{font:inherit;cursór:pointer;color:inherit}
 .orbita{width:100%;height:auto;max-width:420px;margin:0 auto}
 .orbita .anel{fill:none;stroke:var(--linha);stroke-width:1}
 .orbita .nut{fill:var(--ciano)}
-.orbita .linha{fill:none;stroke:var(--ciano);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:5 7;animation:corre 18s linear infinite}
 .orbita .núcleo{fill:rgba(0,229,255,.1);stroke:var(--ciano);stroke-width:1.4}
 .orbita .nucleo-detalhe{fill:none;stroke:var(--ciano);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-@keyframes corre{to{stroke-dashoffset:-240}}
 @keyframes deriva{to{background-position:58px 58px}}
 @keyframes traca{to{stroke-dashoffset:0}}
 
@@ -131,7 +129,7 @@ button{font:inherit;cursór:pointer;color:inherit}
 section{padding:104px 0}
 .sec-cab{margin-bottom:52px;max-width:62ch}
 .sec-cab .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ciano);display:block;margin-bottom:14px}
-.sec-cab h2{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-.028em;line-height:1.06;font-size:clamp(1.8rem,3.6vw,2.7rem)}
+.sec-cab h2{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:normal;line-height:1.06;font-size:clamp(1.8rem,3.6vw,2.7rem)}
 .sec-cab p{margin-top:16px;color:var(--tinta-dim)}
 
 /* passós */
@@ -206,7 +204,7 @@ section{padding:104px 0}
   background:radial-gradient(90% 120% at 100% 0%,rgba(0,229,255,.1),transparent 60%),rgba(26,11,46,.5);
   display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:start;
 }
-.lista h2{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.05}
+.lista h2{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:normal;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.05}
 .lista p{color:var(--tinta-dim);margin-top:16px;font-size:14.5px}
 .campo{margin-bottom:16px}
 .campo label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-dim);margin-bottom:8px}

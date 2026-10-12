@@ -151,7 +151,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 .sim__lista p{margin:0;font-size:15px;color:var(--tinta-media)}
 .sim__nota{font-size:14px;color:var(--tinta-media);background:var(--banda);border-radius:12px;padding:.85rem 1rem;margin:0 0 1.1rem}
 .passos{position:relative;display:flex;flex-direction:column;gap:1.6rem}
-.passos__linha{position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--linha);border-radius:2px;overflow:hidden}
+.passos__linha{position:absolute;left:43px;top:8px;bottom:8px;width:2px;background:var(--linha);border-radius:2px;overflow:hidden}
 .passos__linha::before{content:"";position:absolute;inset:0;background:var(--marca);transform:scaleY(0);transform-origin:top;transition:transform 900ms var(--ease-in) 250ms}
 [data-linha].is-visible .passos__linha::before{transform:scaleY(1)}
 .passo{position:relative;display:grid;grid-template-columns:48px 1fr;gap:1.1rem;align-items:start;background:var(--superficie);border:1px solid var(--linha);border-radius:var(--raio);padding:1.2rem;box-shadow:var(--sombra-leve);transition:box-shadow 250ms var(--ease-estado),transform 250ms var(--ease-estado)}
