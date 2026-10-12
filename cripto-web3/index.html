@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carteira e educação em cripto, sem promessa de ganho | Sua Marca</title>
-<meta name="description" content="Plataforma para guardar, movimentar e proteger criptoativos, com conteúdo para quem está comecando. Sem meta de rentabilidade.">
-<link rel="preçonnect" href="https://fonts.googleapis.com">
-<link rel="preçonnect" href="https://fonts.gstatic.com" crossórigin>
+<meta name="description" content="Plataforma para guardar, movimentar e proteger criptoativos, com conteúdo para quem está começando. Sem meta de rentabilidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -18,7 +18,7 @@
   --linha:rgba(0,229,255,.16);
   --painel:rgba(26,11,46,.72);
   --entrada:cubic-bezier(.22,1,.36,1);
-  --estádo:cubic-bezier(.4,0,.2,1);
+  --estado:cubic-bezier(.4,0,.2,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
@@ -28,17 +28,16 @@ body{
   font-family:'Inter',system-ui,sans-serif;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
 }
 body{opacity:0}
 body.pronto{opacity:1;transition:opacity .8s var(--entrada)}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-button{font:inherit;cursór:pointer;color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
 ::selection{background:var(--ciano);color:#04222b}
 .mono{font-family:'JetBrains Mono',monospace}
-:focus-visible{outline:2px sólid var(--ciano);outline-offset:3px;border-radius:3px}
-.sr{position:absólute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--ciano);outline-offset:3px;border-radius:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{max-width:min(94vw, 1560px);margin:0 auto;padding:0 clamp(20px, 3.6vw, 60px)}
 
 /* ---------- reveal ---------- */
@@ -53,27 +52,27 @@ button{font:inherit;cursór:pointer;color:inherit}
 .topo{
   position:fixed;top:0;left:0;right:0;z-index:60;
   border-bottom:1px solid transparent;
-  transition:background .5s var(--estádo),border-color .5s var(--estádo);
+  transition:background .5s var(--estado),border-color .5s var(--estado);
 }
 .topo.rolou{background:rgba(13,13,13,.88);border-bottom-color:var(--linha)}
 /* mesmo container do .wrap: antes o header vivia numa coluna de 1180px e
    ficava desalinhado do conteudo, que vai ate 1560px. */
 .topo .in{max-width:min(94vw, 1560px);margin:0 auto;padding:16px clamp(20px, 3.6vw, 60px);display:flex;align-items:center;gap:18px}
-.marca{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em}
+.marca{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:.01em;white-space:nowrap;flex:none}
 .marca .g{width:26px;height:26px;flex:none;color:var(--ciano)}
-.marca .g path{stroke-dasharray:120;stroke-dashoffset:120;animation:traca 2.6s var(--estádo) .3s forwards}
+.marca .g path{stroke-dasharray:120;stroke-dashoffset:120;animation:traca 2.6s var(--estado) .3s forwards}
 .topo nav{margin-left:auto;display:flex;align-items:center;gap:6px}
 .topo nav a{
   font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--tinta-dim);padding:10px 12px;border-radius:3px;min-height:44px;display:flex;align-items:center;
-  transition:color .3s var(--estádo),background .3s var(--estádo);
+  transition:color .3s var(--estado),background .3s var(--estado);
 }
 .topo nav a:hover{color:var(--ciano);background:rgba(0,229,255,.07)}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:13.5px;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:13.5px;white-space:nowrap;
   padding:14px 22px;border-radius:4px;border:1px solid transparent;min-height:44px;
-  transition:transform .3s var(--entrada),background .3s var(--estádo),border-color .3s var(--estádo),color .3s var(--estádo);
+  transition:transform .3s var(--entrada),background .3s var(--estado),border-color .3s var(--estado),color .3s var(--estado);
 }
 .btn:hover{transform:translateY(-2px)}
 .btn svg{width:15px;height:15px;flex:none}
@@ -81,8 +80,8 @@ button{font:inherit;cursór:pointer;color:inherit}
 .btn.ciano:hover{background:#6df0ff}
 .btn.linha{border-color:var(--linha);color:var(--tinta)}
 .btn.linha:hover{border-color:var(--ciano);color:var(--ciano)}
-.menu-btn{display:none;background:none;border:1px sólid var(--linha);border-radius:3px;padding:10px;width:44px;height:44px;place-items:center}
-.menu-btn span{display:block;width:18px;height:2px;background:var(--tinta);transition:transform .35s var(--estádo),opacity .35s var(--estádo)}
+.menu-btn{display:none;background:none;border:1px solid var(--linha);border-radius:3px;padding:10px;width:44px;height:44px;place-items:center}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--tinta);transition:transform .35s var(--estado),opacity .35s var(--estado)}
 .menu-btn span+span{margin-top:4px}
 .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
@@ -91,7 +90,7 @@ button{font:inherit;cursór:pointer;color:inherit}
 /* ---------- hero ---------- */
 .hero{position:relative;padding:150px 0 90px;overflow:hidden}
 .hero-grade{
-  position:absólute;inset:-20% -10% 0;pointer-events:none;
+  position:absolute;inset:-20% -10% 0;pointer-events:none;
   background-image:linear-gradient(var(--linha) 1px,transparent 1px),linear-gradient(90deg,var(--linha) 1px,transparent 1px);
   background-size:58px 58px;
   transform:perspective(620px) rotateX(58deg) scale(1.5);
@@ -106,8 +105,8 @@ button{font:inherit;cursór:pointer;color:inherit}
   font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ciano);}
 
-/* titulo sem compressao: sem font-stretch, sem scaleX e sem letter-spacing
-   negativo. O peso vem de font-weight, a largura e a natural. */
+/* titulo sem compressao: sem largura artificial, sem escala horizontal e
+   sem letter-spacing negativo. O peso vem de font-weight. */
 .hero h1{
   font-family:'Syne',sans-serif;font-weight:800;letter-spacing:normal;line-height:1.02;
   font-size:clamp(2.4rem,5.4vw,4.2rem);margin:20px 0 22px;
@@ -132,22 +131,22 @@ section{padding:104px 0}
 .sec-cab h2{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:normal;line-height:1.06;font-size:clamp(1.8rem,3.6vw,2.7rem)}
 .sec-cab p{margin-top:16px;color:var(--tinta-dim)}
 
-/* passós */
-.passós{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.passó{
-  border:1px sólid var(--linha);border-radius:6px;padding:28px 26px;
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.passo{
+  border:1px solid var(--linha);border-radius:6px;padding:28px 26px;
   background:linear-gradient(180deg,rgba(26,11,46,.6),rgba(13,13,13,.4));
-  transition:transform .45s var(--entrada),border-color .45s var(--estádo);
+  transition:transform .45s var(--entrada),border-color .45s var(--estado);
 }
-.passó:hover{transform:translateY(-5px);border-color:rgba(0,229,255,.4)}
-.passó .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--ciano)}
-.passó h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin:14px 0 10px}
-.passó p{color:var(--tinta-dim);font-size:14.5px}
-.passó .ic{width:40px;height:40px;color:var(--ciano);margin-bottom:16px}
+.passo:hover{transform:translateY(-5px);border-color:rgba(0,229,255,.4)}
+.passo .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--ciano)}
+.passo h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin:14px 0 10px}
+.passo p{color:var(--tinta-dim);font-size:14.5px}
+.passo .ic{width:40px;height:40px;color:var(--ciano);margin-bottom:16px}
 
-/* recursós: grid irregular */
-.recursós{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.rec{border:1px sólid var(--linha);border-radius:6px;padding:28px;transition:transform .45s var(--entrada),border-color .45s var(--estádo)}
+/* recursos: grid irregular */
+.recursos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rec{border:1px solid var(--linha);border-radius:6px;padding:28px;transition:transform .45s var(--entrada),border-color .45s var(--estado)}
 .rec:hover{transform:translateY(-5px);border-color:rgba(0,229,255,.4)}
 .rec.grande{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(150deg,rgba(0,229,255,.09),rgba(13,13,13,.3) 60%)}
 .rec h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin:14px 0 10px}
@@ -155,24 +154,24 @@ section{padding:104px 0}
 .rec .ic{width:34px;height:34px;color:var(--ciano)}
 .rec .selo{
   font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ciano);border:1px sólid var(--linha);border-radius:3px;padding:5px 9px;display:inline-block;margin-bottom:16px;
+  color:var(--ciano);border:1px solid var(--linha);border-radius:3px;padding:5px 9px;display:inline-block;margin-bottom:16px;
 }
 .rec.grande h3{font-size:1.6rem}
 
 /* segurança: lista honestá */
 .segurança{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.seg{border-left:2px sólid var(--ciano);padding:6px 0 6px 22px}
+.seg{border-left:2px solid var(--ciano);padding:6px 0 6px 22px}
 .seg h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .seg p{color:var(--tinta-dim);font-size:14.5px}
 .seg .não{color:#8f83ad;font-size:13px;display:block;margin-top:8px}
 
 /* roadmap */
-.linha-tempo{border-left:1px sólid var(--linha);padding-left:34px;margin-left:8px;display:grid;gap:34px}
+.linha-tempo{border-left:1px solid var(--linha);padding-left:34px;margin-left:8px;display:grid;gap:34px}
 .item-tl{position:relative}
 .item-tl::before{
-  content:"";position:absólute;left:-39px;top:6px;width:11px;height:11px;border-radius:50%;
-  background:var(--preto);border:2px sólid var(--ciano);
-  transition:transform .4s var(--entrada),box-shadow .4s var(--estádo);
+  content:"";position:absolute;left:-39px;top:6px;width:11px;height:11px;border-radius:50%;
+  background:var(--preto);border:2px solid var(--ciano);
+  transition:transform .4s var(--entrada),box-shadow .4s var(--estado);
 }
 .item-tl.in::before{transform:scale(1.25);box-shadow:0 0 0 5px rgba(0,229,255,.12)}
 .item-tl .q{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;color:var(--ciano)}
@@ -180,27 +179,27 @@ section{padding:104px 0}
 .item-tl p{color:var(--tinta-dim);font-size:14.5px;max-width:56ch}
 
 /* faq */
-.faq{border-top:1px sólid var(--linha)}
-.faq-item{border-bottom:1px sólid var(--linha)}
+.faq{border-top:1px solid var(--linha)}
+.faq-item{border-bottom:1px solid var(--linha)}
 .faq-b{
   width:100%;background:none;border:0;text-align:left;display:flex;align-items:center;gap:16px;
   padding:22px 4px;font-family:'Syne',sans-serif;font-weight:700;font-size:1.02rem;min-height:44px;
-  transition:color .3s var(--estádo);
+  transition:color .3s var(--estado);
 }
 .faq-b:hover{color:var(--ciano)}
 .faq-b .mais{margin-left:auto;flex:none;width:26px;height:26px;position:relative}
-.faq-b .mais::before,.faq-b .mais::after{content:"";position:absólute;background:var(--ciano);border-radius:2px;transition:transform .4s var(--estádo)}
+.faq-b .mais::before,.faq-b .mais::after{content:"";position:absolute;background:var(--ciano);border-radius:2px;transition:transform .4s var(--estado)}
 .faq-b .mais::before{left:0;top:12px;width:26px;height:2px}
 .faq-b .mais::after{left:12px;top:0;width:2px;height:26px}
 .faq-item.aberto .faq-b .mais::after{transform:rotate(90deg) scaleX(0)}
-.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--estádo)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--estado)}
 .faq-item.aberto .faq-a{grid-template-rows:1fr}
 .faq-a>div{overflow:hidden}
 .faq-a p{color:var(--tinta-dim);font-size:14.5px;padding:0 4px 22px;max-width:66ch}
 
 /* lista de espera */
 .lista{
-  border:1px sólid var(--linha);border-radius:8px;padding:44px;
+  border:1px solid var(--linha);border-radius:8px;padding:44px;
   background:radial-gradient(90% 120% at 100% 0%,rgba(0,229,255,.1),transparent 60%),rgba(26,11,46,.5);
   display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:start;
 }
@@ -209,22 +208,22 @@ section{padding:104px 0}
 .campo{margin-bottom:16px}
 .campo label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-dim);margin-bottom:8px}
 .campo input,.campo select{
-  width:100%;background:rgba(13,13,13,.7);border:1px sólid var(--linha);border-radius:4px;
+  width:100%;background:rgba(13,13,13,.7);border:1px solid var(--linha);border-radius:4px;
   color:var(--tinta);font:inherit;font-size:15px;padding:13px 14px;min-height:46px;
-  transition:border-color .3s var(--estádo),box-shadow .3s var(--estádo);
+  transition:border-color .3s var(--estado),box-shadow .3s var(--estado);
 }
 .campo input::placeholder{color:#7d709b}
 .campo input:focus,.campo select:focus{border-color:var(--ciano);box-shadow:0 0 0 3px rgba(0,229,255,.18);outline:none}
 .campo.erro input,.campo.erro select{border-color:#FF7A7A}
 .msg{font-size:13px;color:#FF9E9E;margin-top:7px;min-height:18px}
 .ok{
-  border:1px sólid rgba(0,229,255,.4);border-radius:6px;padding:22px;background:rgba(0,229,255,.07);
+  border:1px solid rgba(0,229,255,.4);border-radius:6px;padding:22px;background:rgba(0,229,255,.07);
 }
 .ok b{font-family:'Syne',sans-serif;font-size:1.05rem;display:block;margin-bottom:6px}
 .ok span{color:var(--tinta-dim);font-size:13.5px}
 
 /* rodape */
-.rodape{border-top:1px sólid var(--linha);padding:40px 0;margin-top:60px}
+.rodape{border-top:1px solid var(--linha);padding:40px 0;margin-top:60px}
 .rodape .in{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
 .rodape p{font-size:13.5px;color:var(--tinta-dim)}
 .rodape a{font-size:13.5px;color:var(--ciano)}
@@ -232,15 +231,15 @@ section{padding:104px 0}
 
 @media (max-width:960px){
   .hero-interno{grid-template-columns:1fr;gap:36px}
-  .passós,.recursós{grid-template-columns:1fr}
+  .passos,.recursos{grid-template-columns:1fr}
   .rec.grande{grid-column:span 1;grid-row:span 1}
   .segurança{grid-template-columns:1fr}
   .lista{grid-template-columns:1fr;padding:30px 24px}
   .topo nav{display:none}
   .menu-btn{display:grid}
   .topo.aberto nav{
-    display:flex;position:absólute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;
-    background:rgba(13,13,13,.97);border-bottom:1px sólid var(--linha);padding:10px 24px 18px;gap:2px;
+    display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;
+    background:rgba(13,13,13,.97);border-bottom:1px solid var(--linha);padding:10px 24px 18px;gap:2px;
   }
   .topo.aberto nav a{padding:14px 4px;min-height:44px;display:flex;align-items:center}
   .topo.aberto .btn{display:none}
@@ -249,6 +248,9 @@ section{padding:104px 0}
 @media (max-width:420px){
   .hero{padding:120px 0 60px}
   .lista{padding:24px 18px}
+  /* sem isso o logo e o CTA do header quebravam em duas linhas */
+  .topo .in{gap:12px;padding:14px 20px}
+  .topo .btn{padding:12px 14px;font-size:12.5px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -268,7 +270,7 @@ section{padding:104px 0}
     </a>
     <nav id="nav-principal" aria-label="Navegação principal">
       <a href="#como">Como funciona</a>
-      <a href="#recursós">Recursós</a>
+      <a href="#recursos">Recursós</a>
       <a href="#segurança">Segurança</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#duvidas">Dúvidas</a>
@@ -286,8 +288,8 @@ section{padding:104px 0}
   <div class="hero-grade" aria-hidden="true"></div>
   <div class="wrap hero-interno">
     <div>
-      <p class="eyebrow rv">Cripto e Web3, sem discursó de ganho</p>
-      <h1 class="rv" style="--i:1">Guarde, mova e protejá seus ativos com <em>clareza</em>.</h1>
+      <p class="eyebrow rv">Cripto e Web3, sem discurso de ganho</p>
+      <h1 class="rv" style="--i:1">Guarde, mova e proteja seus ativos com <em>clareza</em>.</h1>
       <p class="lede rv" style="--i:2">Uma carteira simples, conteúdo para quem está começando e registro do que foi feito. Nenhuma promessa de rentabilidade, nenhum atalho.</p>
       <div class="hero-acoes rv" style="--i:3">
         <a class="btn ciano" href="#lista">
@@ -296,10 +298,10 @@ section{padding:104px 0}
         </a>
         <a class="btn linha" href="#como">Ver como funciona</a>
       </div>
-      <p class="nota rv" style="--i:4">Fase: [beta fechado]. Sem suporte a trading, sem custodia de terceiros.</p>
+      <p class="nota rv" style="--i:4">Fase: [beta fechado]. Sem suporte a trading, sem custódia de terceiros.</p>
     </div>
     <div class="hero-arte rv" style="--i:2">
-      <svg class="orbita" viewBox="0 0 400 320" role="img" aria-label="Esquema de uma carteira com tres ativos orbitando um núcleo">
+      <svg class="orbita" viewBox="0 0 400 320" role="img" aria-label="Esquema de uma carteira com três ativos orbitando um núcleo">
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58"/>
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58" transform="rotate(62 200 160)"/>
         <ellipse class="anel" cx="200" cy="160" rx="150" ry="58" transform="rotate(-62 200 160)"/>
@@ -315,45 +317,45 @@ section{padding:104px 0}
   <div class="wrap">
     <div class="sec-cab">
       <span class="k rv">Como funciona</span>
-      <h2 class="rv" style="--i:1">Tres passós, e nenhum deles envolve deposito em corretora</h2>
-      <p class="rv" style="--i:2">O caminho e o mesmo para quem comeca e para quem já opera. O que muda e o quanto de conteúdo você precisa ler antes do primeiro passó.</p>
+      <h2 class="rv" style="--i:1">Três passos, e nenhum deles envolve depósito em corretora</h2>
+      <p class="rv" style="--i:2">O caminho é o mesmo para quem começa e para quem já opera. O que muda é o quanto de conteúdo você precisa ler antes do primeiro passo.</p>
     </div>
-    <div class="passós">
-      <article class="passó rv">
+    <div class="passos">
+      <article class="passo rv">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M8 6V4h8v2M3 11h18"/></svg>
         <span class="n">01</span>
         <h3>Criar a carteira</h3>
-        <p>Você gera as chaves no seu aparelho. A gente mostra o que fazer com a frase de recuperacao e por que foto de tela não e backup.</p>
+        <p>Você gera as chaves no seu aparelho. A gente mostra o que fazer com a frase de recuperação e por que foto de tela não é backup.</p>
       </article>
-      <article class="passó rv" style="--i:1">
+      <article class="passo rv" style="--i:1">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg>
         <span class="n">02</span>
         <h3>Mover com conferência</h3>
         <p>Antes de assinar, a tela repete o destino, o valor e a taxa estimada em texto simples. Nada de endereço truncado no meio.</p>
       </article>
-      <article class="passó rv" style="--i:2">
+      <article class="passo rv" style="--i:2">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
         <span class="n">03</span>
         <h3>Proteger e revisar</h3>
-        <p>Alerta de permissõessao exagerada, revisão do que cada app pode fazer com a carteira e histórico do que você autorizou.</p>
+        <p>Alerta de permissão exagerada, revisão do que cada app pode fazer com a carteira e histórico do que você autorizou.</p>
       </article>
     </div>
   </div>
 </section>
 
-<section id="recursós">
+<section id="recursos">
   <div class="wrap">
     <div class="sec-cab">
       <span class="k rv">Recursós</span>
       <h2 class="rv" style="--i:1">Feito para quem cansa de painel que não explica nada</h2>
-      <p class="rv" style="--i:2">Cada tela resólve uma coisa. O que não e essencial fica escondido até você procurar.</p>
+      <p class="rv" style="--i:2">Cada tela resolve uma coisa. O que não é essencial fica escondido até você procurar.</p>
     </div>
-    <div class="recursós">
+    <div class="recursos">
       <article class="rec grande rv">
         <div>
           <span class="selo">Visão geral</span>
-          <h3>Uma tela que mostra saldo, ultimas movimentacoes e permissões ativas</h3>
-          <p>Sem grafico de cotação em destáque. O que importa e o que aconteceu com o seu dinheiro e o que você autorizou. O painel usa dados de exemplo na tela de demonstração, não resultado de cliente.</p>
+          <h3>Uma tela que mostra saldo, últimas movimentações e permissões ativas</h3>
+          <p>Sem gráfico de cotação em destaque. O que importa é o que aconteceu com o seu dinheiro e o que você autorizou. O painel usa dados de exemplo na tela de demonstração, não resultado de cliente.</p>
         </div>
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:100%;height:auto;max-width:280px;margin-top:20px"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 15h5"/></svg>
       </article>
@@ -364,18 +366,18 @@ section{padding:104px 0}
       </article>
       <article class="rec rv" style="--i:2">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>
-        <h3>Alertas de permissõessao</h3>
-        <p>Avisó quando um app pede acessó amplo demais para o que faz.</p>
+        <h3>Alertas de permissão</h3>
+        <p>Aviso quando um app pede acesso amplo demais para o que faz.</p>
       </article>
       <article class="rec rv" style="--i:3">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H7l-3 4z"/><path d="M8 9h8M8 12h5"/></svg>
         <h3>Glossário no fluxo</h3>
-        <p>Termo técnico aparece com explicacao ao lado, não em link para outra página.</p>
+        <p>Termo técnico aparece com explicação ao lado, não em link para outra página.</p>
       </article>
       <article class="rec rv" style="--i:4">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
         <h3>Backup conferido</h3>
-        <p>Teste guiado da frase de recuperacao, com avisó se ela estiver fraca.</p>
+        <p>Teste guiado da frase de recuperação, com aviso se ela estiver fraca.</p>
       </article>
     </div>
   </div>
@@ -391,20 +393,20 @@ section{padding:104px 0}
     <div class="segurança">
       <article class="seg rv">
         <h3>Chaves geradas no seu aparelho</h3>
-        <p>A criação acontece localmente. A versão atual não transmite a frase de recuperacao para nenhum servidor.</p>
-        <span class="não">Issó não protege contra você perder a frase. Se ela sóme, o acessó também.</span>
+        <p>A criação acontece localmente. A versão atual não transmite a frase de recuperação para nenhum servidor.</p>
+        <span class="não">Isso não protege contra você perder a frase. Se ela some, o acesso também.</span>
       </article>
       <article class="seg rv" style="--i:1">
-        <h3>Confirmacao em texto claro</h3>
-        <p>Destino, valor e taxa aparecem por extensó antes da assinatura, para você conferir sem decodificar endereço.</p>
+        <h3>Confirmação em texto claro</h3>
+        <p>Destino, valor e taxa aparecem por extensão antes da assinatura, para você conferir sem decodificar endereço.</p>
       </article>
       <article class="seg rv" style="--i:2">
         <h3>Revisão de permissões</h3>
-        <p>Lista do que cada aplicativo pode fazer com a carteira, com revogacao em um toque.</p>
+        <p>Lista do que cada aplicativo pode fazer com a carteira, com revogação em um toque.</p>
         <span class="não">Não bloqueia aprovação maliciosa que você mesmo autorizou sem ler.</span>
       </article>
       <article class="seg rv" style="--i:3">
-        <h3>Registro local de autorizacoes</h3>
+        <h3>Registro local de autorizações</h3>
         <p>histórico do que foi aprovado, com data e escopo, guardado no seu navegador.</p>
       </article>
     </div>
@@ -416,23 +418,23 @@ section{padding:104px 0}
     <div class="sec-cab">
       <span class="k rv">Roadmap</span>
       <h2 class="rv" style="--i:1">O que vem, e o que ainda não tem data</h2>
-      <p class="rv" style="--i:2">Datas entram quando o recursó está em teste fechado. Nada de trimestre inventado.</p>
+      <p class="rv" style="--i:2">Datas entram quando o recurso está em teste fechado. Nada de trimestre inventado.</p>
     </div>
     <div class="linha-tempo">
       <article class="item-tl rv">
-        <span class="q">Disponivel</span>
+        <span class="q">Disponível</span>
         <h3>Carteira com conferência e backup guiado</h3>
-        <p>Geracao local, confirmacao em texto claro e teste da frase de recuperacao.</p>
+        <p>Geração local, confirmação em texto claro e teste da frase de recuperação.</p>
       </article>
       <article class="item-tl rv" style="--i:1">
         <span class="q">Em teste fechado</span>
         <h3>Revisão de permissões por app</h3>
-        <p>Lista de escopos autorizados com revogacao. Liberada para quem está na lista.</p>
+        <p>Lista de escopos autorizados com revogação. Liberada para quem está na lista.</p>
       </article>
       <article class="item-tl rv" style="--i:2">
         <span class="q">Próximo</span>
         <h3>Trilha de conteúdo para iniciante</h3>
-        <p>Texto curto, no fluxo, para quem nunca moveu um ativo. Sem video de promessa.</p>
+        <p>Texto curto, no fluxo, para quem nunca moveu um ativo. Sem vídeo de promessa.</p>
       </article>
       <article class="item-tl rv" style="--i:3">
         <span class="q">Sem data</span>
@@ -451,24 +453,24 @@ section{padding:104px 0}
     </div>
     <div class="faq" id="faq">
       <div class="faq-item">
-        <button class="faq-b" type="button" aria-expanded="false" aria-controls="r1">Precisó saber de cripto para usar?<span class="mais" aria-hidden="true"></span></button>
-        <div class="faq-a" id="r1" role="region"><div><p>Não. O fluxo básico e criar a carteira, conferir e movimentar. A trilha de conteúdo entra no produto para quem quer entender antes de agir.</p></div></div>
+        <button class="faq-b" type="button" aria-expanded="false" aria-controls="r1">Precisa saber de cripto para usar?<span class="mais" aria-hidden="true"></span></button>
+        <div class="faq-a" id="r1" role="region"><div><p>Não. O fluxo básico é criar a carteira, conferir e movimentar. A trilha de conteúdo entra no produto para quem quer entender antes de agir.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-b" type="button" aria-expanded="false" aria-controls="r2">Onde ficam as minhas chaves?<span class="mais" aria-hidden="true"></span></button>
-        <div class="faq-a" id="r2" role="region"><div><p>No seu aparelho, geradas no momento da criação. A frase de recuperacao não e enviada para nossós servidores na versão atual.</p></div></div>
+        <div class="faq-a" id="r2" role="region"><div><p>No seu aparelho, geradas no momento da criação. A frase de recuperação não é enviada para nossos servidores na versão atual.</p></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-b" type="button" aria-expanded="false" aria-controls="r3">Vocês fazem custodia do meu dinheiro?<span class="mais" aria-hidden="true"></span></button>
-        <div class="faq-a" id="r3" role="region"><div><p>Não. Nãoguardamos saldo de cliente e não operamos ordens. O produto e carteira e educação.</p></div></div>
+        <button class="faq-b" type="button" aria-expanded="false" aria-controls="r3">Vocês fazem custódia do meu dinheiro?<span class="mais" aria-hidden="true"></span></button>
+        <div class="faq-a" id="r3" role="region"><div><p>Não. Não guardamos saldo de cliente e não operamos ordens. O produto é carteira e educação.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-b" type="button" aria-expanded="false" aria-controls="r4">Tem suporte se algo der errado?<span class="mais" aria-hidden="true"></span></button>
-        <div class="faq-a" id="r4" role="region"><div><p>Tem atendimento para dúvidas de usó e para problemas de sóftware. Não ha recuperacao de chave perdida: issó não e possível por desenho.</p></div></div>
+        <div class="faq-a" id="r4" role="region"><div><p>Tem atendimento para dúvidas de uso e para problemas de software. Não há recuperação de chave perdida: isso não é possível por desenho.</p></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-b" type="button" aria-expanded="false" aria-controls="r5">Qual o custo?<span class="mais" aria-hidden="true"></span></button>
-        <div class="faq-a" id="r5" role="region"><div><p>O plano básico e gratuito no beta. Os valores da versão paga ainda não estáo definidos, e não vamos anunciar antes de existir.</p></div></div>
+        <div class="faq-a" id="r5" role="region"><div><p>O plano básico é gratuito no beta. Os valores da versão paga ainda não estão definidos, e não vamos anunciar antes de existir.</p></div></div>
       </div>
     </div>
   </div>
@@ -479,8 +481,8 @@ section{padding:104px 0}
     <div class="lista rv">
       <div>
         <h2>Entrar na lista de espera</h2>
-        <p>O beta e liberado em ondas. Ao entrar, você recebe o conteúdo de início e o convite quando abrir vaga. Nada de spam de cotação.</p>
-        <p class="nota" style="margin-top:14px">Não pedimos deposito, nem dado bancario, em nenhum momento.</p>
+        <p>O beta é liberado em ondas. Ao entrar, você recebe o conteúdo de início e o convite quando abrir vaga. Nada de spam de cotação.</p>
+        <p class="nota" style="margin-top:14px">Não pedimos depósito, nem dado bancário, em nenhum momento.</p>
       </div>
       <form id="formLista" novalidate>
         <div class="campo" id="c-nome">
@@ -498,16 +500,16 @@ section{padding:104px 0}
           <select id="perfil" name="perfil" required>
             <option value="">Selecione</option>
             <option value="nunca">Nunca movimentei</option>
-            <option value="pouco">Ja movimentei pouco</option>
+            <option value="pouco">Já movimentei pouco</option>
             <option value="sim">Movimento com frequência</option>
           </select>
           <p class="msg" id="e-perfil" role="alert"></p>
         </div>
-        <button class="btn ciano" type="submit" style="width:100%">Quero entrar na lista</button>
+        <button class="btn ciano" type="submit" style="width:min(420px,100%)">Quero entrar na lista</button>
       </form>
       <div class="ok" id="okLista" hidden>
         <b>Pronto, [nome] entrou na fila.</b>
-        <span>Este e um modelo de demonstração, então nada foi enviado de verdade. No site real, o e-mail iria para a lista do beta.</span>
+        <span>Este é um modelo de demonstração, então nada foi enviado de verdade. No site real, o e-mail iria para a lista do beta.</span>
       </div>
     </div>
   </div>
@@ -637,7 +639,7 @@ section{padding:104px 0}
       primeiroRuim = primeiroRuim || email;
     }
     if(!perfil.value){
-      erro("c-perfil","e-perfil","Escolha uma opcao para saber a lingua do conteúdo.");
+      erro("c-perfil","e-perfil","Escolha uma opção para saber a língua do conteúdo.");
       primeiroRuim = primeiroRuim || perfil;
     }
     if(primeiroRuim){ primeiroRuim.focus(); return; }

@@ -32,7 +32,6 @@ body{
   font-family:"Barlow",Arial,sans-serif;
   font-size:17px;
   line-height:1.6;
-  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;display:block}
@@ -166,8 +165,8 @@ section{padding:clamp(56px,8vw,104px) 0}
 /* ---------- serviços: lista tecnica ---------- */
 .serviços{background:var(--bg)}
 .srv-list{border-top:2px solid var(--ink)}
-/* 3 colunas = 3 filhos do <li>. A coluna fantasma de 64px deslocava o
-   titulo para longe do h2 da secao e espremia o texto em 16 linhas. */
+/* 3 colunas = 3 filhos de cada item da lista. A coluna fantasma de 64px
+   deslocava o titulo para longe do h2 da secao e espremia o texto em 16 linhas. */
 .srv{
   display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto;
   gap:clamp(16px,3vw,34px);align-items:start;

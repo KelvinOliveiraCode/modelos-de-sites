@@ -70,7 +70,6 @@ body{
   font-size:17px;
   line-height:1.65;
   font-weight:400;
-  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 
@@ -676,7 +675,7 @@ body.pronto .entrada-painel{
 .instrutor-foto:hover .icone-foto{color:var(--roxo)}
 .instrutor-texto p{color:var(--ink-2);font-size:1.04rem}
 .instrutor-nome{font-size:1.5rem;margin-bottom:.3em}
-.assinatura{width:min(320px,100%);height:26px;margin:6px 0 22px}
+.assinatura{width:min(300px,100%);height:26px;margin:6px 0 22px}
 .assinatura path{
   stroke-dasharray:100;
   stroke-dashoffset:100;
@@ -934,7 +933,7 @@ body.pronto .entrada-painel{
 }
 .rodape-marca .marca-selo{background:#fff;color:var(--roxo)}
 .rodape-marca span{font-family:var(--fonte-titulo);font-weight:700;font-size:1.1rem}
-.site-footer p{color:#C9BCE4;font-size:15px;max-width:38ch}
+.site-footer p{color:#C9BCE4;font-size:15px;max-width:45ch}
 .rodape-lista{display:grid;gap:10px}
 .rodape-lista a,.rodape-lista span{
   color:#CBB8E8;
@@ -980,6 +979,10 @@ body.pronto .entrada-painel{
 
   .instrutor-grade{grid-template-columns:1fr;gap:34px}
   .instrutor-foto{max-width:300px}
+
+  /* o slide lateral nao pode jogar o bloco para fora da tela:
+     o deslocamento fica limitado a largura da borda (22px) */
+  .js .revelar.lado{transform:translateX(clamp(-22px, var(--dx,34px), 22px))}
 
   .formato-grade{grid-template-columns:1fr}
   .bloco{padding:26px}
@@ -1296,7 +1299,7 @@ body.pronto .entrada-painel{
       <div class="instrutor-texto">
         <p class="etiqueta revelar sobe" style="--i:1">Quem dá aula</p>
         <h2 id="titulo-instrutor" class="revelar sobe" style="--i:1">[nome do instrutor]</h2>
-        <svg class="assinatura revelar sobe" style="--i:2" viewBox="0 0 300 26" aria-hidden="true">
+        <svg class="assinatura revelar sobe" style="--i:2" viewBox="0 0 300 26" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
           <path d="M4 18 C 55 4, 105 24, 150 12 S 245 4, 296 16" pathLength="100" fill="none" stroke="#6A0DAD" stroke-width="2.4" stroke-linecap="round"/>
         </svg>
         <p class="revelar sobe" style="--i:3">[minibio do instrutor: formação, onde trabalha hoje e desde quando dá aula. Escreva em duas ou três linhas, no mesmo tom do resto da página.]</p>
@@ -1517,7 +1520,7 @@ body.pronto .entrada-painel{
           </label>
           <p class="msg-erro" id="erro-aceite" style="margin-top:-14px;margin-bottom:14px"></p>
 
-          <button class="btn btn-acento" type="submit" style="width:100%">Quero me matricular</button>
+          <button class="btn btn-acento" type="submit">Quero me matricular</button>
           <p class="form-aviso">Este é um modelo de demonstração: o formulário não envia nada para lugar nenhum, a confirmação aparece na própria tela.</p>
         </form>
 
