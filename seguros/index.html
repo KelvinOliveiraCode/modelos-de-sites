@@ -90,8 +90,11 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 .erro{display:block;min-height:1.15em;font-size:14px;font-weight:600;color:var(--erro)}
 .cotacao__status{margin:.9rem 0 0;font-size:14px;color:var(--tinta-media)}
 .cotacao__status.is-erro{color:var(--erro);font-weight:600}
-.hero__marca{position:absolute;top:-40px;right:-90px;z-index:1;opacity:.5;pointer-events:none;will-change:transform}
-.hero__marca svg{width:min(46vw,420px);height:auto;display:block}
+/* right:-90px/+60px empurravam o escudo 60px alem da viewport, e o recorte
+   ficava visivel na borda. Agora ele fica inteiro dentro da tela, sangrando
+   so no topo, onde o desenho ja e organico. */
+.hero__marca{position:absolute;top:-40px;right:clamp(8px,3vw,40px);z-index:1;opacity:.42;pointer-events:none;will-change:transform}
+.hero__marca svg{width:min(38vw,340px);height:auto;display:block}
 .hero__bolha{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
 .hero__bolha--1{width:190px;height:190px;left:-70px;top:34%;background:var(--azul-claro);animation:flutuar-a 9s ease-in-out infinite}
 .hero__bolha--2{width:110px;height:110px;right:8%;bottom:2%;border:2px dashed rgba(21,101,192,.32);animation:flutuar-b 11s ease-in-out infinite}
@@ -195,7 +198,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
 @keyframes pulsar{0%,100%{opacity:.5}50%{opacity:1}}
 @keyframes flutuar-a{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-18px,0)}}
 @keyframes flutuar-b{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(12px,14px,0) scale(1.07)}}
-@media (min-width:761px){.nav-toggle{display:none}.nav{position:static;flex-direction:row;align-items:center;gap:1.5rem;padding:0;background:transparent;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.nav a{padding:.4rem .2rem}.nav a:hover{background:transparent;color:var(--marca)}.nav__cta{margin:0 0 0 .5rem}.hero__grade{grid-template-columns:1.1fr .9fr;align-items:center}.hero__lateral{align-items:flex-end}.hero__marca{right:-60px;top:-30px}.cob__colunas{grid-template-columns:1fr 1fr}.sim__grade{grid-template-columns:.92fr 1.08fr}.sim__campos{grid-template-columns:1fr 1fr}.contato__grade{grid-template-columns:.85fr 1.15fr}.contato__campos{grid-template-columns:1fr 1fr}.rodape__grade{grid-template-columns:1.2fr 1fr;align-items:start}}
+@media (min-width:761px){.nav-toggle{display:none}.nav{position:static;flex-direction:row;align-items:center;gap:1.5rem;padding:0;background:transparent;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.nav a{padding:.4rem .2rem}.nav a:hover{background:transparent;color:var(--marca)}.nav__cta{margin:0 0 0 .5rem}.hero__grade{grid-template-columns:1.1fr .9fr;align-items:center}.hero__lateral{align-items:flex-end}.hero__marca{right:clamp(8px,3vw,40px);top:-30px}.cob__colunas{grid-template-columns:1fr 1fr}.sim__grade{grid-template-columns:.92fr 1.08fr}.sim__campos{grid-template-columns:1fr 1fr}.contato__grade{grid-template-columns:.85fr 1.15fr}.contato__campos{grid-template-columns:1fr 1fr}.rodape__grade{grid-template-columns:1.2fr 1fr;align-items:start}}
 @media (max-width:479px){body{font-size:16.5px}.hero__acoes .btn{width:100%}.cob__gatilho{grid-template-columns:auto 1fr;row-gap:.6rem}.duvida{grid-template-columns:1fr}.duvida__icone{margin-bottom:.3rem}}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;transition-delay:0ms !important}.hero__entrada > *,.hero__medalha,.hero__cartao,.reveal,.reveal-x{opacity:1 !important;transform:none !important}.escudo__linha,.escudo__check{stroke-dashoffset:0 !important}[data-linha] .passos__linha::before{transform:scaleY(1)}.hero__marca{transform:none !important}}
 </style>
@@ -230,7 +233,7 @@ textarea.controle{min-height:130px;resize:vertical;background-image:none;padding
   <div class="hero__bolha hero__bolha--1" aria-hidden="true"></div>
   <div class="hero__bolha hero__bolha--2" aria-hidden="true"></div>
   <div class="hero__marca" data-parallax="0.16" aria-hidden="true">
-    <svg viewBox="0 0 120 132">
+    <svg viewBox="0 0 120 132" aria-hidden="true" focusable="false">
       <path d="M60 14 L102 30 V66 C102 92 84 110 60 118 C36 110 18 92 18 66 V30 Z" fill="none" stroke="#1565C0" stroke-width="1.6" opacity=".55"/>
       <path d="M42 66 L55 80 L80 50" fill="none" stroke="#43A047" stroke-width="1.6" opacity=".6"/>
     </svg>

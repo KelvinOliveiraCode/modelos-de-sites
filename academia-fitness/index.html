@@ -194,7 +194,11 @@ body.is-loaded .hero-line .w{transform:translateY(0);opacity:1}
 .hero-note{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:15px;color:var(--ink-dim);letter-spacing:.04em}
 .hero-note b{color:var(--ink);font-weight:600}
 
-.hero-pulse{position:absolute;left:50%;margin-left:calc(min(94vw, 1560px) / 2 - 220px);top:30%;width:200px;z-index:1;opacity:.75;pointer-events:none}
+/* O halter e a assinatura do nicho: barra que sobe e desce devagar.
+   O titulo ocupa a largura toda, entao nao ha "fim de coluna" para ancorar.
+   Fica no canto superior direito, dentro da margem lateral do container,
+   na regiao vazia acima do texto -- fora do caminho da leitura. */
+.hero-pulse{position:absolute;right:clamp(20px, 3.6vw, 60px);top:clamp(18px, 5vh, 56px);width:clamp(64px,7vw,104px);z-index:1;opacity:.55;pointer-events:none}
 .hero-pulse g{transform-origin:60px 60px;animation:barraSobe 9s var(--ease-state) infinite}
 /* Assinatura do nicho: anel de energia que pulsa devagar (transform + opacity). */
 @keyframes barraSobe{
@@ -577,7 +581,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
         <a class="btn btn--primary btn--lg" href="#matricula">Quero me matricular</a>
         <a class="btn btn--ghost btn--lg" href="#grade">Ver grade de aulas</a>
       </div>
-      <p class="hero-note">Aula experimental antes de fechar plano, sem compromisso de mensalidade. <a class="link-u" href="#matricula">Testar uma aula</a>.</p>
+      <p class="hero-note">Aula experimental antes de fechar plano, sem compromisso de mensalidade.<br><a class="link-u" href="#matricula">Testar uma aula</a></p>
     </div>
   </section>
 
@@ -1231,7 +1235,7 @@ fieldset{border:0;padding:0;margin:0 0 20px}
   var menu = doc.getElementById('mobile-menu');
   var ticking = false;
 
-  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'dúvidas', 'matrícula'];
+  var sectionIds = ['planos', 'grade', 'modalidades', 'estrutura', 'duvidas', 'matricula'];
   var sections = sectionIds.map(function (id) { return doc.getElementById(id); });
   var navLinks = Array.prototype.slice.call(doc.querySelectorAll('.nav-desktop .nav-link'));
 

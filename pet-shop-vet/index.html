@@ -112,16 +112,25 @@ section{padding:clamp(54px,7.6vw,92px) 0;scroll-margin-top:88px}
 /* gesto do hero: pata que caminha (assinatura do nicho) */
 .trilha-pata{position:absolute;left:max(20px, calc((100% - min(94vw, 1560px)) / 2 + clamp(20px, 3.6vw, 60px)));right:max(20px, calc((100% - min(94vw, 1560px)) / 2 + clamp(20px, 3.6vw, 60px)));bottom:10px;height:40px;pointer-events:none}
 .trilha-linha{position:absolute;left:0;right:0;bottom:10px;border-top:3px dashed rgba(76,175,80,.42)}
-.pata-trilha{position:absolute;inset:0;overflow:hidden;animation:andaPata 9s var(--estado) infinite;will-change:transform}
-.pata-trilha svg{position:absolute;left:0;bottom:0;width:34px;height:34px;color:var(--marca)}
+/* A pata andava translateX(100%) e a praga saia pela direita da viewport,
+   porque 100% e a largura da faixa (.pata-trilha e filha de .trilha-pata).
+   --anda e a faixa menos a propria pata: assim ela para no fim do tracado.
+   overflow:hidden na propria faixa impede qualquer estouro. */
+/* O keyframe aplica translateX E rotate na .pata-trilha inteira, nao so no
+   pe. Como a .pata-trilha mede 189px de caixa (nao 40px da faixa), o rotate
+   infla a area e a caixa extrapolava 64px alem do hero (698 contra 634).
+   Separado: a faixa so desloca no eixo X; o rotate ficou so no pe. */
+.pata-trilha{position:absolute;inset:0;pointer-events:none;--anda:calc(100% - 34px);animation:andaPata 9s var(--estado) infinite;will-change:transform}
+.pata-trilha svg{position:absolute;left:0;bottom:0;width:34px;height:34px;color:var(--marca);transform-origin:50% 85%;animation:peBalanco 9s var(--estado) infinite}
+@keyframes peBalanco{0%{transform:rotate(-8deg)}25%{transform:rotate(7deg)}50%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}92%{transform:rotate(6deg)}100%{transform:rotate(-7deg)}}
 @keyframes andaPata{
-  0%{transform:translateX(0) rotate(-8deg);opacity:0}
+  0%{transform:translateX(0);opacity:0}
   8%{opacity:1}
-  25%{transform:translateX(25%) rotate(7deg)}
-  50%{transform:translateX(50%) rotate(-6deg)}
-  75%{transform:translateX(75%) rotate(6deg)}
+  25%{transform:translateX(calc(var(--anda) * .25))}
+  50%{transform:translateX(calc(var(--anda) * .5))}
+  75%{transform:translateX(calc(var(--anda) * .75))}
   92%{opacity:1}
-  100%{transform:translateX(100%) rotate(-7deg);opacity:0}
+  100%{transform:translateX(var(--anda));opacity:0}
 }
 .ponto{position:absolute;border-radius:50%}
 .ponto.amarelo{background:var(--amarelo)}
