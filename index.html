@@ -71,18 +71,27 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
 .topo nav a.destaque{color:var(--gold)}
 
 /* ---------------- hero ---------------- */
-.hero{padding:clamp(96px,14vh,150px) 0 clamp(40px,5vh,64px)}
+.hero{
+  padding:clamp(96px,14vh,150px) 0 clamp(40px,5vh,64px);
+  text-align:center;
+}
 .hero h1{
   font-size:clamp(2.6rem,5.6vw,5rem);
   line-height:1.02;
   letter-spacing:-.015em;
   font-weight:300;
-  max-width:19ch;
+  max-width:15ch;
+  margin-inline:auto;
+  text-wrap:balance;
 }
 .hero h1 em{font-style:italic;color:var(--gold)}
 .hero .lede{
-  margin-top:28px;max-width:54ch;
-  font-size:1.14rem;line-height:1.6;color:var(--muted);
+  margin:28px auto 0;
+  max-width:54ch;
+  font-size:1.14rem;
+  line-height:1.6;
+  color:var(--muted);
+  text-wrap:pretty;
 }
 .hero .lede em{font-style:italic;color:var(--white)}
 
@@ -262,7 +271,8 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
   .topo nav{gap:16px}
   .topo nav a{display:none}
   .topo nav a.destaque{display:inline-block}
-  .hero h1{font-size:2.3rem;max-width:none}
+  .hero h1{font-size:2.1rem;max-width:none}
+  .hero .lede{font-size:1.05rem}
   .btn{padding:15px 20px;width:100%;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){

@@ -311,19 +311,22 @@ body:not(.is-loaded) .enter{opacity:0;transform:translateY(18px)}
    TIMELINE
    ============================================================ */
 .timeline-wrap{position:relative;padding-left:46px}
-/* SVG substituido: height:auto usava a proporcao intrinseca do viewBox
-   (2x100 -> 100px) e ignorava o bottom. height em % do .timeline-wrap,
-   do centro do primeiro marcador (top:14px) ao meio do ultimo. */
-.timeline__linha{position:absolute;left:5px;top:14px;height:calc(100% - 28px);width:2px}
-.timeline__linha path{
-  fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;
-  stroke-dasharray:100;stroke-dashoffset:100;vector-effect:non-scaling-stroke;
-}
-.linha-desenho.is-in path{
-  stroke-dashoffset:0;transition:stroke-dashoffset .9s var(--ease-out) .15s;
-}
-.timeline{display:grid;gap:38px}
+/* Conector preso ao item, nao ao wrapper. Um SVG com geometria fixa
+   nao acompanha o .reveal, que desloca cada item em 22px: por isso a
+   linha nascia 22px acima do primeiro ponto e passava 59px do ultimo.
+   Aqui ela vai de centro a centro: --mark e a distancia do topo do
+   item ate o centro do ponto (8px de top + metade de 12px).
+   --gap + --mark leva ate o centro do ponto do item seguinte. */
+.timeline{display:grid;--gap:38px;--mark:14px;gap:var(--gap)}
 .timeline__item{position:relative}
+.timeline__item::after{
+  content:"";position:absolute;left:-40px;
+  top:var(--mark);bottom:calc(-1 * (var(--gap) + var(--mark)));
+  width:2px;background:var(--gold);
+  transform:scaleY(0);transform-origin:top;
+}
+.timeline__item:last-child::after{display:none}
+.timeline__item.is-in::after{transform:scaleY(1);transition:transform .8s var(--ease-out) .12s}
 .timeline__dot{
   position:absolute;left:-46px;top:8px;width:12px;height:12px;border-radius:50%;
   border:1.5px solid var(--gold);background:var(--navy);
@@ -506,7 +509,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
   }
   body:not(.is-loaded) .enter{opacity:1 !important;transform:none !important}
   .reveal{opacity:1 !important;transform:none !important}
-  .timeline__linha path{stroke-dashoffset:0 !important}
+  .timeline__item::after{transform:scaleY(1) !important}
   .timeline__item .timeline__dot{transform:scale(1) !important}
 }
 </style>
@@ -709,10 +712,6 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
       </header>
 
       <div class="timeline-wrap">
-        <svg class="timeline__linha linha-desenho" viewBox="0 0 2 100" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M1 0 V 100" pathLength="100"/>
-        </svg>
-
         <ol class="timeline">
           <li class="timeline__item reveal" style="--i:0">
             <span class="timeline__dot" aria-hidden="true"></span>
@@ -984,7 +983,7 @@ select.campo__controle option{background:var(--navy-2);color:var(--ink)}
   });
 
   /* 4. scroll reveal com IntersectionObserver, atraso por --i */
-  var alvos = document.querySelectorAll('.reveal, .linha-desenho');
+  var alvos = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (entrada) {

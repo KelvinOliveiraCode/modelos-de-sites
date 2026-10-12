@@ -123,7 +123,9 @@ body.is-ready .stagger{opacity:1;transform:none}
 .reveal-line.is-visible::before{transform:scaleY(1)}
 /* CABECALHO */
 .site-header{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background-color .3s var(--ease-estado),box-shadow .3s var(--ease-estado),border-color .3s var(--ease-estado)}
-.site-header.is-stuck{background:rgba(255,252,250,.96);box-shadow:0 8px 22px rgba(58,46,46,.08);border-color:var(--borda)}
+/* opaco de proposito: a 96% o arco dourado do hero (z-index 1) sangrava por
+   baixo do header fixo e aparecia como um fragmento solto no topo. */
+.site-header.is-stuck{background:#FFFCFA;box-shadow:0 8px 22px rgba(58,46,46,.08);border-color:var(--borda)}
 .header-interno{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 0;transition:padding .3s var(--ease-estado)}
 .site-header.is-stuck .header-interno{padding:.7rem 0}
 .marca{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:600;letter-spacing:.02em}
