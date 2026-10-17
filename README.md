@@ -1,172 +1,78 @@
-# Modelos de Sites — 20 landing pages de mostruário, uma por nicho
+# Modelos de Sites · 20 landing pages de mostruário, uma por nicho
 
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572b6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-f7df1e?style=flat-square&logo=javascript&logoColor=black)
-![GitHub Pages](https://img.shields.io/badge/Live-GitHub_Pages-121013?style=flat-square&logo=githubpages&logoColor=white)
-![Zero deps](https://img.shields.io/badge/depend%C3%AAncias-0-2EA44F?style=flat-square)
 
-**Modelos de Sites** é um mostruário de **20 landing pages**, uma por nicho.
-Cada página é um modelo completo e independente — arquivo único, sem build, sem
-npm, sem framework — feito para o cliente ver como eu trabalho antes de fechar o
-próprio site. O hub (`index.html`) é o único índice: filtro, busca, os 20 modelos
-e contato. As landings não linkam entre si; o cliente entra pelo hub, escolhe um
-nicho e volta.
+Mostruário de 20 landing pages, uma por nicho de negócio. Cada modelo é um arquivo HTML único, sem build, sem npm, sem framework: abra no navegador e veja como o site do cliente fica antes de pedir o seu próprio.
 
-**Ver o mostruário:** https://kelvinoliveiracode.github.io/modelos-de-sites/
+## Problema / Por que existe
 
----
+O dono de negócio precisa ver o que vai receber antes de pagar por um site. Um wireframe cinza não mostra isso. Este mostruário reúne 20 modelos prontos por nicho — clínica médica, academia, advocacia, moda, cursos online, imobiliária, estética, tecnologia SaaS, restaurante, pet shop, finanças, educação infantil, casamento, odontologia, marketing digital, energia solar, seguros, viagens, construção civil e criptomoedas — para que o cliente escolha o mais parecido com o seu negócio e peça o seu no mesmo padrão. Textos, preços e imagens são espaços reservados para os dados reais de cada cliente.
 
-## 🇧🇷 Português
+## O que faz
 
-### Como isto está organizado
+O hub (index.html) é o único índice: não há links entre landings. Ele reúne os 20 modelos em um grid filtrável por segmento e busca por texto. Cada card mostra o nome do nicho, uma linha do que o modelo faz e a paleta de cores usada. Clicando, abre a landing do nicho: uma página completa e autocontida com navegação, seções específicas do nicho, formulário com validação e interações reais (cardápio em abas, simulador de financiamento, calculadora de energia solar, agendamento etc.), além de um link de volta ao hub. Todas as páginas abrem direto no navegador, sem instalação.
 
-```
-index.html           hub: filtro, busca, os 20 modelos e contato
-<slug>/index.html    uma landing por nicho, autocontida
-spec/                direção de design e regras de execução (documentação)
-DESIGN.md            direção do hub e contrato das landings
-```
+## Stack
 
-### Os 20 nichos
+- HTML5 — semântica, foco visível, navegação por teclado, prefers-reduced-motion
+- CSS3 — variáveis de CSS, grid, flexbox, animações em transform e opacity, responsividade mobile-first
+- JavaScript — IntersectionObserver para reveal de rolagem, filtros e busca no hub, validação de formulários e interações por nicho
+- Sem dependências externas além do Google Fonts
 
-| Nicho | Pasta | Paleta |
-|---|---|---|
-| Clínica Médica / Saúde | `clinica-medica` | `#E3F2FD` `#FFFFFF` `#A5D6A7` |
-| Academia / Fitness | `academia-fitness` | `#111111` `#FF6B00` `#2E2E2E` |
-| Advocacia | `advocacia` | `#0A1F44` `#C9A227` `#4A4A4A` |
-| Moda / E-commerce | `moda-ecommerce` | `#000000` `#FFFFFF` `#D9BBA8` |
-| Cursos Online / EAD | `cursos-ead` | `#6A0DAD` `#2563EB` `#FF8C00` |
-| Imobiliária | `imobiliaria` | `#1E3A5F` `#2E7D32` `#F5F5F5` |
-| Estética / Beleza | `estetica-beleza` | `#F8BBD0` `#D4AF37` `#FFF8F0` |
-| Tecnologia / SaaS | `tech-saas` | `#0F172A` `#7C3AED` `#22D3EE` |
-| Restaurante / Delivery | `restaurante-delivery` | `#D32F2F` `#FFC107` `#1A1A1A` |
-| Pet Shop / Veterinária | `pet-shop-vet` | `#4CAF50` `#03A9F4` `#FFEB3B` |
-| Finanças / Investimentos | `financas-investimentos` | `#004D40` `#C9A227` `#1565C0` |
-| Educação Infantil | `educacao-infantil` | `#FFF59D` `#90CAF9` `#F8BBD0` `#A5D6A7` |
-| Casamento / Eventos | `casamento-eventos` | `#E8B4B8` `#D4AF37` `#A3B18A` |
-| Odontologia | `odontologia` | `#00BCD4` `#FFFFFF` `#B2DFDB` |
-| Marketing Digital / Agência | `marketing-digital` | `#5B21B6` `#F97316` `#0F0F0F` |
-| Energia Solar | `energia-solar` | `#FFD600` `#2E7D32` `#0277BD` |
-| Seguros | `seguros` | `#1565C0` `#43A047` `#FAFAFA` |
-| Viagens / Turismo | `viagens-turismo` | `#00ACC1` `#FF7043` `#FFD54F` |
-| Construção Civil | `construcao-civil` | `#FFC107` `#616161` `#212121` |
-| Criptomoedas / Web3 | `cripto-web3` | `#1A0B2E` `#00E5FF` `#0D0D0D` |
+## Como funciona
 
-### Sobre os modelos
+O visitante filtra por segmento, busca por termo, escolhe um modelo e abre o arquivo `<slug>/index.html`. Cada landing é um arquivo único com CSS e JS inline. O menu funciona em mobile, o formulário valida campos e mostra estado de sucesso sem enviar nada para lugar nenhum, e todos os modelos respeitam contraste WCAG AA e redução de movimento.
 
-São demonstração. Textos, preços, números, fotos e depoimentos são placeholder
-de propósito: `Sua Marca`, `[LOGO]`, `[+1.200 clientes]`, `[depoimento real]`,
-`Sua foto aqui`. Nada inventado passa por dado real.
+## Como rodar
 
-Cada página é um arquivo único, sem build, sem npm, sem framework. A única
-dependência externa é o Google Fonts. CSS e JS ficam inline.
-
-Todas são mobile-first, com contraste WCAG AA, navegação por teclado,
-`prefers-reduced-motion` respeitado e animação em `transform`/`opacity`.
-
-### Rodar local
-
-Não há build. Abra `index.html` no navegador, ou suba a pasta em qualquer
-servidor estático:
+Não há build. Abra `index.html` no navegador, ou sirva a pasta com qualquer servidor estático:
 
 ```
-npx serve .
 python -m http.server
-```
-
-### Contato
-
-Kelvin Oliveira
-WhatsApp: (91) 98613-4599
-LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
-Portfólio: https://kelvinoliveiracode.github.io/portfolio/
-
----
-
-## 🇺🇸 English
-
-### What it is
-
-**Modelos de Sites** is a showcase of **20 landing pages**, one per niche. Each
-page is a complete, standalone template — single file, no build, no npm, no
-framework — built so a client can see how I work before commissioning their own
-site. The hub (`index.html`) is the only index: filter, search, the 20 templates
-and contact. The landings do not link to each other; the client enters through
-the hub, picks a niche and comes back.
-
-### How it is organized
-
-```
-index.html           hub: filter, search, the 20 templates and contact
-<slug>/index.html    one self-contained landing per niche
-spec/                design direction and execution rules (documentation)
-DESIGN.md            direction for the hub and the landing contract
-```
-
-### The 20 niches
-
-| Niche | Folder | Palette |
-|---|---|---|
-| Medical clinic / Health | `clinica-medica` | `#E3F2FD` `#FFFFFF` `#A5D6A7` |
-| Gym / Fitness | `academia-fitness` | `#111111` `#FF6B00` `#2E2E2E` |
-| Law firm | `advocacia` | `#0A1F44` `#C9A227` `#4A4A4A` |
-| Fashion / E-commerce | `moda-ecommerce` | `#000000` `#FFFFFF` `#D9BBA8` |
-| Online courses / E-learning | `cursos-ead` | `#6A0DAD` `#2563EB` `#FF8C00` |
-| Real estate | `imobiliaria` | `#1E3A5F` `#2E7D32` `#F5F5F5` |
-| Aesthetics / Beauty | `estetica-beleza` | `#F8BBD0` `#D4AF37` `#FFF8F0` |
-| Technology / SaaS | `tech-saas` | `#0F172A` `#7C3AED` `#22D3EE` |
-| Restaurant / Delivery | `restaurante-delivery` | `#D32F2F` `#FFC107` `#1A1A1A` |
-| Pet shop / Vet | `pet-shop-vet` | `#4CAF50` `#03A9F4` `#FFEB3B` |
-| Finance / Investments | `financas-investimentos` | `#004D40` `#C9A227` `#1565C0` |
-| Early childhood education | `educacao-infantil` | `#FFF59D` `#90CAF9` `#F8BBD0` `#A5D6A7` |
-| Wedding / Events | `casamento-eventos` | `#E8B4B8` `#D4AF37` `#A3B18A` |
-| Dentistry | `odontologia` | `#00BCD4` `#FFFFFF` `#B2DFDB` |
-| Digital marketing / Agency | `marketing-digital` | `#5B21B6` `#F97316` `#0F0F0F` |
-| Solar energy | `energia-solar` | `#FFD600` `#2E7D32` `#0277BD` |
-| Insurance | `seguros` | `#1565C0` `#43A047` `#FAFAFA` |
-| Travel / Tourism | `viagens-turismo` | `#00ACC1` `#FF7043` `#FFD54F` |
-| Construction | `construcao-civil` | `#FFC107` `#616161` `#212121` |
-| Cryptocurrency / Web3 | `cripto-web3` | `#1A0B2E` `#00E5FF` `#0D0D0D` |
-
-### About the templates
-
-They are demos. Copy, prices, numbers, photos and testimonials are placeholders
-on purpose: `Sua Marca`, `[LOGO]`, `[+1.200 clientes]`, `[depoimento real]`,
-`Sua foto aqui`. Nothing invented passes for real data.
-
-Each page is a single file, no build, no npm, no framework. The only external
-dependency is Google Fonts. CSS and JS stay inline.
-
-All of them are mobile-first, with WCAG AA contrast, keyboard navigation,
-`prefers-reduced-motion` respected and animation on `transform`/`opacity`.
-
-### Running it locally
-
-No build. Open `index.html` in a browser, or serve the folder with any static
-server:
-
-```
 npx serve .
-python -m http.server
 ```
 
-### Contact
+Para abrir um modelo específico, navegue até a pasta dele, por exemplo `restaurante-delivery/index.html`.
 
-Kelvin Oliveira
-WhatsApp: (91) 98613-4599
-LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
-Portfolio: https://kelvinoliveiracode.github.io/portfolio/
+## Estrutura do projeto
 
----
+```
+index.html           hub: filtro por segmento, busca, 20 cards de modelos, processo e contato
+<slug>/index.html    landing completa e autocontida de um nicho (20 pastas)
+spec/nichos.md       dossiê dos 20 modelos: cores, fontes, seções e animação de cada nicho
+spec/regras-landing.md regras de execução valendo para todas as landings (acessibilidade, mobile, animação, proibidos)
+spec/revisao-layout.md revisão de layout
+spec/revisao-visual.md revisão visual
+DESIGN.md            direção de design do hub e contrato das landings
+.nojekyll            publicação direta no GitHub Pages
+```
 
-## Autor
+## Trade-offs e decisões
 
-**Kelvin Oliveira**
+- Uma landing por nicho, cada um um arquivo único. Vantagem: o cliente abre e vê o resultado real no navegador sem instalar nada. Custo: repetição de CSS entre páginas; nenhuma mudança global se propaga sozinha.
+- CSS e JS inline. Sem build, sem npm, sem framework — zero dependência de ferramenta. O único link externo é o Google Fonts.
+- Nenhum link entre landings; o hub é o único índice. O cliente entra pelo hub, escolhe o nicho e volta. Simplifica a navegação, mas exige voltar pelo botão do navegador ou pelo link de retorno em cada landing.
+- A cor de nicho aparece apenas como fita no card do hub, nunca como cor de interface do hub, evitando efeito arco-íris de 20 paletas.
+- Textos, preços, imagens e depoimentos são placeholders explícitos (`Sua Marca`, `[LOGO]`, `[depoimento real]`). Nunca se passa dado inventado por real.
 
-- GitHub: [KelvinOliveiraCode](https://github.com/KelvinOliveiraCode)
-- LinkedIn: [kelvin-oliveira-code](https://www.linkedin.com/in/kelvin-oliveira-code/)
+## Limitações conhecidas
+
+- Não há backend: formulários não enviam nada; mostram apenas estado de sucesso na tela.
+- A busca do hub busca nome e segmento do modelo; não há busca por conteúdo dentro das landings.
+- Cada modelo carrega fontes do Google Fonts; sem conexão à internet, a página usa a fonte fallback do sistema.
+- Todo o conteúdo está em português do Brasil; não há versão em inglês.
+- Não é um site pronto para publicar como está: é um mostruário de demonstração com dados de placeholder.
 
 ## Licença
 
 Distribuído sob a licença MIT. Consulte o arquivo de licença do repositório para detalhes.
+
+## Autor
+
+Kelvin Oliveira
+
+- GitHub: https://github.com/KelvinOliveiraCode
+- LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
+- Portfólio: https://kelvinoliveiracode.github.io/portfolio/
+- WhatsApp: (91) 98613-4599
