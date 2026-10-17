@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Modelos de Sites · 20 landing pages de mostruário, uma por nicho
 
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
@@ -6,9 +7,42 @@
 Mostruário de 20 landing pages, uma por nicho de negócio. Cada modelo é um arquivo HTML único, sem build, sem npm, sem framework: abra no navegador e veja como o site do cliente fica antes de pedir o seu próprio.
 
 ## Problema / Por que existe
+=======
+# Modelos de Sites — Mostruário de 20 Landing Pages
+
+![linguagem: HTML](https://img.shields.io/badge/linguagem-HTML-blue)  
+![status: concluido](https://img.shields.io/badge/status-concluido-green)  
+![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+
+### Descrição
+Mostruário de 20 landing pages, uma para cada segmento de negócio. HTML/CSS estático, pronto para clonar e adaptar.
+
+### O que faz
+Mostruário de 20 landing pages, uma para cada segmento de negócio. HTML/CSS estático, pronto para clonar e adaptar.
+
+### Tecnologias
+- HTML5
+- CSS3
+
+### Como usar
+Abra o arquivo `index.html` no navegador.
+
+### Estrutura
+Consulte a árvore do repositório para a organização exata de pastas e arquivos.
+
+### Testes
+Não há contagem de testes registrada nesta metadata. Adicione e execute testes apropriados à linguagem (pytest para Python, ./mvnw test para Java, npm test para JavaScript/TypeScript).
+
+### Licença
+MIT
+
+### Autor
+Kelvin Oliveira — github.com/KelvinOliveiraCode
+>>>>>>> 195485ec38dcdcc30e3d8eaaaf97b5cae130a593
 
 O dono de negócio precisa ver o que vai receber antes de pagar por um site. Um wireframe cinza não mostra isso. Este mostruário reúne 20 modelos prontos por nicho — clínica médica, academia, advocacia, moda, cursos online, imobiliária, estética, tecnologia SaaS, restaurante, pet shop, finanças, educação infantil, casamento, odontologia, marketing digital, energia solar, seguros, viagens, construção civil e criptomoedas — para que o cliente escolha o mais parecido com o seu negócio e peça o seu no mesmo padrão. Textos, preços e imagens são espaços reservados para os dados reais de cada cliente.
 
+<<<<<<< HEAD
 ## O que faz
 
 O hub (index.html) é o único índice: não há links entre landings. Ele reúne os 20 modelos em um grid filtrável por segmento e busca por texto. Cada card mostra o nome do nicho, uma linha do que o modelo faz e a paleta de cores usada. Clicando, abre a landing do nicho: uma página completa e autocontida com navegação, seções específicas do nicho, formulário com validação e interações reais (cardápio em abas, simulador de financiamento, calculadora de energia solar, agendamento etc.), além de um link de volta ao hub. Todas as páginas abrem direto no navegador, sem instalação.
@@ -76,3 +110,35 @@ Kelvin Oliveira
 - LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
 - Portfólio: https://kelvinoliveiracode.github.io/portfolio/
 - WhatsApp: (91) 98613-4599
+=======
+# Website Models — Showcase of 20 Landing Pages
+
+![language: HTML](https://img.shields.io/badge/language-HTML-blue)  
+![status: concluido](https://img.shields.io/badge/status-concluido-green)  
+![license: MIT](https://img.shields.io/badge/license-MIT-blue)
+
+### Description
+Showcase of 20 landing pages, one per business segment. Static HTML/CSS, ready to clone and adapt.
+
+### What it does
+Showcase of 20 landing pages, one per business segment. Static HTML/CSS, ready to clone and adapt.
+
+### Technologies
+- HTML5
+- CSS3
+
+### How to use
+Open `index.html` in the browser.
+
+### Structure
+Check the repository tree for the exact folder and file organization.
+
+### Tests
+No test count recorded in this metadata. Add and run tests appropriate for the language (pytest for Python, ./mvnw test for Java, npm test for JavaScript/TypeScript).
+
+### License
+MIT
+
+### Author
+Kelvin Oliveira — github.com/KelvinOliveiraCode
+>>>>>>> 195485ec38dcdcc30e3d8eaaaf97b5cae130a593
