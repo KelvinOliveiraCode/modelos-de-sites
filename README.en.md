@@ -1,78 +1,89 @@
-# Website Templates · 20 showcase landing pages, one per niche
 
-![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572b6?style=flat-square&logo=css3&logoColor=white)
+# modelos-de-sites
 
-Showcase of 20 landing pages, one per business niche. Each template is a single HTML file, no build, no npm, no framework: open in the browser and see how the client's website looks before ordering your own.
+![language: HTML](https://img.shields.io/badge/language-HTML-blue)   ![status: done](https://img.shields.io/badge/status-done-green)   ![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
-## Problem / Why it exists
+## Summary
 
-The business owner needs to see what they will receive before paying for a website. A gray wireframe does not show that. This showcase brings together 20 ready-made templates by niche — medical clinic, gym, law firm, fashion, online courses, real estate, aesthetics, SaaS technology, restaurant, pet shop, finance, children's education, wedding, dentistry, digital marketing, solar energy, insurance, travel, civil construction, and cryptocurrencies — so the client can choose the one most similar to their business and order their own in the same standard. Texts, prices, and images are placeholders for each client's real data.
+Static page or site in HTML, CSS and vanilla JavaScript, with no build dependencies. Mostruario de 20 landing pages por nicho, uma para cada segmento
+
+## Problem / why it exists
+
+The project delivers a lightweight web solution, hostable on any static server (including GitHub Pages), without requiring an application server, database or build process.
+
+## Architecture
+
+- `index.html`: entry point and page structure.
+- CSS: styling and layout (light/dark mode when applicable).
+- JavaScript: client-side interactivity and logic.
+
+Everything lives in one or a few files, easy to audit line by line.
+
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript (vanilla)
 
 ## What it does
 
-The hub (index.html) is the only index: there are no links between landings. It gathers the 20 models in a grid filterable by segment and text search. Each card shows the niche name, a line of what the model does, and the color palette used. Clicking opens the niche landing: a complete self-contained page with navigation, niche-specific sections, form validation, and real interactions (tabbed menu, financing simulator, solar energy calculator, scheduling, etc.), plus a link back to the hub. All pages open directly in the browser, with no installation.
-
-## Stack
-
-- HTML5 — semantics, visible focus, keyboard navigation, prefers-reduced-motion
-- CSS3 — CSS variables, grid, flexbox, transform and opacity animations, mobile-first responsiveness
-- JavaScript — IntersectionObserver for scroll reveal, filters and search in the hub, form validation, and per-niche interactions
-- No external dependencies besides Google Fonts
-
-## How it works
-
-The visitor filters by segment, searches by term, chooses a model, and opens the file `<slug>/index.html`. Each landing is a single file with inline CSS and JS. The menu works on mobile, the form validates fields and shows a success state without sending anything anywhere, and all models respect WCAG AA contrast and motion reduction.
+Mostruario de 20 landing pages por nicho, uma para cada segmento
 
 ## How to run
 
-There is no build. Open `index.html` in the browser, or serve the folder with any static server:
+Open `index.html` directly in the browser, or serve locally:
 
 ```
-python -m http.server
-npx serve .
+python -m http.server 8080
+# access http://localhost:8080
 ```
-
-To open a specific model, navigate to its folder, for example `restaurante-delivery/index.html`.
 
 ## Project structure
 
-```
-index.html           hub: segment filter, search, 20 model cards, process, contact
-<slug>/index.html    complete self-contained landing of a niche (20 folders)
-spec/nichos.md       dossier of the 20 models: colors, fonts, sections, and animation of each niche
-spec/regras-landing.md execution rules valid for all landings (accessibility, mobile, animation, prohibited)
-spec/revisao-layout.md layout review
-spec/revisao-visual.md visual review
-DESIGN.md            hub design direction and landing contract
-.nojekyll            direct publishing on GitHub Pages
-```
+- spec/ (4 arquivo(s))
+- academia-fitness/ (1 arquivo(s))
+- advocacia/ (1 arquivo(s))
+- casamento-eventos/ (1 arquivo(s))
+- clinica-medica/ (1 arquivo(s))
+- construcao-civil/ (1 arquivo(s))
+- cripto-web3/ (1 arquivo(s))
+- cursos-ead/ (1 arquivo(s))
+- educacao-infantil/ (1 arquivo(s))
+- energia-solar/ (1 arquivo(s))
+- estetica-beleza/ (1 arquivo(s))
+- financas-investimentos/ (1 arquivo(s))
+- imobiliaria/ (1 arquivo(s))
+- marketing-digital/ (1 arquivo(s))
+- moda-ecommerce/ (1 arquivo(s))
+- odontologia/ (1 arquivo(s))
+- pet-shop-vet/ (1 arquivo(s))
+- restaurante-delivery/ (1 arquivo(s))
+- seguros/ (1 arquivo(s))
+- tech-saas/ (1 arquivo(s))
+- viagens-turismo/ (1 arquivo(s))
+- .nojekyll, DESIGN.md, index.html, README.en.md, README.md
+
 
 ## Trade-offs and decisions
 
-- One landing per niche, each one a single file. Advantage: the client opens and sees the real result in the browser without installing anything. Cost: CSS repetition between pages; no global change propagates by itself.
-- Inline CSS and JS. No build, no npm, no framework — zero tool dependency. The only external link is Google Fonts.
-- No links between landings; the hub is the only index. The client enters through the hub, chooses the niche, and returns. Simplifies navigation, but requires returning via the browser back button or the return link on each landing.
-- The niche color appears only as a band on the hub card, never as a hub interface color, avoiding a rainbow effect of 20 palettes.
-- Texts, prices, images, and testimonials are explicit placeholders (`Your Brand`, `[LOGO]`, `[real testimonial]`). Never present invented data as real.
+- Single file (or a few): easy to host anywhere and audit.
+- No build, no server, no database.
+- Data in snapshot (when applicable), not real-time.
 
 ## Known limitations
 
-- No backend: forms do not send anything; they only show a success state on screen.
-- The hub search searches the model name and segment; there is no search for content inside landings.
-- Each model loads Google Fonts; without internet connection, the page uses the system fallback font.
-- All content is in Brazilian Portuguese; there is no English version.
-- Not a website ready to publish as is: it is a demonstration showcase with placeholder data.
+- No backend; functionality limited to the browser.
+- Static data or snapshot; confirm values in official sources.
+
+## Tests
+
+No automated tests detected.
 
 ## License
 
-Distributed under the MIT license. See the repository's license file for details.
+Distributed under the MIT License. See the `LICENSE` file in this repository.
 
 ## Author
 
-Kelvin Oliveira
-
-- GitHub: https://github.com/KelvinOliveiraCode
-- LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
-- Portfolio: https://kelvinoliveiracode.github.io/portfolio/
-- WhatsApp: (91) 98613-4599
+Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Portfolio: https://kelvinoliveiracode.github.io/portfolio/

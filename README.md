@@ -1,144 +1,88 @@
-<<<<<<< HEAD
-# Modelos de Sites · 20 landing pages de mostruário, uma por nicho
+# modelos-de-sites
 
-![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572b6?style=flat-square&logo=css3&logoColor=white)
+![linguagem: HTML](https://img.shields.io/badge/linguagem-HTML-blue)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
 
-Mostruário de 20 landing pages, uma por nicho de negócio. Cada modelo é um arquivo HTML único, sem build, sem npm, sem framework: abra no navegador e veja como o site do cliente fica antes de pedir o seu próprio.
+## Resumo
 
-## Problema / Por que existe
-=======
-# Modelos de Sites — Mostruário de 20 Landing Pages
+Pagina ou site estatico em HTML, CSS e JavaScript puro, sem dependencias de build. Mostruario de 20 landing pages por nicho, uma para cada segmento
 
-![linguagem: HTML](https://img.shields.io/badge/linguagem-HTML-blue)  
-![status: concluido](https://img.shields.io/badge/status-concluido-green)  
-![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+## Problema / por que existe
 
-### Descrição
-Mostruário de 20 landing pages, uma para cada segmento de negócio. HTML/CSS estático, pronto para clonar e adaptar.
+O projeto entrega uma solucao web leve, hospedavel em qualquer servidor estatico (incluindo GitHub Pages), sem exigir servidor de aplicacao, banco de dados ou processo de build.
 
-### O que faz
-Mostruário de 20 landing pages, uma para cada segmento de negócio. HTML/CSS estático, pronto para clonar e adaptar.
+## Arquitetura
 
-### Tecnologias
+- `index.html`: ponto de entrada e estrutura da pagina.
+- CSS: estilo e layout (modo claro/escuro quando aplicavel).
+- JavaScript: interatividade e logica do lado do cliente.
+
+Tudo vive em um ou poucos arquivos, facil de auditar linha por linha.
+
+## Tecnologias
+
 - HTML5
 - CSS3
+- JavaScript (vanilla)
 
-### Como usar
-Abra o arquivo `index.html` no navegador.
-
-### Estrutura
-Consulte a árvore do repositório para a organização exata de pastas e arquivos.
-
-### Testes
-Não há contagem de testes registrada nesta metadata. Adicione e execute testes apropriados à linguagem (pytest para Python, ./mvnw test para Java, npm test para JavaScript/TypeScript).
-
-### Licença
-MIT
-
-### Autor
-Kelvin Oliveira — github.com/KelvinOliveiraCode
->>>>>>> 195485ec38dcdcc30e3d8eaaaf97b5cae130a593
-
-O dono de negócio precisa ver o que vai receber antes de pagar por um site. Um wireframe cinza não mostra isso. Este mostruário reúne 20 modelos prontos por nicho — clínica médica, academia, advocacia, moda, cursos online, imobiliária, estética, tecnologia SaaS, restaurante, pet shop, finanças, educação infantil, casamento, odontologia, marketing digital, energia solar, seguros, viagens, construção civil e criptomoedas — para que o cliente escolha o mais parecido com o seu negócio e peça o seu no mesmo padrão. Textos, preços e imagens são espaços reservados para os dados reais de cada cliente.
-
-<<<<<<< HEAD
 ## O que faz
 
-O hub (index.html) é o único índice: não há links entre landings. Ele reúne os 20 modelos em um grid filtrável por segmento e busca por texto. Cada card mostra o nome do nicho, uma linha do que o modelo faz e a paleta de cores usada. Clicando, abre a landing do nicho: uma página completa e autocontida com navegação, seções específicas do nicho, formulário com validação e interações reais (cardápio em abas, simulador de financiamento, calculadora de energia solar, agendamento etc.), além de um link de volta ao hub. Todas as páginas abrem direto no navegador, sem instalação.
-
-## Stack
-
-- HTML5 — semântica, foco visível, navegação por teclado, prefers-reduced-motion
-- CSS3 — variáveis de CSS, grid, flexbox, animações em transform e opacity, responsividade mobile-first
-- JavaScript — IntersectionObserver para reveal de rolagem, filtros e busca no hub, validação de formulários e interações por nicho
-- Sem dependências externas além do Google Fonts
-
-## Como funciona
-
-O visitante filtra por segmento, busca por termo, escolhe um modelo e abre o arquivo `<slug>/index.html`. Cada landing é um arquivo único com CSS e JS inline. O menu funciona em mobile, o formulário valida campos e mostra estado de sucesso sem enviar nada para lugar nenhum, e todos os modelos respeitam contraste WCAG AA e redução de movimento.
+Mostruario de 20 landing pages por nicho, uma para cada segmento
 
 ## Como rodar
 
-Não há build. Abra `index.html` no navegador, ou sirva a pasta com qualquer servidor estático:
+Abra o arquivo `index.html` diretamente no navegador, ou sirva localmente:
 
 ```
-python -m http.server
-npx serve .
+python -m http.server 8080
+# acesse http://localhost:8080
 ```
-
-Para abrir um modelo específico, navegue até a pasta dele, por exemplo `restaurante-delivery/index.html`.
 
 ## Estrutura do projeto
 
-```
-index.html           hub: filtro por segmento, busca, 20 cards de modelos, processo e contato
-<slug>/index.html    landing completa e autocontida de um nicho (20 pastas)
-spec/nichos.md       dossiê dos 20 modelos: cores, fontes, seções e animação de cada nicho
-spec/regras-landing.md regras de execução valendo para todas as landings (acessibilidade, mobile, animação, proibidos)
-spec/revisao-layout.md revisão de layout
-spec/revisao-visual.md revisão visual
-DESIGN.md            direção de design do hub e contrato das landings
-.nojekyll            publicação direta no GitHub Pages
-```
+- spec/ (4 arquivo(s))
+- academia-fitness/ (1 arquivo(s))
+- advocacia/ (1 arquivo(s))
+- casamento-eventos/ (1 arquivo(s))
+- clinica-medica/ (1 arquivo(s))
+- construcao-civil/ (1 arquivo(s))
+- cripto-web3/ (1 arquivo(s))
+- cursos-ead/ (1 arquivo(s))
+- educacao-infantil/ (1 arquivo(s))
+- energia-solar/ (1 arquivo(s))
+- estetica-beleza/ (1 arquivo(s))
+- financas-investimentos/ (1 arquivo(s))
+- imobiliaria/ (1 arquivo(s))
+- marketing-digital/ (1 arquivo(s))
+- moda-ecommerce/ (1 arquivo(s))
+- odontologia/ (1 arquivo(s))
+- pet-shop-vet/ (1 arquivo(s))
+- restaurante-delivery/ (1 arquivo(s))
+- seguros/ (1 arquivo(s))
+- tech-saas/ (1 arquivo(s))
+- viagens-turismo/ (1 arquivo(s))
+- .nojekyll, DESIGN.md, index.html, README.en.md, README.md
+
 
 ## Trade-offs e decisões
 
-- Uma landing por nicho, cada um um arquivo único. Vantagem: o cliente abre e vê o resultado real no navegador sem instalar nada. Custo: repetição de CSS entre páginas; nenhuma mudança global se propaga sozinha.
-- CSS e JS inline. Sem build, sem npm, sem framework — zero dependência de ferramenta. O único link externo é o Google Fonts.
-- Nenhum link entre landings; o hub é o único índice. O cliente entra pelo hub, escolhe o nicho e volta. Simplifica a navegação, mas exige voltar pelo botão do navegador ou pelo link de retorno em cada landing.
-- A cor de nicho aparece apenas como fita no card do hub, nunca como cor de interface do hub, evitando efeito arco-íris de 20 paletas.
-- Textos, preços, imagens e depoimentos são placeholders explícitos (`Sua Marca`, `[LOGO]`, `[depoimento real]`). Nunca se passa dado inventado por real.
+- Um unico arquivo (ou poucos): facil de hospedar em qualquer lugar e de auditar.
+- Sem build, sem servidor, sem banco de dados.
+- Dados em snapshot (quando aplicavel), nao em tempo real.
 
 ## Limitações conhecidas
 
-- Não há backend: formulários não enviam nada; mostram apenas estado de sucesso na tela.
-- A busca do hub busca nome e segmento do modelo; não há busca por conteúdo dentro das landings.
-- Cada modelo carrega fontes do Google Fonts; sem conexão à internet, a página usa a fonte fallback do sistema.
-- Todo o conteúdo está em português do Brasil; não há versão em inglês.
-- Não é um site pronto para publicar como está: é um mostruário de demonstração com dados de placeholder.
+- Sem backend; funcionalidade limitada ao navegador.
+- Dados estaticos ou em snapshot; confirme valores em fontes oficiais.
+
+## Testes
+
+Nenhum teste automatizado detectado.
 
 ## Licença
 
-Distribuído sob a licença MIT. Consulte o arquivo de licença do repositório para detalhes.
+Distribuído sob a licenca MIT. Consulte o arquivo `LICENSE` do repositorio.
 
 ## Autor
 
-Kelvin Oliveira
-
-- GitHub: https://github.com/KelvinOliveiraCode
-- LinkedIn: https://www.linkedin.com/in/kelvin-oliveira-code/
-- Portfólio: https://kelvinoliveiracode.github.io/portfolio/
-- WhatsApp: (91) 98613-4599
-=======
-# Website Models — Showcase of 20 Landing Pages
-
-![language: HTML](https://img.shields.io/badge/language-HTML-blue)  
-![status: concluido](https://img.shields.io/badge/status-concluido-green)  
-![license: MIT](https://img.shields.io/badge/license-MIT-blue)
-
-### Description
-Showcase of 20 landing pages, one per business segment. Static HTML/CSS, ready to clone and adapt.
-
-### What it does
-Showcase of 20 landing pages, one per business segment. Static HTML/CSS, ready to clone and adapt.
-
-### Technologies
-- HTML5
-- CSS3
-
-### How to use
-Open `index.html` in the browser.
-
-### Structure
-Check the repository tree for the exact folder and file organization.
-
-### Tests
-No test count recorded in this metadata. Add and run tests appropriate for the language (pytest for Python, ./mvnw test for Java, npm test for JavaScript/TypeScript).
-
-### License
-MIT
-
-### Author
-Kelvin Oliveira — github.com/KelvinOliveiraCode
->>>>>>> 195485ec38dcdcc30e3d8eaaaf97b5cae130a593
+Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Portfolio: https://kelvinoliveiracode.github.io/portfolio/
