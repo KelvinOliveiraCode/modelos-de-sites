@@ -1,88 +1,86 @@
 # modelos-de-sites
 
-![linguagem: HTML](https://img.shields.io/badge/linguagem-HTML-blue)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+[![HTML/CSS/JS](https://img.shields.io/badge/HTML-CSS-JS-orange)](https://developer.mozilla.org/)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
 
 ## Resumo
 
-Pagina ou site estatico em HTML, CSS e JavaScript puro, sem dependencias de build. Mostruario de 20 landing pages por nicho, uma para cada segmento
+Mostruario de 20 landing pages por nicho, uma para cada segmento
+## Problema / Por que existe
 
-## Problema / por que existe
-
-O projeto entrega uma solucao web leve, hospedavel em qualquer servidor estatico (incluindo GitHub Pages), sem exigir servidor de aplicacao, banco de dados ou processo de build.
-
+O projeto aborda um recorte prático e automatiza uma tarefa que, feita manualmente, é repetitiva e propensa a erro. O foco está em transformar dados ou processos em saída confiável, com código legível, testável e extensível.
 ## Arquitetura
 
-- `index.html`: ponto de entrada e estrutura da pagina.
-- CSS: estilo e layout (modo claro/escuro quando aplicavel).
-- JavaScript: interatividade e logica do lado do cliente.
+Arquivos de código (21):
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+## Padrões de Projeto e Técnicas Identificadas
 
-Tudo vive em um ou poucos arquivos, facil de auditar linha por linha.
-
-## Tecnologias
-
-- HTML5
-- CSS3
-- JavaScript (vanilla)
-
+- Single-page HTML entry
 ## O que faz
 
 Mostruario de 20 landing pages por nicho, uma para cada segmento
-
 ## Como rodar
 
 Abra o arquivo `index.html` diretamente no navegador, ou sirva localmente:
 
-```
+```bash
 python -m http.server 8080
 # acesse http://localhost:8080
 ```
+## Estrutura do Projeto
 
-## Estrutura do projeto
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+- `index.html`
+## Trade-offs e Decisões Técnicas
 
-- spec/ (4 arquivo(s))
-- academia-fitness/ (1 arquivo(s))
-- advocacia/ (1 arquivo(s))
-- casamento-eventos/ (1 arquivo(s))
-- clinica-medica/ (1 arquivo(s))
-- construcao-civil/ (1 arquivo(s))
-- cripto-web3/ (1 arquivo(s))
-- cursos-ead/ (1 arquivo(s))
-- educacao-infantil/ (1 arquivo(s))
-- energia-solar/ (1 arquivo(s))
-- estetica-beleza/ (1 arquivo(s))
-- financas-investimentos/ (1 arquivo(s))
-- imobiliaria/ (1 arquivo(s))
-- marketing-digital/ (1 arquivo(s))
-- moda-ecommerce/ (1 arquivo(s))
-- odontologia/ (1 arquivo(s))
-- pet-shop-vet/ (1 arquivo(s))
-- restaurante-delivery/ (1 arquivo(s))
-- seguros/ (1 arquivo(s))
-- tech-saas/ (1 arquivo(s))
-- viagens-turismo/ (1 arquivo(s))
-- .nojekyll, DESIGN.md, index.html, README.en.md, README.md
-
-
-## Trade-offs e decisões
-
-- Um unico arquivo (ou poucos): facil de hospedar em qualquer lugar e de auditar.
+- Arquivo único (ou poucos): fácil de hospedar em qualquer servidor estático (GitHub Pages, Netlify, Vercel) e de auditar linha a linha.
 - Sem build, sem servidor, sem banco de dados.
-- Dados em snapshot (quando aplicavel), nao em tempo real.
-
-## Limitações conhecidas
+- Dados em snapshot (quando aplicável), não em tempo real ,  o usuário confirma na fonte oficial linkada.
+- Tema claro/escuro persistido em `localStorage` sem JavaScript externo.
+## Limitações Conhecidas
 
 - Sem backend; funcionalidade limitada ao navegador.
-- Dados estaticos ou em snapshot; confirme valores em fontes oficiais.
-
+- Dados estáticos ou em snapshot; confirme valores em fontes oficiais.
+- Não há autenticação nem multi-usuário.
 ## Testes
 
-Nenhum teste automatizado detectado.
-
+Nenhum teste automatizado detectado (projeto de documentação/guia).
 ## Licença
 
-Distribuído sob a licenca MIT. Consulte o arquivo `LICENSE` do repositorio.
-
+Distribuído sob a licença MIT. Consulte o arquivo `LICENSE` do repositório.
 ## Autor
 
-Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Kelvin Oliveira ,  https://github.com/KelvinOliveiraCode
 Portfolio: https://kelvinoliveiracode.github.io/portfolio/
