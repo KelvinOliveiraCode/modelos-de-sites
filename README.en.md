@@ -1,117 +1,91 @@
 # modelos-de-sites
 
-<div align="center">
-
 **English** · [Português (Brasil)](README.md)
 
-</div>
-
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-222?style=flat-square&logo=githubpages)](https://pages.github.com/) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
-
-### Mostruario de 20 landing pages por nicho, uma para cada segmento
-
----
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#) [![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#) [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-222?style=flat-square&logo=githubpages)](#)
 
 ## What it is
 
-Mostruario de 20 landing pages por nicho, uma para cada segmento
+A **showcase of 20 landing pages**, one per niche (gym, law, medical clinic, real estate, pet shop, e-commerce, etc.), with a hub in `index.html` that navigates among the models. It serves as a portfolio of website-building work and as a ready base for a client to pick their segment.
 
----
+## Status
 
-## Quick Start
+In production. Published at <https://kelvinoliveiracode.github.io/modelos-de-sites/> (HTTP 200 verified).
 
-Open `index.html` directly in your browser, or serve locally:
+## Features
+
+- **Hub** (`index.html`) that lists and navigates to the 20 niche models.
+- **20 individual landing pages**, each in its own folder with its own self-contained `index.html`.
+- **Centralized design system** defined in `DESIGN.md` (the source of truth for all models' styling).
+- **Build specs** in `spec/` (niches, landing rules, layout and visual review).
+
+## Architecture
+
+Each niche is a folder with an independent HTML page; the hub aggregates them. No build, no framework, no dependencies — only static HTML/CSS/JS.
+
+```mermaid
+flowchart LR
+    H[hub index.html] --> A[academia-fitness]
+    H --> M[moda-ecommerce]
+    H --> P[pet-shop-vet]
+    H --> ... [...20 niches]
+    D[DESIGN.md - design system] -.-> H
+    D -.-> A
+```
+
+## Stack
+
+- HTML5, CSS3, vanilla JavaScript
+- Hosting: GitHub Pages
+
+## Repository layout
+
+```
+modelos-de-sites/
+├── index.html            # showcase hub
+├── DESIGN.md             # design direction (source of truth)
+├── <niche>/
+│   └── index.html        # one landing per niche (20 in total)
+├── spec/                 # specs: niches, landing rules, layout/visual review
+├── .nojekyll
+└── (no LICENSE)
+```
+
+## Prerequisites and installation
+
+None. Just serve the folder statically.
+
+## How to run
 
 ```bash
 python -m http.server 8080
-# Access http://localhost:8080
+# go to http://localhost:8080 (hub)
+# and /<niche>/ index.html for each model, e.g. /moda-ecommerce/
 ```
 
-Or deploy to GitHub Pages / Netlify / Vercel with zero configuration.
+Or open each `index.html` directly in the browser.
 
-## How it works
+## Tests and quality
 
-**Arquitetura zero-build, arquivo único** ,  tudo vive em `index.html`:
-- **HTML5** estrutura semântica
-- **CSS3** propriedades customizadas para tema (claro/escuro)
-- **Vanilla ES6+ JavaScript** ,  sem framework, sem build
-- **localStorage** para persistência de tema
-- **Catálogo JSON** (`catalogo.json`) como fonte de dados aberta
+There are no automated tests or CI in this repository (no `package.json` or workflow confirmed). Visual consistency follows `DESIGN.md` and the reviews documented in `spec/revisao-layout.md` and `spec/revisao-visual.md`.
 
----
+## Technical decisions and trade-offs
 
-## Capabilities
+- **One self-contained landing per folder**: each model can be served/personalized in isolation and is a ready handoff for the client.
+- **Simple hub + 20 static pages**: lightweight, indexable and easy to publish on GitHub Pages.
+- **Landing rules documented in `spec/`**: section format and patterns are a norm, not a preference.
 
-| Capacidade | Descrição |
-|------------|-------------|
-| Motor de Recomendação | Filtro determinístico: Área ∩ Preço -> Provedor -> Tier gratuito -> Nível de config |
-| Catálogo | 124 serviços de 8 provedores (AWS, Azure, GCP, Oracle, Cloudflare, DO, Firebase, Google) |
-| Dados Abertos | catalogo.json + llms.txt para consumo por chat de IA |
-| Educação | Vocabulário de nuvem (IaaS/PaaS/SaaS), myth-busting, glossário, quiz de 5 perguntas |
-| Tematização | Modo claro/escuro persistido em localStorage, sem CSS externo |
-| Zero Build | index.html único ,  deploy em qualquer lugar (GitHub Pages, Netlify, Vercel) |
-| Auditoria | Cada decisão do filtro exibida: "Como chegamos aqui" rastreia todos 124 serviços |
-| Sem Rastreamento | Sem contas de usuário, sem analytics, sem dependências externas |
+## Known limitations and roadmap
 
+- The landings are static (no CMS/backend); content is edited in the HTML.
+- No capture-form integration beyond the model itself.
 
----
+## Development process
 
+An individual project by Kelvin Oliveira, built with orchestrated AI agents and reviewed by the author. The design system, the specs and the review are the author's.
 
+## License and author
 
----
+This repository has **no license file** (no `LICENSE`). Copyright (c) Kelvin Rebelo de Oliveira.
 
-## FAQ
-
-<details>
-<summary><strong>What is this project?</strong></summary>
-
-A vanilla JS study/project demonstrating Single-page HTML entry.
-
-</details>
-
-<details>
-<summary><strong>How do I run it?</strong></summary>
-
-See [Quick Start](#quick-start) for copy-paste commands.
-
-</details>
-
-<details>
-<summary><strong>Are there tests?</strong></summary>
-
-No automated tests in this repository.
-
-</details>
-
-<details>
-<summary><strong>Can I use this in production?</strong></summary>
-
-This is a **study/portfolio project**. Review and harden (auth, persistence, monitoring, etc.) before production use.
-
-</details>
-
-
-
----
-
-## Documentation
-
-- **Source Code** ,  Browse the `src/` directory for implementation details
-- **API Reference** ,  N/A
-- **Architecture Diagram** ,  See [architecture.mermaid](docs/architecture.mermaid) (if present)
-- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (if present)
-- **Contributing** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (if present)
-
-## License
-
-[MIT](LICENSE) ,  Kelvin Oliveira
-
----
-
-<div align="center">
-
-**Built with** · Vanilla HTML/CSS/JS
-
-**Author** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
-
-</div>
+**Author**: [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
