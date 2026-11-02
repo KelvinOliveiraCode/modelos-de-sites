@@ -233,6 +233,17 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
 .canais b{font-weight:400;font-size:1.16rem;display:block}
 .canais span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-500)}
 
+/* ---------------- autor / portfólio ---------------- */
+.autor{padding:clamp(90px,14vh,150px) 0 0}
+.autor .wrap{
+  display:grid;grid-template-columns:1fr auto;gap:clamp(28px,5vw,70px);
+  align-items:end;
+  border-top:1px solid var(--border);padding-top:clamp(40px,6vh,64px);
+}
+.autor h3{font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.14;font-weight:300;max-width:26ch}
+.autor p{margin-top:16px;color:var(--gray-300);font-size:1.06rem;max-width:52ch}
+.autor .acoes{margin-top:0}
+
 /* ---------------- rodape ---------------- */
 .rodape{padding:clamp(80px,12vh,120px) 0 56px}
 .rodape .wrap{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:center}
@@ -256,6 +267,7 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
 @media (max-width:1080px){
   .contato .grade2{grid-template-columns:1fr}
   .processo .wrap{grid-template-columns:1fr;gap:34px}
+  .autor .wrap{grid-template-columns:1fr;align-items:start}
 }
 @media (max-width:860px){
   body{font-size:18px}
@@ -291,6 +303,7 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
     <nav aria-label="Navegacao">
       <a href="#modelos">Modelos</a>
       <a href="#processo">Processo</a>
+      <a href="#portfolio">Portfólio</a>
       <a class="destaque" href="#contato">Falar comigo</a>
     </nav>
   </div>
@@ -343,6 +356,20 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
   </div>
 </section>
 
+<section class="autor" id="portfolio">
+  <div class="wrap">
+    <div>
+      <p class="mono">Quem faz</p>
+      <h3>Estes modelos são meus. O resto do trabalho está no portfólio.</h3>
+      <p>Além dos modelos de site, mantenho projetos publicados em IA, dados, backend, cibersegurança e infraestrutura, todos com o código aberto no GitHub.</p>
+    </div>
+    <div class="acoes">
+      <a class="btn" href="https://kelvinoliveiracode.github.io/portfolio/" target="_blank" rel="noopener">Ver o portfólio</a>
+      <a class="btn" href="https://github.com/KelvinOliveiraCode" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
 <section class="contato" id="contato">
   <div class="wrap grade2">
     <div>
@@ -379,6 +406,7 @@ body.pronto{opacity:1;transition:opacity .9s var(--ease)}
     <nav aria-label="Rodape">
       <a href="#modelos">Modelos</a>
       <a href="#processo">Processo</a>
+      <a href="#portfolio">Portfólio</a>
       <a href="#contato">Contato</a>
       <a href="#topo">Voltar ao topo</a>
     </nav>
