@@ -21,7 +21,7 @@ Em produção. Publicado em <https://kelvinoliveiracode.github.io/modelos-de-sit
 
 ## Arquitetura
 
-Cada nicho é uma pasta com uma página HTML independente; o hub agrega. Sem build, sem framework, sem dependências — só HTML/CSS/JS estático.
+Cada nicho é uma pasta com uma página HTML independente; o hub agrega. Sem build, sem framework, sem dependências: só HTML/CSS/JS estático.
 
 ```mermaid
 flowchart LR

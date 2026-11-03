@@ -21,7 +21,7 @@ In production. Published at <https://kelvinoliveiracode.github.io/modelos-de-sit
 
 ## Architecture
 
-Each niche is a folder with an independent HTML page; the hub aggregates them. No build, no framework, no dependencies — only static HTML/CSS/JS.
+Each niche is a folder with an independent HTML page; the hub aggregates them. No build, no framework, no dependencies: only static HTML/CSS/JS.
 
 ```mermaid
 flowchart LR
